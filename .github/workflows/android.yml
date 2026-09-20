@@ -100,7 +100,7 @@ jobs:
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: platform-${{ env.ANDROID_API_LEVEL }},build-tools-${{ env.ANDROID_BUILD_TOOLS_VERSION }},ndk-${{ env.ANDROID_NDK_VERSION }}
+          packages: platform-${{ env.ANDROID_API_LEVEL }} build-tools-${{ env.ANDROID_BUILD_TOOLS_VERSION }} ndk-${{ env.ANDROID_NDK_VERSION }}
 
       - name: Configure cargo for Android targets
         run: |
