@@ -55,9 +55,9 @@ env:
   ANDROID_API_LEVEL: 36
   ANDROID_BUILD_TOOLS_VERSION: 36.0.0
   ANDROID_NDK_VERSION: 28.2.13676358
-  ANDROID_NDK_HOME: ${{ runner.workspace }}/android-sdk/ndk/${{ env.ANDROID_NDK_VERSION }}
-  ANDROID_HOME: ${{ runner.workspace }}/android-sdk
-  ANDROID_SDK_ROOT: ${{ runner.workspace }}/android-sdk
+  ANDROID_NDK_HOME: ${{ github.workspace }}/android-sdk/ndk/${{ env.ANDROID_NDK_VERSION }}
+  ANDROID_HOME: ${{ github.workspace }}/android-sdk
+  ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
   # Rust toolchain version from rust-toolchain.toml
   RUST_TOOLCHAIN: 1.94
   # Target for Android ARM64
