@@ -162,11 +162,15 @@ jobs:
           APK_SIZE_MB=$((APK_SIZE / 1024 / 1024))
           echo "APK size: ${APK_SIZE_MB} MB"
           
-          # Verify package name
-          aapt dump badging "$APK_PATH" 2>/dev/null | grep "package: name='tech.zseven.openpencil'" || {
-            echo "ERROR: Package name mismatch"
-            exit 1
-          }
+          # Verify package name (more robust check)
+          if command -v aapt >/dev/null 2>&1; then
+            aapt dump badging "$APK_PATH" 2>/dev/null | grep -q "package: name='tech.zseven.openpencil'" || {
+              echo "ERROR: Package name mismatch"
+              exit 1
+            }
+          else
+            echo "WARNING: aapt not available, skipping package name verification"
+          fi
           
           echo "apk-path=$APK_PATH" >> $GITHUB_OUTPUT
           echo "apk-size=${APK_SIZE_MB}MB" >> $GITHUB_OUTPUT
