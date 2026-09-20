@@ -1,0 +1,50 @@
+[package]
+name = "op-collab-relay-locator-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "MIT"
+repository.workspace = true
+description = "Deployable, HSM-backed relay locator issuance service for OpenPencil"
+publish = false
+
+[dependencies]
+axum = { version = "0.8", default-features = false, features = [
+  "http1",
+  "original-uri",
+  "tokio",
+] }
+bytes = "1"
+hyper = { version = "1", features = ["http1", "server"] }
+hyper-util = { version = "0.1", features = ["server", "http1", "tokio", "service"] }
+op-auth-bridge = { path = "../op-auth-bridge" }
+op-collab-policy-file = { path = "../op-collab-policy-file" }
+op-collab-relay-control-plane = { path = "../op-collab-relay-control-plane" }
+op-collab-relay-protocol = { path = "../op-collab-relay-protocol" }
+sha2 = "0.10"
+socket2 = "0.6"
+thiserror.workspace = true
+tokio = { version = "1", features = [
+  "macros",
+  "net",
+  "rt-multi-thread",
+  "signal",
+  "sync",
+  "time",
+] }
+tower-service = "0.3"
+tower-http = { version = "0.6", features = ["limit", "timeout"] }
+tracing.workspace = true
+tracing-subscriber.workspace = true
+zeroize = "1"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[dev-dependencies]
+base64 = "0.22"
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+op-auth-bridge = { path = "../op-auth-bridge", features = ["test-issuer"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+serde_json.workspace = true
+tempfile = "3"

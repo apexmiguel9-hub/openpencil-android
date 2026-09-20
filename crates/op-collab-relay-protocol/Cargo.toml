@@ -1,0 +1,23 @@
+[package]
+name = "op-collab-relay-protocol"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "MIT"
+repository.workspace = true
+description = "Open, bounded relay locator and rendezvous protocol for OpenPencil collaboration"
+
+[features]
+default = ["random"]
+random = ["dep:getrandom"]
+
+[dependencies]
+base64 = "0.22"
+blake3 = "1.5"
+chacha20poly1305 = { version = "0.10", default-features = false }
+getrandom = { version = "0.3", optional = true }
+hkdf = "0.12"
+hmac = "0.12"
+sha2 = "0.10"
+thiserror = { workspace = true }
+zeroize = "1"

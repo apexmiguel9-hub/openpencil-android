@@ -1,0 +1,24 @@
+[package]
+name = "op-collab-policy-file"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "MIT"
+repository.workspace = true
+description = "Bounded no-follow signed-policy file source for OpenPencil collaboration services"
+
+[dependencies]
+base64 = "0.22"
+blake3 = "1.5"
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+op-auth-bridge = { path = "../op-auth-bridge" }
+op-collab-relay-protocol = { path = "../op-collab-relay-protocol" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[dev-dependencies]
+tempfile = "3"

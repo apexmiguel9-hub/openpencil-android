@@ -1,0 +1,78 @@
+//! Cross-launch persistence for CLI provider connections.
+//!
+//! Before this file existed NOTHING about agent settings survived a
+//! restart — the connected-provider flags and probed model catalog are runtime
+//! state, so every launch greeted the user with disconnected provider cards
+//! (measured / user-reported on both dev and packaged builds). The store
+//! keeps only the CONNECTED flags (no keys, no models — CLI providers
+//! have no secrets and the catalog must be re-probed anyway); on startup
+//! the host replays a silent connect probe for each remembered provider,
+//! so the status and the model picker come back by themselves and an
+//! uninstalled CLI honestly degrades to disconnected.
+
+use op_editor_core::AgentProvider;
+
+const FILE: &str = "agents.json";
+
+#[derive(Debug, Clone, Default, serde::Serialize, serde::Deserialize)]
+struct PersistedAgentConnections {
+    #[serde(default)]
+    connected: Vec<String>,
+}
+
+/// Persist the currently-connected provider ids. Best-effort: a failed
+/// write must never break the probe flow.
+pub(crate) fn save(connected: &[bool; 7]) {
+    crate::test_config_root::guard_user_config();
+    let value = PersistedAgentConnections {
+        connected: AgentProvider::ALL
+            .iter()
+            .enumerate()
+            .filter(|(index, _)| connected[*index])
+            .map(|(_, provider)| provider.name().to_string())
+            .collect(),
+    };
+    if let Err(err) = op_config_store::write_json(FILE, &value) {
+        eprintln!("[agents] connection store write failed: {err}");
+    }
+}
+
+/// Providers remembered as connected from the previous session, in
+/// `AgentProvider::ALL` order.
+pub(crate) fn load() -> Vec<AgentProvider> {
+    crate::test_config_root::guard_user_config();
+    let Ok(Some(value)) = op_config_store::read_json::<PersistedAgentConnections>(FILE) else {
+        return Vec::new();
+    };
+    providers_from_persisted(&value)
+}
+
+fn providers_from_persisted(value: &PersistedAgentConnections) -> Vec<AgentProvider> {
+    AgentProvider::ALL
+        .iter()
+        .copied()
+        .filter(|provider| value.connected.iter().any(|name| name == provider.name()))
+        .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn legacy_gemini_cli_entry_is_ignored_without_hiding_supported_providers() {
+        let value = PersistedAgentConnections {
+            connected: vec![
+                "Claude Code".into(),
+                "Gemini CLI".into(),
+                "Antigravity".into(),
+            ],
+        };
+        let json = serde_json::to_string(&value).expect("serialize");
+        let back: PersistedAgentConnections = serde_json::from_str(&json).expect("parse");
+        assert_eq!(
+            providers_from_persisted(&back),
+            vec![AgentProvider::ClaudeCode, AgentProvider::Antigravity]
+        );
+    }
+}

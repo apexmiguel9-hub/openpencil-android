@@ -1,0 +1,1087 @@
+{
+  "version": "1.0.0",
+  "name": "App 新手引导三屏 · 3:4 单卡",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-surface": {
+      "type": "color",
+      "value": "#F3F4F7"
+    },
+    "c-slot": {
+      "type": "color",
+      "value": "#E9EBF0"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#DDE0E7"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#14161A"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#666D79"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#2F5BFF"
+    },
+    "c-accent-ink": {
+      "type": "color",
+      "value": "#FFFFFF"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "App 新手引导三屏",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        80,
+        72,
+        72,
+        72
+      ],
+      "gap": 28,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 18,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                20
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-surface"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "标签文字",
+                  "content": "新手引导 · 三屏封顶",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "三屏之内\n把你的 App 讲完",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 62,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.2,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "把自己的三张引导图拖进屏幕里，文案照着下面的格式改。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f40",
+          "name": "三屏",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f17",
+              "name": "引导屏",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f11",
+                  "name": "机身",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-bg"
+                    }
+                  ],
+                  "padding": [
+                    14,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r10",
+                      "name": "听筒条",
+                      "width": 64,
+                      "height": 8,
+                      "cornerRadius": 4,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-line"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f7",
+                      "name": "屏幕图位",
+                      "width": "fill_container",
+                      "height": 396,
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 18,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-slot"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i8",
+                          "name": "图位图标",
+                          "iconFontName": "image",
+                          "width": 34,
+                          "height": 34,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t9",
+                          "name": "图位提示",
+                          "content": "第 1 屏截图",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 21,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 28,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-line"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f15",
+                  "name": "屏标题行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f12",
+                      "name": "屏序号",
+                      "width": 40,
+                      "height": 40,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 10,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t13",
+                          "name": "序号",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 21,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t14",
+                      "name": "屏标题",
+                      "content": "先说清你是谁",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t16",
+                  "name": "屏说明",
+                  "content": "一句话讲明白这个 App 解决什么问题。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 21,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f28",
+              "name": "引导屏",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f22",
+                  "name": "机身",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-bg"
+                    }
+                  ],
+                  "padding": [
+                    14,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r21",
+                      "name": "听筒条",
+                      "width": 64,
+                      "height": 8,
+                      "cornerRadius": 4,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-line"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f18",
+                      "name": "屏幕图位",
+                      "width": "fill_container",
+                      "height": 396,
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 18,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-slot"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i19",
+                          "name": "图位图标",
+                          "iconFontName": "image",
+                          "width": 34,
+                          "height": 34,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t20",
+                          "name": "图位提示",
+                          "content": "第 2 屏截图",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 21,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 28,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-line"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "屏标题行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f23",
+                      "name": "屏序号",
+                      "width": 40,
+                      "height": 40,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 10,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t24",
+                          "name": "序号",
+                          "content": "2",
+                          "fontFamily": "Inter",
+                          "fontSize": 21,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t25",
+                      "name": "屏标题",
+                      "content": "再给一个动作",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t27",
+                  "name": "屏说明",
+                  "content": "只留一个按钮，别让人挑。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 21,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f39",
+              "name": "引导屏",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f33",
+                  "name": "机身",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-bg"
+                    }
+                  ],
+                  "padding": [
+                    14,
+                    14
+                  ],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r32",
+                      "name": "听筒条",
+                      "width": 64,
+                      "height": 8,
+                      "cornerRadius": 4,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-line"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f29",
+                      "name": "屏幕图位",
+                      "width": "fill_container",
+                      "height": 396,
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 18,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-slot"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i30",
+                          "name": "图位图标",
+                          "iconFontName": "image",
+                          "width": 34,
+                          "height": 34,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t31",
+                          "name": "图位提示",
+                          "content": "第 3 屏截图",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 21,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 28,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-line"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f37",
+                  "name": "屏标题行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f34",
+                      "name": "屏序号",
+                      "width": 40,
+                      "height": 40,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 10,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t35",
+                          "name": "序号",
+                          "content": "3",
+                          "fontFamily": "Inter",
+                          "fontSize": 21,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t36",
+                      "name": "屏标题",
+                      "content": "最后请求权限",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t38",
+                  "name": "屏说明",
+                  "content": "在真正要用到的那一刻才要，通过率高得多。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 21,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f56",
+          "name": "规矩面板",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 14,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-surface"
+            }
+          ],
+          "padding": [
+            24,
+            30
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f45",
+              "name": "规矩项",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i41",
+                  "name": "规矩图标",
+                  "iconFontName": "check",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f44",
+                  "name": "规矩文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t42",
+                      "name": "规矩标题",
+                      "content": "跳过按钮一定要留",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t43",
+                      "name": "规矩说明",
+                      "content": "藏起跳过只会让人卸载，不会让人读完。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 22,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f50",
+              "name": "规矩项",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i46",
+                  "name": "规矩图标",
+                  "iconFontName": "check",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f49",
+                  "name": "规矩文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t47",
+                      "name": "规矩标题",
+                      "content": "三屏共用一套版式",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t48",
+                      "name": "规矩说明",
+                      "content": "换插画不换结构，翻页时视线不用重新找。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 22,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f55",
+              "name": "规矩项",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i51",
+                  "name": "规矩图标",
+                  "iconFontName": "check",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f54",
+                  "name": "规矩文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t52",
+                      "name": "规矩标题",
+                      "content": "最后一屏别放注册墙",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t53",
+                      "name": "规矩说明",
+                      "content": "先让人进去看一眼，再谈账号。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 22,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "cornerRadius": 18
+        },
+        {
+          "type": "frame",
+          "id": "f59",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t57",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 23,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t58",
+              "name": "用法提示",
+              "content": "浅灰屏幕是图片位，直接把截图拖上去",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 21,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

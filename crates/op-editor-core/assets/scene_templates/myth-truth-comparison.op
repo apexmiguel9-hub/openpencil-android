@@ -1,0 +1,1315 @@
+{
+  "version": "1.0.0",
+  "name": "误区与真相长图",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F2F2F4"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#E4E4E7"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#111113"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#4E4E53"
+    },
+    "c-inv-muted": {
+      "type": "color",
+      "value": "#A2A2A8"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "误区与真相长图",
+      "width": 1080,
+      "height": 2593,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "01 页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            76,
+            80,
+            68,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink"
+            }
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "标签文字",
+                  "content": "误区对照 · 内容向",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "五句听多了\n就以为是真的",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "浅色那句是流传的版本，深色那句是实际发生的事。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-inv-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f67",
+          "name": "02 五组",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 34,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f65",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r62",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t63",
+                  "name": "区块标题",
+                  "content": "一组一组来",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t64",
+                  "name": "区块说明",
+                  "content": "每组只有两句：先看你信的那句，再看下一句。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f66",
+              "name": "组列表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 40,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f17",
+                  "name": "一组",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f12",
+                      "name": "误区行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f11",
+                          "name": "误区",
+                          "width": 600,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-panel"
+                            }
+                          ],
+                          "padding": [
+                            26,
+                            28
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f9",
+                              "name": "误区头",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "justifyContent": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t7",
+                                  "name": "序号",
+                                  "content": "01",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.3,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t8",
+                                  "name": "误区名",
+                                  "content": "常听到的说法",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 600,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.4,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t10",
+                              "name": "误区正文",
+                              "content": "粉丝多了自然有收入",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f16",
+                      "name": "真相行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f15",
+                          "name": "真相",
+                          "width": 760,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "padding": [
+                            28,
+                            30
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t13",
+                              "name": "真相名",
+                              "content": "实际上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t14",
+                              "name": "真相正文",
+                              "content": "会付钱的一千人，比路过的十万人值钱。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-card"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f28",
+                  "name": "一组",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f23",
+                      "name": "误区行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f22",
+                          "name": "误区",
+                          "width": 600,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-panel"
+                            }
+                          ],
+                          "padding": [
+                            26,
+                            28
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f20",
+                              "name": "误区头",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "justifyContent": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t18",
+                                  "name": "序号",
+                                  "content": "02",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.3,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t19",
+                                  "name": "误区名",
+                                  "content": "常听到的说法",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 600,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.4,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t21",
+                              "name": "误区正文",
+                              "content": "必须日更才有流量",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f27",
+                      "name": "真相行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f26",
+                          "name": "真相",
+                          "width": 760,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "padding": [
+                            28,
+                            30
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t24",
+                              "name": "真相名",
+                              "content": "实际上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t25",
+                              "name": "真相正文",
+                              "content": "读者记住的是「周三更新」，不是「天天有」。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-card"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f39",
+                  "name": "一组",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f34",
+                      "name": "误区行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f33",
+                          "name": "误区",
+                          "width": 600,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-panel"
+                            }
+                          ],
+                          "padding": [
+                            26,
+                            28
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f31",
+                              "name": "误区头",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "justifyContent": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t29",
+                                  "name": "序号",
+                                  "content": "03",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.3,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t30",
+                                  "name": "误区名",
+                                  "content": "常听到的说法",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 600,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.4,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t32",
+                              "name": "误区正文",
+                              "content": "设备越好内容越好",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f38",
+                      "name": "真相行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f37",
+                          "name": "真相",
+                          "width": 760,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "padding": [
+                            28,
+                            30
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t35",
+                              "name": "真相名",
+                              "content": "实际上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t36",
+                              "name": "真相正文",
+                              "content": "手机拍清楚就够了，卡住你的是选题。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-card"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f50",
+                  "name": "一组",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f45",
+                      "name": "误区行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f44",
+                          "name": "误区",
+                          "width": 600,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-panel"
+                            }
+                          ],
+                          "padding": [
+                            26,
+                            28
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f42",
+                              "name": "误区头",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "justifyContent": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t40",
+                                  "name": "序号",
+                                  "content": "04",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.3,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t41",
+                                  "name": "误区名",
+                                  "content": "常听到的说法",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 600,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.4,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t43",
+                              "name": "误区正文",
+                              "content": "爆一条就起来了",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f49",
+                      "name": "真相行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f48",
+                          "name": "真相",
+                          "width": 760,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "padding": [
+                            28,
+                            30
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t46",
+                              "name": "真相名",
+                              "content": "实际上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t47",
+                              "name": "真相正文",
+                              "content": "爆款只带来一次曝光，留住人的是第二条。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-card"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f61",
+                  "name": "一组",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f56",
+                      "name": "误区行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f55",
+                          "name": "误区",
+                          "width": 600,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-panel"
+                            }
+                          ],
+                          "padding": [
+                            26,
+                            28
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f53",
+                              "name": "误区头",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "justifyContent": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t51",
+                                  "name": "序号",
+                                  "content": "05",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.3,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t52",
+                                  "name": "误区名",
+                                  "content": "常听到的说法",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 600,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-muted"
+                                    }
+                                  ],
+                                  "lineHeight": 1.4,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t54",
+                              "name": "误区正文",
+                              "content": "要找一个没人做的方向",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f60",
+                      "name": "真相行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f59",
+                          "name": "真相",
+                          "width": 760,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "padding": [
+                            28,
+                            30
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t57",
+                              "name": "真相名",
+                              "content": "实际上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t58",
+                              "name": "真相正文",
+                              "content": "没人做通常是因为没人看，挤进有人的地方。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-card"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f72",
+          "name": "03 页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            44,
+            80
+          ],
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t68",
+              "name": "结语",
+              "content": "第六句是「这五句我早就知道了」。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 30,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "lineHeight": 1.3,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f71",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "justifyContent": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t69",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t70",
+                  "name": "更新说明",
+                  "content": "每周拆一句听腻了的话",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

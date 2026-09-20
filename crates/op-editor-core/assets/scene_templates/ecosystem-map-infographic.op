@@ -1,0 +1,2015 @@
+{
+  "version": "1.0.0",
+  "name": "行业地图长图",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#CBD5DD"
+    },
+    "c-surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-band": {
+      "type": "color",
+      "value": "#0E1D28"
+    },
+    "c-band-muted": {
+      "type": "color",
+      "value": "#93A7B4"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#10202B"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#3E515B"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#1D6FA5"
+    },
+    "c-accent-deep": {
+      "type": "color",
+      "value": "#14547E"
+    },
+    "c-accent-soft": {
+      "type": "color",
+      "value": "#E3F0F8"
+    },
+    "c-border": {
+      "type": "color",
+      "value": "#AFC0CB"
+    },
+    "c-zone-1": {
+      "type": "color",
+      "value": "#0E3F60"
+    },
+    "c-zone-2": {
+      "type": "color",
+      "value": "#1D6FA5"
+    },
+    "c-zone-3": {
+      "type": "color",
+      "value": "#4C90BC"
+    },
+    "c-zone-4": {
+      "type": "color",
+      "value": "#7FB2D0"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "行业地图长图",
+      "width": 1080,
+      "height": 2206,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "01 页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            76,
+            80,
+            68,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "胶囊",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "胶囊文字",
+                  "content": "行业地图 · 四个位置",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "这条链上\n只有四个位置",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 76,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-surface"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "每格三个位点，最后一节写还空着的两处。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f95",
+          "name": "03 分区",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 30,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f76",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r73",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t74",
+                  "name": "区块标题",
+                  "content": "四个格子，按先后排",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t75",
+                  "name": "区块说明",
+                  "content": "编号即先后：从起草到复盘。格子之间不比大小，只分位置。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f93",
+              "name": "图例",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f80",
+                  "name": "图例项",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r77",
+                      "name": "图例色块",
+                      "width": 20,
+                      "height": 20,
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-zone-1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t78",
+                      "name": "图例编号",
+                      "content": "01",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t79",
+                      "name": "图例名",
+                      "content": "起草区",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f84",
+                  "name": "图例项",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r81",
+                      "name": "图例色块",
+                      "width": 20,
+                      "height": 20,
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-zone-2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t82",
+                      "name": "图例编号",
+                      "content": "02",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t83",
+                      "name": "图例名",
+                      "content": "成形区",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f88",
+                  "name": "图例项",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r85",
+                      "name": "图例色块",
+                      "width": 20,
+                      "height": 20,
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-zone-3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t86",
+                      "name": "图例编号",
+                      "content": "03",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t87",
+                      "name": "图例名",
+                      "content": "发布区",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f92",
+                  "name": "图例项",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r89",
+                      "name": "图例色块",
+                      "width": 20,
+                      "height": 20,
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-zone-4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t90",
+                      "name": "图例编号",
+                      "content": "04",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t91",
+                      "name": "图例名",
+                      "content": "复盘区",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f94",
+              "name": "分区阵列",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f39",
+                  "name": "分区行 1",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f22",
+                      "name": "分区 01",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "padding": [
+                        26,
+                        28,
+                        28,
+                        28
+                      ],
+                      "cornerRadius": 20,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r16",
+                          "name": "分区色条",
+                          "width": "fill_container",
+                          "height": 8,
+                          "cornerRadius": 999,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-zone-1"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f19",
+                          "name": "分区头",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t17",
+                              "name": "分区编号",
+                              "content": "01",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t18",
+                              "name": "分区名",
+                              "content": "起草区",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t20",
+                          "name": "分区说明",
+                          "content": "从空白到第一版，越快越好。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f21",
+                          "name": "位点列表",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f9",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r7",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t8",
+                                  "name": "位点名",
+                                  "content": "大纲与选题库",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f12",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r10",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t11",
+                                  "name": "位点名",
+                                  "content": "AI 起草与改写",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f15",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r13",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-1"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t14",
+                                  "name": "位点名",
+                                  "content": "语音转文字",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-border"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f38",
+                      "name": "分区 02",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "padding": [
+                        26,
+                        28,
+                        28,
+                        28
+                      ],
+                      "cornerRadius": 20,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r32",
+                          "name": "分区色条",
+                          "width": "fill_container",
+                          "height": 8,
+                          "cornerRadius": 999,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-zone-2"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f35",
+                          "name": "分区头",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t33",
+                              "name": "分区编号",
+                              "content": "02",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t34",
+                              "name": "分区名",
+                              "content": "成形区",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t36",
+                          "name": "分区说明",
+                          "content": "把内容变成能直接看的东西。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f37",
+                          "name": "位点列表",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f25",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r23",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t24",
+                                  "name": "位点名",
+                                  "content": "排版与模板",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f28",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r26",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t27",
+                                  "name": "位点名",
+                                  "content": "配图与图表",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f31",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r29",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t30",
+                                  "name": "位点名",
+                                  "content": "封面生成",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-border"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f72",
+                  "name": "分区行 2",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f55",
+                      "name": "分区 03",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "padding": [
+                        26,
+                        28,
+                        28,
+                        28
+                      ],
+                      "cornerRadius": 20,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r49",
+                          "name": "分区色条",
+                          "width": "fill_container",
+                          "height": 8,
+                          "cornerRadius": 999,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-zone-3"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f52",
+                          "name": "分区头",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t50",
+                              "name": "分区编号",
+                              "content": "03",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t51",
+                              "name": "分区名",
+                              "content": "发布区",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t53",
+                          "name": "分区说明",
+                          "content": "一次做完，多个地方能用。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f54",
+                          "name": "位点列表",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f42",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r40",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-3"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t41",
+                                  "name": "位点名",
+                                  "content": "多平台分发",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f45",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r43",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-3"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t44",
+                                  "name": "位点名",
+                                  "content": "尺寸批量适配",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f48",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r46",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-3"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t47",
+                                  "name": "位点名",
+                                  "content": "定时与草稿箱",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-border"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f71",
+                      "name": "分区 04",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "padding": [
+                        26,
+                        28,
+                        28,
+                        28
+                      ],
+                      "cornerRadius": 20,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r65",
+                          "name": "分区色条",
+                          "width": "fill_container",
+                          "height": 8,
+                          "cornerRadius": 999,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-zone-4"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f68",
+                          "name": "分区头",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t66",
+                              "name": "分区编号",
+                              "content": "04",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t67",
+                              "name": "分区名",
+                              "content": "复盘区",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t69",
+                          "name": "分区说明",
+                          "content": "知道下一次该改哪儿。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f70",
+                          "name": "位点列表",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f58",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r56",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-4"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t57",
+                                  "name": "位点名",
+                                  "content": "数据看板",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f61",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r59",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-4"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t60",
+                                  "name": "位点名",
+                                  "content": "评论与私信汇总",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f64",
+                              "name": "位点",
+                              "width": "fill_container",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "r62",
+                                  "name": "位点点",
+                                  "width": 10,
+                                  "height": 10,
+                                  "cornerRadius": 3,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-zone-4"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "t63",
+                                  "name": "位点名",
+                                  "content": "选题命中率",
+                                  "fontFamily": "Noto Sans SC",
+                                  "fontSize": 24,
+                                  "fontWeight": 500,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-ink"
+                                    }
+                                  ],
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-border"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f111",
+          "name": "04 空位",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            64,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f110",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r107",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t108",
+                  "name": "区块标题",
+                  "content": "还空着的两处",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t109",
+                  "name": "区块说明",
+                  "content": "都在两格之间 —— 单格里的位点已经很挤，缝隙里还没人。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f106",
+              "name": "空位面板",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent-soft"
+                }
+              ],
+              "padding": [
+                36,
+                34
+              ],
+              "cornerRadius": 22,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f100",
+                  "name": "空位项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i96",
+                      "name": "标记",
+                      "iconFontName": "scan-search",
+                      "width": 30,
+                      "height": 30,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f99",
+                      "name": "空位文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t97",
+                          "name": "空位标题",
+                          "content": "成形区和发布区之间没人接",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 28,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t98",
+                          "name": "空位说明",
+                          "content": "改一次内容要手动导出五种尺寸，至今没有「改一处、全套跟着变」。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f105",
+                  "name": "空位项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i101",
+                      "name": "标记",
+                      "iconFontName": "scan-search",
+                      "width": 30,
+                      "height": 30,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f104",
+                      "name": "空位文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t102",
+                          "name": "空位标题",
+                          "content": "复盘区的结论回不到起草区",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 28,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t103",
+                          "name": "空位说明",
+                          "content": "数据看板和选题库是两张互不相认的表，上一期的结论下一期用不上。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f116",
+          "name": "05 页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            44,
+            80
+          ],
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t112",
+              "name": "口径",
+              "content": "分区按工作流环节划，同一产品跨两格时归它收入占多的那格。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f115",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t113",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t114",
+                  "name": "更新说明",
+                  "content": "每半年重画一次这张图",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-band-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

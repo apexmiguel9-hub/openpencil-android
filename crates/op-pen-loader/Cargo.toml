@@ -1,0 +1,45 @@
+[package]
+name = "op-pen-loader"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Canonical .op (PenDocument) → shell Document loader / adapter"
+
+[dependencies]
+# Canonical `.op` / `.pen` schema — the `PenDocument` this crate
+# converts from.
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+# jian-core ships the taffy-backed `LayoutEngine` — the canonical
+# flex solver for `.op` files.
+jian-core = { path = "../../vendor/jian/crates/jian-core" }
+# jian-skia ships `SkiaMeasure` — a real skia paragraph-shaper
+# `MeasureBackend` plugged into the layout engine. Optional: the native +
+# web-skia builds enable it (`skia-measure`, default); the CanvasKit web build
+# turns it off so no skia-safe / jian-skia is linked (falls back to
+# jian-core's estimate backend — see adapter.rs::make_measure_backend).
+jian-skia = { path = "../../vendor/jian/crates/jian-skia", features = ["textlayout"], optional = true }
+# The canonical render scene this crate builds INTO (`LayoutScene` +
+# scene types) lives in jian-scene; scene_vars + the render-backend facade
+# (Color/Point2D/Rect/ImageAdjustments) come from op-editor-core.
+jian-scene = { path = "../../vendor/jian/crates/jian-scene" }
+# `EditorState` — the canonical editor-state superset this crate
+# derives a paint-only `Document` (incl. its `var_table`) FROM. Lives
+# in op-pen-loader, NOT op-editor-core, so op-editor-core stays free of
+# any shell-core (`VariableTable`) dependency and wasm-clean.
+op-editor-core = { path = "../op-editor-core" }
+# Canonical hex-color parsing (dependency-free, wasm-clean).
+op-util = { path = "../op-util" }
+# Payload DTOs round-trip through serde JSON.
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_stacker = { workspace = true }
+
+[dev-dependencies]
+op-html = { path = "../op-html" }
+
+[features]
+# Real skia text measurement (native + web-skia). Off → jian-core estimate
+# backend, so the CanvasKit web build links no skia-safe.
+default = ["skia-measure"]
+skia-measure = ["dep:jian-skia"]

@@ -1,0 +1,647 @@
+{
+  "version": "1.0.0",
+  "name": "竖排书脊卡 · 鸣沙矿彩 3:4",
+  "variables": {
+    "c-wall": {
+      "type": "color",
+      "value": "#21120B"
+    },
+    "c-plaster": {
+      "type": "color",
+      "value": "#312018"
+    },
+    "c-raised": {
+      "type": "color",
+      "value": "#412E25"
+    },
+    "c-shell": {
+      "type": "color",
+      "value": "#EFEBE2"
+    },
+    "c-shell-dim": {
+      "type": "color",
+      "value": "#BBB7AD"
+    },
+    "c-shell-faint": {
+      "type": "color",
+      "value": "#8A867D"
+    },
+    "c-cinnabar": {
+      "type": "color",
+      "value": "#C54F3B"
+    },
+    "c-azurite-deep": {
+      "type": "color",
+      "value": "#105482"
+    },
+    "c-gold": {
+      "type": "color",
+      "value": "#D5AA55"
+    },
+    "c-niche": {
+      "type": "color",
+      "value": "#8A867D1F"
+    },
+    "c-niche-out": {
+      "type": "color",
+      "value": "#8A867D00"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f33",
+      "name": "竖排书脊卡 · 鸣沙矿彩",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-wall"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f1",
+          "name": "书脊卡 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "horizontal",
+          "padding": [
+            96,
+            80,
+            128,
+            80
+          ],
+          "gap": 16,
+          "alignItems": "stretch",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f6",
+              "name": "左栏",
+              "width": 686,
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "justifyContent": "space_between",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f7",
+                  "name": "角标",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    10,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-azurite-deep"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-gold"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "角标文字",
+                      "content": "壁上 · 03",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-shell"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f5",
+                  "name": "落款",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r3",
+                      "name": "朱砂短线",
+                      "width": 96,
+                      "height": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-cinnabar"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t2",
+                      "name": "副标",
+                      "content": "把一条河讲完，需要先讲清楚\n它流过的那些石头。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-shell-dim"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0.8,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t4",
+                      "name": "出处",
+                      "content": "壁上 · 第三期 · 河西走廊",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-shell-faint"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f9",
+              "name": "竖排标题",
+              "width": 140,
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t10",
+                  "name": "标题字 1",
+                  "content": "山",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-cinnabar"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t11",
+                  "name": "标题字 2",
+                  "content": "与",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-shell"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t12",
+                  "name": "标题字 3",
+                  "content": "河",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-shell"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t13",
+                  "name": "标题字 4",
+                  "content": "的",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-shell"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t14",
+                  "name": "标题字 5",
+                  "content": "来",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-shell"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t15",
+                  "name": "标题字 6",
+                  "content": "路",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-shell"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f34",
+          "name": "竖排书脊卡 · 鸣沙矿彩 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r16",
+              "name": "壁龛光",
+              "width": 1240,
+              "height": 1240,
+              "cornerRadius": 620,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.28,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-niche"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-niche-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -80,
+              "y": -300
+            },
+            {
+              "type": "path",
+              "id": "p17",
+              "name": "剥落 1",
+              "d": "M0 26 L118 0 L243 34 L299 141 L162 214 L37 176 Z",
+              "width": 300,
+              "height": 214,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-raised"
+                }
+              ],
+              "x": 0,
+              "y": 300
+            },
+            {
+              "type": "path",
+              "id": "p18",
+              "name": "剥落 2",
+              "d": "M14 0 L262 41 L237 149 L96 188 L0 96 Z",
+              "width": 262,
+              "height": 188,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-raised"
+                }
+              ],
+              "x": 430,
+              "y": 186
+            },
+            {
+              "type": "path",
+              "id": "p19",
+              "name": "剥落 3",
+              "d": "M31 0 L196 22 L167 118 L52 152 L0 63 Z",
+              "width": 196,
+              "height": 152,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-raised"
+                }
+              ],
+              "x": 352,
+              "y": 700
+            },
+            {
+              "type": "path",
+              "id": "p20",
+              "name": "剥落 4",
+              "d": "M0 58 L96 0 L220 47 L196 176 L46 163 Z",
+              "width": 220,
+              "height": 176,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-raised"
+                }
+              ],
+              "x": 860,
+              "y": 1150
+            },
+            {
+              "type": "rectangle",
+              "id": "r21",
+              "name": "矿彩颗粒 1",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 752,
+              "y": 486
+            },
+            {
+              "type": "rectangle",
+              "id": "r22",
+              "name": "矿彩颗粒 2",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 774,
+              "y": 604
+            },
+            {
+              "type": "rectangle",
+              "id": "r23",
+              "name": "矿彩颗粒 3",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 758,
+              "y": 712
+            },
+            {
+              "type": "rectangle",
+              "id": "r24",
+              "name": "矿彩颗粒 4",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 780,
+              "y": 838
+            },
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "矿彩颗粒 5",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 766,
+              "y": 946
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "矿彩颗粒 6",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 936,
+              "y": 520
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "矿彩颗粒 7",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 958,
+              "y": 662
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "矿彩颗粒 8",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 942,
+              "y": 794
+            },
+            {
+              "type": "rectangle",
+              "id": "r29",
+              "name": "矿彩颗粒 9",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 964,
+              "y": 902
+            },
+            {
+              "type": "rectangle",
+              "id": "r30",
+              "name": "矿彩颗粒 10",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 948,
+              "y": 1010
+            },
+            {
+              "type": "rectangle",
+              "id": "r31",
+              "name": "矿彩颗粒 11",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 770,
+              "y": 1052
+            },
+            {
+              "type": "rectangle",
+              "id": "r32",
+              "name": "矿彩颗粒 12",
+              "width": 4,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar"
+                }
+              ],
+              "opacity": 0.2,
+              "x": 952,
+              "y": 1096
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

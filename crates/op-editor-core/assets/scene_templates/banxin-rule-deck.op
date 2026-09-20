@@ -1,0 +1,2702 @@
+{
+  "version": "1.0.0",
+  "name": "版心界行 · 中文原生排版档",
+  "variables": {
+    "c-xuan": {
+      "type": "color",
+      "value": "#F3F0E9"
+    },
+    "c-xuan-deep": {
+      "type": "color",
+      "value": "#E5E1D7"
+    },
+    "c-case": {
+      "type": "color",
+      "value": "#1E1813"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#2A241F"
+    },
+    "c-ink-soft": {
+      "type": "color",
+      "value": "#5F5A55"
+    },
+    "c-ink-faint": {
+      "type": "color",
+      "value": "#807A76"
+    },
+    "c-xuan-on": {
+      "type": "color",
+      "value": "#F0ECE7"
+    },
+    "c-xuan-dim": {
+      "type": "color",
+      "value": "#B4B0AA"
+    },
+    "c-jie": {
+      "type": "color",
+      "value": "#D0CBC5"
+    },
+    "c-cinnabar": {
+      "type": "color",
+      "value": "#AA4331"
+    },
+    "c-cinnabar-wash": {
+      "type": "color",
+      "value": "#F9D7CE"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "01 封面 · 函套",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-case"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f3",
+          "name": "主标",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 430,
+          "children": [
+            {
+              "type": "text",
+              "id": "t2",
+              "name": "主标题",
+              "content": "汉字排版\n在屏幕上的四次退让",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 96,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-on"
+                }
+              ],
+              "lineHeight": 1.08,
+              "letterSpacing": -1.92,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "r4",
+          "name": "朱砂短线",
+          "width": 96,
+          "height": 2,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 120,
+          "y": 685
+        },
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "副标",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 725,
+          "children": [
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "写给编辑与界面设计者的一份版面评议",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f9",
+          "name": "落款",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 32,
+          "alignItems": "center",
+          "fill": [],
+          "x": 120,
+          "y": 880,
+          "children": [
+            {
+              "type": "text",
+              "id": "t7",
+              "name": "落款 · 单位",
+              "content": "版面组 · 内部评议",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t8",
+              "name": "落款 · 日期",
+              "content": "2026.08.09",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "p10",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p11",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t12",
+          "name": "页码",
+          "content": "1 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-xuan-dim"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f13",
+      "name": "02 篇目 · 函套",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-case"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f15",
+          "name": "眉题",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 144,
+          "children": [
+            {
+              "type": "text",
+              "id": "t14",
+              "name": "眉题",
+              "content": "篇目",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 500,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f35",
+          "name": "篇目列表",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 264,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f18",
+              "name": "篇目 01",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                36,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t16",
+                  "name": "序号",
+                  "content": "01",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-dim"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 96
+                },
+                {
+                  "type": "text",
+                  "id": "t17",
+                  "name": "篇名",
+                  "content": "版心：先给一页定出可以落墨的地方",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-on"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r19",
+              "name": "界行 · 条间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f22",
+              "name": "篇目 02",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                36,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t20",
+                  "name": "序号",
+                  "content": "02",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-dim"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 96
+                },
+                {
+                  "type": "text",
+                  "id": "t21",
+                  "name": "篇名",
+                  "content": "界行：分栏是为了缩短行，不是分盒子",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-on"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r23",
+              "name": "界行 · 条间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f26",
+              "name": "篇目 03",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                36,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t24",
+                  "name": "序号",
+                  "content": "03",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-dim"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 96
+                },
+                {
+                  "type": "text",
+                  "id": "t25",
+                  "name": "篇名",
+                  "content": "行长：三十个字是一道生理线",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-on"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "界行 · 条间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f30",
+              "name": "篇目 04",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                36,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t28",
+                  "name": "序号",
+                  "content": "04",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-dim"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 96
+                },
+                {
+                  "type": "text",
+                  "id": "t29",
+                  "name": "篇名",
+                  "content": "标点：断行处最见功夫",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-on"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r31",
+              "name": "界行 · 条间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f34",
+              "name": "篇目 05",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                36,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t32",
+                  "name": "序号",
+                  "content": "05",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-dim"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 96
+                },
+                {
+                  "type": "text",
+                  "id": "t33",
+                  "name": "篇名",
+                  "content": "收束：把四次退让逐项收回",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-xuan-on"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "p36",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p37",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t38",
+          "name": "页码",
+          "content": "2 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-xuan-dim"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 2040,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f39",
+      "name": "03 论述 · 版心",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-xuan"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f41",
+          "name": "天头批注",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 56,
+          "children": [
+            {
+              "type": "text",
+              "id": "t40",
+              "name": "批注",
+              "content": "版心先于版式；边界不定，谈不上呼吸",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-faint"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f43",
+          "name": "页标题",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 144,
+          "children": [
+            {
+              "type": "text",
+              "id": "t42",
+              "name": "标题",
+              "content": "版心不是边距，是一页里可以落墨的那块地",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 56,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f45",
+          "name": "正文",
+          "width": 960,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 264,
+          "children": [
+            {
+              "type": "text",
+              "id": "t44",
+              "name": "正文",
+              "content": "屏幕上的版面把版心简化成了四边等距的内边距，\n于是每一页都从同一个位置开始，也在同一处结束。\n古籍的做法相反：天头留给批注，地脚留给页码，\n两者从来不等高，页面因此有了上下方向。\n这一档把天头定为 144、地脚定为 108，\n多出来的那一截，是给投影时被人头遮住的下沿的。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "r46",
+          "name": "界行 · 横",
+          "width": 960,
+          "height": 1,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-jie"
+            }
+          ],
+          "x": 120,
+          "y": 648
+        },
+        {
+          "type": "frame",
+          "id": "f56",
+          "name": "三条做法",
+          "width": 960,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 672,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f49",
+              "name": "做法 1",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                14,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t47",
+                  "name": "序号",
+                  "content": "01",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 56
+                },
+                {
+                  "type": "text",
+                  "id": "t48",
+                  "name": "做法",
+                  "content": "天头留给批注，地脚留给页码与鱼尾",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.75,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f52",
+              "name": "做法 2",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                14,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t50",
+                  "name": "序号",
+                  "content": "02",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 56
+                },
+                {
+                  "type": "text",
+                  "id": "t51",
+                  "name": "做法",
+                  "content": "正文块收窄到三十字，宁可分栏也不放宽",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.75,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f55",
+              "name": "做法 3",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "padding": [
+                14,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t53",
+                  "name": "序号",
+                  "content": "03",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 56
+                },
+                {
+                  "type": "text",
+                  "id": "t54",
+                  "name": "做法",
+                  "content": "界行的长度由版面定，与文字多少无关",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.75,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f58",
+          "name": "旁注",
+          "width": 600,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 1200,
+          "y": 264,
+          "children": [
+            {
+              "type": "text",
+              "id": "t57",
+              "name": "旁注",
+              "content": "版心之外的留白不是废纸。\n天头承批注，地脚承页码，\n两者各有职务在身，\n所以不必、也不该等高。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "r59",
+          "name": "界行",
+          "width": 1,
+          "height": 708,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-jie"
+            }
+          ],
+          "x": 1140,
+          "y": 264
+        },
+        {
+          "type": "path",
+          "id": "p60",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p61",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t62",
+          "name": "页码",
+          "content": "3 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink-faint"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 4080,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f63",
+      "name": "04 双栏对读",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-xuan"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f65",
+          "name": "页标题",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 144,
+          "children": [
+            {
+              "type": "text",
+              "id": "t64",
+              "name": "标题",
+              "content": "分栏是为了把行缩短，不是把内容装进两个盒子",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 56,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f69",
+          "name": "左栏 · 其说",
+          "width": 808,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 264,
+          "children": [
+            {
+              "type": "text",
+              "id": "t66",
+              "name": "栏题",
+              "content": "其说",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 40,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.35,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t67",
+              "name": "左栏正文",
+              "content": "通行的做法是给每一栏加一个\n圆角卡片，再用底色把两边分开。\n分是分开了，读者读到的却是\n两张卡片，而不是一篇文章的\n两个部分。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t68",
+              "name": "左栏续",
+              "content": "卡片还有一个副作用：它必须有内边距，\n于是同一块版心里，能排的字更少，\n行却没有因此变短。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f75",
+          "name": "右栏 · 我见",
+          "width": 808,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "x": 992,
+          "y": 264,
+          "children": [
+            {
+              "type": "text",
+              "id": "t72",
+              "name": "栏题",
+              "content": "我见",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 40,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.35,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f71",
+              "name": "首句",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-cinnabar-wash"
+                }
+              ],
+              "padding": [
+                24,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t70",
+                  "name": "首句",
+                  "content": "界行只标记分栏，不圈占内容。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.75,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t73",
+              "name": "右栏正文",
+              "content": "线画在版面上，卡片扣在内容上。\n界行贯穿整个版心，不随文字长短\n伸缩；它分的是版面，不是归属。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t74",
+              "name": "右栏续",
+              "content": "把分栏交给线之后，栏宽就能完全由\n行长决定：三十字一行，多出来的宽度\n留给留白，而不是留给边框。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.75,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "r76",
+          "name": "界行",
+          "width": 1,
+          "height": 708,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-jie"
+            }
+          ],
+          "x": 960,
+          "y": 264
+        },
+        {
+          "type": "path",
+          "id": "p77",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p78",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t79",
+          "name": "页码",
+          "content": "4 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink-faint"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 0,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f80",
+      "name": "05 引文",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-xuan"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f82",
+          "name": "天头批注",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 56,
+          "children": [
+            {
+              "type": "text",
+              "id": "t81",
+              "name": "批注",
+              "content": "回行的距离，是版面替眼睛付的成本",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-faint"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f84",
+          "name": "页标题",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 144,
+          "children": [
+            {
+              "type": "text",
+              "id": "t83",
+              "name": "标题",
+              "content": "一行超过三十个汉字，眼睛就会在回行时丢位置",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 56,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f86",
+          "name": "引文块",
+          "width": 1080,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-xuan-deep"
+            }
+          ],
+          "padding": [
+            64,
+            64
+          ],
+          "x": 420,
+          "y": 372,
+          "children": [
+            {
+              "type": "text",
+              "id": "t85",
+              "name": "引文",
+              "content": "行的长度决定读者每次回行要走多远。\n走得太远，眼睛会落到上一行或下一行，\n于是要重读；重读不是理解慢，是版面失职。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 36,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.8,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f88",
+          "name": "出处",
+          "width": 1080,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 420,
+          "y": 732,
+          "children": [
+            {
+              "type": "text",
+              "id": "t87",
+              "name": "出处",
+              "content": "——《版面与阅读》第二章 · 行长与回行",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-soft"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "textAlign": "right"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "r89",
+          "name": "界行",
+          "width": 1,
+          "height": 708,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-jie"
+            }
+          ],
+          "x": 360,
+          "y": 264
+        },
+        {
+          "type": "rectangle",
+          "id": "r90",
+          "name": "界行",
+          "width": 1,
+          "height": 708,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-jie"
+            }
+          ],
+          "x": 1560,
+          "y": 264
+        },
+        {
+          "type": "path",
+          "id": "p91",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p92",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t93",
+          "name": "页码",
+          "content": "5 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink-faint"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 2040,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f94",
+      "name": "06 表列",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-xuan"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f96",
+          "name": "天头批注",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 56,
+          "children": [
+            {
+              "type": "text",
+              "id": "t95",
+              "name": "批注",
+              "content": "避头尾在引擎里缺席，只能由文案补上",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-faint"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f98",
+          "name": "页标题",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 144,
+          "children": [
+            {
+              "type": "text",
+              "id": "t97",
+              "name": "标题",
+              "content": "断行处最见功夫，而排版引擎并不替我们避头尾",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 56,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f134",
+          "name": "表格",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 264,
+          "children": [
+            {
+              "type": "frame",
+              "id": "f103",
+              "name": "表头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t99",
+                  "name": "表头 · 格",
+                  "content": "现象",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t100",
+                  "name": "表头 · 格",
+                  "content": "当前引擎行为",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t101",
+                  "name": "表头 · 格",
+                  "content": "后果",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t102",
+                  "name": "表头 · 格",
+                  "content": "我们的做法",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r104",
+              "name": "表头线",
+              "width": "fill_container",
+              "height": 2,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f109",
+              "name": "表行 1",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t105",
+                  "name": "表行 1 · 格",
+                  "content": "行首标点",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t106",
+                  "name": "表行 1 · 格",
+                  "content": "逐字断行，不避头尾",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t107",
+                  "name": "表行 1 · 格",
+                  "content": "「。」被甩到行首",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t108",
+                  "name": "表行 1 · 格",
+                  "content": "标题写死断点，正文控字数",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r110",
+              "name": "界行 · 行间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f115",
+              "name": "表行 2",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-deep"
+                }
+              ],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t111",
+                  "name": "表行 2 · 格",
+                  "content": "孤字末行",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t112",
+                  "name": "表行 2 · 格",
+                  "content": "末行只剩一两个字",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t113",
+                  "name": "表行 2 · 格",
+                  "content": "版面出现残行",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t114",
+                  "name": "表行 2 · 格",
+                  "content": "收窄栏宽，或改写文案",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r116",
+              "name": "界行 · 行间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f121",
+              "name": "表行 3",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t117",
+                  "name": "表行 3 · 格",
+                  "content": "中英混排",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t118",
+                  "name": "表行 3 · 格",
+                  "content": "两侧不自动加间隙",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t119",
+                  "name": "表行 3 · 格",
+                  "content": "数字与汉字粘连",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t120",
+                  "name": "表行 3 · 格",
+                  "content": "文案里补半角空格",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r122",
+              "name": "界行 · 行间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f127",
+              "name": "表行 4",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-deep"
+                }
+              ],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t123",
+                  "name": "表行 4 · 格",
+                  "content": "数值对齐",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t124",
+                  "name": "表行 4 · 格",
+                  "content": "没有等宽数字",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t125",
+                  "name": "表行 4 · 格",
+                  "content": "列与列之间发抖",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t126",
+                  "name": "表行 4 · 格",
+                  "content": "数字走西文族，列宽写死",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r128",
+              "name": "界行 · 行间",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-jie"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f133",
+              "name": "表行 5",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "padding": [
+                20,
+                16
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t129",
+                  "name": "表行 5 · 格",
+                  "content": "省略号截断",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 280
+                },
+                {
+                  "type": "text",
+                  "id": "t130",
+                  "name": "表行 5 · 格",
+                  "content": "直接截去后半句",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 388
+                },
+                {
+                  "type": "text",
+                  "id": "t131",
+                  "name": "表行 5 · 格",
+                  "content": "读者读到半截话",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 376
+                },
+                {
+                  "type": "text",
+                  "id": "t132",
+                  "name": "表行 5 · 格",
+                  "content": "不截断，改写或换页型",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 532
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f136",
+          "name": "来源",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 848,
+          "children": [
+            {
+              "type": "text",
+              "id": "t135",
+              "name": "来源",
+              "content": "来源：版面组对内部三十份中文文档的抽样，2026 年 7 月",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink-faint"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "p137",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p138",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t139",
+          "name": "页码",
+          "content": "6 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink-faint"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 4080,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f140",
+      "name": "07 收束 · 函套",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-case"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "path",
+          "id": "p141",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L80 0 L40.0 36 Z",
+          "width": 80,
+          "height": 36,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 920,
+          "y": 300
+        },
+        {
+          "type": "path",
+          "id": "p142",
+          "name": "鱼尾 · 下",
+          "d": "M40.0 0 L80 36 L0 36 Z",
+          "width": 80,
+          "height": 36,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 920,
+          "y": 352
+        },
+        {
+          "type": "frame",
+          "id": "f144",
+          "name": "收束句",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "start",
+          "fill": [],
+          "x": 120,
+          "y": 470,
+          "children": [
+            {
+              "type": "text",
+              "id": "t143",
+              "name": "收束",
+              "content": "把四次退让逐项收回来，\n从一行三十字开始。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-on"
+                }
+              ],
+              "lineHeight": 1.12,
+              "letterSpacing": -1,
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "textAlign": "center"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f147",
+          "name": "落款",
+          "width": 1680,
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 32,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "center",
+          "x": 120,
+          "y": 700,
+          "children": [
+            {
+              "type": "text",
+              "id": "t145",
+              "name": "落款 · 单位",
+              "content": "版面组 · 内部评议",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t146",
+              "name": "落款 · 日期",
+              "content": "2026.08.09",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-xuan-dim"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        },
+        {
+          "type": "path",
+          "id": "p148",
+          "name": "鱼尾 · 上",
+          "d": "M0 0 L20 0 L10.0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 996
+        },
+        {
+          "type": "path",
+          "id": "p149",
+          "name": "鱼尾 · 下",
+          "d": "M10.0 0 L20 9 L0 9 Z",
+          "width": 20,
+          "height": 9,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-cinnabar"
+            }
+          ],
+          "x": 950,
+          "y": 1009
+        },
+        {
+          "type": "text",
+          "id": "t150",
+          "name": "页码",
+          "content": "7 / 7",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": 400,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-xuan-dim"
+            }
+          ],
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textGrowth": "fixed-width",
+          "width": 200,
+          "textAlign": "center",
+          "x": 860,
+          "y": 1026
+        }
+      ],
+      "x": 0,
+      "y": 2880
+    }
+  ]
+}

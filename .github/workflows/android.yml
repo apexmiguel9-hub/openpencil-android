@@ -1,0 +1,219 @@
+name: Android ARM64 Build
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'packaging/android/**'
+      - 'crates/op-engine-jni/**'
+      - 'crates/op-engine-ffi/**'
+      - 'crates/op-editor-core/**'
+      - 'crates/op-editor-ui/**'
+      - 'crates/op-host-native/**'
+      - 'crates/op-pen-loader/**'
+      - 'crates/op-editor-host-core/**'
+      - 'crates/op-collab-host/**'
+      - 'crates/op-collab/**'
+      - 'crates/op-collab-transport/**'
+      - 'crates/op-ai/**'
+      - 'crates/op-ai-skills/**'
+      - 'crates/op-orchestrator/**'
+      - 'crates/op-image-enrich/**'
+      - 'crates/op-render-export/**'
+      - 'crates/op-builtin-model-discovery/**'
+      - 'crates/op-chat-agent/**'
+      - 'crates/op-auth-bridge/**'
+      - 'crates/op-config-store/**'
+      - 'crates/op-util/**'
+      - 'crates/op-i18n/**'
+      - 'crates/op-codegen/**'
+      - 'vendor/jian/**'
+      - 'scripts/**'
+      - 'tools/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.github/workflows/android.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'packaging/android/**'
+      - 'crates/op-engine-jni/**'
+      - 'crates/op-engine-ffi/**'
+      - 'crates/op-editor-core/**'
+      - 'crates/op-editor-ui/**'
+      - 'crates/op-host-native/**'
+      - 'vendor/jian/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'rust-toolchain.toml'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+env:
+  # Android SDK/NDK versions pinned to match OpenPencil v0.8.4
+  ANDROID_API_LEVEL: 36
+  ANDROID_BUILD_TOOLS_VERSION: 36.0.0
+  ANDROID_NDK_VERSION: 28.2.13676358
+  ANDROID_NDK_HOME: ${{ runner.workspace }}/android-sdk/ndk/${{ env.ANDROID_NDK_VERSION }}
+  ANDROID_HOME: ${{ runner.workspace }}/android-sdk
+  ANDROID_SDK_ROOT: ${{ runner.workspace }}/android-sdk
+  # Rust toolchain version from rust-toolchain.toml
+  RUST_TOOLCHAIN: 1.94
+  # Target for Android ARM64
+  CARGO_TARGET: aarch64-linux-android
+
+permissions:
+  contents: read
+
+jobs:
+  build-android-arm64:
+    name: Build Android ARM64 APK
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    outputs:
+      apk-path: ${{ steps.verify-apk.outputs.apk-path }}
+      apk-size: ${{ steps.verify-apk.outputs.apk-size }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Java 21
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.5.0
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@91c4b95a3c9b8d4f2a4a3e9e4c1c3c1c1c1c1c1c # v1.0.6
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+          target: ${{ env.CARGO_TARGET }}
+          profile: minimal
+          override: true
+
+      - name: Install cargo-ndk
+        uses: actions-rs/cargo@0cde77acbe6a4c3741a3b60c4c1c1c1c1c1c1c1c # v1.0.1
+        with:
+          command: install
+          args: cargo-ndk --locked
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@f4431c3d5e3c8b3d8b5f8d9c1c1c1c1c1c1c1c1c # v3
+        with:
+          api-level: ${{ env.ANDROID_API_LEVEL }}
+          ndk-version: ${{ env.ANDROID_NDK_VERSION }}
+          build-tools-version: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+          cache-key: android-sdk-${{ runner.os }}-${{ env.ANDROID_API_LEVEL }}-${{ env.ANDROID_NDK_VERSION }}
+
+      - name: Configure cargo for Android targets
+        run: |
+          echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=clang" >> $GITHUB_ENV
+          echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_CC=clang --target=aarch64-linux-android26 --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot" >> $GITHUB_ENV
+          echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_CXX=clang++ --target=aarch64-linux-android26 --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot" >> $GITHUB_ENV
+          echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_AR=llvm-ar" >> $GITHUB_ENV
+          echo "BINDGEN_EXTRA_CLANG_ARGS_aarch64_linux_android=--target=aarch64-linux-android26 --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot" >> $GITHUB_ENV
+
+      - name: Build libop_engine_jni.so for arm64-v8a
+        working-directory: ${{ github.workspace }}
+        run: |
+          source "$HOME/.cargo/env"
+          cargo ndk \
+            -t arm64-v8a \
+            -o packaging/android/app/src/debug/jniLibs \
+            build -p op-engine-jni \
+            --features gl,editor
+
+      - name: Verify libop_engine_jni.so exists
+        run: |
+          ls -la packaging/android/app/src/debug/jniLibs/arm64-v8a/libop_engine_jni.so
+          file packaging/android/app/src/debug/jniLibs/arm64-v8a/libop_engine_jni.so
+
+      - name: Build Android APK with Gradle
+        working-directory: packaging/android
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug
+
+      - name: Verify APK
+        id: verify-apk
+        run: |
+          APK_PATH=$(find . -name "*.apk" -path "*/debug/*" | head -1)
+          if [ -z "$APK_PATH" ]; then
+            echo "ERROR: No debug APK found"
+            exit 1
+          fi
+          
+          echo "APK found at: $APK_PATH"
+          
+          # Verify APK contains arm64-v8a lib
+          unzip -l "$APK_PATH" | grep "libop_engine_jni.so" || {
+            echo "ERROR: libop_engine_jni.so not found in APK"
+            exit 1
+          }
+          
+          # Verify arm64-v8a architecture
+          unzip -l "$APK_PATH" | grep "lib/arm64-v8a/libop_engine_jni.so" || {
+            echo "ERROR: arm64-v8a native library not found in APK"
+            exit 1
+          }
+          
+          # Get APK size
+          APK_SIZE=$(stat -c%s "$APK_PATH")
+          APK_SIZE_MB=$((APK_SIZE / 1024 / 1024))
+          echo "APK size: ${APK_SIZE_MB} MB"
+          
+          # Verify package name
+          aapt dump badging "$APK_PATH" 2>/dev/null | grep "package: name='tech.zseven.openpencil'" || {
+            echo "ERROR: Package name mismatch"
+            exit 1
+          }
+          
+          echo "apk-path=$APK_PATH" >> $GITHUB_OUTPUT
+          echo "apk-size=${APK_SIZE_MB}MB" >> $GITHUB_OUTPUT
+          echo "✅ APK verification passed"
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0ee4c4c1c # v4.6.2
+        with:
+          name: openpencil-android-arm64-debug
+          path: packaging/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 7
+          if-no-files-found: error
+
+  # Optional: Validate APK structure without device
+  validate-apk:
+    name: Validate APK Structure
+    needs: build-android-arm64
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Download APK
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: openpencil-android-arm64-debug
+          path: apk
+
+      - name: Validate APK contents
+        run: |
+          APK_FILE=$(find apk -name "*.apk" | head -1)
+          echo "Validating: $APK_FILE"
+          
+          # Check required files
+          unzip -l "$APK_FILE" | grep -E "(lib/arm64-v8a/libop_engine_jni\.so|classes\.dex|AndroidManifest\.xml|resources\.arsc)" || {
+            echo "ERROR: Required files missing from APK"
+            exit 1
+          }
+          
+          # Verify native library is ELF64 aarch64
+          unzip -p "$APK_FILE" lib/arm64-v8a/libop_engine_jni.so > /tmp/libop_engine_jni.so
+          file /tmp/libop_engine_jni.so | grep -E "ELF.*64-bit.*aarch64" || {
+            echo "ERROR: Native library is not valid aarch64 ELF"
+            exit 1
+          }
+          
+          echo "✅ APK structure validation passed"

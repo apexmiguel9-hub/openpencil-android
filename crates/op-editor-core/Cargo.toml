@@ -1,0 +1,33 @@
+[package]
+name = "op-editor-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil editor state — selection/tool/history/viewport on jian PenDocument"
+
+[dependencies]
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+jian-core = { path = "../../vendor/jian/crates/jian-core" }
+jian-widgets = { path = "../../vendor/jian/crates/jian-widgets" }
+
+# Locale enum for the chrome UI state (ui_chrome.rs). op-i18n is
+# dependency-free + wasm32-clean, so it doesn't compromise the
+# wasm-clean invariant of op-editor-core.
+op-i18n = { path = "../op-i18n" }
+
+# Chat-request data shapes (ThinkingMode / EffortLevel / ChatAttachment)
+# the chat sub-state carries. op-ai is dependency-free + wasm32-clean
+# and never imports op-editor-core, so this edge is acyclic + safe.
+op-ai = { path = "../op-ai" }
+
+# Canonical hex-color parsing (dependency-free + wasm32-clean).
+op-util = { path = "../op-util" }
+base64 = "0.22"
+
+# render_backend.rs uses glam::Vec2 as Point2D (spec §5.2). Pinned to the
+# same version op-editor-ui uses so both crates resolve one glam.
+glam = { version = "0.29", default-features = false, features = ["std"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }

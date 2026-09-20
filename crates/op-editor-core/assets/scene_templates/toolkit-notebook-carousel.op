@@ -1,0 +1,5335 @@
+{
+  "version": "1.0.0",
+  "name": "干货合集轮播 · 3:4 六板",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#FAFAF8"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#EFF2F4"
+    },
+    "c-grid": {
+      "type": "color",
+      "value": "#D6DFE6"
+    },
+    "c-margin": {
+      "type": "color",
+      "value": "#E9B5B4"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#212939"
+    },
+    "c-soft": {
+      "type": "color",
+      "value": "#545B6A"
+    },
+    "c-faint": {
+      "type": "color",
+      "value": "#69707F"
+    },
+    "c-yellow": {
+      "type": "color",
+      "value": "#FBE76B"
+    },
+    "c-mint": {
+      "type": "color",
+      "value": "#A5F3C0"
+    },
+    "c-pink": {
+      "type": "color",
+      "value": "#F8C5CD"
+    },
+    "c-red": {
+      "type": "color",
+      "value": "#C33939"
+    },
+    "c-sticky": {
+      "type": "color",
+      "value": "#F7E8AF"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f53",
+      "name": "01 封面 · 三行阶梯",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f15",
+          "name": "封面 · 三行阶梯 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f18",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t16",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t17",
+                  "name": "页码",
+                  "content": "01 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f14",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 34,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f11",
+                  "name": "眉标行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t9",
+                      "name": "眉标",
+                      "content": "写作 · 阅读 · 归档",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-soft"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t10",
+                      "name": "红笔批注",
+                      "content": "先看第 3 板",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-red"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f12",
+                  "name": "三行阶梯",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f6",
+                      "name": "阶梯行 1",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t1",
+                          "name": "标题行",
+                          "content": "整理了半年",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 88,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 848
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f7",
+                      "name": "阶梯行 2",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "group",
+                          "id": "g2",
+                          "name": "高亮 · 六个工具",
+                          "width": 368,
+                          "height": 88,
+                          "layout": "none",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t3",
+                              "name": "高亮文字",
+                              "content": "六个工具",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 88,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.0,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 352,
+                              "x": 8,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r4",
+                              "name": "荧光带",
+                              "width": 368,
+                              "height": 48,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-yellow"
+                                }
+                              ],
+                              "x": 0,
+                              "y": 40
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        78
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f8",
+                      "name": "阶梯行 3",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t5",
+                          "name": "标题行",
+                          "content": "只留下这些",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 88,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 692
+                        }
+                      ],
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        156
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t13",
+                  "name": "副标",
+                  "content": "每个只讲一句：什么时候该用它。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f21",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t19",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t20",
+                  "name": "本板提要",
+                  "content": "封面",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f22",
+          "name": "封面 · 三行阶梯 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r23",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r24",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r29",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r30",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r31",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r32",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r33",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r34",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r35",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r36",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r37",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r38",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r39",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r40",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r41",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r42",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r43",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r44",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r45",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r46",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r47",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r48",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r49",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r50",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r51",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r52",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f110",
+      "name": "02 前三 · 编号纵列",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f72",
+          "name": "前三 · 编号纵列 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f75",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t73",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t74",
+                  "name": "页码",
+                  "content": "02 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f71",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 40,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t69",
+                  "name": "小标题",
+                  "content": "先说每天都开的三个",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "frame",
+                  "id": "f70",
+                  "name": "工具列表",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 40,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f58",
+                      "name": "工具",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t54",
+                          "name": "编号",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 64,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -2,
+                          "textGrowth": "fixed-width",
+                          "width": 124
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f57",
+                          "name": "工具文案",
+                          "width": 700,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t55",
+                              "name": "工具名",
+                              "content": "先记后整理的笔记本",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            },
+                            {
+                              "type": "text",
+                              "id": "t56",
+                              "name": "工具注解",
+                              "content": "想到什么先扔进去，晚上再归位。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f63",
+                      "name": "工具",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t59",
+                          "name": "编号",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 64,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -2,
+                          "textGrowth": "fixed-width",
+                          "width": 124
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f62",
+                          "name": "工具文案",
+                          "width": 700,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t60",
+                              "name": "工具名",
+                              "content": "只做一件事的写作器",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            },
+                            {
+                              "type": "text",
+                              "id": "t61",
+                              "name": "工具注解",
+                              "content": "全屏、无栏、不能插图，逼你写完。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f68",
+                      "name": "工具",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t64",
+                          "name": "编号",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 64,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -2,
+                          "textGrowth": "fixed-width",
+                          "width": 124
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f67",
+                          "name": "工具文案",
+                          "width": 700,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t65",
+                              "name": "工具名",
+                              "content": "自动归档的稍后读",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            },
+                            {
+                              "type": "text",
+                              "id": "t66",
+                              "name": "工具注解",
+                              "content": "存进去就不用管，它按主题替你分。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 700
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f78",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t76",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t77",
+                  "name": "本板提要",
+                  "content": "工具 1-3",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f79",
+          "name": "前三 · 编号纵列 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r80",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r81",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r82",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r83",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r84",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r85",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r86",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r87",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r88",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r89",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r90",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r91",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r92",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r93",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r94",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r95",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r96",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r97",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r98",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r99",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r100",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r101",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r102",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r103",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r104",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r105",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r106",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r107",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r108",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r109",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f170",
+      "name": "03 对照 · 表格两列",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f132",
+          "name": "对照 · 表格两列 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f135",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t133",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t134",
+                  "name": "页码",
+                  "content": "03 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f131",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 32,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t128",
+                  "name": "小标题",
+                  "content": "先选，再往下看",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "frame",
+                  "id": "f129",
+                  "name": "对照表",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f114",
+                      "name": "表头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t111",
+                          "name": "表头 · 场景",
+                          "content": "你的情况",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-soft"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t112",
+                          "name": "表头 · 次选",
+                          "content": "也行",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-soft"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t113",
+                          "name": "表头 · 首选",
+                          "content": "首选",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r115",
+                      "name": "表头线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f119",
+                      "name": "表行 1",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "padding": [
+                        18,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t116",
+                          "name": "场景",
+                          "content": "想快点开始",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t117",
+                          "name": "次选",
+                          "content": "先记后整理",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t118",
+                          "name": "首选",
+                          "content": "只做一件事",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f123",
+                      "name": "表行 2",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "padding": [
+                        18,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t120",
+                          "name": "场景",
+                          "content": "怕丢东西",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t121",
+                          "name": "次选",
+                          "content": "自动归档",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t122",
+                          "name": "首选",
+                          "content": "先记后整理",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f127",
+                      "name": "表行 3",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "padding": [
+                        18,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t124",
+                          "name": "场景",
+                          "content": "要写长文",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t125",
+                          "name": "次选",
+                          "content": "只做一件事",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t126",
+                          "name": "首选",
+                          "content": "自动归档",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 248,
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t130",
+                  "name": "红笔批注",
+                  "content": "按场景挑",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f138",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t136",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t137",
+                  "name": "本板提要",
+                  "content": "怎么选",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f139",
+          "name": "对照 · 表格两列 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r140",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r141",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r142",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r143",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r144",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r145",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r146",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r147",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r148",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r149",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r150",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r151",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r152",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r153",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r154",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r155",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r156",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r157",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r158",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r159",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r160",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r161",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r162",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r163",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r164",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r165",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r166",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r167",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r168",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r169",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 2400,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f223",
+      "name": "04 后三 · 勾选清单",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f185",
+          "name": "后三 · 勾选清单 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f188",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t186",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t187",
+                  "name": "页码",
+                  "content": "04 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f184",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 28,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t183",
+                  "name": "小标题",
+                  "content": "剩下三个装了就忘",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "frame",
+                  "id": "f180",
+                  "name": "便利贴",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    16,
+                    26
+                  ],
+                  "cornerRadius": 2,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-sticky"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t181",
+                      "name": "便利贴文字",
+                      "content": "这三个装了就忘，属于后台",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f182",
+                  "name": "清单面板",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "padding": [
+                    32,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f173",
+                      "name": "清单项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 22,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r171",
+                          "name": "勾选框",
+                          "width": 34,
+                          "height": 34,
+                          "cornerRadius": 2,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 3,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-ink"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "t172",
+                          "name": "清单文字",
+                          "content": "04 剪贴板历史：复制过的都还在",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 732
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f176",
+                      "name": "清单项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 22,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r174",
+                          "name": "勾选框",
+                          "width": 34,
+                          "height": 34,
+                          "cornerRadius": 2,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 3,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-ink"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "t175",
+                          "name": "清单文字",
+                          "content": "05 批量重命名：一次改完一整年",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 732
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f179",
+                      "name": "清单项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 22,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r177",
+                          "name": "勾选框",
+                          "width": 34,
+                          "height": 34,
+                          "cornerRadius": 2,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 3,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-ink"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "t178",
+                          "name": "清单文字",
+                          "content": "06 定时断网器：到点就切，不商量",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 732
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f191",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t189",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t190",
+                  "name": "本板提要",
+                  "content": "工具 4-6",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f192",
+          "name": "后三 · 勾选清单 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r193",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r194",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r195",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r196",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r197",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r198",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r199",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r200",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r201",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r202",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r203",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r204",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r205",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r206",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r207",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r208",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r209",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r210",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r211",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r212",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r213",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r214",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r215",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r216",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r217",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r218",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r219",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r220",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r221",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r222",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1800
+    },
+    {
+      "type": "frame",
+      "id": "f268",
+      "name": "05 原则 · 高亮切词",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f230",
+          "name": "原则 · 高亮切词 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f233",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t231",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t232",
+                  "name": "页码",
+                  "content": "05 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f229",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 38,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "group",
+                  "id": "g224",
+                  "name": "高亮 · 装得少",
+                  "width": 280,
+                  "height": 88,
+                  "layout": "none",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t225",
+                      "name": "高亮文字",
+                      "content": "装得少",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 88,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 264,
+                      "x": 8,
+                      "y": 0
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r226",
+                      "name": "荧光带",
+                      "width": 280,
+                      "height": 48,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-mint"
+                        }
+                      ],
+                      "x": 0,
+                      "y": 40
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t227",
+                  "name": "整句",
+                  "content": "工具越多，你花在挑工具上的时间也越多。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 848
+                },
+                {
+                  "type": "text",
+                  "id": "t228",
+                  "name": "注解",
+                  "content": "六个是上限不是目标，能砍到四个更好。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 848
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f236",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t234",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t235",
+                  "name": "本板提要",
+                  "content": "复述点",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f237",
+          "name": "原则 · 高亮切词 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r238",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r239",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r240",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r241",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r242",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r243",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r244",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r245",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r246",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r247",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r248",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r249",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r250",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r251",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r252",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r253",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r254",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r255",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r256",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r257",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r258",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r259",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r260",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r261",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r262",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r263",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r264",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r265",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r266",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r267",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 1800
+    },
+    {
+      "type": "frame",
+      "id": "f328",
+      "name": "06 目录 · 回看",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f290",
+          "name": "目录 · 回看 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            128,
+            152
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f293",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t291",
+                  "name": "系列名",
+                  "content": "工具合集 · 六板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t292",
+                  "name": "页码",
+                  "content": "06 / 06",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f289",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 40,
+              "padding": [
+                44,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t287",
+                  "name": "收束句",
+                  "content": "六个，\n照着这张表回看。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.15,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 848
+                },
+                {
+                  "type": "frame",
+                  "id": "f288",
+                  "name": "目录",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f271",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t269",
+                          "name": "回看页码",
+                          "content": "第 02 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t270",
+                          "name": "回看标题",
+                          "content": "先记后整理的笔记本",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f274",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t272",
+                          "name": "回看页码",
+                          "content": "第 02 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t273",
+                          "name": "回看标题",
+                          "content": "只做一件事的写作器",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f277",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t275",
+                          "name": "回看页码",
+                          "content": "第 02 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t276",
+                          "name": "回看标题",
+                          "content": "自动归档的稍后读",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f280",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t278",
+                          "name": "回看页码",
+                          "content": "第 04 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t279",
+                          "name": "回看标题",
+                          "content": "剪贴板历史",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f283",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t281",
+                          "name": "回看页码",
+                          "content": "第 04 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t282",
+                          "name": "回看标题",
+                          "content": "批量重命名",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f286",
+                      "name": "目录行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t284",
+                          "name": "回看页码",
+                          "content": "第 04 板",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 186
+                        },
+                        {
+                          "type": "text",
+                          "id": "t285",
+                          "name": "回看标题",
+                          "content": "定时断网器",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 638
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f296",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t294",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t295",
+                  "name": "本板提要",
+                  "content": "收藏这板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f297",
+          "name": "目录 · 回看 · 横格纸",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r298",
+              "name": "横格 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 48
+            },
+            {
+              "type": "rectangle",
+              "id": "r299",
+              "name": "横格 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 96
+            },
+            {
+              "type": "rectangle",
+              "id": "r300",
+              "name": "横格 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 144
+            },
+            {
+              "type": "rectangle",
+              "id": "r301",
+              "name": "横格 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 192
+            },
+            {
+              "type": "rectangle",
+              "id": "r302",
+              "name": "横格 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 240
+            },
+            {
+              "type": "rectangle",
+              "id": "r303",
+              "name": "横格 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 288
+            },
+            {
+              "type": "rectangle",
+              "id": "r304",
+              "name": "横格 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 336
+            },
+            {
+              "type": "rectangle",
+              "id": "r305",
+              "name": "横格 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 384
+            },
+            {
+              "type": "rectangle",
+              "id": "r306",
+              "name": "横格 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 432
+            },
+            {
+              "type": "rectangle",
+              "id": "r307",
+              "name": "横格 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 480
+            },
+            {
+              "type": "rectangle",
+              "id": "r308",
+              "name": "横格 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 528
+            },
+            {
+              "type": "rectangle",
+              "id": "r309",
+              "name": "横格 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 576
+            },
+            {
+              "type": "rectangle",
+              "id": "r310",
+              "name": "横格 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 624
+            },
+            {
+              "type": "rectangle",
+              "id": "r311",
+              "name": "横格 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 672
+            },
+            {
+              "type": "rectangle",
+              "id": "r312",
+              "name": "横格 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 720
+            },
+            {
+              "type": "rectangle",
+              "id": "r313",
+              "name": "横格 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 768
+            },
+            {
+              "type": "rectangle",
+              "id": "r314",
+              "name": "横格 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 816
+            },
+            {
+              "type": "rectangle",
+              "id": "r315",
+              "name": "横格 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 864
+            },
+            {
+              "type": "rectangle",
+              "id": "r316",
+              "name": "横格 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 912
+            },
+            {
+              "type": "rectangle",
+              "id": "r317",
+              "name": "横格 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 960
+            },
+            {
+              "type": "rectangle",
+              "id": "r318",
+              "name": "横格 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1008
+            },
+            {
+              "type": "rectangle",
+              "id": "r319",
+              "name": "横格 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1056
+            },
+            {
+              "type": "rectangle",
+              "id": "r320",
+              "name": "横格 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1104
+            },
+            {
+              "type": "rectangle",
+              "id": "r321",
+              "name": "横格 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1152
+            },
+            {
+              "type": "rectangle",
+              "id": "r322",
+              "name": "横格 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1200
+            },
+            {
+              "type": "rectangle",
+              "id": "r323",
+              "name": "横格 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1248
+            },
+            {
+              "type": "rectangle",
+              "id": "r324",
+              "name": "横格 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1296
+            },
+            {
+              "type": "rectangle",
+              "id": "r325",
+              "name": "横格 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1344
+            },
+            {
+              "type": "rectangle",
+              "id": "r326",
+              "name": "横格 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grid"
+                }
+              ],
+              "x": 0,
+              "y": 1392
+            },
+            {
+              "type": "rectangle",
+              "id": "r327",
+              "name": "页边红线",
+              "width": 2,
+              "height": 1440,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-margin"
+                }
+              ],
+              "x": 112,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 2400,
+      "y": 1800
+    }
+  ]
+}

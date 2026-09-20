@@ -1,0 +1,2558 @@
+{
+  "version": "1.0.0",
+  "name": "手机摄影构图教学 · 3:4 五帧",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F4F4F2"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#DCDCD8"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#101010"
+    },
+    "c-frame": {
+      "type": "color",
+      "value": "#171715"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#676764"
+    },
+    "c-inv-muted": {
+      "type": "color",
+      "value": "#9C9C98"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#C8FF3D"
+    },
+    "c-accent-ink": {
+      "type": "color",
+      "value": "#141C00"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f23",
+      "name": "01 封面",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        88,
+        72,
+        72,
+        72
+      ],
+      "gap": 44,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-ink"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f4",
+          "name": "封面头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "f1",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                20
+              ],
+              "cornerRadius": 6,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t2",
+                  "name": "标签文字",
+                  "content": "构图 · 五分钟",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t3",
+              "name": "封面页码",
+              "content": "01 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-inv-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f19",
+          "name": "封面主体",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 64,
+          "alignItems": "start",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "f8",
+              "name": "封面标题",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t5",
+                  "name": "标题上",
+                  "content": "同一个场景",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.7,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t6",
+                  "name": "标题下",
+                  "content": "为什么你拍得平",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.7,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t7",
+                  "name": "封面副标题",
+                  "content": "不是相机的问题。三条构图法则，今天就能用上。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f18",
+              "name": "法则预告区",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 22,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f11",
+                  "name": "法则预告",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t9",
+                      "name": "预告序号",
+                      "content": "01",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t10",
+                      "name": "预告名",
+                      "content": "三分法",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 34,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f14",
+                  "name": "法则预告",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t12",
+                      "name": "预告序号",
+                      "content": "02",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "预告名",
+                      "content": "引导线",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 34,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f17",
+                  "name": "法则预告",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t15",
+                      "name": "预告序号",
+                      "content": "03",
+                      "fontFamily": "Inter",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t16",
+                      "name": "预告名",
+                      "content": "框住主体",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 34,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f22",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t20",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-inv-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t21",
+              "name": "页码",
+              "content": "01 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-inv-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f54",
+      "name": "02 三分法",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        80,
+        72,
+        72,
+        72
+      ],
+      "gap": 44,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f32",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f30",
+              "name": "法则标题行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 8,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t28",
+                  "name": "法则序号",
+                  "content": "01",
+                  "fontFamily": "Inter",
+                  "fontSize": 44,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.0,
+                  "letterSpacing": -1,
+                  "textGrowth": "fixed-width",
+                  "width": 88
+                },
+                {
+                  "type": "text",
+                  "id": "t29",
+                  "name": "法则名",
+                  "content": "三分法",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t31",
+              "name": "法则说明",
+              "content": "把画面切成九格，主体放在线上或交点上，别放正中间。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f50",
+          "name": "取景框",
+          "width": 936,
+          "height": 819,
+          "layout": "none",
+          "cornerRadius": 8,
+          "fill": [],
+          "clipContent": true,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r24",
+              "name": "竖线",
+              "x": 312,
+              "y": 0,
+              "width": 4,
+              "height": 819,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "竖线",
+              "x": 624,
+              "y": 0,
+              "width": 4,
+              "height": 819,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "横线",
+              "x": 0,
+              "y": 273,
+              "width": 936,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "横线",
+              "x": 0,
+              "y": 546,
+              "width": 936,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f46",
+              "name": "图片位",
+              "x": 0,
+              "y": 0,
+              "width": 936,
+              "height": 819,
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-frame"
+                }
+              ],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i47",
+                  "name": "图片位图标",
+                  "iconFontName": "image",
+                  "width": 52,
+                  "height": 52,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t48",
+                  "name": "图片位提示",
+                  "content": "拖一张风景或人像进来",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t49",
+                  "name": "图片位规格",
+                  "content": "拖进来后参考线还在，直接对照",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f45",
+          "name": "要点区",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f38",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f33",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i34",
+                      "name": "要点图标",
+                      "iconFontName": "check",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-ink"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f37",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t35",
+                      "name": "要点标题",
+                      "content": "主体压在竖线上",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t36",
+                      "name": "要点说明",
+                      "content": "地平线压在上横线或下横线，不居中。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f44",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f39",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i40",
+                      "name": "要点图标",
+                      "iconFontName": "x",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f43",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t41",
+                      "name": "要点标题",
+                      "content": "主体钉死在正中心",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t42",
+                      "name": "要点说明",
+                      "content": "对称构图另说，日常随手拍会显得呆。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f53",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t51",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t52",
+              "name": "页码",
+              "content": "02 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f84",
+      "name": "03 引导线",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        80,
+        72,
+        72,
+        72
+      ],
+      "gap": 44,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f62",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f60",
+              "name": "法则标题行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 8,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t58",
+                  "name": "法则序号",
+                  "content": "02",
+                  "fontFamily": "Inter",
+                  "fontSize": 44,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.0,
+                  "letterSpacing": -1,
+                  "textGrowth": "fixed-width",
+                  "width": 88
+                },
+                {
+                  "type": "text",
+                  "id": "t59",
+                  "name": "法则名",
+                  "content": "引导线",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t61",
+              "name": "法则说明",
+              "content": "让路、栏杆、影子这些线条从画面底部指向主体。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f80",
+          "name": "取景框",
+          "width": 936,
+          "height": 819,
+          "layout": "none",
+          "cornerRadius": 8,
+          "fill": [],
+          "clipContent": true,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r55",
+              "name": "左引导",
+              "x": -129.76,
+              "y": 538.5,
+              "width": 727.51,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "rotation": -49.963
+            },
+            {
+              "type": "rectangle",
+              "id": "r56",
+              "name": "右引导",
+              "x": 338.24,
+              "y": 538.5,
+              "width": 727.51,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "rotation": -130.037
+            },
+            {
+              "type": "rectangle",
+              "id": "r57",
+              "name": "汇合横标",
+              "x": 424,
+              "y": 262,
+              "width": 88,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f76",
+              "name": "图片位",
+              "x": 0,
+              "y": 0,
+              "width": 936,
+              "height": 819,
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-frame"
+                }
+              ],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i77",
+                  "name": "图片位图标",
+                  "iconFontName": "image",
+                  "width": 52,
+                  "height": 52,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t78",
+                  "name": "图片位提示",
+                  "content": "拖一张有路或走廊的照片",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t79",
+                  "name": "图片位规格",
+                  "content": "拖进来后参考线还在，直接对照",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f75",
+          "name": "要点区",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f68",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f63",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i64",
+                      "name": "要点图标",
+                      "iconFontName": "check",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-ink"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f67",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t65",
+                      "name": "要点标题",
+                      "content": "蹲低一点再拍",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t66",
+                      "name": "要点说明",
+                      "content": "机位越低，地面的线条收得越急。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f74",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f69",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i70",
+                      "name": "要点图标",
+                      "iconFontName": "x",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f73",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t71",
+                      "name": "要点标题",
+                      "content": "站直了平拍",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t72",
+                      "name": "要点说明",
+                      "content": "平视时线条被压扁，几乎没有纵深。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f83",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t81",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t82",
+              "name": "页码",
+              "content": "03 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 2400,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f115",
+      "name": "04 框住主体",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        80,
+        72,
+        72,
+        72
+      ],
+      "gap": 44,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f93",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f91",
+              "name": "法则标题行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 8,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t89",
+                  "name": "法则序号",
+                  "content": "03",
+                  "fontFamily": "Inter",
+                  "fontSize": 44,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.0,
+                  "letterSpacing": -1,
+                  "textGrowth": "fixed-width",
+                  "width": 88
+                },
+                {
+                  "type": "text",
+                  "id": "t90",
+                  "name": "法则名",
+                  "content": "框住主体",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t92",
+              "name": "法则说明",
+              "content": "用门框、树枝、窗户在主体外面再套一层框。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f111",
+          "name": "取景框",
+          "width": 936,
+          "height": 819,
+          "layout": "none",
+          "cornerRadius": 8,
+          "fill": [],
+          "clipContent": true,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r85",
+              "name": "内框上",
+              "x": 96,
+              "y": 96,
+              "width": 744,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r86",
+              "name": "内框下",
+              "x": 96,
+              "y": 719,
+              "width": 744,
+              "height": 4,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r87",
+              "name": "内框左",
+              "x": 96,
+              "y": 96,
+              "width": 4,
+              "height": 627,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r88",
+              "name": "内框右",
+              "x": 836,
+              "y": 96,
+              "width": 4,
+              "height": 627,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f107",
+              "name": "图片位",
+              "x": 0,
+              "y": 0,
+              "width": 936,
+              "height": 819,
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-frame"
+                }
+              ],
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "i108",
+                  "name": "图片位图标",
+                  "iconFontName": "image",
+                  "width": 52,
+                  "height": 52,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t109",
+                  "name": "图片位提示",
+                  "content": "拖一张有门洞或树枝的照片",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "t110",
+                  "name": "图片位规格",
+                  "content": "拖进来后参考线还在，直接对照",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f106",
+          "name": "要点区",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f99",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f94",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i95",
+                      "name": "要点图标",
+                      "iconFontName": "check",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-ink"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f98",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t96",
+                      "name": "要点标题",
+                      "content": "前景压暗一点",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t97",
+                      "name": "要点说明",
+                      "content": "外框暗、主体亮，视线自己就走进去了。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f105",
+              "name": "要点",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f100",
+                  "name": "要点标记",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i101",
+                      "name": "要点图标",
+                      "iconFontName": "x",
+                      "width": 24,
+                      "height": 24,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f104",
+                  "name": "要点文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t102",
+                      "name": "要点标题",
+                      "content": "外框喧宾夺主",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t103",
+                      "name": "要点说明",
+                      "content": "外框占超过一半画面，主体就被吃掉了。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f114",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t112",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t113",
+              "name": "页码",
+              "content": "04 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1800
+    },
+    {
+      "type": "frame",
+      "id": "f146",
+      "name": "05 收尾",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        80,
+        72,
+        72,
+        72
+      ],
+      "gap": 44,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f119",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f116",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                20
+              ],
+              "cornerRadius": 6,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t117",
+                  "name": "标签文字",
+                  "content": "收尾",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t118",
+              "name": "收尾标题",
+              "content": "下次举起手机前\n先过这三句",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.2,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f142",
+          "name": "收尾主体",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "frame",
+              "id": "f141",
+              "name": "自检区",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f125",
+                  "name": "自检项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f120",
+                      "name": "序号方",
+                      "width": 52,
+                      "height": 52,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 8,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t121",
+                          "name": "序号",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f124",
+                      "name": "自检文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t122",
+                          "name": "自检标题",
+                          "content": "拍之前先决定主体是谁",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t123",
+                          "name": "自检说明",
+                          "content": "一张只留一个主体，其余全是背景。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 14
+                },
+                {
+                  "type": "frame",
+                  "id": "f131",
+                  "name": "自检项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f126",
+                      "name": "序号方",
+                      "width": 52,
+                      "height": 52,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 8,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t127",
+                          "name": "序号",
+                          "content": "2",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f130",
+                      "name": "自检文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t128",
+                          "name": "自检标题",
+                          "content": "把主体挪出正中心",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t129",
+                          "name": "自检说明",
+                          "content": "正中心是最安全也最平的位置。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 14
+                },
+                {
+                  "type": "frame",
+                  "id": "f137",
+                  "name": "自检项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    26
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f132",
+                      "name": "序号方",
+                      "width": 52,
+                      "height": 52,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 8,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t133",
+                          "name": "序号",
+                          "content": "3",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f136",
+                      "name": "自检文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t134",
+                          "name": "自检标题",
+                          "content": "按快门前退后半步",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t135",
+                          "name": "自检说明",
+                          "content": "多留出的边框，后期还能裁；裁没了补不回来。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 14
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f140",
+              "name": "关注卡",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "padding": [
+                36,
+                36
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t138",
+                  "name": "关注标题",
+                  "content": "拍完发出来",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.35,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t139",
+                  "name": "关注副文案",
+                  "content": "评论区贴图，我挨个说说该怎么裁。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ],
+              "cornerRadius": 16
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f145",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t143",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t144",
+              "name": "页码",
+              "content": "05 / 05",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 1800
+    }
+  ]
+}

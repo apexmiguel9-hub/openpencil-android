@@ -1,0 +1,259 @@
+{
+  "version": "1.0.0",
+  "name": "数据单值卡 · 网格汉字 1:1",
+  "variables": {
+    "c-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-paper": {
+      "type": "color",
+      "value": "#F2F2F2"
+    },
+    "c-rule": {
+      "type": "color",
+      "value": "#D1D1D1"
+    },
+    "c-grey": {
+      "type": "color",
+      "value": "#696969"
+    },
+    "c-black": {
+      "type": "color",
+      "value": "#121212"
+    },
+    "c-signal": {
+      "type": "color",
+      "value": "#CC342C"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "数据单值卡 · 网格汉字",
+      "width": 1080,
+      "height": 1080,
+      "layout": "vertical",
+      "padding": [
+        88,
+        80,
+        112,
+        80
+      ],
+      "gap": 0,
+      "justifyContent": "space_between",
+      "alignItems": "start",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-white"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "卡头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f4",
+              "name": "记号行",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r2",
+                  "name": "黑横杠",
+                  "width": 218,
+                  "height": 10,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-black"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r3",
+                  "name": "信号方块",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-signal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "标签",
+              "content": "季度指标 · 2026 Q2",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 500,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grey"
+                }
+              ],
+              "lineHeight": 1.5,
+              "letterSpacing": 0.6,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f9",
+          "name": "数值行",
+          "width": "fit_content",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 20,
+          "alignItems": "end",
+          "fill": [],
+          "children": [
+            {
+              "type": "text",
+              "id": "t7",
+              "name": "数值",
+              "content": "68",
+              "fontFamily": "Inter",
+              "fontSize": 168,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-black"
+                }
+              ],
+              "lineHeight": 1.05,
+              "letterSpacing": -1.7,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t8",
+              "name": "单位",
+              "content": "%",
+              "fontFamily": "Inter",
+              "fontSize": 48,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grey"
+                }
+              ],
+              "lineHeight": 1.0,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f11",
+          "name": "释义",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 16,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "text",
+              "id": "t10",
+              "name": "解释",
+              "content": "模板起稿的人里，68% 在两周内做出了第二张图。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 40,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-black"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0.8,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f14",
+          "name": "来源",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r12",
+              "name": "分隔线",
+              "width": "fill_container",
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-rule"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t13",
+              "name": "来源行",
+              "content": "口径：2026-04-01 至 06-30 新建文档，按人去重。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-grey"
+                }
+              ],
+              "lineHeight": 1.5,
+              "letterSpacing": 0.6,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

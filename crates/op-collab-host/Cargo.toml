@@ -1,0 +1,83 @@
+[package]
+name = "op-collab-host"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil collaboration runtime — host-agnostic owner/guest actors bridged to the Noise/TCP/relay transports"
+
+[lib]
+name = "op_collab_host"
+path = "src/lib.rs"
+
+[features]
+default = []
+# Controlled session fixtures for downstream test suites. NOT part of the
+# shipped API: enable it only as a dev-dependency (see op-host-services), never
+# as a normal dependency feature.
+test-support = []
+# Local-only collaboration development against an external private ABI-v2
+# archive. Mirrors the desktop feature of the same name so a dev build can
+# forward it through to op-auth-bridge.
+dev-op-auth-abi-v2 = ["op-auth-bridge/dev-abi-v2"]
+
+[dependencies]
+# Open collaboration protocol + the native Noise/TCP/mDNS transport. The
+# production ticket issuer remains behind op-auth-bridge's private ABI; this
+# runtime only consumes opaque tickets and verifies them against the pinned,
+# public JWKS endpoint.
+op-collab = { path = "../op-collab" }
+op-collab-transport = { path = "../op-collab-transport", features = ["mdns"] }
+op-collab-relay-client = { path = "../op-collab-relay-client" }
+op-collab-relay-control-plane = { path = "../op-collab-relay-control-plane" }
+op-collab-relay-protocol = { path = "../op-collab-relay-protocol" }
+# Canonical editor state + the collaboration UI projection the runtime writes.
+op-editor-core = { path = "../op-editor-core" }
+# `CollaborationEditorHost` — the editor seam the owner/guest session cores
+# drive. `CollabHost` (src/host.rs) extends it with the two host-owned
+# concerns the runtime additionally needs.
+op-editor-host-core = { path = "../op-editor-host-core", default-features = false }
+# Collaboration avatar registry (participant avatar fetch bookkeeping).
+op-editor-ui = { path = "../op-editor-ui" }
+# Device-login bridge — opaque collaboration tickets + the pinned JWKS trust
+# root. Links the proprietary prebuilt library when one exists, else an inert
+# stub (collaboration reports Unavailable).
+op-auth-bridge = { path = "../op-auth-bridge" }
+# Shared `~/.openpencil` well-known paths for the relay bootstrap cache and
+# the persisted service-region preference.
+op-config-store = { path = "../op-config-store" }
+# Canonical `.op` document schema — the payload of every collaboration
+# snapshot / commit.
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+# HTTPS transport for the JWKS trust-root fetch and the relay locator /
+# pairing-code control plane. default-features-off + rustls keeps the TLS
+# choice consistent with the rest of the workspace.
+reqwest = { version = "0.12", default-features = false, features = [
+  "blocking",
+  "rustls-tls",
+  "json",
+  "stream",
+] }
+# The async relay bridges + the cancellable JWKS fetch are futures; the sync
+# runtime drives them through the injected `BlockingExecutor` (src/blocking.rs).
+tokio = { version = "1", default-features = false, features = [
+  "rt-multi-thread",
+  "macros",
+  "sync",
+  "time",
+] }
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+sha2 = "0.10"
+zeroize = "1"
+subtle = "2.6"
+getrandom = "0.3"
+base64 = "0.22"
+socket2 = "0.6"
+if-addrs = "0.13"
+
+[dev-dependencies]
+static_assertions = "1"

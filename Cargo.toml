@@ -1,0 +1,78 @@
+[workspace]
+resolver = "2"
+# Use a glob instead of an explicit list: incremental crate creation in Step 0
+# does not require editing `members` each time (per implementer Phase 1 batch 2
+# workspace-masking feedback: listing a non-existent crate makes `cargo build -p X`
+# fail at the resolve stage). The glob picks up every manifest under crates/,
+# naturally supporting incremental creation.
+members = ["crates/*"]
+exclude = [
+  "vendor/agent",
+  "vendor/anthropic-agent-sdk",
+  "vendor/casement",
+  "vendor/jian",
+  "node_modules",
+]
+# A bare `cargo build` / `cargo test` (no `-p`, no `--workspace`) operates on
+# this set only — the native shippable artifacts (the desktop app + the `op`
+# CLI), exactly what `rust-release.yml` builds via `-p op-host-desktop -p op-cli`.
+# This stops a plain `cargo build` from also compiling the wasm host
+# (`op-host-web`) on the native target — a wasted compile, since its real build
+# is always `cargo build -p op-host-web --target wasm32-unknown-unknown`. CI and
+# the `package.json` cargo:* scripts are unaffected: they all pass `--workspace`
+# explicitly, which overrides `default-members`.
+default-members = ["crates/op-host-desktop", "crates/op-cli", "crates/op-host-web-server"]
+
+[workspace.package]
+version = "0.8.5"
+edition = "2021"
+# 1.94 floor: the official github-copilot-sdk (including its former 0.1
+# release) requires Rust 1.94. Release builders and CI already use it.
+rust-version = "1.94"
+license = "MIT"
+authors = ["ZSeven-W <fini.yang@gmail.com>"]
+repository = "https://github.com/ZSeven-W/openpencil"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["unbounded_depth", "raw_value"] }
+serde_stacker = "0.1"
+thiserror = "1"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# WASM-boundary related (per kickoff §1.2 blacklist = must not appear here).
+# Intentionally NOT exposing tokio / reqwest / agent / pen-agent-cli /
+# pen-server / native-tls in workspace.dependencies — these are used only
+# inside native-only crates via dev-deps or target-specific deps.
+
+# 2026-06-17: the `vendor/skia-safe-op` fork (rust-skia 0.97.0 + a
+# `wasm_unknown` platform target) is RETIRED. Its only purpose was the
+# from-scratch wasm32-unknown-unknown skia web build, which CanvasKit now
+# replaces. With no wasm32 skia consumer left, `skia-safe` / `skia-bindings`
+# resolve to upstream crates.io 0.97.0 — used only by the native desktop host
+# (`op-host-desktop`) + `jian-skia`, where the fork was byte-identical anyway.
+# No `[patch.crates-io]` needed.
+
+# Release profile. Previously unset → Rust defaults (no LTO, codegen-units=16,
+# symbols kept), which shipped a ~70 MB desktop binary. This governs every
+# release build in the graph, including the excluded vendor/* path deps (their
+# own [profile.release] blocks are inert — only the build-root profile applies).
+[profile.release]
+# `strip` removes the symbol table — measured ~7.5 MB off the native binary, and
+# trims the wasm too (the production web bundle never needs symbol names).
+strip = true
+# Cross-crate inlining + dedup of monomorphized generics (e.g. PenNode::clone is
+# duplicated ~20× without it). "thin" gets most of the win at a fraction of the
+# fat-LTO link time.
+lto = "thin"
+# Lets the backend dedup within each crate; compounds with LTO. Costs release
+# build time (single-threaded codegen of the big crates) — acceptable for the
+# infrequent shippable/CI builds this profile targets.
+codegen-units = 1
+# opt-level is intentionally LEFT AT 3 (the default), NOT "s"/"z": both the
+# native and the wasm builds run the hot paint/layout/hit-test loop, and
+# size-opt levels measurably slow it. panic = "abort" is also intentionally NOT
+# set yet — it needs a thread-isolation audit of the chat/codegen workers, some
+# of which rely on unwinding to contain a panicking task.

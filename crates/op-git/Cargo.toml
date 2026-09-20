@@ -1,0 +1,25 @@
+[package]
+name = "op-git"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Git-backed version control for OpenPencil documents"
+
+# Native-only: in-process version control via libgit2 (`git2`),
+# vendored so no system `git` binary is required at runtime. Replaces
+# the former `std::process::Command` system-git backend (which failed
+# under macOS TCC when the subprocess touched a sandboxed directory and
+# broke entirely on machines without git installed).
+[dependencies]
+# In-process libgit2. `vendored-libgit2` builds + statically links
+# libgit2 from source (cmake + cc), so the shipped binary carries its
+# own git engine. `vendored-openssl` keeps cross-arch macOS checks from
+# depending on a runner-local OpenSSL installation for the target arch.
+git2 = { version = "=0.21.0", features = ["https", "ssh", "vendored-libgit2", "vendored-openssl"] }
+op-config-store = { path = "../op-config-store" }
+thiserror = { workspace = true }
+# Credential store (`auth.rs`) persistence — the host-keyed token /
+# SSH-key table is serialized to a JSON file.
+serde = { workspace = true }
+serde_json = { workspace = true }

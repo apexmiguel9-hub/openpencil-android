@@ -1,0 +1,799 @@
+# Scene Template Center catalogue.
+#
+# One entry per shipped template document. `id` must match both the embedded
+# document (assets/scene_templates/<id>.op) and its card preview
+# (op-editor-ui/assets/scene_template_previews/<id>.jpg) — `scene_template_catalog`
+# asserts that at load time, so a half-added template fails loudly instead of
+# rendering as a blank card.
+#
+# Parsed by `scene_template_catalog.rs` with the same small TOML subset the
+# Prompt Center uses: quoted strings, string arrays, plain integers.
+#
+# `style_guide` is optional and names an entry in the style-guide registry
+# (`op-ai-skills/skills/style-guides/<name>.md`). Its presence is what puts the
+# "generate from this" action on a card, so it is only set where generating
+# from the template would actually reproduce it: the deck and web templates.
+# The card / tutorial / carousel / comparison / infographic templates are left
+# without one because the generation pipeline has no design type for them yet —
+# "卡片" classifies as a 400px Component (`op_orchestrator::detect_design_type`),
+# so a button here would promise a knowledge card and deliver a widget, and
+# "信息图" triggers no branch at all, so a 1080-wide long-form graphic would come
+# back as a 1200-wide landing page.
+
+[[template]]
+id = "screenshot-tutorial"
+scene = "tutorial"
+title_key = "sceneTemplate.item.screenshotTutorial.title"
+title_fallback = "三步截图教程卡"
+summary_key = "sceneTemplate.item.screenshotTutorial.summary"
+summary_fallback = "封面、三个操作步骤和结尾行动号召，替换截图与说明即可发布。"
+tags = ["教程", "步骤", "小红书", "tutorial", "howto"]
+frames = 5
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "knowledge-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.knowledgeCarousel.title"
+title_fallback = "知识观点轮播"
+summary_key = "sceneTemplate.item.knowledgeCarousel.summary"
+summary_fallback = "封面、三个论点和总结页，适合把一个观点拆成可滑动的连续卡片。"
+tags = ["知识", "观点", "轮播", "小红书", "carousel"]
+frames = 5
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "slide-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.slideDeck.title"
+title_fallback = "演示文稿 · 六页"
+summary_key = "sceneTemplate.item.slideDeck.summary"
+summary_fallback = "封面、目录、要点、数据、图表和结尾，16:9 投影比例，替换文案即可上台。"
+tags = ["PPT", "演示", "汇报", "幻灯片", "slides", "deck", "presentation"]
+frames = 6
+frame_width = 1920
+frame_height = 1080
+style_guide = "corporate-blue-light"
+[[template]]
+id = "knowledge-card-vertical"
+scene = "card"
+title_key = "sceneTemplate.item.knowledgeCardVertical.title"
+title_fallback = "知识卡片 · 竖版"
+summary_key = "sceneTemplate.item.knowledgeCardVertical.summary"
+summary_fallback = "3:4 单张图文卡，标题、四条要点和署名条，换掉文案就能发小红书。"
+tags = ["卡片", "知识", "小红书", "图文", "card", "note"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "knowledge-card-square"
+scene = "card"
+title_key = "sceneTemplate.item.knowledgeCardSquare.title"
+title_fallback = "知识卡片 · 方版"
+summary_key = "sceneTemplate.item.knowledgeCardSquare.summary"
+summary_fallback = "1:1 方形卡，同一套版式的紧凑版，适合公众号头图与朋友圈。"
+tags = ["卡片", "知识", "方形", "公众号", "card", "square"]
+frames = 1
+frame_width = 1080
+frame_height = 1080
+[[template]]
+id = "before-after"
+scene = "comparison"
+title_key = "sceneTemplate.item.beforeAfter.title"
+title_fallback = "改版前后对比"
+summary_key = "sceneTemplate.item.beforeAfter.summary"
+summary_fallback = "左右并置的前后对比，配改动说明，适合复盘与作品展示。"
+tags = ["对比", "前后", "复盘", "comparison", "before after"]
+frames = 1
+frame_width = 1600
+frame_height = 900
+[[template]]
+id = "pitch-deck-dark"
+scene = "slides"
+title_key = "sceneTemplate.item.pitchDeckDark.title"
+title_fallback = "路演 deck · 深色"
+summary_key = "sceneTemplate.item.pitchDeckDark.summary"
+summary_fallback = "封面、问题、方案、数据、里程碑和联系页，深底大字，适合融资路演与产品发布。"
+tags = ["路演", "融资", "创业", "深色", "PPT", "pitch", "deck", "startup", "dark"]
+frames = 6
+frame_width = 1920
+frame_height = 1080
+style_guide = "midnight-minimal-dark"
+[[template]]
+id = "lecture-deck-light"
+scene = "slides"
+title_key = "sceneTemplate.item.lectureDeckLight.title"
+title_fallback = "课件 deck · 浅色"
+summary_key = "sceneTemplate.item.lectureDeckLight.summary"
+summary_fallback = "课程封面、学习目标、概念讲解、例题、对比表和小结作业，纸白底耐看，适合上课投影。"
+tags = ["课件", "教学", "讲课", "教育", "PPT", "lecture", "teaching", "course", "light"]
+frames = 6
+frame_width = 1920
+frame_height = 1080
+style_guide = "education-friendly-light"
+[[template]]
+id = "minimal-keynote"
+scene = "slides"
+title_key = "sceneTemplate.item.minimalKeynote.title"
+title_fallback = "极简 Keynote"
+summary_key = "sceneTemplate.item.minimalKeynote.summary"
+summary_fallback = "纯白留白、超大字号、一页一句话居中，九页里没有一张卡片，目录只有细线和数字，适合发布会与主题演讲。"
+tags = ["极简", "留白", "发布会", "演讲", "keynote", "minimal", "PPT", "slides", "目录"]
+frames = 9
+frame_width = 1920
+frame_height = 1080
+style_guide = "portfolio-minimal-light"
+[[template]]
+id = "gradient-tech"
+scene = "slides"
+title_key = "sceneTemplate.item.gradientTech.title"
+title_fallback = "渐变科技风"
+summary_key = "sceneTemplate.item.gradientTech.summary"
+summary_fallback = "深色渐变底加玻璃拟态卡，含架构、性能对比与客户墙，适合开发者产品发布。"
+tags = ["渐变", "科技", "玻璃", "深色", "开发者", "gradient", "tech", "glass", "PPT"]
+frames = 6
+frame_width = 1920
+frame_height = 1080
+style_guide = "cyber-gradient-dark"
+[[template]]
+id = "saas-landing-orange"
+scene = "web"
+title_key = "sceneTemplate.item.saasLandingOrange.title"
+title_fallback = "SaaS 落地页 · 橙色"
+summary_key = "sceneTemplate.item.saasLandingOrange.summary"
+summary_fallback = "浅底黑卡配橙色主色的产品营销长页：导航、Hero 与产品截图、能力三卡、工作流演示、客户评价和订阅页脚，换掉文案就是一版官网。"
+tags = ["落地页", "官网", "营销", "橙色", "SaaS", "landing", "marketing", "web", "orange"]
+frames = 1
+frame_width = 1200
+frame_height = 3240
+style_guide = "editorial-orange-light"
+[[template]]
+id = "product-landing-light"
+scene = "web"
+title_key = "sceneTemplate.item.productLandingLight.title"
+title_fallback = "产品落地页 · 浅色"
+summary_key = "sceneTemplate.item.productLandingLight.summary"
+summary_fallback = "纸白报刊风的产品长页：Hero 交互演示卡、能力分栏、数据看板、新旧方案对比和三档定价，适合 SaaS 官网与产品发布。"
+tags = ["落地页", "官网", "定价", "浅色", "报刊", "landing", "product", "pricing", "web", "light"]
+frames = 1
+frame_width = 1200
+frame_height = 5374
+style_guide = "broadsheet-lime-light"
+[[template]]
+id = "punch-quote-card"
+scene = "card"
+title_key = "sceneTemplate.item.punchQuoteCard.title"
+title_fallback = "金句卡 · 大字报"
+summary_key = "sceneTemplate.item.punchQuoteCard.summary"
+summary_fallback = "3:4 墨底金句卡，两行巨标题加一条亮黄标语，只讲一句话，适合观点与语录。"
+tags = ["卡片", "金句", "语录", "观点", "深色", "小红书", "card", "quote", "poster", "dark"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "journal-checklist-card"
+scene = "card"
+title_key = "sceneTemplate.item.journalChecklistCard.title"
+title_fallback = "清单卡 · 知识库风"
+summary_key = "sceneTemplate.item.journalChecklistCard.summary"
+summary_fallback = "4:5 浅灰底上一张白色清单卡，五条可勾的待办、标签与引用块，适合周计划与打卡。"
+tags = ["卡片", "清单", "待办", "计划", "知识库", "小红书", "card", "checklist", "todo", "notion"]
+frames = 1
+frame_width = 1080
+frame_height = 1350
+[[template]]
+id = "data-report-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.dataReportInfographic.title"
+title_fallback = "数据结论长图"
+summary_key = "sceneTemplate.item.dataReportInfographic.summary"
+summary_fallback = "竖版信息长图：深色页头、三个大数、横向对比条、构成占比和三条结论，换掉数字就能发。"
+tags = ["信息图", "长图", "数据", "图表", "报告", "复盘", "infographic", "data", "chart", "report"]
+frames = 1
+frame_width = 1080
+frame_height = 2684
+[[template]]
+id = "steps-flow-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.stepsFlowInfographic.title"
+title_fallback = "流程步骤长图"
+summary_key = "sceneTemplate.item.stepsFlowInfographic.summary"
+summary_fallback = "竖版信息长图：五个带序号的步骤卡串成一条流程，配时长标签与两句提示，适合教程与攻略。"
+tags = ["信息图", "长图", "流程", "步骤", "教程", "攻略", "infographic", "steps", "flow", "guide"]
+frames = 1
+frame_width = 1080
+frame_height = 3085
+[[template]]
+id = "event-poster-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.eventPosterDeck.title"
+title_fallback = "活动策划 deck · 公告海报"
+summary_key = "sceneTemplate.item.eventPosterDeck.summary"
+summary_fallback = "封面、亮点、日程、场地交通、票种和结尾，近白展墙底配红蓝色块，零圆角零渐变，适合市集、社团活动与开业招商。"
+tags = ["活动", "策划", "市集", "报名", "日程", "PPT", "event", "deck", "poster", "slides"]
+frames = 6
+frame_width = 1920
+frame_height = 1080
+style_guide = "bauhaus-geometric-light"
+[[template]]
+id = "pitfall-list-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.pitfallListInfographic.title"
+title_fallback = "避坑清单长图"
+summary_key = "sceneTemplate.item.pitfallListInfographic.summary"
+summary_fallback = "竖版信息长图：六条按频率排序的避坑项，每条给「错在哪」和「改成这样」，末尾附四行自检表，全篇无彩色。"
+tags = ["信息图", "长图", "清单", "避坑", "排行", "干货", "infographic", "list", "checklist", "pitfalls"]
+frames = 1
+frame_width = 1080
+frame_height = 3226
+
+# ── 卡片档 · card-system spec 的活样张 ─────────────────────────────
+# 以下六套各是「一个主题 × 一个配方」的交点（card-system-0808.md §3 / §4.1）。
+# 主题给色彩、字体、材质、装饰语言；配方给信息层级与网格占位。它们同时是
+# 模板和体系的样张 —— 主题色板改了，这里必须跟着重出。
+[[template]]
+id = "spine-culture-card"
+scene = "card"
+title_key = "sceneTemplate.item.spineCultureCard.title"
+title_fallback = "竖排书脊卡 · 鸣沙矿彩"
+summary_key = "sceneTemplate.item.spineCultureCard.summary"
+summary_fallback = "3:4 赭泥暗底上的竖排大标，配剥落壁面与矿彩颗粒，适合文化、长文与个人 IP 封面。"
+tags = ["卡片", "竖排", "文化", "封面", "深色", "小红书", "card", "vertical", "culture", "cover"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "metric-single-card"
+scene = "card"
+title_key = "sceneTemplate.item.metricSingleCard.title"
+title_fallback = "数据单值卡 · 网格汉字"
+summary_key = "sceneTemplate.item.metricSingleCard.summary"
+summary_fallback = "1:1 纯白底上一个巨大的数，瑞士国际主义的严格网格加一枚信号红方块，适合结论与成绩。"
+tags = ["卡片", "数据", "数字", "结论", "极简", "方形", "card", "metric", "swiss", "data"]
+frames = 1
+frame_width = 1080
+frame_height = 1080
+[[template]]
+id = "quote-frame-card"
+scene = "card"
+title_key = "sceneTemplate.item.quoteFrameCard.title"
+title_fallback = "引用书摘卡 · 绢本青绿"
+summary_key = "sceneTemplate.item.quoteFrameCard.summary"
+summary_fallback = "4:5 绢黄底上一句框起来的话，底部是石青石绿的双色山形，适合书摘、访谈与引用。"
+tags = ["卡片", "引用", "书摘", "金句", "青绿", "小红书", "card", "quote", "excerpt", "silk"]
+frames = 1
+frame_width = 1080
+frame_height = 1350
+[[template]]
+id = "daily-sign-card"
+scene = "card"
+title_key = "sceneTemplate.item.dailySignCard.title"
+title_fallback = "日签卡 · 园林框景"
+summary_key = "sceneTemplate.item.dailySignCard.summary"
+summary_fallback = "3:4 粉墙底上一扇六角漏窗，窗内是日期与一句话，留白即装饰，适合日签与品牌短语。"
+tags = ["卡片", "日签", "一句话", "留白", "园林", "品牌", "card", "daily", "quote", "minimal"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "price-tier-card"
+scene = "card"
+title_key = "sceneTemplate.item.priceTierCard.title"
+title_fallback = "促销价格卡 · 霓虹骑楼"
+summary_key = "sceneTemplate.item.priceTierCard.summary"
+summary_fallback = "1:1 墨蓝夜色底上的三档价目表，配霓虹灯管描边与外散射，适合门店、活动与套餐报价。"
+tags = ["卡片", "价格", "价目", "促销", "门店", "霓虹", "深色", "card", "price", "menu", "neon"]
+frames = 1
+frame_width = 1080
+frame_height = 1080
+[[template]]
+id = "notice-board-card"
+scene = "card"
+title_key = "sceneTemplate.item.noticeBoardCard.title"
+title_fallback = "公告通知卡 · 铅字报刊"
+summary_key = "sceneTemplate.item.noticeBoardCard.summary"
+summary_fallback = "4:5 新闻纸底上的报头双线与编号条款，含套印错位与骑缝编号，适合通知、须知与规则说明。"
+tags = ["卡片", "公告", "通知", "须知", "报刊", "编号", "card", "notice", "announcement", "newsprint"]
+frames = 1
+frame_width = 1080
+frame_height = 1350
+
+# ── 信息图档 · 第二批（+7）────────────────────────────────────────
+# 与已有三张共用信息图语法（深色页头 → 若干区块 → 深色收尾），各自答一个
+# 不同的阅读动机；每个生成器的模块注释里有对最近邻的差异论证。
+[[template]]
+id = "milestone-timeline-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.milestoneTimelineInfographic.title"
+title_fallback = "时间线大事记长图"
+summary_key = "sceneTemplate.item.milestoneTimelineInfographic.summary"
+summary_fallback = "竖版信息长图：一条贯穿全图的时间轴，年份刻度配大事记卡，末尾收在下一步，适合复盘、品牌史与项目历程。"
+tags = ["信息图", "长图", "时间线", "历程", "复盘", "大事记", "infographic", "timeline", "milestone", "history"]
+frames = 1
+frame_width = 1080
+frame_height = 3018
+[[template]]
+id = "concept-contrast-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.conceptContrastInfographic.title"
+title_fallback = "概念对比科普长图"
+summary_key = "sceneTemplate.item.conceptContrastInfographic.summary"
+summary_fallback = "竖版信息长图：先给结论，再给两个概念各自的定义卡，然后逐维度拆成两栏表，最后给选择判据。"
+tags = ["信息图", "长图", "对比", "概念", "科普", "辨析", "infographic", "contrast", "concept", "explainer"]
+frames = 1
+frame_width = 1080
+frame_height = 3060
+[[template]]
+id = "ranking-board-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.rankingBoardInfographic.title"
+title_fallback = "榜单 TOP N 长图"
+summary_key = "sceneTemplate.item.rankingBoardInfographic.summary"
+summary_fallback = "竖版信息长图：墨底黑金的推荐榜，前三名大徽章、四到八名小描边，每条给使用场景与频次。"
+tags = ["信息图", "长图", "榜单", "推荐", "排行", "测评", "infographic", "ranking", "top", "list"]
+frames = 1
+frame_width = 1080
+frame_height = 3154
+[[template]]
+id = "faq-thread-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.faqThreadInfographic.title"
+title_fallback = "问答 FAQ 长图"
+summary_key = "sceneTemplate.item.faqThreadInfographic.summary"
+summary_fallback = "竖版信息长图：六组一问一答，Q 实心 A 描边，不编号不排序，读者只读其中一条也成立。"
+tags = ["信息图", "长图", "问答", "FAQ", "答疑", "常见问题", "infographic", "faq", "qa", "questions"]
+frames = 1
+frame_width = 1080
+frame_height = 2789
+[[template]]
+id = "data-story-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.dataStoryInfographic.title"
+title_fallback = "数据故事长图"
+summary_key = "sceneTemplate.item.dataStoryInfographic.summary"
+summary_fallback = "竖版信息长图：四个数字串成一条因果线，每段用十格方块阵表示比例，末尾收到一句能改做法的结论。"
+tags = ["信息图", "长图", "数据", "故事", "因果", "转化", "infographic", "data", "story", "funnel"]
+frames = 1
+frame_width = 1080
+frame_height = 2711
+[[template]]
+id = "challenge-tracker-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.challengeTrackerInfographic.title"
+title_fallback = "30 天打卡挑战长图"
+summary_key = "sceneTemplate.item.challengeTrackerInfographic.summary"
+summary_fallback = "竖版信息长图：六列五行的三十格打卡阵，只在第 7、15、30 天给里程碑，存进相册每天划掉一格。"
+tags = ["信息图", "长图", "打卡", "挑战", "习惯", "三十天", "infographic", "challenge", "tracker", "habit"]
+frames = 1
+frame_width = 1080
+frame_height = 2692
+[[template]]
+id = "ecosystem-map-infographic"
+scene = "infographic"
+title_key = "sceneTemplate.item.ecosystemMapInfographic.title"
+title_fallback = "行业地图长图"
+summary_key = "sceneTemplate.item.ecosystemMapInfographic.summary"
+summary_fallback = "竖版信息长图：二乘二的四区生态位阵列，每格挂三个位点并标出空位，石板灰底上浮白卡。"
+tags = ["信息图", "长图", "地图", "生态", "行业", "分区", "infographic", "ecosystem", "map", "landscape"]
+frames = 1
+frame_width = 1080
+frame_height = 2206
+
+# ── 第三批（+27）：对比 9 / 教程 9 / 轮播 9 ────────────────────────
+# 三档各自补满到 10 套。每个生成器的模块注释里都有对最近邻的差异论证。
+[[template]]
+id = "do-dont-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.doDontComparison.title"
+title_fallback = "好坏示范双栏"
+summary_key = "sceneTemplate.item.doDontComparison.summary"
+summary_fallback = "3:4 单卡：同一件事的两种做法左右并排，不靠红绿而靠材质与图标区分对错，色觉障碍读者也读得出来。"
+tags = ["对比", "示范", "正误", "双栏", "小红书", "comparison", "do", "dont", "howto"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "myth-truth-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.mythTruthComparison.title"
+title_fallback = "误区与真相长图"
+summary_key = "sceneTemplate.item.mythTruthComparison.summary"
+summary_fallback = "竖版长图：五组「大家都这么说 / 其实是这样」交错排开，误区偏窄浅底、真相偏宽深底，一次只处理一组。"
+tags = ["对比", "误区", "真相", "辟谣", "长图", "comparison", "myth", "truth", "debunk"]
+frames = 1
+frame_width = 1080
+frame_height = 2593
+[[template]]
+id = "pricing-tiers-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.pricingTiersComparison.title"
+title_fallback = "价格档位对比"
+summary_key = "sceneTemplate.item.pricingTiersComparison.summary"
+summary_fallback = "3:4 单卡：免费 / Pro / 团队三档并排，价格当锚点往下读，右列包含左列，适合定价页与套餐说明。"
+tags = ["对比", "价格", "定价", "套餐", "档位", "comparison", "pricing", "tiers", "plans"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "scenario-guide-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.scenarioGuideComparison.title"
+title_fallback = "场景选择指南长图"
+summary_key = "sceneTemplate.item.scenarioGuideComparison.summary"
+summary_fallback = "竖版长图：不摆参数，直接给七种处境，每种后面挂一个判定标签，读者只要找到自己那一行。"
+tags = ["对比", "选择", "场景", "决策", "指南", "comparison", "scenario", "guide", "choose"]
+frames = 1
+frame_width = 1080
+frame_height = 2723
+[[template]]
+id = "spec-table-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.specTableComparison.title"
+title_fallback = "参数表对比长图"
+summary_key = "sceneTemplate.item.specTableComparison.summary"
+summary_fallback = "竖版长图：两个候选放进一张真表逐行比，赢的一格用深底反白顶起来，一眼扫下来就知道各自赢在哪。"
+tags = ["对比", "参数", "表格", "规格", "测评", "comparison", "spec", "table", "versus"]
+frames = 1
+frame_width = 1080
+frame_height = 2405
+[[template]]
+id = "three-way-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.threeWayComparison.title"
+title_fallback = "三方案横评长图"
+summary_key = "sceneTemplate.item.threeWayComparison.summary"
+summary_fallback = "竖版长图：三个方案并排，中间一列是推荐项，每列第一行不是名字而是一句处境——读者在找哪一列是自己。"
+tags = ["对比", "三方", "横评", "方案", "选型", "comparison", "three", "options", "matrix"]
+frames = 1
+frame_width = 1080
+frame_height = 1886
+[[template]]
+id = "time-shift-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.timeShiftComparison.title"
+title_fallback = "时间对比 · 一年前与现在"
+summary_key = "sceneTemplate.item.timeShiftComparison.summary"
+summary_fallback = "3:4 单卡：一条居中的标签脊柱，左边一年前、右边现在，同一项的两个取值落在同一行上。"
+tags = ["对比", "时间", "前后", "成长", "复盘", "comparison", "before", "after", "timeshift"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+[[template]]
+id = "tradeoff-scale-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.tradeoffScaleComparison.title"
+title_fallback = "优缺点天平"
+summary_key = "sceneTemplate.item.tradeoffScaleComparison.summary"
+summary_fallback = "1:1 方卡：一根横梁两个托盘，左盘装值得、右盘装代价，每条前面留一个空方框——结论交给读者自己称。"
+tags = ["对比", "优缺点", "权衡", "天平", "方形", "comparison", "tradeoff", "pros", "cons"]
+frames = 1
+frame_width = 1080
+frame_height = 1080
+[[template]]
+id = "version-diff-comparison"
+scene = "comparison"
+title_key = "sceneTemplate.item.versionDiffComparison.title"
+title_fallback = "新旧版本变化"
+summary_key = "sceneTemplate.item.versionDiffComparison.summary"
+summary_fallback = "1:1 方卡：不分左右两栏，每一行自己完成一次「旧 → 新」，顺着往下滑即可读完全部改动。"
+tags = ["对比", "版本", "更新", "变更", "日志", "comparison", "version", "diff", "changelog"]
+frames = 1
+frame_width = 1080
+frame_height = 1080
+[[template]]
+id = "app-onboarding-triptych"
+scene = "tutorial"
+title_key = "sceneTemplate.item.appOnboardingTriptych.title"
+title_fallback = "App 新手引导三屏"
+summary_key = "sceneTemplate.item.appOnboardingTriptych.summary"
+summary_fallback = "3:4 单卡：三台并排的手机与空图位，把自己的三张引导图拖进去配上文案，一张就能拿去评审或发布。"
+tags = ["教程", "引导", "App", "产品", "三屏", "tutorial", "onboarding", "app", "mockup"]
+frames = 1
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "diy-blueprint-guide"
+scene = "tutorial"
+title_key = "sceneTemplate.item.diyBlueprintGuide.title"
+title_fallback = "手工 DIY 图解长图"
+summary_key = "sceneTemplate.item.diyBlueprintGuide.summary"
+summary_fallback = "竖版长图：材料规格表与步骤各占一半篇幅——手工翻车多在准备而不在手上，所以先把材料写清楚。"
+tags = ["教程", "手工", "DIY", "图解", "材料", "tutorial", "diy", "craft", "blueprint"]
+frames = 1
+frame_width = 1080
+frame_height = 4016
+
+[[template]]
+id = "photo-composition-tutorial"
+scene = "tutorial"
+title_key = "sceneTemplate.item.photoCompositionTutorial.title"
+title_fallback = "手机摄影构图教学"
+summary_key = "sceneTemplate.item.photoCompositionTutorial.summary"
+summary_fallback = "3:4 五帧：每帧一个深色取景框，荧光参考线压在图位之上——构图必须画在取景框上才说得清。"
+tags = ["教程", "摄影", "构图", "取景", "五帧", "tutorial", "photo", "composition", "camera"]
+frames = 5
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "recipe-four-step"
+scene = "tutorial"
+title_key = "sceneTemplate.item.recipeFourStep.title"
+title_fallback = "菜谱四步卡"
+summary_key = "sceneTemplate.item.recipeFourStep.summary"
+summary_fallback = "4:5 单卡 2×2 四宫格：四步全放在一张卡上，截图存相册就能照着做，站在灶台前不用翻页。"
+tags = ["教程", "菜谱", "做饭", "四宫格", "美食", "tutorial", "recipe", "cooking", "steps"]
+frames = 1
+frame_width = 1080
+frame_height = 1350
+
+[[template]]
+id = "skincare-routine-cards"
+scene = "tutorial"
+title_key = "sceneTemplate.item.skincareRoutineCards.title"
+title_fallback = "护肤步骤卡"
+summary_key = "sceneTemplate.item.skincareRoutineCards.summary"
+summary_fallback = "4:5 六帧：每步固定给用量、停留时长与早晚场次三个数——护肤翻车多在用量和间隔上。"
+tags = ["教程", "护肤", "步骤", "用量", "六帧", "tutorial", "skincare", "routine", "beauty"]
+frames = 6
+frame_width = 1080
+frame_height = 1350
+
+[[template]]
+id = "software-step-tutorial"
+scene = "tutorial"
+title_key = "sceneTemplate.item.softwareStepTutorial.title"
+title_fallback = "软件操作步骤卡"
+summary_key = "sceneTemplate.item.softwareStepTutorial.summary"
+summary_fallback = "4:5 单卡：教程档唯一一张深色，界面截图位配编号操作说明，适合工具与软件的功能讲解。"
+tags = ["教程", "软件", "操作", "截图", "深色", "tutorial", "software", "steps", "app"]
+frames = 1
+frame_width = 1080
+frame_height = 1350
+
+[[template]]
+id = "storage-makeover-steps"
+scene = "tutorial"
+title_key = "sceneTemplate.item.storageMakeoverSteps.title"
+title_fallback = "家居收纳改造步骤"
+summary_key = "sceneTemplate.item.storageMakeoverSteps.summary"
+summary_fallback = "3:4 六帧：每步除了动作与图位，固定给一条完成判定和一个耗时预算——做到那个状态才算做完。"
+tags = ["教程", "收纳", "家居", "整理", "改造", "tutorial", "storage", "home", "makeover"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "weekly-report-lesson"
+scene = "tutorial"
+title_key = "sceneTemplate.item.weeklyReportLesson.title"
+title_fallback = "职场周报小课长图"
+summary_key = "sceneTemplate.item.weeklyReportLesson.summary"
+summary_fallback = "竖版长图：讲完四段结构之后直接给一张带下划线空格的周报骨架，截图就能照着往里填。"
+tags = ["教程", "周报", "职场", "写作", "模板", "tutorial", "report", "workplace", "writing"]
+frames = 1
+frame_width = 1080
+frame_height = 3116
+
+[[template]]
+id = "workout-breakdown-guide"
+scene = "tutorial"
+title_key = "sceneTemplate.item.workoutBreakdownGuide.title"
+title_fallback = "健身动作分解长图"
+summary_key = "sceneTemplate.item.workoutBreakdownGuide.summary"
+summary_fallback = "竖版长图：每个动作除图位与要点外，还有一条固定格式的组数 / 次数 / 休息参数条，存图照着数做。"
+tags = ["教程", "健身", "训练", "动作", "参数", "tutorial", "workout", "fitness", "exercise"]
+frames = 1
+frame_width = 1080
+frame_height = 4589
+
+[[template]]
+id = "bookreview-silk-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.bookreviewSilkCarousel.title"
+title_fallback = "书影评拆解轮播"
+summary_key = "sceneTemplate.item.bookreviewSilkCarousel.summary"
+summary_fallback = "3:4 五板：钩子、带注解的原文、三个洞见、一句书摘、收束——把一部作品拆成能拿走的零件，不是复述剧情。"
+tags = ["轮播", "书评", "影评", "拆解", "读书", "carousel", "bookreview", "film", "insight"]
+frames = 5
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "cityguide-film-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.cityguideFilmCarousel.title"
+title_fallback = "城市指南轮播"
+summary_key = "sceneTemplate.item.cityguideFilmCarousel.summary"
+summary_fallback = "3:4 七板：照片与动线交替——地点板给做梦的读者，一日动线与吃住对照给做计划的读者。"
+tags = ["轮播", "旅行", "城市", "攻略", "指南", "carousel", "travel", "cityguide", "itinerary"]
+frames = 7
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "datareport-grid-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.datareportGridCarousel.title"
+title_fallback = "数据报告轮播"
+summary_key = "sceneTemplate.item.datareportGridCarousel.summary"
+summary_fallback = "3:4 六板：数据页之间强制夹入非数据页，避免读者划到第三张图表就跳过，适合季报与行业观察。"
+tags = ["轮播", "数据", "报告", "图表", "季报", "carousel", "data", "report", "chart"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "opinion-longform-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.opinionLongformCarousel.title"
+title_fallback = "观点长文轮播"
+summary_key = "sceneTemplate.item.opinionLongformCarousel.summary"
+summary_fallback = "3:4 六板：一套严格的视觉母版贯穿全程，页码与标题永远在同一个位置——轮播划走就回不去，一致性是刚需。"
+tags = ["轮播", "观点", "长文", "评论", "立场", "carousel", "opinion", "essay", "longform"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "qa-chalkboard-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.qaChalkboardCarousel.title"
+title_fallback = "问答体轮播"
+summary_key = "sceneTemplate.item.qaChalkboardCarousel.summary"
+summary_fallback = "3:4 六板：一问一板，每板左上角一个手写问号编号——问题本身就是往下划的理由，不需要留悬念。"
+tags = ["轮播", "问答", "答疑", "黑板", "科普", "carousel", "qa", "questions", "chalkboard"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "story-night-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.storyNightCarousel.title"
+title_fallback = "故事叙事轮播"
+summary_key = "sceneTemplate.item.storyNightCarousel.summary"
+summary_fallback = "3:4 七板：以时间为骨架的个人经历复盘，第五板那条时间轴是全套的承重墙，前四板都是它的一个刻度。"
+tags = ["轮播", "故事", "经历", "复盘", "叙事", "carousel", "story", "narrative", "personal"]
+frames = 7
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "toolkit-notebook-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.toolkitNotebookCarousel.title"
+title_fallback = "干货合集轮播"
+summary_key = "sceneTemplate.item.toolkitNotebookCarousel.summary"
+summary_fallback = "3:4 六板：六个工具逐板展开，最后一板连页码一起列成目录——合集档的读者目的只有一个，收藏。"
+tags = ["轮播", "干货", "合集", "工具", "清单", "carousel", "toolkit", "collection", "resources"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "tutorial-journal-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.tutorialJournalCarousel.title"
+title_fallback = "教程轮播"
+summary_key = "sceneTemplate.item.tutorialJournalCarousel.summary"
+summary_fallback = "3:4 六板：一板一步，手指就是进度条，划一次等于做完一步，适合手作、软件与生活教程。"
+tags = ["轮播", "教程", "步骤", "手作", "操作", "carousel", "tutorial", "steps", "howto"]
+frames = 6
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "yearreview-mineral-carousel"
+scene = "carousel"
+title_key = "sceneTemplate.item.yearreviewMineralCarousel.title"
+title_fallback = "年度总结复盘轮播"
+summary_key = "sceneTemplate.item.yearreviewMineralCarousel.summary"
+summary_fallback = "3:4 八板：数字页冷、感受页热，两种温度交替推进，适合年终总结与个人年度复盘。"
+tags = ["轮播", "年度", "总结", "复盘", "年终", "carousel", "yearreview", "annual", "recap"]
+frames = 8
+frame_width = 1080
+frame_height = 1440
+
+[[template]]
+id = "sounding-navy-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.soundingNavyDeck.title"
+title_fallback = "测深海图 · 咨询策略档"
+summary_key = "sceneTemplate.item.soundingNavyDeck.summary"
+summary_fallback = "海图暖白配钢蓝墨蓝，结论式标题加一条带来源的读数，深度剖面条与航迹目录贯穿七页，适合咨询交付与策略汇报。"
+tags = ["策略", "咨询", "汇报", "结论", "数据", "PPT", "slides", "deck", "consulting", "strategy"]
+frames = 7
+frame_width = 1920
+frame_height = 1080
+style_guide = "sounding-navy"
+
+[[template]]
+id = "tidemark-slate-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.tidemarkSlateDeck.title"
+title_fallback = "潮痕石板 · 数据评审档"
+summary_key = "sceneTemplate.item.tidemarkSlateDeck.summary"
+summary_fallback = "石板灰底上的全景磁贴、趋势线、明细表、风险清单和泳道路线，七页走完一次数据评审，适合季度复盘与指标例会。"
+tags = ["数据", "评审", "指标", "复盘", "看板", "PPT", "slides", "deck", "review", "metrics"]
+frames = 7
+frame_width = 1920
+frame_height = 1080
+style_guide = "tidemark-slate"
+
+[[template]]
+id = "banxin-rule-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.banxinRuleDeck.title"
+title_fallback = "版心界行 · 中文排版档"
+summary_key = "sceneTemplate.item.banxinRuleDeck.summary"
+summary_fallback = "以版心、界行、天头批注和鱼尾页码立身的中文原生排版，正文每行不超三十字，双栏对读与引文页耐读，适合讲稿与研讨。"
+tags = ["中文", "排版", "版心", "讲稿", "研讨", "PPT", "slides", "deck", "typography", "chinese"]
+frames = 7
+frame_width = 1920
+frame_height = 1080
+style_guide = "banxin-rule"
+
+[[template]]
+id = "gridpaper-graphite-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.gridpaperGraphiteDeck.title"
+title_fallback = "方格石墨 · 学术答辩档"
+summary_key = "sceneTemplate.item.gridpaperGraphiteDeck.summary"
+summary_fallback = "方格纸底配石墨灰字，问题与缺口、方法、图表两页结果、局限、结论到引用，八页照答辩顺序排好，适合开题与论文答辩。"
+tags = ["学术", "答辩", "论文", "研究", "开题", "PPT", "slides", "deck", "academic", "thesis"]
+frames = 8
+frame_width = 1920
+frame_height = 1080
+style_guide = "gridpaper-graphite"
+
+[[template]]
+id = "dossier-linen-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.dossierLinenDeck.title"
+title_fallback = "卷宗亚麻 · 文档备忘档"
+summary_key = "sceneTemplate.item.dossierLinenDeck.summary"
+summary_fallback = "亚麻纸卷宗质感，从文件首页、背景、现状数据到方案对比与决议，八页写成一份能独立读完的备忘录，适合决策评审。"
+tags = ["备忘录", "决策", "评审", "文档", "方案", "PPT", "slides", "deck", "memo", "decision"]
+frames = 8
+frame_width = 1920
+frame_height = 1080
+style_guide = "dossier-linen"
+
+[[template]]
+id = "ledger-tick-deck"
+scene = "slides"
+title_key = "sceneTemplate.item.ledgerTickDeck.title"
+title_fallback = "账簿勾格 · 竞品矩阵档"
+summary_key = "sceneTemplate.item.ledgerTickDeck.summary"
+summary_fallback = "账簿格线上的评估口径、主矩阵、分位刻度与差距优势对照，七页把竞品比较讲成一笔可核对的账，适合选型与市场分析。"
+tags = ["竞品", "矩阵", "对比", "选型", "市场", "PPT", "slides", "deck", "matrix", "competitive"]
+frames = 7
+frame_width = 1920
+frame_height = 1080
+style_guide = "ledger-tick"
+
+[[template]]
+id = "brand-concept-sheet"
+scene = "comparison"
+title_key = "sceneTemplate.item.brandConceptSheet.title"
+title_fallback = "品牌概念板"
+summary_key = "sceneTemplate.item.brandConceptSheet.summary"
+summary_fallback = "横向品牌评审板：展示主锁定组合、构成逻辑、黑白反转与最小尺寸，适合首轮概念交付。"
+tags = ["品牌", "标志", "字标", "概念", "评审", "brand", "logo", "wordmark", "concept", "handoff"]
+frames = 1
+frame_width = 1600
+frame_height = 1000
+
+[[template]]
+id = "logo-qa-board"
+scene = "comparison"
+title_key = "sceneTemplate.item.logoQaBoard.title"
+title_fallback = "LOGO 融合验收板"
+summary_key = "sceneTemplate.item.logoQaBoard.summary"
+summary_fallback = "四格逐项检查共享承义、结构依存、轮廓统一与次级意象的自然出现，适合概念筛选和评审留痕。"
+tags = ["标志", "评审", "验收", "融合", "四格", "logo", "qa", "review", "fusion", "checklist"]
+frames = 1
+frame_width = 1600
+frame_height = 1000

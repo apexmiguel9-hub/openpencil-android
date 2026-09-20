@@ -1,0 +1,586 @@
+//! Operations-DSL tests for `mcp::batch_design::BatchDesign`.
+//!
+//! Covers the `operations` input: nested insert forests, id prediction,
+//! authored-id collisions, and the single direct operations
+//! (`U`/`D`/`M`/`C`/`R`/`Image`) plus their rejection paths.
+//!
+//! Split out of `batch_design_tests.rs` to stay under the 800-line cap.
+
+use super::test_fixtures::{frame, sample, state_with};
+use super::{EditorCommand, McpTool, ToolErrorCode, ToolOutcome};
+use crate::batch_design_snapshot;
+use op_editor_core::PenNodeExt;
+use std::collections::BTreeMap;
+
+#[test]
+fn batch_design_insert_operations_apply_as_one_nested_subtree() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"card=I(null, {"type":"frame","name":"Card","width":200,"height":120})
+title=I(card, {"type":"text","name":"Title","content":"Ready","width":100,"height":24})"##
+            .into(),
+    );
+    let cmd = match tool.call(&args) {
+        ToolOutcome::OkJsonWithCommand(_, cmd) => cmd,
+        other => panic!("expected command, got {other:?}"),
+    };
+
+    let mut s = sample();
+    let before = s.active_children().len();
+    assert!(s.apply(cmd));
+    assert_eq!(s.active_children().len(), before + 1);
+    let inserted = s.active_children().last().expect("inserted root");
+    assert_eq!(inserted.base().name.as_deref(), Some("Card"));
+    assert_eq!(inserted.children().expect("nested children").len(), 1);
+}
+
+#[test]
+fn batch_design_results_predict_the_applied_node_ids() {
+    // The whole point: the binding->nodeId map the tool REPORTS must equal the
+    // ids the host actually ASSIGNS at apply (single-user localhost: the tool
+    // predicts off the same doc the apply mutates, running the same allocation).
+    let mut state = sample();
+    let tool = batch_design_snapshot(&state);
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"card=I(null, {"type":"frame","name":"Card","width":200,"height":120})
+title=I(card, {"type":"text","name":"Title","content":"Ready","width":100,"height":24})"##
+            .into(),
+    );
+
+    let (json, cmd) = match tool.call(&args) {
+        ToolOutcome::OkJsonWithCommand(json, cmd) => (json, cmd),
+        other => panic!("expected OkJsonWithCommand, got {other:?}"),
+    };
+    let v: serde_json::Value = serde_json::from_str(&json).expect("json");
+    let mut predicted = std::collections::BTreeMap::new();
+    for r in v["results"].as_array().expect("results") {
+        predicted.insert(
+            r["binding"].as_str().unwrap().to_string(),
+            r["nodeId"].as_str().unwrap().to_string(),
+        );
+    }
+
+    // Apply against the SAME doc the snapshot was taken from.
+    assert!(state.apply(cmd));
+    let root = state.active_children().last().expect("inserted card");
+    assert_eq!(root.base().name.as_deref(), Some("Card"));
+    assert_eq!(
+        root.base().id,
+        predicted["card"],
+        "predicted card id must equal the applied id"
+    );
+    let child = &root.children().expect("children")[0];
+    assert_eq!(child.base().name.as_deref(), Some("Title"));
+    assert_eq!(
+        child.base().id,
+        predicted["title"],
+        "predicted title id must equal the applied id"
+    );
+}
+
+#[test]
+fn batch_design_authored_ids_reject_on_concurrent_collision() {
+    // The robustness guarantee: if the doc changes between the tool's snapshot
+    // and the apply (e.g. a concurrent edit on the live desktop canvas) so an
+    // assigned authored id now collides, InsertAuthoredSubtree REJECTS (the
+    // applier demotes to an error) — it NEVER silently lands a different id.
+    let mut state = sample();
+    let tool = batch_design_snapshot(&state); // snapshot at the current id seed
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"card=I(null, {"type":"frame","name":"Card","width":200,"height":120})"##.into(),
+    );
+    let cmd = match tool.call(&args) {
+        ToolOutcome::OkJsonWithCommand(_, cmd) => cmd,
+        other => panic!("expected OkJsonWithCommand, got {other:?}"),
+    };
+
+    // Simulate a concurrent edit that grabs the very id the tool assigned
+    // (the next minted id == the tool's first authored id).
+    assert!(state.apply(EditorCommand::InsertNode {
+        kind: "rect".into(),
+        name: "Concurrent".into(),
+        x: 0,
+        y: 0,
+        width: 10,
+        height: 10,
+        fill_hex: None,
+        target_parent: op_editor_core::NodeId::NONE,
+        page_id: None,
+    }));
+
+    // The authored id now collides → the command must be rejected, not remapped.
+    assert!(
+        !state.apply(cmd),
+        "an authored-id collision must reject, never silently land a different id"
+    );
+}
+
+#[test]
+fn batch_design_direct_operation_accepts_outer_page_id() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("pageId".into(), "page-2".into());
+    args.insert("operations".into(), r##"U("n11", {"x":80})"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            _,
+            EditorCommand::UpdateNode {
+                node_id, page_id, ..
+            },
+        ) => {
+            assert_eq!(node_id.as_str(), "n11");
+            assert_eq!(page_id.as_deref(), Some("page-2"));
+        }
+        other => panic!("expected UpdateNode with page id, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_direct_update_preserves_rich_ts_patch_fields() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("pageId".into(), "page-2".into());
+    args.insert(
+        "operations".into(),
+        r##"U("n11", {"content":"Updated","fontSize":24})"##.into(),
+    );
+
+    let ToolOutcome::OkWithCommand(
+        _,
+        EditorCommand::PatchNodeData {
+            node_id,
+            patch_json,
+            page_id,
+        },
+    ) = tool.call(&args)
+    else {
+        panic!("expected PatchNodeData command from rich U() patch");
+    };
+    let patch: serde_json::Value = serde_json::from_str(&patch_json).expect("patch json");
+    assert_eq!(node_id.as_str(), "n11");
+    assert_eq!(patch["content"], "Updated");
+    assert_eq!(patch["fontSize"], 24);
+    assert_eq!(page_id.as_deref(), Some("page-2"));
+}
+
+#[test]
+fn batch_design_accepts_single_update_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"U("n11", {"x":80,"y":90,"width":260,"height":32,"name":"Updated title","fill_hex":"#112233"})"##
+            .into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::UpdateNode {
+                node_id,
+                x,
+                y,
+                width,
+                height,
+                name,
+                fill_hex,
+                page_id,
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n11");
+            assert_eq!(x, Some(80));
+            assert_eq!(y, Some(90));
+            assert_eq!(width, Some(260));
+            assert_eq!(height, Some(32));
+            assert_eq!(name.as_deref(), Some("Updated title"));
+            assert_eq!(fill_hex.as_deref(), Some("#112233"));
+            assert_eq!(page_id, None);
+        }
+        other => panic!("expected UpdateNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_delete_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("operations".into(), r##"D("n14")"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(result, EditorCommand::DeleteNode { node_id, page_id }) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n14");
+            assert_eq!(page_id, None);
+        }
+        other => panic!("expected DeleteNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_move_operation_without_index() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("operations".into(), r##"M("n14", null)"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::MoveNode {
+                node_id,
+                target_parent,
+                page_id,
+                index,
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n14");
+            assert!(!target_parent.is_real());
+            assert!(page_id.is_none());
+            assert!(index.is_none());
+        }
+        other => panic!("expected MoveNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_copy_operation_with_overrides() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"C("n12", "n10", {"name":"Copied","x":24,"id":"ignored"})"##.into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::CopyNode {
+                node_id,
+                target_parent,
+                overrides_json,
+                page_id,
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n12");
+            assert_eq!(target_parent.as_str(), "n10");
+            assert!(page_id.is_none());
+
+            let overrides: serde_json::Value =
+                serde_json::from_str(overrides_json.as_deref().expect("overrides")).unwrap();
+            assert_eq!(
+                overrides.get("name").and_then(|v| v.as_str()),
+                Some("Copied")
+            );
+            assert_eq!(overrides.get("x").and_then(|v| v.as_i64()), Some(24));
+            assert_eq!(
+                overrides.get("id").and_then(|v| v.as_str()),
+                Some("ignored")
+            );
+        }
+        other => panic!("expected CopyNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_bound_single_copy_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("operations".into(), r##"copied=C("n12", null)"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::CopyNode {
+                node_id,
+                target_parent,
+                overrides_json,
+                ..
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n12");
+            assert!(!target_parent.is_real());
+            assert!(overrides_json.is_none());
+        }
+        other => panic!("expected bound CopyNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_replace_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"R("n12", {"type":"rectangle","name":"Replacement","x":5,"y":6,"width":70,"height":80,"fill":"#abcdef"})"##
+            .into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::ReplaceNode {
+                node_id,
+                kind,
+                name,
+                x,
+                y,
+                width,
+                height,
+                fill_hex,
+                drop_children,
+                page_id,
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n12");
+            assert_eq!(kind, "rect");
+            assert_eq!(name, "Replacement");
+            assert_eq!(x, 5);
+            assert_eq!(y, 6);
+            assert_eq!(width, 70);
+            assert_eq!(height, 80);
+            assert_eq!(fill_hex.as_deref(), Some("#abcdef"));
+            assert!(!drop_children);
+            assert!(page_id.is_none());
+        }
+        other => panic!("expected ReplaceNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_bound_single_replace_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"replacement=R("n12", {"type":"text","content":"Renamed","width":120,"height":24})"##
+            .into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::ReplaceNode {
+                node_id,
+                kind,
+                name,
+                width,
+                height,
+                ..
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n12");
+            assert_eq!(kind, "text");
+            assert_eq!(name, "Renamed");
+            assert_eq!(width, 120);
+            assert_eq!(height, 24);
+        }
+        other => panic!("expected bound ReplaceNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_image_operation_without_fetcher() {
+    let state = state_with(vec![frame("slot", "Slot", 0.0, 0.0, 160.0, 90.0, vec![])]);
+    let tool = batch_design_snapshot(&state);
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"G("slot", "search", "hero product photo")"##.into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkJsonWithCommand(
+            result,
+            EditorCommand::InsertAuthoredSubtree {
+                nodes,
+                parent_id,
+                page_id,
+            },
+        ) => {
+            let result: serde_json::Value = serde_json::from_str(&result).unwrap();
+            assert_eq!(result["results"].as_array().map(Vec::len), Some(1));
+            assert_eq!(parent_id.as_str(), "slot");
+            assert!(page_id.is_none());
+            assert_eq!(nodes.len(), 1);
+            let jian_ops_schema::node::PenNode::Image(image) = &nodes[0] else {
+                panic!("expected image")
+            };
+            assert!(matches!(
+                image.width,
+                Some(jian_ops_schema::sizing::SizingBehavior::Keyword(
+                    jian_ops_schema::sizing::SizingKeyword::FillContainer
+                ))
+            ));
+            assert!(matches!(
+                image.height,
+                Some(jian_ops_schema::sizing::SizingBehavior::Keyword(
+                    jian_ops_schema::sizing::SizingKeyword::FillContainer
+                ))
+            ));
+            assert!(matches!(
+                image.object_fit,
+                Some(jian_ops_schema::node::ImageFitMode::Crop)
+            ));
+            assert_eq!(nodes[0].base().name.as_deref(), Some("hero product photo"));
+        }
+        other => panic!("expected image InsertAuthoredSubtree command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_bound_single_image_operation_without_fetcher() {
+    let state = state_with(vec![frame("slot", "Slot", 0.0, 0.0, 160.0, 90.0, vec![])]);
+    let tool = batch_design_snapshot(&state);
+    let mut args = BTreeMap::new();
+    args.insert(
+        "operations".into(),
+        r##"hero=G("slot", "generate", "dashboard background")"##.into(),
+    );
+
+    match tool.call(&args) {
+        ToolOutcome::OkJsonWithCommand(
+            result,
+            EditorCommand::InsertAuthoredSubtree {
+                nodes,
+                parent_id,
+                page_id,
+            },
+        ) => {
+            let result: serde_json::Value = serde_json::from_str(&result).unwrap();
+            assert_eq!(result["results"].as_array().map(Vec::len), Some(1));
+            assert_eq!(parent_id.as_str(), "slot");
+            assert!(page_id.is_none());
+            assert_eq!(nodes.len(), 1);
+            let jian_ops_schema::node::PenNode::Image(image) = &nodes[0] else {
+                panic!("expected image")
+            };
+            assert!(matches!(
+                image.width,
+                Some(jian_ops_schema::sizing::SizingBehavior::Keyword(
+                    jian_ops_schema::sizing::SizingKeyword::FillContainer
+                ))
+            ));
+            assert!(matches!(
+                image.height,
+                Some(jian_ops_schema::sizing::SizingBehavior::Keyword(
+                    jian_ops_schema::sizing::SizingKeyword::FillContainer
+                ))
+            ));
+            assert_eq!(
+                nodes[0].base().name.as_deref(),
+                Some("dashboard background")
+            );
+        }
+        other => panic!("expected bound image InsertAuthoredSubtree command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_rejects_unknown_kind_in_any_item() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "nodes_json".into(),
+        r#"[{"kind":"rect","name":"A","x":0,"y":0,"width":10,"height":10},{"kind":"blob","name":"B","x":0,"y":0,"width":10,"height":10}]"#
+            .into(),
+    );
+    match tool.call(&args) {
+        ToolOutcome::Err(code, _) => assert_eq!(code, ToolErrorCode::InvalidArgument),
+        _ => panic!("a single bad entry must reject the whole batch"),
+    }
+}
+
+#[test]
+fn batch_design_rejects_negative_geometry() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert(
+        "nodes_json".into(),
+        r#"[{"kind":"rect","name":"A","x":0,"y":0,"width":-1,"height":10}]"#.into(),
+    );
+    match tool.call(&args) {
+        ToolOutcome::Err(code, _) => assert_eq!(code, ToolErrorCode::InvalidArgument),
+        _ => panic!(),
+    }
+}
+
+#[test]
+fn batch_design_rejects_malformed_json() {
+    let tool = batch_design_snapshot(&sample());
+    for bad in [
+        "not json",
+        "{}",
+        "[{}]",
+        r#"[{"kind":"rect"}]"#,
+        r#"[{"kind":"rect","name":"A","x":0,"y":0,"width":10,"height":10"#,
+        r#"[{"kind":"rect","name":"A","x":0,"y":0,"width":10,"height":10},]"#,
+    ] {
+        let mut args = BTreeMap::new();
+        args.insert("nodes_json".into(), bad.into());
+        match tool.call(&args) {
+            ToolOutcome::Err(code, _) => {
+                assert_eq!(code, ToolErrorCode::InvalidArgument, "{bad}")
+            }
+            _ => panic!("expected reject on {bad}"),
+        }
+    }
+}
+
+#[test]
+fn batch_design_accepts_single_move_operation_with_index() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("operations".into(), r##"M("n14", "n10", 2)"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            _,
+            EditorCommand::MoveNode {
+                target_parent,
+                index,
+                ..
+            },
+        ) => {
+            assert_eq!(target_parent.as_str(), "n10");
+            assert_eq!(index, Some(2));
+        }
+        other => panic!("expected indexed MoveNode command, got {other:?}"),
+    }
+}
+
+#[test]
+fn batch_design_accepts_bound_single_move_operation() {
+    let tool = batch_design_snapshot(&sample());
+    let mut args = BTreeMap::new();
+    args.insert("operations".into(), r##"moved=M("n14", "n10", 1)"##.into());
+
+    match tool.call(&args) {
+        ToolOutcome::OkWithCommand(
+            result,
+            EditorCommand::MoveNode {
+                node_id,
+                target_parent,
+                index,
+                ..
+            },
+        ) => {
+            assert_eq!(result.get("count"), Some(&"1".to_string()));
+            assert_eq!(node_id.as_str(), "n14");
+            assert_eq!(target_parent.as_str(), "n10");
+            assert_eq!(index, Some(1));
+        }
+        other => panic!("expected bound MoveNode command, got {other:?}"),
+    }
+}

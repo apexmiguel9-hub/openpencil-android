@@ -1,0 +1,1433 @@
+{
+  "version": "1.0.0",
+  "name": "概念对比科普长图",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#FBF5F7"
+    },
+    "c-surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-band": {
+      "type": "color",
+      "value": "#2C0F1D"
+    },
+    "c-band-muted": {
+      "type": "color",
+      "value": "#B79AA5"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#23101A"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#6E5460"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#A6215C"
+    },
+    "c-accent-deep": {
+      "type": "color",
+      "value": "#7E1745"
+    },
+    "c-accent-soft": {
+      "type": "color",
+      "value": "#F7DDE8"
+    },
+    "c-border": {
+      "type": "color",
+      "value": "#EEDDE4"
+    },
+    "c-rule": {
+      "type": "color",
+      "value": "#C9A9B7"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "概念对比科普长图",
+      "width": 1080,
+      "height": 3060,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "01 页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            76,
+            80,
+            68,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "胶囊",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "胶囊文字",
+                  "content": "科普 · 一图讲清",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "降噪耳机\n降的到底是什么",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 76,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-surface"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "两个常被混着说的词，其实是两套完全不同的做法。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f10",
+          "name": "02 结论",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f9",
+              "name": "结论面板",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent-soft"
+                }
+              ],
+              "padding": [
+                40,
+                36
+              ],
+              "cornerRadius": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t7",
+                  "name": "结论",
+                  "content": "它降的是低频、连续、稳定的噪声。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 44,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-deep"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t8",
+                  "name": "结论支撑",
+                  "content": "所以在地铁和飞机上最管用，在开放办公室里最不管用 —— 人说话是高频突发声，它基本抵消不掉。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f28",
+          "name": "03 定义",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            68,
+            80,
+            0,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f14",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r11",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t12",
+                  "name": "区块标题",
+                  "content": "先分清是哪两个东西",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t13",
+                  "name": "区块说明",
+                  "content": "一句话说清各自的做法，剩下的差异都是从这一句推出来的。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f27",
+              "name": "定义组",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f20",
+                  "name": "定义卡",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-deep"
+                    }
+                  ],
+                  "padding": [
+                    32,
+                    34
+                  ],
+                  "cornerRadius": 22,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f18",
+                      "name": "定义卡头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i15",
+                          "name": "图标",
+                          "iconFontName": "waves",
+                          "width": 40,
+                          "height": 40,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-surface"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t16",
+                          "name": "概念名",
+                          "content": "主动降噪",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-surface"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t17",
+                          "name": "西文名",
+                          "content": "ANC",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t19",
+                      "name": "原理",
+                      "content": "麦克风先录下环境噪声，喇叭再放一段反相声波把它抵消掉。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-soft"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "定义卡",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "padding": [
+                    32,
+                    34
+                  ],
+                  "cornerRadius": 22,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f24",
+                      "name": "定义卡头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i21",
+                          "name": "图标",
+                          "iconFontName": "shield",
+                          "width": 40,
+                          "height": 40,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t22",
+                          "name": "概念名",
+                          "content": "被动隔音",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t23",
+                          "name": "西文名",
+                          "content": "Passive",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t25",
+                      "name": "原理",
+                      "content": "靠耳罩和耳塞的材料把声音挡在外面，不通电也一直在起作用。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-border"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f59",
+          "name": "04 维度",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            68,
+            80,
+            0,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f58",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r55",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t56",
+                  "name": "区块标题",
+                  "content": "三个维度，一行一句",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t57",
+                  "name": "区块说明",
+                  "content": "左边是主动降噪，右边是被动隔音。每格只放一句能验证的话。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f54",
+              "name": "维度表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 22,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-surface"
+                }
+              ],
+              "padding": [
+                34,
+                34
+              ],
+              "cornerRadius": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f32",
+                  "name": "表头",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 26,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t29",
+                      "name": "A 名",
+                      "content": "主动降噪",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 399
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r30",
+                      "name": "表头竖线占位",
+                      "width": 2,
+                      "height": 2,
+                      "fill": []
+                    },
+                    {
+                      "type": "text",
+                      "id": "t31",
+                      "name": "B 名",
+                      "content": "被动隔音",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 399
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r33",
+                  "name": "表头下线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-rule"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f40",
+                  "name": "维度块",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t38",
+                      "name": "维度名",
+                      "content": "擅长哪种噪声",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f37",
+                      "name": "维度两栏",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 26,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t34",
+                          "name": "A 侧",
+                          "content": "低频连续：引擎、空调、地铁",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r35",
+                          "name": "竖分隔",
+                          "width": 2,
+                          "height": "fill_container",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t36",
+                          "name": "B 侧",
+                          "content": "高频突发：键盘、餐具、人声",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r39",
+                      "name": "维度分割线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-border"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f47",
+                  "name": "维度块",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t45",
+                      "name": "维度名",
+                      "content": "代价是什么",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "维度两栏",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 26,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t41",
+                          "name": "A 侧",
+                          "content": "要电、有轻微底噪，一部分人戴着会耳压不适。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r42",
+                          "name": "竖分隔",
+                          "width": 2,
+                          "height": "fill_container",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t43",
+                          "name": "B 侧",
+                          "content": "要压耳，戴久了会闷热夹头，夏天尤其明显。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r46",
+                      "name": "维度分割线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-border"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f53",
+                  "name": "维度块",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t52",
+                      "name": "维度名",
+                      "content": "怎么当场验证",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f51",
+                      "name": "维度两栏",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 26,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t48",
+                          "name": "A 侧",
+                          "content": "按一次开关，轰鸣明显变小。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r49",
+                          "name": "竖分隔",
+                          "width": 2,
+                          "height": "fill_container",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t50",
+                          "name": "B 侧",
+                          "content": "先别开电源，戴上安静下来的那部分就是隔音。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 399
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-border"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f75",
+          "name": "05 选择",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            68,
+            80,
+            68,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f74",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r71",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t72",
+                  "name": "区块标题",
+                  "content": "那你该买哪个",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t73",
+                  "name": "区块说明",
+                  "content": "按自己一天里待得最久的那个场景选，不按参数表选。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f70",
+              "name": "判据面板",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent-soft"
+                }
+              ],
+              "padding": [
+                36,
+                34
+              ],
+              "cornerRadius": 22,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f64",
+                  "name": "判据项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i60",
+                      "name": "箭头",
+                      "iconFontName": "corner-down-right",
+                      "width": 28,
+                      "height": 28,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f63",
+                      "name": "判据文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t61",
+                          "name": "场景",
+                          "content": "通勤一小时以上、常坐地铁和飞机",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 28,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t62",
+                          "name": "动作",
+                          "content": "优先看主动降噪，这是它的主场。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f69",
+                  "name": "判据项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i65",
+                      "name": "箭头",
+                      "iconFontName": "corner-down-right",
+                      "width": 28,
+                      "height": 28,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f68",
+                      "name": "判据文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t66",
+                          "name": "场景",
+                          "content": "在开放办公室里想挡人声",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 28,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t67",
+                          "name": "动作",
+                          "content": "先换耳塞尺寸，把耳道封住比开降噪管用。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f80",
+          "name": "06 页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            44,
+            80
+          ],
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t76",
+              "name": "口径",
+              "content": "以消费级头戴与入耳耳机的常见实现为准，职业听力防护另有标准。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f79",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t77",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t78",
+                  "name": "更新说明",
+                  "content": "每周一张讲清一个概念",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-band-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

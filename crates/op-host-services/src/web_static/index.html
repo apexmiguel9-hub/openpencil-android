@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenPencil</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #18181b;
+      }
+      canvas {
+        display: block;
+      }
+      #op-error {
+        position: fixed;
+        inset: 16px;
+        overflow: auto;
+        padding: 16px;
+        background: #fff;
+        border: 1px solid #ccc;
+        color: #111;
+        font:
+          14px/1.5 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        white-space: pre-wrap;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Production host page for the Rust WASM web shell (op-host-web),
+      served by `openpencil-desktop --serve-web` at `/`. The wasm-bindgen
+      bundle (JS glue + .wasm) is served from `/pkg/*` by the same daemon.
+
+      The hidden IME composition <textarea> the web shell needs is created
+      by `mount_ck()` itself, so this page only has to provide the <canvas>.
+    -->
+    <canvas id="op"></canvas>
+    <pre id="op-error"></pre>
+    <script type="module">
+      const errorPane = document.getElementById('op-error');
+      const markSmoke = (state) => {
+        document.documentElement.setAttribute('data-op-smoke', state);
+        // Mirrored to the console for the headless browser smoke: the
+        // editor keeps a live SSE stream open, which freezes headless
+        // Chrome's virtual clock, so --dump-dom never flushes — stderr
+        // console logging is the only channel that arrives incrementally.
+        console.log(`op-smoke:${state}`);
+      };
+      const showError = (msg) => {
+        markSmoke('error');
+        errorPane.textContent = msg;
+        errorPane.style.display = 'block';
+      };
+      const canvas = document.getElementById('op');
+      const BOOT_CANVAS_PIXEL_BUDGET = 1600000;
+      const STEADY_CANVAS_PIXEL_BUDGET = 4000000;
+      const sizeCanvasForDisplay = (pixelBudget = STEADY_CANVAS_PIXEL_BUDGET) => {
+        const cssWidth = Math.max(1, Math.round(window.innerWidth));
+        const cssHeight = Math.max(1, Math.round(window.innerHeight));
+        const nativeDpr = Math.max(1, window.devicePixelRatio || 1);
+        const oneXDots = Math.max(1, cssWidth * cssHeight);
+        const cappedDpr = Math.sqrt(Math.max(1, pixelBudget) / oneXDots);
+        const dpr = Math.max(1, Math.min(nativeDpr, cappedDpr));
+        const width = Math.max(1, Math.round(cssWidth * dpr));
+        const height = Math.max(1, Math.round(cssHeight * dpr));
+        const changed =
+          canvas.width !== width ||
+          canvas.height !== height ||
+          canvas.style.width !== `${cssWidth}px` ||
+          canvas.style.height !== `${cssHeight}px`;
+        if (canvas.style.width !== `${cssWidth}px`) canvas.style.width = `${cssWidth}px`;
+        if (canvas.style.height !== `${cssHeight}px`) canvas.style.height = `${cssHeight}px`;
+        if (canvas.width !== width) canvas.width = width;
+        if (canvas.height !== height) canvas.height = height;
+        window.__opCanvasScale = dpr;
+        return changed;
+      };
+      // Size the canvas to the window BEFORE mount — the shell reads the
+      // canvas width/height attributes when it builds its raster surface.
+      // The daemon sync-reset moved into the wasm mount (Task 7): the managed
+      // (VS Code) path issues it with the auth token after the bridge Init, and
+      // the direct-open path issues it right after mount — both gate the pull
+      // tick on its completion.
+      markSmoke('booting');
+      sizeCanvasForDisplay(BOOT_CANVAS_PIXEL_BUDGET);
+      try {
+        const mod = await import('/pkg/op_host_web.js');
+        await mod.default();
+        sizeCanvasForDisplay(STEADY_CANVAS_PIXEL_BUDGET);
+        await mod.mount_ck('op');
+        markSmoke('ok');
+      } catch (e) {
+        showError(
+          [
+            'OpenPencil web shell failed to load.',
+            '',
+            'Expected the wasm-bindgen bundle at /pkg/op_host_web.js.',
+            'Rebuild it with tools/check-wasm-bundle.sh, or',
+            'point the daemon at an existing bundle directory via the',
+            'OPENPENCIL_WEB_BUNDLE_DIR environment variable.',
+            '',
+            'Underlying error: ' + (e && e.message ? e.message : String(e)),
+          ].join('\n'),
+        );
+      }
+    </script>
+  </body>
+</html>

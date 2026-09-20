@@ -1,0 +1,2756 @@
+{
+  "version": "1.0.0",
+  "name": "活动策划 deck · 公告海报 16:9",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F9F6F2"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#E6E4E1"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#110F0D"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#4A4743"
+    },
+    "c-faint": {
+      "type": "color",
+      "value": "#9A9894"
+    },
+    "c-red": {
+      "type": "color",
+      "value": "#AE3F2C"
+    },
+    "c-red-deep": {
+      "type": "color",
+      "value": "#902A19"
+    },
+    "c-red-pale": {
+      "type": "color",
+      "value": "#FEE0D9"
+    },
+    "c-blue": {
+      "type": "color",
+      "value": "#0E4F86"
+    },
+    "c-blue-deep": {
+      "type": "color",
+      "value": "#01345E"
+    },
+    "c-inv": {
+      "type": "color",
+      "value": "#FFFFFF"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f3",
+      "name": "01 封面",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f2",
+          "name": "01 封面 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 56,
+          "justifyContent": "space_between",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f11",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                12,
+                24
+              ],
+              "gap": 12,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-red"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t12",
+                  "name": "标签文字",
+                  "content": "2026 城市周末市集",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f7",
+              "name": "封面文案",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 36,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t5",
+                  "name": "主标题",
+                  "content": "把周末\n还给街道",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 132,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -2.4,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t6",
+                  "name": "副标题",
+                  "content": "8 月 22–23 日 · 老码头文化广场 · 免费入场",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 34,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f10",
+              "name": "信息条",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 32,
+              "alignItems": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-blue"
+                }
+              ],
+              "justifyContent": "space_between",
+              "padding": [
+                24,
+                32
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t8",
+                  "name": "主办",
+                  "content": "主办：某某文化 · 协办：某某社区",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t9",
+                  "name": "截止",
+                  "content": "摊主报名截止 8 月 18 日",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red-pale"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f4",
+          "name": "01 封面 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r1",
+              "name": "圆块",
+              "width": 660,
+              "height": 660,
+              "cornerRadius": 330,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-red"
+                }
+              ],
+              "x": 1120,
+              "y": 180
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f14",
+      "name": "02 亮点",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f13",
+          "name": "02 亮点 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 56,
+          "justifyContent": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f37",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r34",
+                  "name": "页首红条",
+                  "width": 96,
+                  "height": 14,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t35",
+                  "name": "页标题",
+                  "content": "为什么值得来一趟",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 80,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.4,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t36",
+                  "name": "页副标题",
+                  "content": "三件事说完，剩下的留给现场。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f38",
+              "name": "亮点区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f15",
+                  "name": "亮点网格",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 48,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f21",
+                      "name": "亮点栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 22,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r16",
+                          "name": "栏首色块",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-red"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "i17",
+                          "name": "亮点图标",
+                          "iconFontName": "music",
+                          "width": 52,
+                          "height": 52,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-red"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t18",
+                          "name": "亮点序号",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.2,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t19",
+                          "name": "亮点标题",
+                          "content": "40 组独立摊主",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 46,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t20",
+                          "name": "亮点说明",
+                          "content": "手作、黑胶、旧书和现烤面包摊。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 29,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f27",
+                      "name": "亮点栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 22,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r22",
+                          "name": "栏首色块",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-blue"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "i23",
+                          "name": "亮点图标",
+                          "iconFontName": "users",
+                          "width": 52,
+                          "height": 52,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-blue"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t24",
+                          "name": "亮点序号",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.2,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t25",
+                          "name": "亮点标题",
+                          "content": "6 场街头演出",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 46,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t26",
+                          "name": "亮点说明",
+                          "content": "从下午三点唱到入夜，两个舞台不重样。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 29,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f33",
+                      "name": "亮点栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 22,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r28",
+                          "name": "栏首色块",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "i29",
+                          "name": "亮点图标",
+                          "iconFontName": "heart",
+                          "width": 52,
+                          "height": 52,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t30",
+                          "name": "亮点序号",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.2,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t31",
+                          "name": "亮点标题",
+                          "content": "带孩子也能来",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 46,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t32",
+                          "name": "亮点说明",
+                          "content": "两片草地全天开放，随时能坐下来歇脚。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 29,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f41",
+      "name": "03 日程",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f40",
+          "name": "03 日程 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f71",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r68",
+                  "name": "页首红条",
+                  "width": 96,
+                  "height": 14,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t69",
+                  "name": "页标题",
+                  "content": "两天的安排",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 80,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.4,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t70",
+                  "name": "页副标题",
+                  "content": "全程免费，工作坊需要在现场登记。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f67",
+              "name": "日程表",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f46",
+                  "name": "日程行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t43",
+                      "name": "时间",
+                      "content": "时间",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-inv"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 340
+                    },
+                    {
+                      "type": "text",
+                      "id": "t44",
+                      "name": "内容",
+                      "content": "内容",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-inv"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 880
+                    },
+                    {
+                      "type": "text",
+                      "id": "t45",
+                      "name": "地点",
+                      "content": "地点",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-inv"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 380
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r47",
+                  "name": "分隔线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f51",
+                  "name": "日程行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "fill": [],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t48",
+                      "name": "时间",
+                      "content": "周六 14:00",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 340
+                    },
+                    {
+                      "type": "text",
+                      "id": "t49",
+                      "name": "内容",
+                      "content": "开市 · 摊位全部就位",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 880
+                    },
+                    {
+                      "type": "text",
+                      "id": "t50",
+                      "name": "地点",
+                      "content": "中央广场",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 380
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r52",
+                  "name": "分隔线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f56",
+                  "name": "日程行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "fill": [],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t53",
+                      "name": "时间",
+                      "content": "周六 17:30",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 340
+                    },
+                    {
+                      "type": "text",
+                      "id": "t54",
+                      "name": "内容",
+                      "content": "街头演出第一场",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 880
+                    },
+                    {
+                      "type": "text",
+                      "id": "t55",
+                      "name": "地点",
+                      "content": "北侧舞台",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 380
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r57",
+                  "name": "分隔线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f61",
+                  "name": "日程行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "fill": [],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t58",
+                      "name": "时间",
+                      "content": "周日 11:00",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 340
+                    },
+                    {
+                      "type": "text",
+                      "id": "t59",
+                      "name": "内容",
+                      "content": "手作工作坊（需现场登记）",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 880
+                    },
+                    {
+                      "type": "text",
+                      "id": "t60",
+                      "name": "地点",
+                      "content": "东侧长廊",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 380
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r62",
+                  "name": "分隔线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f66",
+                  "name": "日程行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "fill": [],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t63",
+                      "name": "时间",
+                      "content": "周日 19:00",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 340
+                    },
+                    {
+                      "type": "text",
+                      "id": "t64",
+                      "name": "内容",
+                      "content": "闭幕演出 · 全场合唱",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 880
+                    },
+                    {
+                      "type": "text",
+                      "id": "t65",
+                      "name": "地点",
+                      "content": "中央广场",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 380
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f42",
+          "name": "03 日程 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r39",
+              "name": "色块",
+              "width": 240,
+              "height": 240,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-blue"
+                }
+              ],
+              "x": 1680,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f74",
+      "name": "04 场地",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f73",
+          "name": "04 场地 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f105",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r102",
+                  "name": "页首红条",
+                  "width": 96,
+                  "height": 14,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t103",
+                  "name": "页标题",
+                  "content": "怎么来",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 80,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.4,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t104",
+                  "name": "页副标题",
+                  "content": "地铁最省事，自驾请提前查看车库剩余车位。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f101",
+              "name": "场地区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "horizontal",
+              "gap": 64,
+              "alignItems": "stretch",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f76",
+                  "name": "地图占位",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i77",
+                      "name": "定位",
+                      "iconFontName": "map-marker",
+                      "width": 60,
+                      "height": 60,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-red"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t78",
+                      "name": "占位标题",
+                      "content": "把场地地图拖到这里",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t79",
+                      "name": "占位说明",
+                      "content": "建议 4:3，截图或手绘都行",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f80",
+                  "name": "交通",
+                  "width": 760,
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f86",
+                      "name": "交通项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "center",
+                      "fill": [],
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f81",
+                          "name": "交通图标底",
+                          "width": 76,
+                          "height": 76,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-red"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i82",
+                              "name": "交通图标",
+                              "iconFontName": "navigation",
+                              "width": 36,
+                              "height": 36,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f85",
+                          "name": "交通文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t83",
+                              "name": "交通方式",
+                              "content": "地铁",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 34,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t84",
+                              "name": "交通说明",
+                              "content": "2 号线 老码头站 B 口，出站步行 6 分钟。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r87",
+                      "name": "分隔线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f93",
+                      "name": "交通项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "center",
+                      "fill": [],
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f88",
+                          "name": "交通图标底",
+                          "width": 76,
+                          "height": 76,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-blue"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i89",
+                              "name": "交通图标",
+                              "iconFontName": "compass",
+                              "width": 36,
+                              "height": 36,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f92",
+                          "name": "交通文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t90",
+                              "name": "交通方式",
+                              "content": "公交",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 34,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t91",
+                              "name": "交通说明",
+                              "content": "18 / 42 / 105 路，文化广场站下车即到。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r94",
+                      "name": "分隔线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f100",
+                      "name": "交通项",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "center",
+                      "fill": [],
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f95",
+                          "name": "交通图标底",
+                          "width": 76,
+                          "height": 76,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i96",
+                              "name": "交通图标",
+                              "iconFontName": "map-marker",
+                              "width": 36,
+                              "height": 36,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f99",
+                          "name": "交通文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t97",
+                              "name": "交通方式",
+                              "content": "自驾",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 34,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t98",
+                              "name": "交通说明",
+                              "content": "广场地下车库，活动期间前两小时免费。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f75",
+          "name": "04 场地 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r72",
+              "name": "色块",
+              "width": 96,
+              "height": 1080,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-blue"
+                }
+              ],
+              "x": 1824,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f107",
+      "name": "05 票种",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f106",
+          "name": "05 票种 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f151",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r148",
+                  "name": "页首红条",
+                  "width": 96,
+                  "height": 14,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t149",
+                  "name": "页标题",
+                  "content": "怎么参加",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 80,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.2,
+                  "letterSpacing": -1.4,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t150",
+                  "name": "页副标题",
+                  "content": "散客不用买票，工作坊和摊位需要提前登记。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f152",
+              "name": "票种区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f147",
+                  "name": "票种网格",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f120",
+                      "name": "票种栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        40
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t108",
+                          "name": "票种名",
+                          "content": "散客入场",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t109",
+                          "name": "价格",
+                          "content": "免费",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 68,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r110",
+                          "name": "价格下线",
+                          "width": "fill_container",
+                          "height": 3,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f113",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i111",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t112",
+                              "name": "权益文字",
+                              "content": "现场扫码登记",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f116",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i114",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t115",
+                              "name": "权益文字",
+                              "content": "两天均可进出",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f119",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i117",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t118",
+                              "name": "权益文字",
+                              "content": "不含工作坊",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f133",
+                      "name": "票种栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-red"
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        40
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t121",
+                          "name": "票种名",
+                          "content": "工作坊套票",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-inv"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t122",
+                          "name": "价格",
+                          "content": "¥ 68",
+                          "fontFamily": "Inter",
+                          "fontSize": 68,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-inv"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": -2,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r123",
+                          "name": "价格下线",
+                          "width": "fill_container",
+                          "height": 3,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-red-pale"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f126",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i124",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t125",
+                              "name": "权益文字",
+                              "content": "含两场手作工作坊",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-red-pale"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f129",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i127",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t128",
+                              "name": "权益文字",
+                              "content": "材料全包",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-red-pale"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f132",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i130",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-inv"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t131",
+                              "name": "权益文字",
+                              "content": "限 60 人",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-red-pale"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f146",
+                      "name": "票种栏",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        40
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t134",
+                          "name": "票种名",
+                          "content": "摊主席位",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t135",
+                          "name": "价格",
+                          "content": "¥ 240",
+                          "fontFamily": "Inter",
+                          "fontSize": 68,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": -2,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r136",
+                          "name": "价格下线",
+                          "width": "fill_container",
+                          "height": 3,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f139",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i137",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t138",
+                              "name": "权益文字",
+                              "content": "3×3 米标准摊位",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f142",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i140",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t141",
+                              "name": "权益文字",
+                              "content": "含桌椅与电源",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f145",
+                          "name": "权益项",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 14,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "i143",
+                              "name": "对勾",
+                              "iconFontName": "check",
+                              "width": 26,
+                              "height": 26,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t144",
+                              "name": "权益文字",
+                              "content": "需资质审核",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 27,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f155",
+      "name": "06 结尾",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-red"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f154",
+          "name": "06 结尾 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f159",
+              "name": "结尾文案",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 32,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t157",
+                  "name": "结语",
+                  "content": "周六见。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 148,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -2.7,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t158",
+                  "name": "结尾说明",
+                  "content": "带上朋友，带上袋子，别带太多现金。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 34,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red-pale"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f163",
+              "name": "联系方式",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 28,
+              "alignItems": "center",
+              "fill": [],
+              "justifyContent": "start",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f160",
+                  "name": "标签",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "gap": 12,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t161",
+                      "name": "标签文字",
+                      "content": "公众号：某某文化",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-red-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t162",
+                  "name": "电话",
+                  "content": "现场咨询 400-000-0000",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 28,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-red-pale"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f156",
+          "name": "06 结尾 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r153",
+              "name": "圆块",
+              "width": 520,
+              "height": 520,
+              "cornerRadius": 260,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-red-deep"
+                }
+              ],
+              "x": 1480,
+              "y": -160
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 1440
+    }
+  ]
+}

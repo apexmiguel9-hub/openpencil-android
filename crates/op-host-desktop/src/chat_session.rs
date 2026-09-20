@@ -1,0 +1,649 @@
+//! Desktop chat-session host glue.
+//!
+//! The transport-free turn worker, poll result, transcript folding, and tool
+//! channel live in `op-editor-host-core::chat`. This module keeps desktop
+//! provider routing plus UI-thread tool execution against `WidgetHostNative`.
+
+use op_ai::chat_provider::ChatToolResult;
+use op_editor_core::{ChatMessage, ChatRole, ChatState};
+pub use op_editor_host_core::chat::ChatSession;
+#[cfg(test)]
+pub use op_editor_host_core::chat::{apply_poll_to_message, ChatPoll};
+use op_host_native::WidgetHostNative;
+
+use op_host_services::design_agent_tools::execute_agent_tool;
+
+// Turn launch + provider routing (split out at the 800-line cap).
+// `launch_if_pending` and friends live in the sibling file; the
+// re-exports keep every external `chat_session::` path stable.
+#[path = "chat_session_launch.rs"]
+mod launch;
+#[cfg(test)]
+pub(crate) use launch::builtin_provider_with_tools;
+// The two halves of the scenario gate, re-exported so the entry points that
+// have to keep satisfying it can assert against the real predicates rather
+// than a restatement of them.
+pub(crate) use launch::reconcile_starter_ghost;
+#[cfg(test)]
+pub(crate) use launch::{active_page_is_blank_starter_frame, launch_design::design_turn_scenario};
+pub use launch::{drain_new_chat_request, drain_stop_request, launch_if_pending};
+pub(crate) use launch::{provider_for_selected_model, selected_cli_model_id};
+// Sub-agent launcher (Task 3.1) reuses the design-toolset provider builder
+// and the design-turn thinking policy.
+pub(crate) use launch::launch_design::{
+    builtin_provider_with_design_tools, design_turn_thinking_mode,
+};
+
+/// Finalize-lifecycle invariant (0718-1-k3-1 postmortem): a design-loop
+/// session must never be dropped/replaced without at least one best-effort
+/// structural finalize pass over the live document. `run_loop_finalize`
+/// inside `chat_agent_loop.rs` covers the loop's own normal exit paths, but
+/// an early `Err` return there (a network/SSE failure — the exact shape
+/// measured on 0718-1-k3-1: an `openai-compatible http 400` mid-stream)
+/// skips it entirely, AND every desktop-side place that discards or
+/// replaces `current_chat` (New Chat / Stop / close tab / a fresh send
+/// overwriting an in-flight one / app close) was ALSO capable of dropping
+/// an unfinalized session before `pump`'s own backstop (below) ever got a
+/// chance to observe it — `app_handler.rs` drains New/Stop/CloseTab
+/// BEFORE `chat_session::pump` each frame, so a same-frame teardown beats
+/// the poll that would otherwise have caught it.
+///
+/// Call this on EVERY path that discards or replaces a `ChatSession`
+/// (`session` is the OLD value about to be dropped/overwritten), not just
+/// the poll-driven one. Idempotent and cheap: gated on `is_design_loop() &&
+/// !loop_finalized()`, and `apply_loop_finalize`'s own passes are each
+/// individually idempotent, so calling this redundantly (e.g. once from the
+/// poll backstop AND once more from a teardown path that races it) is
+/// harmless — the second call simply finds `loop_finalized()` already true
+/// and no-ops.
+pub(crate) fn finalize_design_session_if_needed(
+    host: &mut WidgetHostNative,
+    session: &Option<ChatSession>,
+    source: &'static str,
+) {
+    let Some(session) = session.as_ref() else {
+        return;
+    };
+    if !session.is_design_loop() || session.loop_finalized() {
+        return;
+    }
+    if !host.gate_collaboration_action(
+        op_editor_core::CollabGateAction::Document(
+            op_editor_core::CollabDocumentMutation::Unsupported(
+                op_editor_core::CollabUnsupportedFeature::BulkWrite,
+            ),
+        ),
+        op_editor_core::CollabEditSource::Ai,
+    ) {
+        return;
+    }
+    let state = host.editor_state_mut();
+    op_orchestrator::apply_loop_finalize(state);
+    // Same promise-delivery marking the normal finalize op gets (see
+    // `execute_tool_requests` below) — an early-death run (429 / quota /
+    // abort / a session torn down mid-flight) is exactly the case that
+    // must not ship a silently blank scaffolded screen either.
+    op_orchestrator::unfilled_screens::finalize_and_mark_unfilled_screens(state);
+    host.mark_editor_state_dirty();
+    // Self-diagnostic (0718-1-k3-1 postmortem): the ONLY forensic trace
+    // available after that incident was the chat transcript itself (no
+    // session log survived) — this line is the greppable answer to "did
+    // finalize actually run, and from where" for the next one. There is no
+    // live transcript to append to at teardown time (the session is
+    // already being discarded), so stderr is this path's signal.
+    eprintln!("openpencil-desktop: design-loop finalize ran (source={source})");
+}
+
+/// Pump the in-flight turn's deltas into the trailing assistant message, then
+/// execute any pending canvas tool calls against the live editor state.
+///
+/// `running_tab` is the chat tab this turn is bound to (MT.3 session-per-tab):
+/// the deltas land in THAT tab's transcript even after the user switches the
+/// active tab, so a streaming run never corrupts the now-active (wrong) tab.
+/// `None` (or a stale/out-of-range index) falls back to the active tab.
+/// `agent_identity` stamps sub-agent output without coupling lower-level chat
+/// data to the orchestrator's `AgentIdentity` type.
+pub fn pump(
+    host: &mut WidgetHostNative,
+    current: &mut Option<ChatSession>,
+    running_tab: Option<usize>,
+    agent_identity: Option<(&str, &str)>,
+    viewport_size: (f32, f32),
+) -> bool {
+    pump_with_channel_interleave(
+        host,
+        current,
+        running_tab,
+        agent_identity,
+        viewport_size,
+        || {},
+    )
+}
+
+fn pump_with_channel_interleave(
+    host: &mut WidgetHostNative,
+    current: &mut Option<ChatSession>,
+    running_tab: Option<usize>,
+    agent_identity: Option<(&str, &str)>,
+    viewport_size: (f32, f32),
+    between_channel_observations: impl FnOnce(),
+) -> bool {
+    let Some(session) = current.as_mut() else {
+        return false;
+    };
+    // Snapshot tool requests before polling deltas. A worker always publishes
+    // ToolUse before forwarding its request, so every captured request's card
+    // is already visible to the following poll. Requests that arrive between
+    // these observations wait for the next pump instead of overtaking their
+    // still-unpolled card and leaving it permanently `running`.
+    let tool_requests = session.drain_tool_requests();
+    between_channel_observations();
+    let poll = session.poll();
+    let mut changed = false;
+    if !poll.is_idle() {
+        let messages = &mut host
+            .editor_state_mut()
+            .chat
+            .run_tab_mut(running_tab)
+            .messages;
+        if let Some(index) = agent_message_index(messages, agent_identity) {
+            let msg = &mut messages[index];
+            if let Some((name, color)) = agent_identity {
+                msg.agent_name = Some(name.to_string());
+                msg.agent_color = Some(color.to_string());
+            }
+            op_editor_host_core::chat::apply_poll_to_message_with(
+                msg,
+                &poll,
+                session.is_design_loop(),
+            );
+            changed = true;
+        }
+    }
+    if execute_tool_requests(host, session, tool_requests, running_tab, agent_identity) {
+        changed = true;
+        // Keep the design in view while it generates:
+        //  - first fit when the first SIZED root lands ("the artboard sits
+        //    roughly centered when output starts");
+        //  - after that, refit ONLY when a growth batch pushed content out
+        //    of the visible canvas — a design that still fits never yanks
+        //    the user's own pan/zoom framing.
+        if session.is_design_loop() {
+            let (vw, vh) = viewport_size;
+            let state = host.editor_state_mut();
+            if !session.viewport_fitted() {
+                let has_sized_root = state.active_children().iter().any(|node| {
+                    op_editor_core::PenNodeExt::width_px(node).is_some()
+                        && op_editor_core::PenNodeExt::height_px(node).is_some()
+                });
+                if has_sized_root {
+                    op_host_services::design_session::fit_design_viewport_to_content(state, vw, vh);
+                    session.mark_viewport_fitted();
+                }
+            } else if !op_host_services::design_session::design_content_fits_viewport(state, vw, vh)
+            {
+                op_host_services::design_session::fit_design_viewport_to_content(state, vw, vh);
+            }
+        }
+    }
+    if changed {
+        host.mark_editor_state_dirty();
+    }
+    if poll.finished {
+        // Backstop: a design loop that died early (429 / quota / abort)
+        // never sent its finalize op — run the structural passes anyway so
+        // the canvas isn't left with the mid-run debris a clean finish
+        // would have repaired (measured: empty 68px TabBar shell + empty
+        // MiniPlayer survived an aborted run, test0711-22).
+        finalize_design_session_if_needed(host, current, "poll-backstop");
+        *current = None;
+    }
+    changed
+}
+
+fn agent_message_index(
+    messages: &[ChatMessage],
+    agent_identity: Option<(&str, &str)>,
+) -> Option<usize> {
+    let matching = |message: &&ChatMessage| {
+        message.role == ChatRole::Assistant
+            && match agent_identity {
+                Some((name, color)) => {
+                    message.agent_name.as_deref() == Some(name)
+                        && message.agent_color.as_deref() == Some(color)
+                }
+                None => message.agent_color.is_none(),
+            }
+    };
+    messages
+        .iter()
+        .enumerate()
+        .rev()
+        .find(|(_, message)| matching(message))
+        .map(|(index, _)| index)
+        .or_else(|| {
+            messages
+                .iter()
+                .rposition(|message| message.role == ChatRole::Assistant)
+        })
+}
+
+fn allow_ai_bulk_write(host: &mut WidgetHostNative) -> bool {
+    host.gate_collaboration_action(
+        op_editor_core::CollabGateAction::Document(
+            op_editor_core::CollabDocumentMutation::Unsupported(
+                op_editor_core::CollabUnsupportedFeature::BulkWrite,
+            ),
+        ),
+        op_editor_core::CollabEditSource::Ai,
+    )
+}
+
+fn collaboration_ai_rejection() -> ChatToolResult {
+    ChatToolResult {
+        content: serde_json::json!({
+            "success": false,
+            "error": "AI document mutation is unavailable during collaboration"
+        })
+        .to_string(),
+        is_error: true,
+    }
+}
+
+/// Execute one pump cycle's captured canvas tool requests against the live
+/// `EditorState`.
+///
+/// Canvas mutations write to the shared document (not a per-tab field), but a
+/// tool-call card's result is recorded on the BOUND tab's transcript
+/// (`running_tab`), so a tab switch mid-run doesn't drop the card on the wrong
+/// tab.
+fn execute_tool_requests(
+    host: &mut WidgetHostNative,
+    session: &mut ChatSession,
+    requests: Vec<op_editor_host_core::chat::ChatToolRequest>,
+    running_tab: Option<usize>,
+    agent_identity: Option<(&str, &str)>,
+) -> bool {
+    if requests.is_empty() {
+        return false;
+    }
+    let mut changed = false;
+    for req in requests {
+        // Intercept the reserved loop-finalize op (Track-1 Step 4): the
+        // agentic design loop sends this at loop end so the host runs the
+        // deterministic structural-quality backstop over the assembled live
+        // document — the same whole-doc subset of the orchestrator's Class-A
+        // passes the orchestrator runs per subtask. Runs on the UI thread (the
+        // owner of the live `EditorState`), like every other tool mutation.
+        if req.name == op_ai::chat_provider::LOOP_FINALIZE_OP {
+            if crate::design_loop_indicator::reveal_drain_pending_for_active_epoch() {
+                session.defer_tool_request(req);
+                continue;
+            }
+            // `checkOnly: true` is the promise-delivery invariant's tier-2
+            // probe (`ChatToolExecutor::check_unfilled_screens`) — read-only,
+            // no `apply_loop_finalize`, no canvas marking, no
+            // `mark_loop_finalized` (the loop may still send the real
+            // finalize op after this). Absent/malformed `checkOnly` defaults
+            // to the real finalize path, matching every op sent before this
+            // flag existed.
+            let check_only = serde_json::from_str::<serde_json::Value>(&req.args_json)
+                .ok()
+                .and_then(|v| v.get("checkOnly").and_then(|b| b.as_bool()))
+                .unwrap_or(false);
+            if !check_only && !allow_ai_bulk_write(host) {
+                let result = collaboration_ai_rejection();
+                let state = host.editor_state_mut();
+                changed |= attach_tool_result_to_transcript_with(
+                    state.chat.run_tab_mut(running_tab),
+                    &req.name,
+                    &result,
+                    agent_identity,
+                );
+                let _ = req.ack.send(result);
+                continue;
+            }
+            let state = host.editor_state_mut();
+            // The quality tally is a by-product of the REAL finalize only —
+            // the `checkOnly` probe runs no repair pass, so it must report an
+            // empty summary rather than inherit the last real run's numbers.
+            let mut quality = op_orchestrator::RepairSummary::default();
+            let unfilled = if check_only {
+                op_orchestrator::unfilled_screens::detect_unfilled_screens(state)
+                    .into_iter()
+                    .map(|hit| hit.name)
+                    .collect::<Vec<_>>()
+            } else {
+                quality = op_orchestrator::apply_loop_finalize_counted(state);
+                let names =
+                    op_orchestrator::unfilled_screens::finalize_and_mark_unfilled_screens(state);
+                session.mark_loop_finalized();
+                changed = true;
+                names
+            };
+            // The full committed-screen roster (filled or not) — read
+            // AFTER any finalize-side mutation above, so it reflects the
+            // same document `unfilled` was computed against. Lets the loop
+            // build the "you committed N screens (A/B/C); X is still empty"
+            // contract line instead of a bare unfilled-names nudge.
+            let committed = op_orchestrator::unfilled_screens::list_screen_candidates(state)
+                .into_iter()
+                .map(|hit| hit.name)
+                .collect::<Vec<_>>();
+            let _ = req.ack.send(ChatToolResult {
+                content: serde_json::json!({
+                    "success": true,
+                    "committed": committed,
+                    "unfilled": unfilled,
+                    "quality": {
+                        "checks": quality
+                            .checked()
+                            .into_iter()
+                            .map(|c| c.key())
+                            .collect::<Vec<_>>(),
+                        "repairs": quality
+                            .repaired()
+                            .into_iter()
+                            .map(|(check, count)| {
+                                serde_json::json!({ "check": check.key(), "count": count })
+                            })
+                            .collect::<Vec<_>>(),
+                        // The itemized half — one rendered line per applied
+                        // edit, so the loop's credential can list WHAT was
+                        // repaired, not only how much.
+                        "records": quality
+                            .records()
+                            .iter()
+                            .map(op_orchestrator::RepairRecord::line)
+                            .collect::<Vec<_>>(),
+                        // Non-edit statements — today, a deliberately skipped
+                        // pass tier. Carried separately from `records` so the
+                        // loop never reports a decision as a repair.
+                        "notes": quality.notes(),
+                    },
+                })
+                .to_string(),
+                is_error: false,
+            });
+            continue;
+        }
+        // Intercept the reserved unresolved-blocker scan op: the completion
+        // gate counterpart of `LOOP_FINALIZE_OP`'s `checkOnly` half. Always
+        // read-only — a live recompute against the current document, never
+        // an accumulating ledger (see
+        // `op_host_services::loop_blocker_ledger`'s module doc) — so an
+        // issue a later batch already fixed simply stops appearing here.
+        if req.name == op_ai::chat_provider::CHECK_BLOCKERS_OP {
+            let state = host.editor_state();
+            let report = op_host_services::loop_blocker_ledger::detect_blockers(state);
+            let blockers: Vec<serde_json::Value> = report
+                .blockers
+                .iter()
+                .map(|b| serde_json::json!({ "category": b.category, "detail": b.detail }))
+                .collect();
+            let _ = req.ack.send(ChatToolResult {
+                content: serde_json::json!({
+                    "success": true,
+                    "blockers": blockers,
+                })
+                .to_string(),
+                is_error: false,
+            });
+            continue;
+        }
+        // AI/MCP document tools are intentionally disabled while a shared
+        // session is bound. Re-check at the UI-thread sink because this
+        // request may have been produced before a Start/Join transition.
+        if !allow_ai_bulk_write(host) {
+            let result = collaboration_ai_rejection();
+            let state = host.editor_state_mut();
+            changed |= attach_tool_result_to_transcript_with(
+                state.chat.run_tab_mut(running_tab),
+                &req.name,
+                &result,
+                agent_identity,
+            );
+            let _ = req.ack.send(result);
+            continue;
+        }
+        let state = host.editor_state_mut();
+        // Intercept `spawn_agents`: parse the specs, stash them for the
+        // host to launch after this (parent) pump, and ack immediately
+        // (fire-and-forget). A SUB calling `spawn_agents` is refused —
+        // only the top-level loop spawns. Keeps `pump`'s signature
+        // unchanged; the launch happens in `app_handler` post-pump.
+        if req.name == "spawn_agents" {
+            let result = handle_spawn_agents(&req.args_json);
+            if attach_tool_result_to_transcript_with(
+                state.chat.run_tab_mut(running_tab),
+                &req.name,
+                &result,
+                agent_identity,
+            ) {
+                changed = true;
+            }
+            let _ = req.ack.send(result);
+            continue;
+        }
+        if req.name == op_host_services::chat_intent::APPLY_MODIFICATION_OP {
+            let nodes = op_host_services::chat_canvas_tools::parse_design_modification_ops_arg(
+                &req.args_json,
+            );
+            let target_frame_ids =
+                op_host_services::chat_canvas_tools::parse_design_modification_target_frame_ids_arg(
+                    &req.args_json,
+                );
+            let (count, mutated) = op_host_services::chat_canvas_tools::apply_design_modification(
+                state,
+                &nodes,
+                &target_frame_ids,
+            );
+            if mutated {
+                changed = true;
+            }
+            let _ = req.ack.send(ChatToolResult {
+                content: serde_json::json!({ "success": true, "count": count }).to_string(),
+                is_error: false,
+            });
+            continue;
+        }
+        let (result, mutated) = execute_agent_tool(state, &req.name, &req.args_json);
+        if mutated {
+            changed = true;
+        }
+        if attach_tool_result_to_transcript_with(
+            state.chat.run_tab_mut(running_tab),
+            &req.name,
+            &result,
+            agent_identity,
+        ) {
+            changed = true;
+        }
+        let _ = req.ack.send(result);
+    }
+    changed
+}
+
+/// Handle a `spawn_agents` tool call from the design loop: parse the
+/// specs, stash them for the host to launch after the parent pump, and
+/// return the fire-and-forget ack.
+///
+/// - Top-level loop → stash N specs, ack `{spawned, agentIds}` (the
+///   Phase-0 result shape; the host launches the sub-loops post-pump).
+/// - A SUB calling `spawn_agents` again → refused (nested spawns no-op);
+///   acks `{spawned: 0}` so the sub doesn't keep retrying.
+/// - Parse error → an error result so the model can correct.
+///
+/// The ack rides the same `{success, data}` / `{success, error}` envelope
+/// the design-tool surface uses (`execute_with_registry`) so the model
+/// sees a consistent shape regardless of which path handled the call.
+fn handle_spawn_agents(args_json: &str) -> ChatToolResult {
+    use crate::sub_agent_session::{nested_spawn_active, parse_spawn_args, stash_pending_spawn};
+
+    let specs = match parse_spawn_args(args_json) {
+        Ok(specs) => specs,
+        Err(error) => {
+            return ChatToolResult {
+                content: serde_json::json!({ "success": false, "error": error.to_string() })
+                    .to_string(),
+                is_error: true,
+            };
+        }
+    };
+    let n = specs.len();
+    if !stash_pending_spawn(specs, nested_spawn_active()) {
+        // Nested spawn — a sub-agent tried to spawn again. No-op.
+        return ChatToolResult {
+            content: serde_json::json!({
+                "success": true,
+                "data": {
+                    "spawned": 0,
+                    "agentIds": [],
+                    "note": "nested spawn_agents ignored — only the top-level design loop spawns sub-agents"
+                }
+            })
+            .to_string(),
+            is_error: false,
+        };
+    }
+    let agent_ids: Vec<String> = (0..n).map(|i| format!("agent-{i}")).collect();
+    ChatToolResult {
+        content: serde_json::json!({
+            "success": true,
+            "data": { "spawned": n, "agentIds": agent_ids }
+        })
+        .to_string(),
+        is_error: false,
+    }
+}
+
+/// Record an executed tool call's result on its transcript card.
+#[cfg(test)]
+fn attach_tool_result_to_transcript(
+    chat: &mut ChatState,
+    name: &str,
+    result: &ChatToolResult,
+) -> bool {
+    attach_tool_result_to_transcript_with(chat, name, result, None)
+}
+
+fn attach_tool_result_to_transcript_with(
+    chat: &mut ChatState,
+    name: &str,
+    result: &ChatToolResult,
+    agent_identity: Option<(&str, &str)>,
+) -> bool {
+    let Some(index) = agent_message_index(&chat.messages, agent_identity) else {
+        return false;
+    };
+    let msg = &mut chat.messages[index];
+    for call in msg.tool_calls.iter_mut().rev() {
+        if call.name != name {
+            continue;
+        }
+        let Ok(mut envelope) = serde_json::from_str::<serde_json::Value>(&call.args) else {
+            continue;
+        };
+        let Some(obj) = envelope.as_object_mut() else {
+            continue;
+        };
+        if obj.get("status").and_then(serde_json::Value::as_str) != Some("running") {
+            continue;
+        }
+        let result_value = transcript_result_value(name, result);
+        obj.insert("result".into(), result_value);
+        let status = if result.is_error { "error" } else { "done" };
+        obj.insert(
+            "status".into(),
+            serde_json::Value::String(status.to_string()),
+        );
+        call.args = envelope.to_string();
+        return true;
+    }
+    false
+}
+
+/// Keep screenshot bytes on the live executor acknowledgement, but never copy
+/// them into the long-lived UI transcript. The agent loop still receives the
+/// original [`ChatToolResult`]; only the tool-card display value is summarized.
+fn transcript_result_value(name: &str, result: &ChatToolResult) -> serde_json::Value {
+    let mut value = serde_json::from_str::<serde_json::Value>(&result.content)
+        .unwrap_or_else(|_| serde_json::Value::String(result.content.clone()));
+    if name != "get_screenshot" || result.is_error {
+        return value;
+    }
+    if value.get("success").and_then(serde_json::Value::as_bool) == Some(false) {
+        return value;
+    }
+
+    let payload = if value.get("data").is_some_and(serde_json::Value::is_object) {
+        value
+            .get_mut("data")
+            .and_then(serde_json::Value::as_object_mut)
+    } else {
+        value.as_object_mut()
+    };
+    let Some(payload) = payload else {
+        return value;
+    };
+    let Some(serde_json::Value::String(encoded)) = payload.remove("image_base64") else {
+        return value;
+    };
+
+    let encoded_chars = encoded.len();
+    payload.insert(
+        "image_summary".into(),
+        serde_json::Value::String(
+            "Screenshot rendered; binary payload omitted from the UI transcript.".into(),
+        ),
+    );
+    payload.insert("image_base64_chars".into(), encoded_chars.into());
+    if let Some(decoded_bytes) = standard_base64_decoded_len(&encoded) {
+        payload.insert("image_bytes".into(), decoded_bytes.into());
+    }
+    value
+}
+
+/// Exact decoded length for canonical padded base64 without allocating a
+/// second screenshot-sized buffer. Production `get_screenshot` uses this form.
+fn standard_base64_decoded_len(encoded: &str) -> Option<usize> {
+    if encoded.is_empty() || !encoded.len().is_multiple_of(4) {
+        return None;
+    }
+    let padding = encoded
+        .as_bytes()
+        .iter()
+        .rev()
+        .take_while(|byte| **byte == b'=')
+        .count()
+        .min(2);
+    encoded
+        .len()
+        .checked_div(4)?
+        .checked_mul(3)?
+        .checked_sub(padding)
+}
+
+#[cfg(test)]
+#[path = "chat_session_tests.rs"]
+mod tests;
+
+#[cfg(test)]
+#[path = "chat_session_loop_tests.rs"]
+mod loop_tests;
+
+#[cfg(test)]
+#[path = "chat_session_transcript_tests.rs"]
+mod transcript_tests;
+
+#[cfg(test)]
+#[path = "chat_session_identity_tests.rs"]
+mod identity_tests;
+
+#[cfg(test)]
+#[path = "chat_session_reveal_tests.rs"]
+mod reveal_tests;
+
+#[cfg(test)]
+#[path = "chat_session_finalize_teardown_tests.rs"]
+mod finalize_teardown_tests;

@@ -1,0 +1,259 @@
+//! Fact-based root dimensions explicitly requested in the user prompt.
+
+use regex::Regex;
+use std::sync::OnceLock;
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub(crate) struct RequestedRootDimensions {
+    pub width: f64,
+    pub height: Option<f64>,
+}
+
+#[derive(Debug, Clone, Copy)]
+struct DimensionCandidate {
+    start: usize,
+    end: usize,
+    dimensions: RequestedRootDimensions,
+}
+
+const CONTEXT_RADIUS: usize = 56;
+const ROOT_CONTEXT_TERMS: &[&str] = &[
+    "root",
+    "artboard",
+    "page",
+    "screen",
+    "canvas",
+    // "desktop dashboard" is the catalog's natural-language shorthand for
+    // one desktop screen, including the accepted "1440x900 desktop dashboard"
+    // form where no literal "screen" token is present.
+    "desktop",
+    "dashboard",
+    "根画板",
+    "画板",
+    "页面",
+    "屏幕",
+    "画布",
+];
+const NESTED_CONTEXT_TERMS: &[&str] = &[
+    "hero",
+    "image",
+    "card",
+    "banner",
+    "thumbnail",
+    "photo",
+    "插图",
+    "图片",
+    "卡片",
+];
+
+fn valid_dimension(value: u32) -> bool {
+    (240..=10_000).contains(&value)
+}
+
+fn pair_regex() -> &'static Regex {
+    static PAIR: OnceLock<Regex> = OnceLock::new();
+    PAIR.get_or_init(|| {
+        Regex::new(r"(?i)([0-9]{3,5})\s*(?:px\s*)?x\s*([0-9]{3,5})(?:\s*px)?")
+            .expect("root dimension pair regex")
+    })
+}
+
+fn width_regex() -> &'static Regex {
+    static WIDTH: OnceLock<Regex> = OnceLock::new();
+    WIDTH.get_or_init(|| {
+        Regex::new(r"(?i)([0-9]{3,5})\s*(?:px|pixels?)\s+wide").expect("root width regex")
+    })
+}
+
+fn is_word_char(ch: char) -> bool {
+    ch.is_ascii_alphanumeric() || ch == '_'
+}
+
+fn term_has_boundaries(text: &str, start: usize, term: &str) -> bool {
+    if !term.is_ascii() {
+        return true;
+    }
+    let before = text[..start].chars().next_back();
+    let after = text[start + term.len()..].chars().next();
+    before.is_none_or(|ch| !is_word_char(ch)) && after.is_none_or(|ch| !is_word_char(ch))
+}
+
+fn range_distance(start: usize, end: usize, other_start: usize, other_end: usize) -> usize {
+    if other_end <= start {
+        start.saturating_sub(other_end)
+    } else if end <= other_start {
+        other_start.saturating_sub(end)
+    } else {
+        0
+    }
+}
+
+fn nearest_term_distance(
+    text: &str,
+    candidate: DimensionCandidate,
+    terms: &[&str],
+) -> Option<usize> {
+    terms
+        .iter()
+        .flat_map(|term| {
+            text.match_indices(term)
+                .filter(move |(start, _)| term_has_boundaries(text, *start, term))
+                .map(move |(start, _)| {
+                    range_distance(candidate.start, candidate.end, start, start + term.len())
+                })
+        })
+        .filter(|distance| *distance <= CONTEXT_RADIUS)
+        .min()
+}
+
+fn is_root_scoped(text: &str, candidate: DimensionCandidate) -> bool {
+    let Some(root_distance) = nearest_term_distance(text, candidate, ROOT_CONTEXT_TERMS) else {
+        return false;
+    };
+    nearest_term_distance(text, candidate, NESTED_CONTEXT_TERMS)
+        .is_none_or(|nested_distance| root_distance < nested_distance)
+}
+
+fn pair_candidates(text: &str) -> Vec<DimensionCandidate> {
+    pair_regex()
+        .captures_iter(text)
+        .filter_map(|captures| {
+            let whole = captures.get(0)?;
+            let width = captures.get(1)?.as_str().parse::<u32>().ok()?;
+            let height = captures.get(2)?.as_str().parse::<u32>().ok()?;
+            (valid_dimension(width) && valid_dimension(height)).then_some(DimensionCandidate {
+                start: whole.start(),
+                end: whole.end(),
+                dimensions: RequestedRootDimensions {
+                    width: f64::from(width),
+                    height: Some(f64::from(height)),
+                },
+            })
+        })
+        .collect()
+}
+
+fn width_candidates(text: &str, pair_candidates: &[DimensionCandidate]) -> Vec<DimensionCandidate> {
+    width_regex()
+        .captures_iter(text)
+        .filter_map(|captures| {
+            let whole = captures.get(0)?;
+            if pair_candidates
+                .iter()
+                .any(|pair| whole.start() < pair.end && pair.start < whole.end())
+            {
+                return None;
+            }
+            let width = captures.get(1)?.as_str().parse::<u32>().ok()?;
+            valid_dimension(width).then_some(DimensionCandidate {
+                start: whole.start(),
+                end: whole.end(),
+                dimensions: RequestedRootDimensions {
+                    width: f64::from(width),
+                    height: None,
+                },
+            })
+        })
+        .collect()
+}
+
+pub(crate) fn requested_root_dimensions(prompt: &str) -> Option<RequestedRootDimensions> {
+    let normalized = prompt.to_lowercase().replace('×', "x");
+    let pairs = pair_candidates(&normalized);
+    let mut candidates = pairs.clone();
+    candidates.extend(width_candidates(&normalized, &pairs));
+
+    // A later, explicitly root-scoped statement wins. This matters for prompts
+    // that first size a card/image and then state the page/root width.
+    candidates
+        .into_iter()
+        .filter(|candidate| is_root_scoped(&normalized, *candidate))
+        .max_by_key(|candidate| candidate.start)
+        .map(|candidate| candidate.dimensions)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn dimensions(width: f64, height: Option<f64>) -> Option<RequestedRootDimensions> {
+        Some(RequestedRootDimensions { width, height })
+    }
+
+    #[test]
+    fn parses_dimension_pair_with_multiplication_sign() {
+        assert_eq!(
+            requested_root_dimensions("Design a 1440×900 desktop analytics dashboard"),
+            dimensions(1440.0, Some(900.0))
+        );
+    }
+
+    #[test]
+    fn parses_explicit_root_and_artboard_pairs() {
+        assert_eq!(
+            requested_root_dimensions("Use a root frame sized 1366 x 768px."),
+            dimensions(1366.0, Some(768.0))
+        );
+        assert_eq!(
+            requested_root_dimensions("Canvas artboard: 1600px x 1000px"),
+            dimensions(1600.0, Some(1000.0))
+        );
+    }
+
+    #[test]
+    fn parses_explicit_pixel_width_without_guessing_height() {
+        assert_eq!(
+            requested_root_dimensions(
+                "Make the root exactly 1440px wide and between 2400 and 5200px tall"
+            ),
+            dimensions(1440.0, None)
+        );
+    }
+
+    #[test]
+    fn rejects_nested_hero_image_and_card_dimensions() {
+        for prompt in [
+            "Design a page with a hero image sized 1440×900.",
+            "On the dashboard, make the card 420px wide.",
+            "Create a screen whose thumbnail image is 640 x 360.",
+        ] {
+            assert_eq!(
+                requested_root_dimensions(prompt),
+                None,
+                "nested dimensions must not become the root contract: {prompt}"
+            );
+        }
+    }
+
+    #[test]
+    fn later_root_width_wins_over_earlier_card_width() {
+        assert_eq!(
+            requested_root_dimensions(
+                "Use a 420px wide card in the hero, then make the page root 1440px wide."
+            ),
+            dimensions(1440.0, None)
+        );
+    }
+
+    #[test]
+    fn later_page_pair_wins_over_earlier_image_pair() {
+        assert_eq!(
+            requested_root_dimensions(
+                "The hero image is 1200x600. Render the desktop page at 1440x900."
+            ),
+            dimensions(1440.0, Some(900.0))
+        );
+    }
+
+    #[test]
+    fn ignores_aspect_ratios_and_unqualified_numbers() {
+        assert_eq!(
+            requested_root_dimensions("Crop the top 900px to a 16:10 preview"),
+            None
+        );
+        assert_eq!(
+            requested_root_dimensions("Use a 1440x900 image without creating an artboard."),
+            None
+        );
+    }
+}

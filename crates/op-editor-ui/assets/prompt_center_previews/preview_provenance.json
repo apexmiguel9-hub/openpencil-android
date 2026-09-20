@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "gallery-wander": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-wander/result.op",
+      "sourceArtifactSha256": "a98d6e05e405c234b32a59466c2e3d16ffb1821cf7dc54dfd23dbd4fe0c7f4a1",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-wander/preview-export.jpg",
+      "previewSourceSha256": "ac865d21e4ca003aff1a819b1cffb3f0c82b361b14317e6cea52741671f356a4",
+      "previewSha256": "ac865d21e4ca003aff1a819b1cffb3f0c82b361b14317e6cea52741671f356a4",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-forage": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-forage/result.op",
+      "sourceArtifactSha256": "1fda1b35dca3343c2687cc6ed1a80d73c109fef6cdbc34cfde2938065055d5de",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-forage/preview-export.jpg",
+      "previewSourceSha256": "ee53be6b96abeb9b9b9ec74269f23f35c445c2db53d7b3f21373111681122811",
+      "previewSha256": "ee53be6b96abeb9b9b9ec74269f23f35c445c2db53d7b3f21373111681122811",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-still": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-still/result.op",
+      "sourceArtifactSha256": "c066fc04efbefb7aa6019f827fd742d5e782f056511d9594ca92e894a7ca6d91",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-still/preview-export.jpg",
+      "previewSourceSha256": "1a20683deeec4e3e67fd7e2a319d7c34cffcc4d23421c698f2f453afc8134f95",
+      "previewSha256": "1a20683deeec4e3e67fd7e2a319d7c34cffcc4d23421c698f2f453afc8134f95",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-hearth": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-hearth/result.op",
+      "sourceArtifactSha256": "ea13fda23316ef5cdd88913078e4ab6ba45f6576f10c7f278a8d9c2b859c8062",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-hearth/preview-export.jpg",
+      "previewSourceSha256": "5438c88118629a1dfaa21129482cd7c38c01f8c134a48f4d8266a5acd27a5a87",
+      "previewSha256": "5438c88118629a1dfaa21129482cd7c38c01f8c134a48f4d8266a5acd27a5a87",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-meteo": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-meteo/result.op",
+      "sourceArtifactSha256": "45cfc25702e2b0d1ec29e825ed25f782f674a5a425c5cba5c75e537d5a88dee6",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-meteo/preview-export.jpg",
+      "previewSourceSha256": "96bd84f739ec6703b0e9642147b98ffb215a90e640b93955925600a467234ed9",
+      "previewSha256": "96bd84f739ec6703b0e9642147b98ffb215a90e640b93955925600a467234ed9",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-marginalia": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-marginalia/result.op",
+      "sourceArtifactSha256": "6b786d1e13ec15251cff0fbddeb0d595d1b07e5c7be42e417aa0434f8049d448",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-marginalia/preview-export.jpg",
+      "previewSourceSha256": "24235cb0119733058f29aad55817fe82738584322b598aa6e62d6a4ba9be91a1",
+      "previewSha256": "24235cb0119733058f29aad55817fe82738584322b598aa6e62d6a4ba9be91a1",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-lingua": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-lingua/result.op",
+      "sourceArtifactSha256": "ad4ca6682c0cfbe0ea7e27cb9e09c75fd355e118ce11e201a4e32c4b1142a2b8",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-lingua/preview-export.jpg",
+      "previewSourceSha256": "26a4a72a2d6fc6ee962fd954e21889acbcd281269030c31dc7cfbecdf6567711",
+      "previewSha256": "26a4a72a2d6fc6ee962fd954e21889acbcd281269030c31dc7cfbecdf6567711",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-daybreak": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-daybreak/result.op",
+      "sourceArtifactSha256": "088661f977d15ea6be89ac908b48523516f1ba3bdc5b40c9a512c480a7995b02",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-daybreak/preview-export.jpg",
+      "previewSourceSha256": "badfac6e53b902c46282490c428b1e743cfaaee5a81427bd75cbe00e0a803598",
+      "previewSha256": "badfac6e53b902c46282490c428b1e743cfaaee5a81427bd75cbe00e0a803598",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 2,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-verdant": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-verdant/result.op",
+      "sourceArtifactSha256": "b7f576ab8f1070efb54cd1367f55a7f2255d86f6a41bb984e6133106b56fc395",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-verdant/preview-export.jpg",
+      "previewSourceSha256": "acd2d7c204eb3920711976b882fb5b626c072830165f45aa5c860e203270e156",
+      "previewSha256": "acd2d7c204eb3920711976b882fb5b626c072830165f45aa5c860e203270e156",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-companion": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-companion/result.op",
+      "sourceArtifactSha256": "e7d95f5e7dc70cf5f2982e51d4f70af71c0aae42b0990fda4eac3151dcff7cc9",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-companion/preview-export.jpg",
+      "previewSourceSha256": "9767fa798e27b0fd2053092c850cecbb75698964b200205397cd0f78da592531",
+      "previewSha256": "9767fa798e27b0fd2053092c850cecbb75698964b200205397cd0f78da592531",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-relic": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-relic/result.op",
+      "sourceArtifactSha256": "53178f53174b7a502b8e564be5656275ceb1b77b9f70ae53e9afe57c95df1a92",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-relic/preview-export.jpg",
+      "previewSourceSha256": "1718806fc8aa285b5cb5fb90d44eceb0fef74c576bacc1259d47d99222eef74e",
+      "previewSha256": "1718806fc8aa285b5cb5fb90d44eceb0fef74c576bacc1259d47d99222eef74e",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-nocturne": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-nocturne/result.op",
+      "sourceArtifactSha256": "4be507745c1bf8212846c4d43a99ecbe8bcf2b841204580455aded901f5205ae",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-nocturne/preview-export.jpg",
+      "previewSourceSha256": "5e561a86915523d85a3a216622272a8561875f4f5e5ba826b45803fd9adaee93",
+      "previewSha256": "5e561a86915523d85a3a216622272a8561875f4f5e5ba826b45803fd9adaee93",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-marquee": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-marquee/result.op",
+      "sourceArtifactSha256": "1f0f9d954feb653de764b1d19e7863d07e8214498620e132fa7fe76fc158e8cc",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-marquee/preview-export.jpg",
+      "previewSourceSha256": "07d1f551c615a5d585707e91cbacbb5d48fe23797bcf7b602733f6ae8fb55dc1",
+      "previewSha256": "07d1f551c615a5d585707e91cbacbb5d48fe23797bcf7b602733f6ae8fb55dc1",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-ritual": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-ritual/result.op",
+      "sourceArtifactSha256": "5d34218a54667e7ea31bb741de874247f934454f19ee0c6e0eff9ba65c8cce8b",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-ritual/preview-export.jpg",
+      "previewSourceSha256": "139dca2454bc6b80af26a2b5d2f258fda97e47e18906fa4a77c88008e276384d",
+      "previewSha256": "139dca2454bc6b80af26a2b5d2f258fda97e47e18906fa4a77c88008e276384d",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-ember": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-ember/result.op",
+      "sourceArtifactSha256": "00f322eff9a3702c8255d8d33b9f973e73f9034e7e6e40aa2b2ae22afe9d47d1",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-ember/preview-export.jpg",
+      "previewSourceSha256": "01a822105987a9f4afb84a21c33e506230776120d8f2d654eab98ce5bb10fd70",
+      "previewSha256": "01a822105987a9f4afb84a21c33e506230776120d8f2d654eab98ce5bb10fd70",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-volt": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-volt/result.op",
+      "sourceArtifactSha256": "46cbe741fbbd3697d88d2ded7f7d70591c5c16163ee9f235331fd98cb9c66ed4",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-volt/preview-export.jpg",
+      "previewSourceSha256": "bab8975cb950e513bc107c25a3403bcfcad0536601320170866a5021de434e21",
+      "previewSha256": "bab8975cb950e513bc107c25a3403bcfcad0536601320170866a5021de434e21",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-aloft": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-aloft/result.op",
+      "sourceArtifactSha256": "4d3662bba32ad78b6602cbadd3f526a37d47084e8bb6e1ab29de743a268dacfc",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-aloft/preview-export.jpg",
+      "previewSourceSha256": "9272296a44e850b6362c165f107e7a2c09933843d1385c10b69cf759459f71b6",
+      "previewSha256": "9272296a44e850b6362c165f107e7a2c09933843d1385c10b69cf759459f71b6",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-gallery": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-gallery/result.op",
+      "sourceArtifactSha256": "bf08d5fa7ec4b4502f9c1dee27f3e65d7bae222f8296a02e9cc1424c70cfca91",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-gallery/preview-export.jpg",
+      "previewSourceSha256": "2526ada7110360e93084d5f744ec1919d6b06bac7f0f7286bcabd569132685b8",
+      "previewSha256": "2526ada7110360e93084d5f744ec1919d6b06bac7f0f7286bcabd569132685b8",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-nightcap": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-nightcap/result.op",
+      "sourceArtifactSha256": "c41e477b1a8ae58c01138d9bebd582d877da0d8e004d650c670252e0957c94e2",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-nightcap/preview-export.jpg",
+      "previewSourceSha256": "3839af5859b6ed27f38d431f25c0b214001e4e4c2a7e6d962b92ce6c4ce97d96",
+      "previewSha256": "3839af5859b6ed27f38d431f25c0b214001e4e4c2a7e6d962b92ce6c4ce97d96",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "gallery-bloom": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-bloom/result.op",
+      "sourceArtifactSha256": "449ec69b85e99547401083ee5eb9885fe6592496187dd347e7850ba27be7781a",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/gallery-bloom/preview-export.jpg",
+      "previewSourceSha256": "cf0c8f66cd225649e03e1189c6f9dce3a15af4de36af30004742299c26fbca58",
+      "previewSha256": "cf0c8f66cd225649e03e1189c6f9dce3a15af4de36af30004742299c26fbca58",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-wander": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-wander/result.op",
+      "sourceArtifactSha256": "6d9d3bf40869d7343977f64a2c94f4d4ceb5eb96ff4cda0464e7a76ba5168f3c",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-wander/preview-export.jpg",
+      "previewSourceSha256": "5e38fa822d0372f5534519b0d971253bf21f2611da4af9d66fe15ebee0e98542",
+      "previewSha256": "5e38fa822d0372f5534519b0d971253bf21f2611da4af9d66fe15ebee0e98542",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-forage": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-forage/result.op",
+      "sourceArtifactSha256": "77df5b4141a7b85ecd54648240b1959f322cc480b1facecfb67e84a98f0c280e",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-forage/preview-export.jpg",
+      "previewSourceSha256": "0643e8f2a0c06ef622cdabaf76a38c1393d55aef4c5e72e5d22d0862435c8f25",
+      "previewSha256": "0643e8f2a0c06ef622cdabaf76a38c1393d55aef4c5e72e5d22d0862435c8f25",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-still": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-still/result.op",
+      "sourceArtifactSha256": "929382e118182c221350588ca396d9890e150e11a091dbb682c2c949234bcdd3",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-still/preview-export.jpg",
+      "previewSourceSha256": "7473f5ebd8420f4f8fe64c8e267331da78b7e69cb35056a78132093e1d1d7dfe",
+      "previewSha256": "7473f5ebd8420f4f8fe64c8e267331da78b7e69cb35056a78132093e1d1d7dfe",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-hearth": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-hearth/result.op",
+      "sourceArtifactSha256": "4ef392529108dfc431af433ed6a012a91730a01918b8f681340374dca71ae217",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-hearth/preview-export.jpg",
+      "previewSourceSha256": "5110cb942531d6630cb8f269f723043dbdca51f42d40e0240d6107b68c9b0d58",
+      "previewSha256": "5110cb942531d6630cb8f269f723043dbdca51f42d40e0240d6107b68c9b0d58",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-meteo": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-meteo/result.op",
+      "sourceArtifactSha256": "8229b73b5d9b820b99edfe8b34967b61054998ce525b6349c1710b22b6680b68",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-meteo/preview-export.jpg",
+      "previewSourceSha256": "0747bd7f956169fc08cf1da6735dbea1e1de2c149c36e2cde31b795423ed2590",
+      "previewSha256": "0747bd7f956169fc08cf1da6735dbea1e1de2c149c36e2cde31b795423ed2590",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-marginalia": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-marginalia/result.op",
+      "sourceArtifactSha256": "66c77a5c430a566cdf838dc425ef723505f114311d0406ae0ce70dc4733347d5",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-marginalia/preview-export.jpg",
+      "previewSourceSha256": "4de17553e9108936c324a3a72e0b8644c890149997faa40b8162d6480b476d00",
+      "previewSha256": "4de17553e9108936c324a3a72e0b8644c890149997faa40b8162d6480b476d00",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-lingua": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-lingua/result.op",
+      "sourceArtifactSha256": "1b795478386e0a16ccd48e329219863815c6c76506d5f05669bcf116bcca40c0",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-lingua/preview-export.jpg",
+      "previewSourceSha256": "e97913e2fd62e73462f2a767b68092c174abbda523eccc4135cae07622764550",
+      "previewSha256": "e97913e2fd62e73462f2a767b68092c174abbda523eccc4135cae07622764550",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-daybreak": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-daybreak/result.op",
+      "sourceArtifactSha256": "726b4841e94b40b7c29e0f090c27c4a8a4a631cc5714c842e8ac2146e62b6945",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-daybreak/preview-export.jpg",
+      "previewSourceSha256": "7b45d9911c4024dad33540c9153f337bf7432b260fa1e59923b3030145445aa2",
+      "previewSha256": "7b45d9911c4024dad33540c9153f337bf7432b260fa1e59923b3030145445aa2",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 2,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-verdant": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-verdant/result.op",
+      "sourceArtifactSha256": "05288fddfe6d70fd097c62849c1886c12b172b03f8eb860841f569d491a3a763",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-verdant/preview-export.jpg",
+      "previewSourceSha256": "bad397d99551962c925868b5038a85935abc6afc45fe9da5bf70f58bf0103854",
+      "previewSha256": "bad397d99551962c925868b5038a85935abc6afc45fe9da5bf70f58bf0103854",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-companion": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-companion/result.op",
+      "sourceArtifactSha256": "de0c72bffcc5dc560e303dcd2e6bb40a6a86f31f28b0f305105a62a70f301d70",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-companion/preview-export.jpg",
+      "previewSourceSha256": "712857a250f8993dff1837936453297ece8509453aa9ca868f06ac1bf78701ad",
+      "previewSha256": "712857a250f8993dff1837936453297ece8509453aa9ca868f06ac1bf78701ad",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-relic": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-relic/result.op",
+      "sourceArtifactSha256": "5e0930a8bb11807360baba9b668f27ee7bd326f8324fbb5696568edd6027f0bc",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-relic/preview-export.jpg",
+      "previewSourceSha256": "1ef65f317ebccd95820ce3f8de318d7b924d6bb016038d9f117f5482514bcced",
+      "previewSha256": "1ef65f317ebccd95820ce3f8de318d7b924d6bb016038d9f117f5482514bcced",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-nocturne": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-nocturne/result.op",
+      "sourceArtifactSha256": "040b621ceebe3f09a46df3856fef28512269e612ddbbb35445909323b83637fe",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-nocturne/preview-export.jpg",
+      "previewSourceSha256": "1b26706bb07970dba04c410eb901d9d8e64884224cac46ae6720423b23af467f",
+      "previewSha256": "1b26706bb07970dba04c410eb901d9d8e64884224cac46ae6720423b23af467f",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-marquee": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-marquee/result.op",
+      "sourceArtifactSha256": "412a9a40927193fa74159e1fcf1de2b9f95d7f7eba51fa8f44619280381e2d41",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-marquee/preview-export.jpg",
+      "previewSourceSha256": "d435e2051f44c50fc2eeb351d1ac1e2ea7d646dc1b583f3cb2ceb6cd094cb2ef",
+      "previewSha256": "d435e2051f44c50fc2eeb351d1ac1e2ea7d646dc1b583f3cb2ceb6cd094cb2ef",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-ritual": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-ritual/result.op",
+      "sourceArtifactSha256": "af81374f53b738fc87d8214e5584eceb36c670fee0bf68975eade89e1cc08745",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-ritual/preview-export.jpg",
+      "previewSourceSha256": "180774e54021db8c5b5311c2524f670ec1f202fdcac88873a04abe89fc9f9c7b",
+      "previewSha256": "180774e54021db8c5b5311c2524f670ec1f202fdcac88873a04abe89fc9f9c7b",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-ember": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-ember/result.op",
+      "sourceArtifactSha256": "f94bb8941df87926184a7b214aef7b35c085ecf85ab2acd21db6d407055b1010",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-ember/preview-export.jpg",
+      "previewSourceSha256": "c4fa1e41454339ae13b7d6e097246508f440178c0849b980b377b97ad4d90fe4",
+      "previewSha256": "c4fa1e41454339ae13b7d6e097246508f440178c0849b980b377b97ad4d90fe4",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-volt": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-volt/result.op",
+      "sourceArtifactSha256": "9df40cda7a97c9cc5ed188670f7b5a74d93984215b2ff7493ff870db8e027cbb",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-volt/preview-export.jpg",
+      "previewSourceSha256": "364d033335c076b04ff7f69deeeddd4832536c5e9a9cd4de91b40cc3728284ef",
+      "previewSha256": "364d033335c076b04ff7f69deeeddd4832536c5e9a9cd4de91b40cc3728284ef",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 3,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-aloft": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-aloft/result.op",
+      "sourceArtifactSha256": "051bad8617d9c003c009f21cfdb4c488250de5e9b64205c01ecddb2efb55da8d",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-aloft/preview-export.jpg",
+      "previewSourceSha256": "a26f25386ba50990b0dfc31206d4e8a03ad7af1e6e0d4d00393c9cd7b513fec8",
+      "previewSha256": "a26f25386ba50990b0dfc31206d4e8a03ad7af1e6e0d4d00393c9cd7b513fec8",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-gallery": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-gallery/result.op",
+      "sourceArtifactSha256": "bf7a004fbc48b8da254d681696bcaf20aa7d02207065bd9fd8a85b17ff7f01c9",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-gallery/preview-export.jpg",
+      "previewSourceSha256": "f154be450448018a3819c792a25be1ba47a37139e2ee599df060e5dd8d41fce2",
+      "previewSha256": "f154be450448018a3819c792a25be1ba47a37139e2ee599df060e5dd8d41fce2",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-nightcap": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-nightcap/result.op",
+      "sourceArtifactSha256": "5f4d7ab0f43e01e84dcbe5e658acf98165082376bb4c1d2506eacf2a1fcd28e6",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-nightcap/preview-export.jpg",
+      "previewSourceSha256": "9ac4782f74eca081c79d13436c35e6758548282066871102f2dcddb3fd85c501",
+      "previewSha256": "9ac4782f74eca081c79d13436c35e6758548282066871102f2dcddb3fd85c501",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "freeform-bloom": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-bloom/result.op",
+      "sourceArtifactSha256": "9932b6900d3a03b06afc34f1babae0050764b685a448c86f2c5edb5cb440a243",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/freeform-bloom/preview-export.jpg",
+      "previewSourceSha256": "6dc926c253d050b7e1caf39896cd38d31044cd7896ab2889c48c1e6ecac7e3ba",
+      "previewSha256": "6dc926c253d050b7e1caf39896cd38d31044cd7896ab2889c48c1e6ecac7e3ba",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "extreme-weather": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-weather/result.op",
+      "sourceArtifactSha256": "837d67475305bf8eba15687ce42b4c094ad5ce9b281af6990661a0ebe6e171bc",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-weather/preview-export.jpg",
+      "previewSourceSha256": "c9c2f9ecb437cfe46428032c7f571fda195d39cbf6632c0fcb40f3c738321534",
+      "previewSha256": "c9c2f9ecb437cfe46428032c7f571fda195d39cbf6632c0fcb40f3c738321534",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "extreme-now-playing": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-now-playing/result.op",
+      "sourceArtifactSha256": "e5ba7762f437cdea057143936440d2cb7ae553e58881bad2579685efc4674021",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-now-playing/preview-export.jpg",
+      "previewSourceSha256": "c43e792648ccb1363ecb7f51b6a9e6e2627dd544e759c332a9c51d519b806137",
+      "previewSha256": "c43e792648ccb1363ecb7f51b6a9e6e2627dd544e759c332a9c51d519b806137",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "extreme-daily-app": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-daily-app/result.op",
+      "sourceArtifactSha256": "8458a02a18174c135b064af8e114ba53febe8e7713c54139ef10dc910f062472",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-daily-app/preview-export.jpg",
+      "previewSourceSha256": "023e9cbd66ac3e22a604ee45d9c2a1d3c43679e4d19e90795fe5a1e81f2f6ae3",
+      "previewSha256": "023e9cbd66ac3e22a604ee45d9c2a1d3c43679e4d19e90795fe5a1e81f2f6ae3",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "extreme-calendar": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-calendar/result.op",
+      "sourceArtifactSha256": "2328a21b6328a432f1e75d7e7850e5f3c87ee2ef55fd0e57014578b9d3444275",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-calendar/preview-export.jpg",
+      "previewSourceSha256": "7a7d09e663b20841ca73b5b2a64ff49d6d099ac83abee367207fe2a02f754c65",
+      "previewSha256": "7a7d09e663b20841ca73b5b2a64ff49d6d099ac83abee367207fe2a02f754c65",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "extreme-calm": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-calm/result.op",
+      "sourceArtifactSha256": "a719d4f624d6738d625d55ff872e2321464b4bc772d2192cdce9cad9726cfc75",
+      "previewSource": "out/prompt-center-sources/2026-07-30-orchestrator-en/extreme-calm/preview-export.jpg",
+      "previewSourceSha256": "8a5592c095ed5b85a86688a2f2abd78e7ce284ab39775cdc314353f959d3d547",
+      "previewSha256": "8a5592c095ed5b85a86688a2f2abd78e7ce284ab39775cdc314353f959d3d547",
+      "cropPolicy": "production mobile render: single screens crop the first width/1.6 content pixels after the canonical 62px status bar; multi-screen previews compose full screen exports; resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": true
+      }
+    },
+    "web-orbit": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/web-orbit/attempt-02/result-accepted.op",
+      "sourceArtifactSha256": "0d15fddf3596277eb91ef1cee36c2f6e782a4941bfb394072a1d481d063c7c6a",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/web-orbit/attempt-02/preview-export.jpg",
+      "previewSha256": "6e70c3b8ccf54c74ac19244ba03483bea5ab4dcd9c9de10c5b0f20fa062e6dd3",
+      "cropPolicy": "top-above-fold: crop first width/1.6 pixels (1440x900 target), resize to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "web-atelier": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator + production-mcp-image-requery",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/web-atelier/result.hero-requery-03-enriched.op",
+      "sourceArtifactSha256": "12b81cc6fbf0745b6ec4a0818237b0f049310d7762d9f001b019e28c73fffc15",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/web-atelier/preview-hero-requery-03.jpg",
+      "previewSha256": "bd798252c5848e909af183ea2a86edf42f6757119a7907cfba22e10be3a4ef42",
+      "cropPolicy": "top-above-fold: crop first width/1.6 pixels (1440x900 target), resize to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "dashboard-pulse": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator + production-mcp-layout-repair",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/dashboard-pulse/attempt-01/result-accepted.op",
+      "sourceArtifactSha256": "a3797a21777c41c3b7af3578a55a8e9a6ef1dba9523635ff0e864a84a0802ae3",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/dashboard-pulse/attempt-01/accepted-preview.jpg",
+      "previewSha256": "661c42c9a19f423bd3bf34b950ae3fc18822c03756830614d1a1b0cd5c7600e0",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "dashboard-sentinel": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator + production-mcp-layout-repair",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/dashboard-sentinel/attempt-01/result-accepted.op",
+      "sourceArtifactSha256": "81ff1d45bcfdb3e6a389f0eba99303c4b4560e1806253bba4a4b4718b0fbf182",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/dashboard-sentinel/attempt-01/preview-accepted.jpg",
+      "previewSha256": "d4d040b0207c79db056eaefe0352ea4a2666a7560a614d76cf1351ad298992fb",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "component-data-grid": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator + production-mcp-component-repair",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/component-data-grid/result-accepted.op",
+      "sourceArtifactSha256": "b94df5e7c4985c9a8e98982f87a11d95a46dc92c8be18ed2af85b91a7db4a5cc",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/component-data-grid/preview-accepted.jpg",
+      "previewSha256": "b3e13e0734c662f70efe09c19edfcd48a062c34d1866ec7cb4b77c812802688f",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "component-form-lab": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "production-orchestrator + production-mcp-component-repair",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/component-form-lab/result-accepted.op",
+      "sourceArtifactSha256": "7097de71902c9e67005c46d6ecd21e61e8a33ea31a67d1835c0eb6a045684156",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-desktop-preview-v2/component-form-lab/preview-accepted.jpg",
+      "previewSha256": "671e864221fec0a743dc7e3212cb8248d44e0d1a5cebc23ca9519f2e90cd78d9",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "modify-polish-current": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "build_modify_plan + run_modify_turn + scoped_apply + apply_loop_finalize",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-modify-preview/modify-polish-current/result.op",
+      "sourceArtifactSha256": "d4bd6cbf75ca62b648c792afa053021503675243094627c6d20b3ca244dc3dc0",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-modify-preview/modify-polish-current/preview.jpg",
+      "previewSha256": "f8d78d41ded7a4d6015a5e61d5630bea8da904f69a9938d7233411b25fa23015",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "modify-complete-states": {
+      "requestedModel": "gemini-3.6-flash-high",
+      "provider": "antigravity",
+      "model": "gemini-3.6-flash-high",
+      "generationRoute": "build_modify_plan + run_modify_turn + scoped_apply + apply_loop_finalize",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-modify-preview/modify-complete-states/result.op",
+      "sourceArtifactSha256": "0c922d57a990e597b2cd080922739f8451590be0e175869f99de174d114ca9c7",
+      "previewSource": "out/prompt-center-sources/2026-07-31-agy-gemini-3-6-flash-high-modify-preview/modify-complete-states/preview.jpg",
+      "previewSha256": "dc5da57de3610457eb5e546380cef13c5794d6dd227df69dfc6e044da262be68",
+      "cropPolicy": "whole-artboard: resize complete 1440x900 artboard to 640x400 with Lanczos, JPEG quality 92 optimized"
+    },
+    "starter-travel-app": {
+      "requestedModel": "unknown (download artifact)",
+      "provider": "claude-code",
+      "model": "Claude Code (exact model unverified)",
+      "generationRoute": "downloaded-chat-quick-action-artifact + native-render + curated-crop",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-download-starters/starter-travel-app/result-accepted.op",
+      "sourceArtifactSha256": "effeef02db3bfce7c2b67a8a03ac400660310abe9b1d0819ba9e83f73eea984d",
+      "previewSource": "out/prompt-center-sources/2026-07-31-download-starters/starter-travel-app/preview-accepted.jpg",
+      "previewSourceSha256": "00f1b80a1eac94c47dfa6f4eb830d6010071d5e57fd8d1c76aff94d702045c30",
+      "previewSha256": "00f1b80a1eac94c47dfa6f4eb830d6010071d5e57fd8d1c76aff94d702045c30",
+      "cropPolicy": "download export: crop x=0,y=200,w=750,h=469; resize to 640x400 with Lanczos, JPEG quality 92 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "geometryIssueCount": 0
+      }
+    },
+    "starter-dashboard": {
+      "requestedModel": "unknown (download artifact)",
+      "provider": "qwen",
+      "model": "Qwen (exact version unverified)",
+      "generationRoute": "downloaded-chat-quick-action-artifact + native-render + curated-crop",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-download-starters/starter-dashboard/result-accepted.op",
+      "sourceArtifactSha256": "482839b2fcab4e22407b3c3671dde0e9ad3e3f341084f185c311e1af07412810",
+      "previewSource": "out/prompt-center-sources/2026-07-31-download-starters/starter-dashboard/preview-accepted.jpg",
+      "previewSourceSha256": "16470e3de01acd3f9e421d3bb5cc4cb3d8c2be53c23ff7a54108b15149100dae",
+      "previewSha256": "16470e3de01acd3f9e421d3bb5cc4cb3d8c2be53c23ff7a54108b15149100dae",
+      "cropPolicy": "download export: crop x=0,y=120,w=780,h=488; resize to 640x400 with Lanczos, JPEG quality 92 optimized",
+      "evidence": {
+        "screenCount": 4,
+        "geometryIssueCount": 0
+      }
+    },
+    "starter-coffee-shop": {
+      "requestedModel": "unknown (download artifact)",
+      "provider": "unknown-download-artifact",
+      "model": "unknown",
+      "generationRoute": "downloaded-chat-quick-action-artifact + native-render + curated-crop",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-download-starters/starter-coffee-shop/result-accepted.op",
+      "sourceArtifactSha256": "ead4f61457b77965895e6cb94db9790b695b1188f0450f2ffd3eb74fea86c63d",
+      "previewSource": "out/prompt-center-sources/2026-07-31-download-starters/starter-coffee-shop/preview-accepted.jpg",
+      "previewSourceSha256": "1bb078696596b758462dc941aeb576118af42c8aa693004ae4a18033f1cd3e50",
+      "previewSha256": "1bb078696596b758462dc941aeb576118af42c8aa693004ae4a18033f1cd3e50",
+      "cropPolicy": "native render: remove 16px border and crop x=16,y=16,w=1200,h=750; resize to 640x400 with Lanczos, JPEG quality 92 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "geometryIssueCount": 0
+      }
+    },
+    "starter-barbershop": {
+      "requestedModel": "unknown (download artifact)",
+      "provider": "unknown-download-artifact",
+      "model": "unknown",
+      "generationRoute": "downloaded-chat-quick-action-artifact + production-cleanup + native-render + curated-crop",
+      "sourceLocale": "en-US",
+      "status": "accepted",
+      "sourceArtifact": "out/prompt-center-sources/2026-07-31-download-starters/starter-barbershop/result-accepted.op",
+      "sourceArtifactSha256": "6f76358d493fdd14652ef9e4369f6412943394aac8aa171ac3981bef02fe8fdd",
+      "previewSource": "out/prompt-center-sources/2026-07-31-download-starters/starter-barbershop/preview-accepted.jpg",
+      "previewSourceSha256": "766edcca49fa8d82b11a1be0fa4a46dab6f6c16bb09aac12cef8f28c975ebb3f",
+      "previewSha256": "766edcca49fa8d82b11a1be0fa4a46dab6f6c16bb09aac12cef8f28c975ebb3f",
+      "cropPolicy": "native render after cleanup: remove 16px border and crop x=16,y=16,w=1200,h=750; resize to 640x400 with Lanczos, JPEG quality 92 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "geometryIssueCount": 0,
+        "cleanupApplied": true
+      }
+    },
+    "web-kilnform": {
+      "generationRoute": "scene-template-render",
+      "provider": "openpencil",
+      "model": "openpencil-desktop --render-shots",
+      "sourceLocale": "zh-CN",
+      "status": "accepted",
+      "note": "Not a model sample. This prompt ships alongside the scene template of the same design; the preview is a deterministic render of that template's checked-in document, so the card shows exactly what the repository contains.",
+      "sourceArtifact": "crates/op-editor-core/assets/scene_templates/saas-landing-orange.op",
+      "sourceArtifactSha256": "d67ffc3259711cfb2633c290ed2e052122a9b490ca151d2133ae3edf1b06e90f",
+      "previewSource": "templates/step0/previews/saas-landing-orange.png",
+      "previewSourceSha256": "9be84e58e495e3890424107b065624a41002bf1c3c20315a36c2c7df10a91772",
+      "previewSha256": "243855b054d37fe9780fca359834a164f60b0ad384544962f0993213b15c0ca7",
+      "cropPolicy": "scene-template render at scale 2: crop the first width/1.6 content pixels off the top of the full-page render, resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": false
+      }
+    },
+    "web-reefwright": {
+      "generationRoute": "scene-template-render",
+      "provider": "openpencil",
+      "model": "openpencil-desktop --render-shots",
+      "sourceLocale": "zh-CN",
+      "status": "accepted",
+      "note": "Not a model sample. This prompt ships alongside the scene template of the same design; the preview is a deterministic render of that template's checked-in document, so the card shows exactly what the repository contains.",
+      "sourceArtifact": "crates/op-editor-core/assets/scene_templates/product-landing-light.op",
+      "sourceArtifactSha256": "f81746330fa75614cd681fc123cf4e53822eed45223eeed1bf9a5d9c53675e9d",
+      "previewSource": "templates/step0/previews/product-landing-light.png",
+      "previewSourceSha256": "03b08235bd6c1ff869307ba712e32476169d86325e26f65e571b65afab18bb4e",
+      "previewSha256": "27d18fc848427dbb8a059f4dfea480356e2fd5f83d2fc72693b6af7aed68c155",
+      "cropPolicy": "scene-template render at scale 2: crop the first width/1.6 content pixels off the top of the full-page render, resize to 640x400 with Lanczos, JPEG quality 88 optimized",
+      "evidence": {
+        "screenCount": 1,
+        "emojiTextNodeCount": 0,
+        "geometryIssueCount": 0,
+        "canonicalStatusBar": false
+      }
+    }
+  }
+}

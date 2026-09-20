@@ -1,0 +1,115 @@
+# cargo-deny config — pinned to ≥ 0.16 schema
+# Validated via openpencil-docs/superpowers/notes/2026-05-02-cargo-deny-validation.md
+
+[graph]
+all-features = false
+# Scoped to the actual release targets (macOS/Linux/Windows native + wasm32).
+# Without this, cargo-deny defaults to every target (including Android/iOS),
+# pulling in edition-2024 deps like jni / android-activity, which makes
+# `cargo metadata` fail on rustc 1.82.
+targets = [
+  { triple = "x86_64-unknown-linux-gnu" },
+  { triple = "aarch64-unknown-linux-gnu" },
+  { triple = "x86_64-apple-darwin" },
+  { triple = "aarch64-apple-darwin" },
+  { triple = "x86_64-pc-windows-msvc" },
+  { triple = "aarch64-pc-windows-msvc" },
+  { triple = "wasm32-unknown-unknown" },
+]
+
+[licenses]
+allow = [
+  "MIT",
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "Unicode-DFS-2016",
+  "Unicode-3.0",
+  "CDLA-Permissive-2.0",
+  "MPL-2.0",
+  "Zlib",
+  # Boost Software License — permissive, OSI-approved. Pulled in by
+  # `arboard`'s Windows clipboard path (`clipboard-win`, `error-code`).
+  "BSL-1.0",
+]
+confidence-threshold = 0.93
+
+[advisories]
+yanked = "deny"
+ignore = [
+  # async-openai 0.36.x still depends on backoff 0.4.x, and RustSec
+  # reports no safe upgrade path yet. Keep this narrow to the advisory
+  # until async-openai moves to a maintained retry crate.
+  "RUSTSEC-2025-0012",
+  # Transitive through backoff 0.4.x; see the async-openai/backoff note
+  # above.
+  "RUSTSEC-2024-0384",
+  # `ttf-parser` flagged unmaintained (2026-06). It is a transitive dep of the
+  # font/text stack (skia-safe / parley / cosmic-text) with no drop-in
+  # maintained replacement, and the advisory is informational (no
+  # vulnerability). Revisit when the upstream font crates migrate off it.
+  "RUSTSEC-2026-0192",
+  # quick-xml < 0.41 DoS advisories (quadratic duplicate-attribute check /
+  # unbounded NsReader namespace allocation). quick-xml reaches this tree
+  # only through the Linux windowing + D-Bus stacks — wayland-scanner
+  # (parses the BUNDLED wayland protocol XML at build time) and
+  # zbus_xml/ashpd (parse local D-Bus introspection replies) — never
+  # attacker-controlled XML. No upgrade path until wayland-scanner /
+  # zbus_xml bump their quick-xml requirement to >= 0.41.
+  "RUSTSEC-2026-0194",
+  "RUSTSEC-2026-0195",
+]
+
+[bans]
+multiple-versions = "warn"
+# Workspace-internal path deps omit the version (standard practice — avoids
+# editing two places on every bump). No crate ships to crates.io, so
+# wildcard path deps are expected; hence allowed.
+wildcards = "allow"
+allow-wildcard-paths = true
+deny = [
+  # WASM bundle blacklist (kickoff spec §1.2 invariant).
+  # `agent` is not listed: it is a native-only dependency of op-host-desktop
+  # (the desktop binary, never compiled to wasm); wasm isolation is
+  # structural (op-host-web does not depend on it) and verified by
+  # tools/check-wasm-bundle.sh.
+  "pen-agent-cli",
+  "pen-server",
+  # github-copilot-sdk 1.0.11 currently enables native-tls unconditionally
+  # for its build downloader plus HTTP/WebSocket handler transports. Permit
+  # exactly the audited version and direct wrapper set; all other versions
+  # remain banned.
+  "native-tls:<0.2.18",
+  { crate = "native-tls@0.2.18", wrappers = [
+    "github-copilot-sdk",
+    "hyper-tls",
+    "reqwest",
+    "tokio-native-tls",
+    "tokio-tungstenite",
+    "tungstenite",
+    "ureq",
+  ], reason = "required by the official GitHub Copilot SDK 1.0.11" },
+  "native-tls:>0.2.18",
+]
+
+[[bans.features]]
+name = "github-copilot-sdk"
+version = "=1.0.11"
+deny = ["default", "bundled-cli", "bundled-in-process"]
+exact = true
+reason = "OpenPencil must use the separately installed CLI without embedding SDK runtime artifacts"
+
+# tokio's process / rt-multi-thread features are no longer banned:
+# op-host-desktop's native (async) agent runtime legitimately needs them.
+# The wasm side is structurally safe — both features depend on OS
+# threads/processes and cannot compile to wasm32 — and is verified by
+# tools/check-wasm-bundle.sh.
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+# agent-rs is now pulled in as a path dependency via the vendor/agent
+# submodule, no longer a git dependency.
+allow-git = []

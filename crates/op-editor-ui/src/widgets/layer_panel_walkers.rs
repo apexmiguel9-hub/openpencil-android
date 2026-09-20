@@ -1,0 +1,482 @@
+//! Tree-walk helpers + small leaf utilities for `LayerPanel` —
+//! extracted from `layer_panel.rs` so the spine stays under the
+//! 800-line cap.
+//!
+//! Phase 6 migration: these walk the canonical `PenNode` tree owned
+//! by `op_editor_core::EditorState` instead of shell-core's old flat
+//! `Node`. The widget-facing `LayerItem` still carries a shell-core
+//! `document::NodeId` so the hosts' layer hit-test path stays
+//! untouched (the two id types are both string newtypes, so the
+//! conversion at the walk boundary is lossless).
+
+use crate::widgets::icons::Icon;
+use crate::widgets::layer_panel_metrics::LayerPanelMetrics;
+use crate::widgets::layer_panel_paint::{approx_text_width, ROW_FONT};
+use crate::Rect;
+use jian_core::scroll::{self, ScrollState};
+use op_editor_core::NodeId;
+
+use jian_ops_schema::node::PenNode;
+use op_editor_core::editor_ui_state::EditorUiState;
+use op_editor_core::pen_node_ext::PenNodeExt;
+use op_editor_core::ui_draft::LayerContextTarget;
+use op_editor_core::EditorState;
+
+use super::layer_panel::{LayerItem, PageItem};
+
+/// Snapshot of the active inline rename (page or layer), pulled off
+/// `EditorState.ui.layer_rename` so the panel builders can apply the
+/// draft + the `renaming` flag without re-reaching into the draft
+/// state on every row.
+#[derive(Default)]
+pub(super) struct RenameView<'a> {
+    page: Option<(usize, &'a str)>,
+    layer: Option<(&'a str, &'a str)>,
+}
+
+impl<'a> RenameView<'a> {
+    /// Read the active inline-rename draft off the editor state.
+    pub(super) fn from_state(state: &'a EditorState) -> Self {
+        match state.ui.layer_rename.as_ref() {
+            Some(s) => match &s.target {
+                LayerContextTarget::Page(i) => Self {
+                    page: Some((*i, s.input.text())),
+                    layer: None,
+                },
+                LayerContextTarget::Layer(id) => Self {
+                    page: None,
+                    layer: Some((id.as_str(), s.input.text())),
+                },
+            },
+            None => Self::default(),
+        }
+    }
+}
+
+/// Build the page-row list from the editor's pages, applying the
+/// active inline-rename draft (if any). A single-page canonical
+/// document (`pages == None`) yields one synthetic "Page 1" row.
+pub(super) fn pages_from_state(state: &EditorState, rename: &RenameView<'_>) -> Vec<PageItem> {
+    let active = state.ui.active_page_index;
+    // Page hover is a styling-only overlay applied live by the panel, so
+    // it is not baked here (see `layer_panel_cache`).
+    let build = |i: usize, name: &str| -> PageItem {
+        let renaming = rename.page.map(|(p, _)| p == i).unwrap_or(false);
+        PageItem {
+            page_index: i,
+            label: match rename.page {
+                Some((p, draft)) if p == i => draft.to_string(),
+                _ => name.to_string(),
+            },
+            active: i == active,
+            renaming,
+        }
+    };
+    match state.doc.pages.as_ref() {
+        Some(pages) if !pages.is_empty() => pages
+            .iter()
+            .enumerate()
+            .map(|(i, p)| build(i, &p.name))
+            .collect(),
+        _ => vec![build(0, "Page 1")],
+    }
+}
+
+/// Apply the active layer-rename draft onto the matching row.
+pub(super) fn apply_layer_rename(items: &mut [LayerItem], rename: &RenameView<'_>) {
+    if let Some((id, draft)) = rename.layer {
+        for item in items.iter_mut() {
+            if item.node_id.as_str() == id {
+                item.label = draft.to_string();
+                item.renaming = true;
+            }
+        }
+    }
+}
+
+/// Inputs the walk needs that are not on the node itself. Selection and
+/// hover are DELIBERATELY excluded: they are a styling-only overlay the
+/// panel applies live at paint / hit-test time, never baked into the
+/// cached row model (see `layer_panel_cache`). Only the collapsed-layer
+/// set — which changes the flattened row STRUCTURE — is threaded here.
+pub(super) struct WalkCx<'a> {
+    pub ui: &'a EditorUiState,
+}
+
+impl<'a> WalkCx<'a> {
+    /// Build the walk context from an `EditorState`.
+    pub(super) fn from_state(state: &'a EditorState) -> Self {
+        Self {
+            ui: &state.editor_ui,
+        }
+    }
+}
+
+/// Convert a canonical id into the widget-facing shell-core `NodeId`.
+/// Both are string newtypes, so this never loses information.
+fn to_doc_id(id: &str) -> NodeId {
+    NodeId::new(id.to_string())
+}
+
+/// Build one `LayerItem` from a `PenNode` (without recursing).
+fn item_for(node: &PenNode, cx: &WalkCx<'_>, depth: usize) -> LayerItem {
+    let base = node.base();
+    let canon = op_editor_core::NodeId::new(base.id.clone());
+    let has_children = node.children().map(|c| !c.is_empty()).unwrap_or(false);
+    LayerItem {
+        node_id: to_doc_id(&base.id),
+        // Fall back to the kind label when a node has no name (TS parity:
+        // `node.name ?? node.type`) — MCP-created nodes often omit `name`,
+        // and a blank row reads as a bug.
+        label: base
+            .name
+            .clone()
+            .unwrap_or_else(|| kind_label(node).to_string()),
+        kind_label: kind_label(node).to_string(),
+        icon: icon_for_node(node),
+        depth,
+        has_children,
+        hidden: base.visible == Some(false),
+        locked: base.locked.unwrap_or(false),
+        collapsed: cx.ui.collapsed_layers.contains(&canon),
+        // Reparent-into drop targets match TS CONTAINER_TYPES
+        // (layer-panel.tsx:14 — frame/group/rectangle/ref).
+        is_container: matches!(
+            node,
+            PenNode::Frame(_) | PenNode::Group(_) | PenNode::Rectangle(_) | PenNode::Ref(_)
+        ),
+        renaming: false,
+        is_reusable: matches!(node, PenNode::Frame(f) if f.reusable == Some(true)),
+        is_instance: matches!(node, PenNode::Ref(_)),
+    }
+}
+
+/// Recursively flatten `node` and its (non-collapsed) subtree into
+/// `out`. Collapsed nodes hide their children from the LayerPanel —
+/// a tree-view-only concern, canvas paint is unaffected.
+pub(super) fn walk(node: &PenNode, cx: &WalkCx<'_>, depth: usize, out: &mut Vec<LayerItem>) {
+    let mut stack = vec![(node, depth)];
+    while let Some((node, depth)) = stack.pop() {
+        let item = item_for(node, cx, depth);
+        let collapsed = item.collapsed;
+        out.push(item);
+        if collapsed {
+            continue;
+        }
+        if let Some(children) = node.children() {
+            for child in children.iter().rev() {
+                stack.push((child, depth.saturating_add(1)));
+            }
+        }
+    }
+}
+
+/// Variant of `walk` that skips `excluded`'s entire subtree. Used by
+/// the drag-in-progress panel build so the rendered row stack mirrors
+/// the post-commit layout.
+pub(super) fn walk_excluding(
+    node: &PenNode,
+    cx: &WalkCx<'_>,
+    excluded: &NodeId,
+    depth: usize,
+    out: &mut Vec<LayerItem>,
+) {
+    let mut stack = vec![(node, depth)];
+    while let Some((node, depth)) = stack.pop() {
+        if node.base().id == excluded.as_str() {
+            continue;
+        }
+        let item = item_for(node, cx, depth);
+        let collapsed = item.collapsed;
+        out.push(item);
+        if collapsed {
+            continue;
+        }
+        if let Some(children) = node.children() {
+            for child in children.iter().rev() {
+                stack.push((child, depth.saturating_add(1)));
+            }
+        }
+    }
+}
+
+fn layer_item_content_w(item: &LayerItem, metrics: LayerPanelMetrics) -> f32 {
+    let indent = metrics.row_pad_x + item.depth as f32 * 12.0;
+    let label_w = approx_text_width(&item.label, metrics.row_font);
+    if metrics.touch {
+        6.0 + indent
+            + metrics.action_target
+            + 4.0
+            + metrics.glyph_size
+            + 8.0
+            + label_w
+            + metrics.action_target * 3.0
+            + 8.0
+    } else {
+        6.0 + indent + 18.0 + 20.0 + label_w + 24.0
+    }
+}
+
+pub(super) fn layers_content_width(
+    items: &[LayerItem],
+    viewport_w: f32,
+    metrics: LayerPanelMetrics,
+) -> f32 {
+    items
+        .iter()
+        .map(|item| layer_item_content_w(item, metrics))
+        .fold(viewport_w, f32::max)
+}
+
+pub(super) fn pages_content_width(
+    pages: &[PageItem],
+    viewport_w: f32,
+    metrics: LayerPanelMetrics,
+) -> f32 {
+    pages
+        .iter()
+        .map(|page| {
+            if metrics.touch {
+                metrics.row_pad_x
+                    + approx_text_width(&page.label, metrics.row_font)
+                    + metrics.action_target
+                    + 16.0
+            } else {
+                super::layer_panel::ROW_PAD_X + approx_text_width(&page.label, ROW_FONT) + 48.0
+            }
+        })
+        .fold(viewport_w, f32::max)
+}
+
+/// Human-readable kind label for the layer row's `kind_label`.
+pub(super) fn kind_label(node: &PenNode) -> &'static str {
+    match node {
+        PenNode::Frame(_) => "Frame",
+        PenNode::Group(_) => "Group",
+        PenNode::Rectangle(_) => "Rectangle",
+        PenNode::Ellipse(_) => "Ellipse",
+        PenNode::Line(_) => "Line",
+        PenNode::Polygon(_) => "Polygon",
+        PenNode::Path(_) => "Path",
+        PenNode::Text(_) => "Text",
+        PenNode::TextInput(_) => "Text Input",
+        PenNode::TextArea(_) => "Text Area",
+        PenNode::Select(_) => "Select",
+        PenNode::Switch(_) => "Switch",
+        PenNode::Checkbox(_) => "Checkbox",
+        PenNode::Slider(_) => "Slider",
+        PenNode::RadioGroup(_) => "Radio Group",
+        PenNode::NumberInput(_) => "Number Input",
+        PenNode::Progress(_) => "Progress",
+        PenNode::Tabs(_) => "Tabs",
+        PenNode::Image(_) => "Image",
+        PenNode::IconFont(_) => "Icon",
+        PenNode::Ref(_) => "Component",
+    }
+}
+
+/// Map a `PenNode` variant onto a LayerPanel row icon. Reusable
+/// component definitions + Ref instances paint the TS Diamond glyph.
+pub(super) fn icon_for_node(node: &PenNode) -> Icon {
+    match node {
+        PenNode::Frame(f) if f.reusable == Some(true) => Icon::Diamond,
+        PenNode::Ref(_) => Icon::Diamond,
+        PenNode::Frame(_) => Icon::Hash,
+        PenNode::Group(_) => Icon::Square,
+        PenNode::Rectangle(_) => Icon::Square,
+        PenNode::Ellipse(_) => Icon::Circle,
+        PenNode::Polygon(_) => Icon::Triangle,
+        PenNode::Line(_) => Icon::Minus,
+        PenNode::Path(_) => Icon::PenTool,
+        PenNode::Text(_) | PenNode::TextInput(_) | PenNode::TextArea(_) => Icon::Type,
+        PenNode::Select(_)
+        | PenNode::Switch(_)
+        | PenNode::Checkbox(_)
+        | PenNode::Slider(_)
+        | PenNode::RadioGroup(_)
+        | PenNode::NumberInput(_)
+        | PenNode::Progress(_)
+        | PenNode::Tabs(_) => Icon::Square,
+        PenNode::Image(_) => Icon::Square,
+        PenNode::IconFont(_) => Icon::Square,
+    }
+}
+
+/// Stored scroll state for one bounded LayerPanel region.
+#[derive(Debug, Clone, Copy, Default, PartialEq)]
+pub struct LayerScrollSnapshot {
+    pub vertical: ScrollState,
+    pub horizontal: ScrollState,
+    pub content_width: f32,
+}
+
+impl LayerScrollSnapshot {
+    pub fn new(vertical: ScrollState, horizontal: ScrollState, content_width: f32) -> Self {
+        Self {
+            vertical,
+            horizontal,
+            content_width,
+        }
+    }
+}
+
+/// Clamped scroll metrics for one bounded LayerPanel region.
+#[derive(Debug, Clone, Copy, Default, PartialEq)]
+pub struct LayerResolvedScroll {
+    pub offset: f32,
+    pub max_offset: f32,
+    pub horizontal_offset: f32,
+    pub max_horizontal_offset: f32,
+    pub content_width: f32,
+}
+
+/// Resolved geometry of the LayerPanel's two bounded scroll regions
+/// (Pages + Layers). Paint, hit-test and the drop-target walk all
+/// derive from this single source so they stay aligned.
+#[derive(Debug, Clone, Copy)]
+pub struct LayerRegions {
+    /// y of the Pages section header.
+    pub pages_header_y: f32,
+    /// Top y of the clipped page-row viewport.
+    pub pages_rows_top: f32,
+    /// Height of the page-row viewport.
+    pub pages_view_h: f32,
+    /// Pages-region scroll metrics, clamped to the scrollable range.
+    pub pages: LayerResolvedScroll,
+    /// y of the Layers section header.
+    pub layers_header_y: f32,
+    /// Top y of the clipped layer-row viewport.
+    pub layers_rows_top: f32,
+    /// Height of the layer-row viewport (fills the rail's tail).
+    pub layers_view_h: f32,
+    /// Layers-region scroll metrics, clamped to the scrollable range.
+    pub layers: LayerResolvedScroll,
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct LayerRegionInput {
+    pub rect: Rect,
+    pub pages_len: usize,
+    pub items_len: usize,
+    pub pages: LayerScrollSnapshot,
+    pub layers: LayerScrollSnapshot,
+    pub metrics: LayerPanelMetrics,
+}
+
+/// Compute the bounded Pages / Layers scroll-region geometry for a
+/// LayerPanel painted into `rect`. Stored offsets are kept as
+/// [`ScrollState`] snapshots; the returned metrics are clamped to
+/// each region's scrollable range.
+pub fn layer_regions(input: LayerRegionInput) -> LayerRegions {
+    let LayerRegionInput {
+        rect,
+        pages_len,
+        items_len,
+        pages,
+        layers,
+        metrics,
+    } = input;
+
+    let pages_header_y = rect.origin.y + 8.0;
+    let pages_rows_top = pages_header_y + metrics.section_header_height;
+    let pages_content = pages_len as f32 * metrics.page_row_height;
+    let pages_view_max = metrics.page_row_height * metrics.pages_max_rows as f32;
+    let mut pages_view_h = pages_content.min(pages_view_max);
+    if metrics.touch {
+        let fixed_height = 8.0
+            + metrics.section_header_height
+            + metrics.section_gap
+            + metrics.section_header_height
+            + metrics.layer_row_height * 3.0
+            + 8.0;
+        pages_view_h = pages_view_h.min((rect.size.y - fixed_height).max(0.0));
+    }
+    let pages = resolve_layer_scroll(pages, pages_content, pages_view_h, rect.size.x);
+
+    let layers_header_y = pages_rows_top + pages_view_h + metrics.section_gap;
+    let layers_rows_top = layers_header_y + metrics.section_header_height;
+    let layers_view_h = (rect.origin.y + rect.size.y - 8.0 - layers_rows_top).max(0.0);
+    let layers_content = items_len.max(1) as f32 * metrics.layer_row_height;
+    let layers = resolve_layer_scroll(layers, layers_content, layers_view_h, rect.size.x);
+
+    LayerRegions {
+        pages_header_y,
+        pages_rows_top,
+        pages_view_h,
+        pages,
+        layers_header_y,
+        layers_rows_top,
+        layers_view_h,
+        layers,
+    }
+}
+
+fn resolve_layer_scroll(
+    stored: LayerScrollSnapshot,
+    content_height: f32,
+    view_height: f32,
+    viewport_width: f32,
+) -> LayerResolvedScroll {
+    let max_offset = scroll::max_offset(content_height, view_height);
+    let content_width = stored.content_width.max(viewport_width);
+    let max_horizontal_offset = scroll::max_offset(content_width, viewport_width);
+    LayerResolvedScroll {
+        offset: stored.vertical.offset.clamp(0.0, max_offset),
+        max_offset,
+        horizontal_offset: stored.horizontal.offset.clamp(0.0, max_horizontal_offset),
+        max_horizontal_offset,
+        content_width,
+    }
+}
+
+/// Row indexes that can intersect a clipped LayerPanel row viewport.
+///
+/// The panel may contain thousands of layers, but only a small row
+/// window is visible while scrolling. This helper lets paint skip
+/// directly to that window instead of walking every row and checking
+/// each rect.
+pub(super) fn visible_row_range(
+    row_count: usize,
+    scroll: f32,
+    viewport_h: f32,
+    row_height: f32,
+) -> std::ops::Range<usize> {
+    if row_count == 0 || viewport_h <= 0.0 || row_height <= 0.0 {
+        return 0..0;
+    }
+    let start = (scroll.max(0.0) / row_height).floor() as usize;
+    let visible = (viewport_h / row_height).ceil().max(0.0) as usize;
+    let end = start
+        .saturating_add(visible)
+        .saturating_add(2)
+        .min(row_count);
+    start.min(row_count)..end
+}
+
+/// Map a y coordinate inside a clipped LayerPanel row viewport to its
+/// row index plus screen-space row top.
+pub(super) fn row_index_at(
+    row_count: usize,
+    rows_top: f32,
+    scroll: f32,
+    viewport_h: f32,
+    row_height: f32,
+    point_y: f32,
+) -> Option<(usize, f32)> {
+    if row_count == 0 || viewport_h <= 0.0 || row_height <= 0.0 {
+        return None;
+    }
+    if point_y < rows_top || point_y > rows_top + viewport_h {
+        return None;
+    }
+    let local_y = point_y - rows_top + scroll.max(0.0);
+    if local_y < 0.0 {
+        return None;
+    }
+    let index = (local_y / row_height).floor() as usize;
+    if index >= row_count {
+        return None;
+    }
+    let row_top = rows_top - scroll.max(0.0) + index as f32 * row_height;
+    Some((index, row_top))
+}

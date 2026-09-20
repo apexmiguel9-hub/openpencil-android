@@ -1,0 +1,251 @@
+//! `batch_design` MCP tool — emits TS's `{ results:[{binding,nodeId}],
+//! nodeCount }` for the operations path.
+//!
+//! Split out of `batch_design.rs` (at the 800-line cap) because this needs a
+//! document snapshot. TS's `runBatchDesignDsl` returns each binding's inserted
+//! node id in-process; Rust defers id allocation to the host apply
+//! (`cmd_insert_subtree` remaps every id). For a single-user localhost MCP the
+//! tool's snapshot == the live doc at apply, and the apply runs the EXACT same
+//! allocation (`remap_subtree_ids_mapping`), so the tool can PREDICT the
+//! host-assigned ids off a CLONE of the forest and report them — while the
+//! emitted `InsertSubtree` command is unchanged. Non-operations / Direct /
+//! parse-error paths fall back to the flat `dispatch_batch_design`.
+
+use std::collections::{BTreeMap, HashSet};
+
+use jian_ops_schema::node::PenNode;
+use jian_ops_schema::promote::PromoteNote;
+use op_editor_core::command_node::remap_subtree_ids_mapping;
+use op_editor_core::{EditorState, NodeId, PenNodeExt};
+use serde_json::{json, Value};
+
+use super::batch_design::{
+    dispatch_batch_design, expand_script_arg, parse_operations, select_batch_input, BatchInputKind,
+    ParsedOperations,
+};
+use super::batch_direct_ops::is_direct_image_operation;
+use super::batch_page::optional_page_id;
+use super::read_nodes::{page_nodes_snapshots, PageNodes};
+use super::{EditorCommand, McpTool, ToolErrorCode, ToolOutcome};
+
+/// `batch_design` — insert a node forest in one shot. Holds a document snapshot
+/// (page node sets + the doc-wide id state) so the operations path can report
+/// the TS result; the mutation still flows through `EditorCommand::InsertSubtree`.
+pub struct BatchDesign {
+    /// Full editor-state snapshot — the multi-op DSL program executor
+    /// (`batch_program.rs`) simulates each program line against a clone
+    /// of this; any failing line rolls back the whole batch (the
+    /// agent-facing transactional contract).
+    state: EditorState,
+    pages: Vec<PageNodes>,
+    active_page_id: String,
+    existing_ids: HashSet<NodeId>,
+    id_seed: Option<u64>,
+}
+
+impl McpTool for BatchDesign {
+    fn name(&self) -> &str {
+        "batch_design"
+    }
+    fn call(&self, args: &BTreeMap<String, String>) -> ToolOutcome {
+        // `script` must be gated BEFORE the `operations` shortcut below —
+        // otherwise a caller that (invalidly) sends both `script` and
+        // `operations` would silently run the `operations` path instead of
+        // hitting the mutual-exclusion error. Expansion re-enters `call`
+        // with `operations` set so the script path reports through the
+        // exact same rich `results[]`/`nodeCount` envelope as a hand-authored
+        // `operations` program.
+        if let Some(result) = expand_script_arg(args) {
+            return match result {
+                Ok(forwarded) => self.call(&forwarded),
+                Err(outcome) => outcome,
+            };
+        }
+        let input = match select_batch_input(args) {
+            Ok(input) => input,
+            Err((code, message)) => return ToolOutcome::Err(code, message),
+        };
+        if input == BatchInputKind::NodesJson {
+            return dispatch_batch_design(args, None);
+        }
+        let Some(operations) = args.get("operations") else {
+            return ToolOutcome::Err(
+                ToolErrorCode::MissingArgument,
+                "operations argument is missing".into(),
+            );
+        };
+        match parse_operations(operations) {
+            Ok(ParsedOperations::Insert {
+                parent_id,
+                nodes,
+                count: _,
+                bindings,
+                promoted,
+            }) => self.insert_with_result(args, parent_id, nodes, bindings, promoted),
+            // G() needs the document snapshot to size the generated image to
+            // its target slot. The flat direct parser has no parent geometry,
+            // so route even a single G through the program simulator.
+            Ok(ParsedOperations::Direct(_)) if is_direct_image_operation(operations) => {
+                super::batch_program::run_batch_design_program(&self.state, operations, args)
+            }
+            // Other single direct ops keep the flat command-per-op shape.
+            Ok(ParsedOperations::Direct(_)) => dispatch_batch_design(args, None),
+            // Everything else — multi-line MIXED programs, per-line parse
+            // failures — runs the DSL program executor. Transactional by
+            // default (any failing line rolls back the whole batch);
+            // internal callers may opt into TS best-effort via
+            // `_line_policy` (see `batch_program.rs` module docs).
+            Err(_) => super::batch_program::run_batch_design_program(&self.state, operations, args),
+        }
+    }
+}
+
+pub fn batch_design_snapshot(state: &EditorState) -> BatchDesign {
+    let (pages, active_page_id) = page_nodes_snapshots(state);
+    BatchDesign {
+        state: state.clone(),
+        pages,
+        active_page_id,
+        existing_ids: state.collect_node_ids(),
+        id_seed: state.next_node_id_seed(),
+    }
+}
+
+impl BatchDesign {
+    fn insert_with_result(
+        &self,
+        args: &BTreeMap<String, String>,
+        parent_id: NodeId,
+        mut nodes: Vec<PenNode>,
+        bindings: Vec<String>,
+        promoted: Vec<PromoteNote>,
+    ) -> ToolOutcome {
+        let post_processed = args
+            .get("postProcess")
+            .or_else(|| args.get("post_process"))
+            .is_some_and(|raw| matches!(raw.trim(), "true" | "1"));
+        // Unknown external parents are intentionally downgraded to document
+        // root later in this function, so choose the refine scope from the
+        // destination that will actually be emitted rather than merely from
+        // whether the parsed id is syntactically real.
+        let document_root = !parent_id.is_real() || !self.existing_ids.contains(&parent_id);
+        if post_processed {
+            for node in &mut nodes {
+                if document_root {
+                    let _ = op_editor_core::command_refine::refine_subtree(node);
+                } else {
+                    let _ = op_editor_core::command_refine::refine_child_subtree(node);
+                }
+            }
+        }
+        let Some(seed0) = self.id_seed else {
+            return dispatch_batch_design(args, None); // id-space exhausted → flat path
+        };
+        let mut seed = seed0;
+        let mut taken = self.existing_ids.clone();
+        // Assign unique ids to the forest IN PLACE (from the snapshot's
+        // max-id+1, so free vs the snapshot), then emit them as AUTHORED ids
+        // the host PRESERVES (`InsertAuthoredSubtree`) rather than remaps. So
+        // the reported ids are EXACTLY what lands in the doc — or, if the doc
+        // changed between this snapshot and the apply (e.g. a concurrent edit
+        // on the live desktop canvas) so an id now collides, the apply REJECTS
+        // and the response is demoted to an error. Never silently-wrong ids.
+        // (For the no-collision case the ids equal what `InsertSubtree`'s remap
+        // would have produced, so the on-canvas result is unchanged.)
+        let Some(map) = remap_subtree_ids_mapping(&mut nodes, &mut seed, &mut taken) else {
+            return dispatch_batch_design(args, None);
+        };
+
+        // Each binding-node carries its binding as its pre-assignment authored
+        // id, so map entries whose old id is a binding give binding -> new id.
+        let binding_set: HashSet<&String> = bindings.iter().collect();
+        let results: Vec<Value> = map
+            .iter()
+            .filter(|(old, _)| binding_set.contains(old))
+            .map(|(old, new)| json!({ "binding": old, "nodeId": new }))
+            .collect();
+
+        // TS nodeCount = countNodes(getDocChildren(doc, pageId)) AFTER insert =
+        // target page's pre-insert node count + every inserted node (map.len()).
+        let base = self
+            .resolve_page(args)
+            .map(|page| count_forest(&page.roots))
+            .unwrap_or(0);
+        let node_count = base + map.len();
+
+        // Phase E3 — report the legacy role frames normalized into widget
+        // nodes. Omitted entirely (so the result is byte-identical to before)
+        // when nothing was promoted, which is the common case.
+        let mut result = json!({ "results": results, "nodeCount": node_count });
+        if post_processed {
+            result["postProcessed"] = Value::Bool(true);
+        }
+        if !promoted.is_empty() {
+            let notes: Vec<Value> = promoted
+                .iter()
+                .map(|n| json!({ "nodeId": n.node_id, "fromRole": n.from_role, "to": n.to }))
+                .collect();
+            result["promoted"] = json!(notes);
+        }
+        // A parent ref that is NEITHER a binding NOR a node in the snapshot
+        // (a weak model copies the `sec` example binding as its first line's
+        // parent) would fail the host's existence check and sink the WHOLE
+        // otherwise-valid program (measured: an orchestrator stats subtask
+        // retried its complete 4-card program away over a phantom `sec`).
+        // Insert at the root instead and say so — the section coalesce /
+        // finalize passes reparent stray roots anyway.
+        let mut parent_id = parent_id;
+        if parent_id.is_real() && !self.existing_ids.contains(&parent_id) {
+            result["warnings"] = json!([format!(
+                "parent '{}' does not exist — inserted at the document root instead",
+                parent_id.as_str()
+            )]);
+            parent_id = NodeId::NONE;
+        }
+        let hoist = super::batch_design::hoist_generation_state(&mut nodes);
+        ToolOutcome::OkJsonWithCommand(
+            result.to_string(),
+            super::batch_design::with_hoisted_state(
+                hoist,
+                EditorCommand::InsertAuthoredSubtree {
+                    nodes,
+                    parent_id,
+                    page_id: optional_page_id(args),
+                },
+            ),
+        )
+    }
+
+    /// Resolve the target page for the node-count base, mirroring the host's
+    /// `command_apply::command_page_index` (id-match → numeric index → active).
+    fn resolve_page(&self, args: &BTreeMap<String, String>) -> Option<&PageNodes> {
+        match optional_page_id(args)
+            .as_deref()
+            .map(str::trim)
+            .filter(|s| !s.is_empty())
+        {
+            None => self
+                .pages
+                .iter()
+                .find(|p| p.id == self.active_page_id)
+                .or_else(|| self.pages.first()),
+            Some(raw) => self.pages.iter().find(|p| p.id == raw).or_else(|| {
+                raw.parse::<usize>()
+                    .ok()
+                    .and_then(|idx| self.pages.get(idx))
+            }),
+        }
+    }
+}
+
+/// Count every node in a forest (TS `countNodes`).
+fn count_forest(nodes: &[PenNode]) -> usize {
+    nodes.iter().map(count_subtree).sum()
+}
+
+fn count_subtree(node: &PenNode) -> usize {
+    1 + node
+        .children()
+        .map(|children| children.iter().map(count_subtree).sum::<usize>())
+        .unwrap_or(0)
+}

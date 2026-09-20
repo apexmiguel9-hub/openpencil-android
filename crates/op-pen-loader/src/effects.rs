@@ -1,0 +1,360 @@
+//! Node-effects (drop shadow) round-trip for the desktop's private
+//! `DocPayload` save format. Carved off `persistence.rs` to keep
+//! that file under the 800-line cap.
+
+use jian_ops_schema::node::PenNode;
+use jian_ops_schema::style::PenEffect;
+use jian_scene::layout_scene::{DropShadow, Effect};
+use serde::{Deserialize, Serialize};
+
+/// Serializable mirror of `document::DropShadow`.
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ShadowPayload {
+    pub offset_x: f32,
+    pub offset_y: f32,
+    pub blur: f32,
+    pub color: [f32; 4],
+    /// `true` = inset (inner) shadow. `#[serde(default)]` keeps older
+    /// payloads (saved before inner shadows were carried) loading as
+    /// outer drop shadows.
+    #[serde(default)]
+    pub inner: bool,
+}
+
+/// Serialize a node's drop-shadow `effects` into payload form. Blur
+/// effects are carried separately via [`layer_blur_from_effects`].
+pub fn effects_to_payload(effects: &[Effect]) -> Vec<ShadowPayload> {
+    effects
+        .iter()
+        .filter_map(|e| match e {
+            Effect::DropShadow(s) => Some(ShadowPayload {
+                offset_x: s.offset_x,
+                offset_y: s.offset_y,
+                blur: s.blur,
+                color: [s.color.r, s.color.g, s.color.b, s.color.a],
+                inner: s.inner,
+            }),
+            // Layer blur and backdrop blur are both carried separately
+            // (`layer_blur_from_effects` / not yet round-tripped here) —
+            // this payload models drop shadows only.
+            Effect::Blur(_) | Effect::BackgroundBlur { .. } => None,
+        })
+        .collect()
+}
+
+/// Extract a canonical node's Gaussian layer-blur radius (Figma
+/// "Layer blur", `PenEffect::Blur`). Background blur is a separate
+/// (backdrop) effect and is not handled here.
+pub fn blur_from_canonical(node: &PenNode) -> Option<f32> {
+    canonical_node_effects(node)?
+        .iter()
+        .rev()
+        .find_map(|e| match e {
+            PenEffect::Blur(b) if b.visible != Some(false) && b.radius > 0.0 => Some(b.radius),
+            _ => None,
+        })
+}
+
+/// Extract a canonical node's Gaussian background-blur radius.
+pub fn background_blur_from_canonical(node: &PenNode) -> Option<f32> {
+    canonical_node_effects(node)?
+        .iter()
+        .rev()
+        .find_map(|e| match e {
+            PenEffect::BackgroundBlur(b) if b.visible != Some(false) && b.radius > 0.0 => {
+                Some(b.radius)
+            }
+            _ => None,
+        })
+}
+
+/// Rebuild a node's `effects` from payload form.
+pub fn effects_from_payload(payload: Vec<ShadowPayload>) -> Vec<Effect> {
+    payload.iter().map(shadow_payload_to_effect).collect()
+}
+
+/// Borrowing variant of [`effects_from_payload`] — rebuilds `effects`
+/// from a payload slice without consuming it. Used by the
+/// `LayoutScene` builder, which reads `NodePayload.effects` by
+/// reference.
+pub fn effects_from_payload_ref(payload: &[ShadowPayload]) -> Vec<Effect> {
+    payload.iter().map(shadow_payload_to_effect).collect()
+}
+
+/// Append an `Effect::Blur` for a node's `layer_blur` radius, if set.
+pub fn blur_effect_from_payload(layer_blur: Option<f32>) -> Option<Effect> {
+    layer_blur
+        .filter(|r| *r > 0.0)
+        .map(|radius| Effect::Blur(jian_scene::layout_scene::BlurEffect { radius }))
+}
+
+/// Append a backdrop blur scene effect for a positive payload radius.
+pub fn background_blur_effect_from_payload(radius: Option<f32>) -> Option<Effect> {
+    radius
+        .filter(|radius| *radius > 0.0)
+        .map(|radius| Effect::BackgroundBlur { radius })
+}
+
+fn shadow_payload_to_effect(s: &ShadowPayload) -> Effect {
+    Effect::DropShadow(DropShadow {
+        offset_x: s.offset_x,
+        offset_y: s.offset_y,
+        blur: s.blur,
+        color: op_editor_core::render_backend::Color {
+            r: s.color[0],
+            g: s.color[1],
+            b: s.color[2],
+            a: s.color[3],
+        },
+        inner: s.inner,
+    })
+}
+
+/// Per-variant accessor for a canonical node's `effects` list.
+/// Frame / Group / Rectangle carry effects on their `container`
+/// style; the leaf shapes carry it directly. IconFont / Ref have
+/// none.
+fn canonical_node_effects(node: &PenNode) -> Option<&[PenEffect]> {
+    match node {
+        PenNode::Frame(n) => n.container.effects.as_deref(),
+        PenNode::Group(n) => n.container.effects.as_deref(),
+        PenNode::Rectangle(n) => n.container.effects.as_deref(),
+        PenNode::Ellipse(n) => n.effects.as_deref(),
+        PenNode::Line(n) => n.effects.as_deref(),
+        PenNode::Polygon(n) => n.effects.as_deref(),
+        PenNode::Path(n) => n.effects.as_deref(),
+        PenNode::Text(n) => n.effects.as_deref(),
+        PenNode::TextInput(n) => n.effects.as_deref(),
+        PenNode::TextArea(n) => n.effects.as_deref(),
+        PenNode::Select(n) => n.effects.as_deref(),
+        PenNode::Switch(n) => n.effects.as_deref(),
+        PenNode::Checkbox(n) => n.effects.as_deref(),
+        PenNode::Slider(n) => n.effects.as_deref(),
+        PenNode::RadioGroup(n) => n.effects.as_deref(),
+        PenNode::NumberInput(n) => n.effects.as_deref(),
+        PenNode::Progress(n) => n.effects.as_deref(),
+        PenNode::Tabs(n) => n.effects.as_deref(),
+        PenNode::Image(n) => n.effects.as_deref(),
+        PenNode::IconFont(_) | PenNode::Ref(_) => None,
+    }
+}
+
+/// Convert a canonical node's `PenEffect` list into desktop payload
+/// `ShadowPayload`s. Only `PenEffect::Shadow` maps — blur variants
+/// are dropped (no renderer path yet).
+pub fn shadows_from_canonical(node: &PenNode) -> Vec<ShadowPayload> {
+    let Some(effects) = canonical_node_effects(node) else {
+        return Vec::new();
+    };
+    effects
+        .iter()
+        .filter_map(|e| match e {
+            // `parse_css_color` handles hex AND `rgba()` — canonical
+            // shadow colours use the functional form, which plain
+            // hex parsing rejected (codex stop-gate: rgba shadows
+            // were first imported as opaque black, then dropped).
+            // Genuinely unparseable colours still drop the shadow
+            // rather than fabricate a wrong one.
+            PenEffect::Shadow(s) if s.visible != Some(false) => {
+                parse_css_color(&s.color).map(|color| ShadowPayload {
+                    offset_x: s.offset_x,
+                    offset_y: s.offset_y,
+                    blur: s.blur,
+                    color,
+                    inner: s.inner.unwrap_or(false),
+                })
+            }
+            PenEffect::Shadow(_) => None,
+            PenEffect::Blur(_) | PenEffect::BackgroundBlur(_) => None,
+        })
+        .collect()
+}
+
+/// Parse a CSS colour string into `[r,g,b,a]` 0..1. Handles hex
+/// (`#rgb` / `#rrggbb` / `#rrggbbaa`) AND the functional
+/// `rgb(r,g,b)` / `rgba(r,g,b,a)` form (`r`/`g`/`b` 0-255, `a`
+/// 0..1) that canonical `.op` shadow colours use. Returns `None`
+/// only for genuinely unparseable input.
+fn parse_css_color(s: &str) -> Option<[f32; 4]> {
+    let t = s.trim();
+    if let Some(rgba) = parse_hex(t) {
+        return Some(rgba);
+    }
+    let lower = t.to_ascii_lowercase();
+    let inner = lower
+        .strip_prefix("rgba(")
+        .or_else(|| lower.strip_prefix("rgb("))?
+        .strip_suffix(')')?;
+    let parts: Vec<&str> = inner.split(',').map(str::trim).collect();
+    if parts.len() < 3 {
+        return None;
+    }
+    let r = parts[0].parse::<f32>().ok()?;
+    let g = parts[1].parse::<f32>().ok()?;
+    let b = parts[2].parse::<f32>().ok()?;
+    let a = if parts.len() >= 4 {
+        parts[3].parse::<f32>().ok()?
+    } else {
+        1.0
+    };
+    Some([
+        (r / 255.0).clamp(0.0, 1.0),
+        (g / 255.0).clamp(0.0, 1.0),
+        (b / 255.0).clamp(0.0, 1.0),
+        a.clamp(0.0, 1.0),
+    ])
+}
+
+fn parse_hex(s: &str) -> Option<[f32; 4]> {
+    crate::style_payload::parse_hex(s)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use op_editor_core::render_backend::Color;
+
+    #[test]
+    fn parse_css_color_handles_rgba_and_hex() {
+        // Functional rgba() — canonical shadow form.
+        let rgba = parse_css_color("rgba(0, 0, 0, 0.5)").expect("rgba");
+        assert_eq!(rgba, [0.0, 0.0, 0.0, 0.5]);
+        // rgb() defaults alpha to 1.
+        let rgb = parse_css_color("rgb(255, 128, 0)").expect("rgb");
+        assert!((rgb[0] - 1.0).abs() < 1e-6);
+        assert!((rgb[3] - 1.0).abs() < 1e-6);
+        // Hex still works.
+        assert_eq!(parse_css_color("#000000"), Some([0.0, 0.0, 0.0, 1.0]));
+        // Genuinely unparseable input is rejected, not faked.
+        assert_eq!(parse_css_color("not-a-colour"), None);
+    }
+
+    #[test]
+    fn effects_survive_payload_round_trip() {
+        let original = vec![
+            Effect::DropShadow(DropShadow {
+                offset_x: 4.0,
+                offset_y: 6.0,
+                blur: 12.0,
+                color: Color {
+                    r: 0.0,
+                    g: 0.0,
+                    b: 0.0,
+                    a: 0.5,
+                },
+                inner: false,
+            }),
+            Effect::DropShadow(DropShadow {
+                offset_x: -2.0,
+                offset_y: 0.0,
+                blur: 3.0,
+                color: Color {
+                    r: 1.0,
+                    g: 0.0,
+                    b: 0.0,
+                    a: 1.0,
+                },
+                inner: true,
+            }),
+        ];
+        // Through the actual serde JSON path the `.op` file uses.
+        let payload = effects_to_payload(&original);
+        let json = serde_json::to_string(&payload).expect("serialize");
+        let back: Vec<ShadowPayload> = serde_json::from_str(&json).expect("deserialize");
+        let restored = effects_from_payload(back);
+        assert_eq!(restored, original);
+    }
+
+    #[test]
+    fn empty_effects_round_trip_to_empty() {
+        let payload = effects_to_payload(&[]);
+        assert!(payload.is_empty());
+        assert!(effects_from_payload(payload).is_empty());
+    }
+
+    fn ellipse_with_blur(radius: f32) -> PenNode {
+        let json = format!(
+            r#"{{"type":"ellipse","id":"e1","width":10,"height":10,"effects":[{{"type":"blur","radius":{radius}}}]}}"#
+        );
+        serde_json::from_str(&json).expect("ellipse-with-blur JSON parses")
+    }
+
+    fn rectangle_with_background_blur(radius: f32) -> PenNode {
+        let json = format!(
+            r#"{{"type":"rectangle","id":"r1","width":20,"height":20,"effects":[{{"type":"background_blur","radius":{radius}}}]}}"#
+        );
+        serde_json::from_str(&json).expect("rectangle-with-background-blur JSON parses")
+    }
+
+    #[test]
+    fn canonical_layer_blur_extracts_radius() {
+        assert_eq!(blur_from_canonical(&ellipse_with_blur(40.0)), Some(40.0));
+    }
+
+    #[test]
+    fn zero_radius_blur_is_ignored() {
+        assert_eq!(blur_from_canonical(&ellipse_with_blur(0.0)), None);
+    }
+
+    #[test]
+    fn blur_payload_builds_scene_effect() {
+        match blur_effect_from_payload(Some(24.0)) {
+            Some(Effect::Blur(b)) => assert_eq!(b.radius, 24.0),
+            other => panic!("expected blur effect, got {other:?}"),
+        }
+        assert!(blur_effect_from_payload(None).is_none());
+        assert!(blur_effect_from_payload(Some(0.0)).is_none());
+    }
+
+    #[test]
+    fn canonical_background_blur_maps_to_scene_effect() {
+        assert_eq!(
+            background_blur_from_canonical(&rectangle_with_background_blur(12.0)),
+            Some(12.0)
+        );
+        assert_eq!(
+            background_blur_effect_from_payload(Some(12.0)),
+            Some(Effect::BackgroundBlur { radius: 12.0 })
+        );
+        assert!(background_blur_effect_from_payload(Some(0.0)).is_none());
+    }
+
+    #[test]
+    fn hidden_canonical_effects_are_skipped_at_scene_build_time() {
+        let node: PenNode = serde_json::from_str(
+            r##"{"type":"rectangle","id":"r1","width":20,"height":20,"effects":[
+                {"type":"shadow","visible":false,"offsetX":0,"offsetY":4,
+                 "blur":8,"spread":0,"color":"#00000040"},
+                {"type":"blur","radius":12,"visible":false},
+                {"type":"background_blur","radius":16,"visible":false}
+            ]}"##,
+        )
+        .expect("hidden effects parse");
+
+        assert!(shadows_from_canonical(&node).is_empty());
+        assert_eq!(blur_from_canonical(&node), None);
+        assert_eq!(background_blur_from_canonical(&node), None);
+    }
+
+    #[test]
+    fn effects_to_payload_drops_blur_but_keeps_shadow() {
+        use jian_scene::layout_scene::BlurEffect;
+        let effects = vec![
+            Effect::DropShadow(DropShadow {
+                offset_x: 1.0,
+                offset_y: 2.0,
+                blur: 3.0,
+                color: Color {
+                    r: 0.0,
+                    g: 0.0,
+                    b: 0.0,
+                    a: 1.0,
+                },
+                inner: false,
+            }),
+            Effect::Blur(BlurEffect { radius: 10.0 }),
+        ];
+        // Shadow survives; blur is carried elsewhere (layer_blur).
+        assert_eq!(effects_to_payload(&effects).len(), 1);
+    }
+}

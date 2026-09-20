@@ -1,0 +1,549 @@
+# Built-in Prompt Center catalogue.
+# Bodies are content, not chrome translations. Keep both language variants here.
+
+[[prompt]]
+id = "gallery-wander"
+category = "mobile-app"
+tags = ["gallery", "constrained", "multi-screen", "photo", "travel"]
+title_key = "promptCenter.item.wander.title"
+title_fallback = "Wander · 旅行行程规划"
+body_zh = '''设计一个名为 Wander 的旅行行程 App,共 3 个页面:行程总览页(即将出发的旅程卡片、倒计时、天气一瞥、按天折叠的日程时间线)、目的地详情页(全宽风景大图、必去清单、当地小贴士、预算环)、收藏地图页(收藏地点卡片瀑布、筛选chip)。审美走高级旅行杂志感:大幅摄影、衬线标题、暖白背景配一个 terracotta 赭色点缀。图片用真实旅行摄影。'''
+body_en = '''Design a 3-screen travel itinerary app called Wander: a Trips overview (upcoming trip cards with countdowns, a weather glance, a day-by-day collapsible timeline), a Destination detail screen (full-bleed landscape hero, must-see checklist, local tips, a budget ring), and a Saved Places screen (a masonry of saved-spot cards with filter chips). Aesthetic: premium travel-magazine — large photography, serif display headings, warm off-white surfaces with a single terracotta accent. Use real travel photography.'''
+screens = 3
+
+[[prompt]]
+id = "gallery-forage"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "food"]
+title_key = "promptCenter.item.forage.title"
+title_fallback = "Forage · 时令菜谱"
+body_zh = '''设计 Forage 时令菜谱 App 的首页:当季食材横滑栏(每样食材配特写摄影)、今晚推荐大卡(菜品成图、烹饪时长、难度)、按餐别分类的菜谱网格、底部一条"本周食材箱"进度条。审美走 editorial 食物杂志:奶油底色、深墨绿标题、大量留白、食物摄影为绝对主角。'''
+body_en = '''Design the home screen of Forage, a seasonal recipe app: a horizontal rail of in-season ingredients (each with close-up photography), a large "Tonight's pick" card (finished-dish photo, cook time, difficulty), a recipe grid grouped by meal, and a "this week's produce box" progress bar at the bottom. Aesthetic: editorial food magazine — cream surfaces, deep forest-green headings, generous whitespace, photography as the hero.'''
+
+[[prompt]]
+id = "gallery-still"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "wellness"]
+title_key = "promptCenter.item.still.title"
+title_fallback = "Still · 冥想与睡前"
+body_zh = '''设计 Still 冥想 App 的今晚页:顶部一句随时间变化的引导语、正在进行的 21 天课程进度、按情绪选择的冥想场景卡(每张配抽象自然摄影:雾、湖面、月光)、睡前声音混音器(雨声/风声/白噪音各一条滑杆)、底部一枚大而安静的开始按钮。审美:极深的蓝黑渐变、低对比、文字发微光,一切都很慢很静。'''
+body_en = '''Design the Tonight screen of Still, a meditation & wind-down app: a time-aware guiding line up top, progress through an ongoing 21-day course, mood-based session cards (each with abstract nature photography — mist, lake surfaces, moonlight), a bedtime sound mixer (rain / wind / white-noise sliders), and one large, quiet start button at the bottom. Aesthetic: deep blue-black gradients, low contrast, softly glowing type — everything slow and hushed.'''
+
+[[prompt]]
+id = "gallery-hearth"
+category = "mobile-app"
+tags = ["gallery", "constrained", "smart-home"]
+title_key = "promptCenter.item.hearth.title"
+title_fallback = "Hearth · 智能家居"
+body_zh = '''设计 Hearth 智能家居 App 的主控页:顶部按房间切换的 chip 行、一张大的"回家场景"卡、设备卡网格(灯光带亮度弧、恒温器带温度环、门锁、摄像头缩略)、能耗今日曲线。审美:深灰玻璃拟态,卡片带细微描边和内发光,一个琥珀色暖光点缀呼应"家的温度"。'''
+body_en = '''Design the main control screen of Hearth, a smart-home app: a room-switcher chip row, a large "Arriving home" scene card, a device card grid (lights with brightness arcs, a thermostat with a temperature ring, door lock, camera thumbnail), and today's energy curve. Aesthetic: dark-grey glassmorphism, cards with hairline borders and inner glow, one amber accent echoing the warmth of home.'''
+
+[[prompt]]
+id = "gallery-meteo"
+category = "mobile-app"
+tags = ["gallery", "constrained", "weather", "data"]
+title_key = "promptCenter.item.meteo.title"
+title_fallback = "Meteo · 沉浸式天气"
+body_zh = '''设计 Meteo 天气 App 的当前页:整页背景是随天气变化的渐变(此刻是暴雨前的青灰),超大温度数字、体感与风、逐小时横滑条、未来七天列表(每天一枚极简天气图形)、日出日落弧线、空气质量胶囊。审美:数据即装饰——把气象数据本身排成有张力的版面,字重对比要大胆。'''
+body_en = '''Design the Now screen of Meteo, an immersive weather app: a full-screen gradient that follows the weather (right now: storm-grey before heavy rain), an oversized temperature numeral, feels-like and wind, an hourly horizontal strip, a 7-day list with minimal glyphs, a sunrise-sunset arc, and an air-quality pill. Aesthetic: data as decoration — typeset the meteorology itself into a bold, high-tension layout with dramatic weight contrast.'''
+
+[[prompt]]
+id = "gallery-marginalia"
+category = "mobile-app"
+tags = ["gallery", "constrained", "reading"]
+title_key = "promptCenter.item.marginalia.title"
+title_fallback = "Marginalia · 阅读与批注"
+body_zh = '''设计 Marginalia 阅读 App 的书房页:正在读的书(大封面、进度、上次读到的句子摘录)、本周阅读时长的小图形、书架横滑(封面立体投影)、朋友正在读的动态两条、年度阅读目标环。审美:纸感米白、oldstyle 衬线、封面阴影像实体书,数字部分用墨蓝。'''
+body_en = '''Design the Study screen of Marginalia, a reading & annotation app: the current book (large cover, progress, a pulled quote from where you left off), a small figure for this week's reading time, a bookshelf rail (covers with physical drop shadows), two friend-activity entries, and a yearly reading-goal ring. Aesthetic: paper-like ivory, oldstyle serifs, covers shadowed like real books, ink-blue for the numbers.'''
+
+[[prompt]]
+id = "gallery-lingua"
+category = "mobile-app"
+tags = ["gallery", "constrained", "education"]
+title_key = "promptCenter.item.lingua.title"
+title_fallback = "Lingua · 语言学习"
+body_zh = '''设计 Lingua 语言学习 App 的今日页:连续学习天数火焰、今日三项任务卡(听力/口语/复习,完成态不同)、单词卡预览(正面词/背面例句的堆叠视觉)、每周联赛排名条、底部吉祥物插画位。审美:明快但不幼稚——白底、一个饱和的钴蓝主色、圆角大方块、数字醒目。'''
+body_en = '''Design the Today screen of Lingua, a language-learning app: a day-streak flame, three task cards (listening / speaking / review, with distinct done states), a flashcard-stack preview (word on front, sentence peeking behind), a weekly league standing bar, and a mascot illustration slot at the bottom. Aesthetic: bright but not childish — white surfaces, one saturated cobalt primary, big rounded blocks, confident numerals.'''
+
+[[prompt]]
+id = "gallery-daybreak"
+category = "mobile-app"
+tags = ["gallery", "constrained", "multi-screen", "photo", "coffee"]
+title_key = "promptCenter.item.daybreak.title"
+title_fallback = "Daybreak · 咖啡预订"
+body_zh = '''设计 Daybreak 咖啡 App 的两个页面:菜单页(招牌饮品大图卡横滑、经典列表带价格、会员积分条)和定制页(所选饮品大图、杯型/浓缩/奶类/甜度四组选择chip、加购小食、底部下单大按钮带合计)。审美:晨光感——奶油与浓缩咖啡棕,饮品摄影带蒸汽感,按钮是深咖啡色。'''
+body_en = '''Design two screens of Daybreak, a coffee-ordering app: a Menu screen (signature drinks as large photo cards in a rail, classics as a priced list, a loyalty-points bar) and a Customize screen (large photo of the chosen drink, four chip groups — size / shots / milk / sweetness, add-on pastries, a big order button with the running total). Aesthetic: morning light — cream and espresso browns, steam-kissed drink photography, a deep-coffee CTA.'''
+screens = 2
+
+[[prompt]]
+id = "gallery-verdant"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "plants"]
+title_key = "promptCenter.item.verdant.title"
+title_fallback = "Verdant · 植物养护"
+body_zh = '''设计 Verdant 植物养护 App 的花园页:今日待办(浇水/施肥的植物头像列表)、我的植物网格卡(每株配植物摄影、水分条、光照标记)、一张"植物医生"求助入口卡、本月生长快照横滑。审美:植物园温室感——极浅的鼠尾草绿底、深绿文字、摄影自然透亮,圆角温和。'''
+body_en = '''Design the Garden screen of Verdant, a plant-care app: today's care list (avatars of plants due for water/feed), a grid of my-plant cards (each with plant photography, a moisture bar, a light badge), a "plant doctor" help entry card, and a monthly growth-snapshot rail. Aesthetic: greenhouse calm — palest sage background, deep green type, airy natural photography, gentle radii.'''
+
+[[prompt]]
+id = "gallery-companion"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "pets"]
+title_key = "promptCenter.item.companion.title"
+title_fallback = "Companion · 宠物生活"
+body_zh = '''设计 Companion 宠物 App 的主页:宠物档案头部(大头照、年龄体重胶囊)、今日散步与喂食时间线、疫苗与驱虫提醒卡、附近宠物友好地点横滑(配实景图)、相册最近三张。审美:治愈系——暖白背景、蜜桃色点缀、圆得可爱的卡片,但排版保持成年人的克制。'''
+body_en = '''Design the home of Companion, a pet-life app: a pet profile header (big portrait, age & weight pills), today's walk & feeding timeline, vaccine and deworming reminder cards, a rail of nearby pet-friendly places (with real photos), and the three latest album shots. Aesthetic: soothing — warm white, peach accents, adorably rounded cards, yet typeset with adult restraint.'''
+
+[[prompt]]
+id = "gallery-relic"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "marketplace"]
+title_key = "promptCenter.item.relic.title"
+title_fallback = "Relic · 精品二手市集"
+body_zh = '''设计 Relic 精品二手市集 App 的发现页:编辑精选专题大卡(本周主题"中古腕表")、分类 chip 行、商品瀑布流(实物摄影、价格、成色标签)、卖家橱窗横滑(头像+好评率)。审美:高级古着店——近黑与骨白的双色系、衬线大标题、商品摄影像杂志静物,一个鎏金点缀。'''
+body_en = '''Design the Discover screen of Relic, a curated second-hand marketplace: an editorial feature card (this week: vintage watches), a category chip row, a product masonry (object photography, price, condition tags), and a sellers' showcase rail (avatar + rating). Aesthetic: fine vintage boutique — near-black and bone-white duotone, serif display headlines, products shot like magazine still-lifes, one gilded accent.'''
+
+[[prompt]]
+id = "gallery-nocturne"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "astronomy"]
+title_key = "promptCenter.item.nocturne.title"
+title_fallback = "Nocturne · 观星指南"
+body_zh = '''设计 Nocturne 观星 App 的今夜页:今晚天空状况头部(云量/月相/最佳观测时段)、今夜可见天体卡横滑(行星与深空天体,配真实天文摄影)、ISS 过境倒计时条、附近暗夜地点两张、光污染等级指示。审美:天文馆级深空——纯黑背景、星图细线、天体摄影震撼,文字用冷白与星云紫。'''
+body_en = '''Design the Tonight screen of Nocturne, a stargazing guide: a sky-conditions header (cloud cover / moon phase / best viewing window), a rail of tonight's visible objects (planets and deep-sky targets with real astrophotography), an ISS pass countdown bar, two nearby dark-sky sites, and a light-pollution indicator. Aesthetic: planetarium-grade deep space — true-black surfaces, fine star-chart linework, awe-striking astrophotography, cool-white type with a nebula-violet accent.'''
+
+[[prompt]]
+id = "gallery-marquee"
+category = "mobile-app"
+tags = ["gallery", "constrained", "multi-screen", "photo", "movies"]
+title_key = "promptCenter.item.marquee.title"
+title_fallback = "Marquee · 观影清单"
+body_zh = '''设计 Marquee 观影 App 的 3 个页面:发现页(本周热映海报大横滑、按流媒体平台分组的推荐行、朋友刚看过)、影片详情页(海报大图、评分与时长胶囊、一句话短评三条、加入清单按钮)、我的清单页(想看/看过两个 tab、海报网格、年度观影统计条)。审美:老电影院——近黑底、猩红与鎏金点缀、海报是主角、字体带一点装饰性。'''
+body_en = '''Design 3 screens of Marquee, a movie watchlist app: Discover (a big rail of this week's posters, recommendation rows grouped by streaming service, friends-just-watched), a Film detail screen (large poster, rating & runtime pills, three one-line reviews, add-to-list button), and My List (Want-to-watch / Watched tabs, a poster grid, a yearly stats bar). Aesthetic: old cinema house — near-black surfaces, scarlet and gilt accents, posters as the hero, type with a hint of marquee flair.'''
+screens = 3
+
+[[prompt]]
+id = "gallery-ritual"
+category = "mobile-app"
+tags = ["gallery", "constrained", "habits"]
+title_key = "promptCenter.item.ritual.title"
+title_fallback = "Ritual · 习惯养成"
+body_zh = '''设计 Ritual 习惯 App 的总览页:顶部本周完成率大数字、习惯列表(每条带最近 14 天的微型格子热图)、今日剩余三件的醒目区、一张月度最佳习惯卡。审美:极简主义者的克制——纯白底、近黑文字、唯一的颜色是完成格子的一种森林绿,网格对齐严格到强迫症。'''
+body_en = '''Design the Overview screen of Ritual, a habit app: a large weekly completion numeral up top, the habit list (each row with a 14-day micro heatmap of squares), a prominent "3 left today" zone, and a best-habit-of-the-month card. Aesthetic: minimalist restraint — pure white, near-black type, the only color a single forest green on completed squares, grid alignment obsessive.'''
+
+[[prompt]]
+id = "gallery-ember"
+category = "mobile-app"
+tags = ["gallery", "constrained", "journal"]
+title_key = "promptCenter.item.ember.title"
+title_fallback = "Ember · 心情日记"
+body_zh = '''设计 Ember 心情日记 App 的回顾页:今天的心情选择器(五枚渐变圆点)、本周情绪河流图、最近三篇日记卡(首行摘句、配当天的心情色块)、每月一次的"给未来的信"入口。审美:黄昏色系——玫瑰灰、暮橙、雾紫的柔和渐变,文字温柔,卡片像信纸。'''
+body_en = '''Design the Reflect screen of Ember, a mood-journal app: today's mood picker (five gradient dots), a weekly emotion-river chart, the three latest entry cards (first-line excerpt with that day's mood swatch), and a monthly "letter to future me" entry point. Aesthetic: dusk palette — rose-grey, ember-orange, and misty violet in soft gradients, tender type, cards like stationery.'''
+
+[[prompt]]
+id = "gallery-volt"
+category = "mobile-app"
+tags = ["gallery", "constrained", "multi-screen", "ev"]
+title_key = "promptCenter.item.volt.title"
+title_fallback = "Volt · 电动车伴侣"
+body_zh = '''设计 Volt 电动车 App 的 3 个页面:车辆页(车侧面渲染图、电量大环、续航与温控快捷开关、充电计划条)、充电地图页(附近充电站卡列表带功率与空位、筛选chip)、行程页(本月行驶统计、能耗曲线、单次行程列表)。审美:电气感——碳黑底、电光青点缀、数字用等宽字体、卡片棱角利落。'''
+body_en = '''Design 3 screens of Volt, an EV companion app: Vehicle (a side-profile render, a large charge ring, range and climate quick toggles, a charging-schedule bar), Charging Map (nearby station cards with power and open stalls, filter chips), and Trips (monthly driving stats, an efficiency curve, a trip list). Aesthetic: electric — carbon-black surfaces, a volt-cyan accent, monospaced numerals, crisply squared cards.'''
+screens = 3
+
+[[prompt]]
+id = "gallery-aloft"
+category = "mobile-app"
+tags = ["gallery", "constrained", "flights"]
+title_key = "promptCenter.item.aloft.title"
+title_fallback = "Aloft · 航班追踪"
+body_zh = '''设计 Aloft 航班 App 的行程页:即将起飞的航班大卡(做成登机牌的样子:出发/到达代码、撕角虚线、二维码位)、飞行进度弧线(起点到终点)、登机口与行李转盘信息胶囊、历史航班列表、年度飞行里程小结。审美:云上蓝天——浅天蓝渐变、纯白卡片、登机牌细节考究,信息层级像机场标识一样清晰。'''
+body_en = '''Design the Trips screen of Aloft, a flight-tracking app: the upcoming flight as a large boarding-pass card (departure/arrival codes, a perforated tear line, a QR slot), a flight-progress arc between cities, gate and baggage-claim pills, a past-flights list, and a yearly miles summary. Aesthetic: above the clouds — pale sky gradient, crisp white cards, boarding-pass detailing done properly, hierarchy as clear as airport signage.'''
+
+[[prompt]]
+id = "gallery-gallery"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "culture"]
+title_key = "promptCenter.item.gallery.title"
+title_fallback = "Gallery · 展览与文化活动"
+body_zh = '''设计 Gallery 艺术展览 App 的本城页:本周必看展览大卡(展品摄影、展馆与截止日期)、按类别的 chip 行(当代/摄影/雕塑/设计)、展览列表(小图+场馆+距离)、"即将闭幕"提醒条、我的门票入口。审美:白盒子美术馆——大量留白、纤细的无衬线、展品摄影周围永远干净,一个国际克莱因蓝点缀。'''
+body_en = '''Design the In-Town screen of Gallery, an exhibitions & culture app: a must-see show card (artwork photography, venue and closing date), a category chip row (contemporary / photography / sculpture / design), an exhibition list (thumb + venue + distance), a "closing soon" strip, and a my-tickets entry. Aesthetic: white-cube museum — abundant whitespace, hairline sans-serifs, artwork photography always given clean air, one International Klein Blue accent.'''
+
+[[prompt]]
+id = "gallery-nightcap"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "cocktails"]
+title_key = "promptCenter.item.nightcap.title"
+title_fallback = "Nightcap · 家庭调酒"
+body_zh = '''设计 Nightcap 调酒 App 的酒柜页:今晚特调大卡(成品鸡尾酒摄影、基酒标签、难度)、我的酒柜横滑(瓶身照)、按基酒分类的配方网格、一张"用现有的酒能调什么"智能入口卡。审美:酒吧暗调——深琥珀与墨绿、暖光氛围摄影、金色细线描边,像一间只点蜡烛的 speakeasy。'''
+body_en = '''Design the Cabinet screen of Nightcap, a home-bartending app: tonight's featured cocktail card (finished-drink photography, base-spirit tag, difficulty), my bottle rail (bottle shots), a recipe grid grouped by spirit, and a smart "what can I make with what I have" entry card. Aesthetic: dim bar — deep amber and bottle-green, warm ambient photography, gold hairline strokes, like a candle-lit speakeasy.'''
+
+[[prompt]]
+id = "gallery-bloom"
+category = "mobile-app"
+tags = ["gallery", "constrained", "photo", "family"]
+title_key = "promptCenter.item.bloom.title"
+title_fallback = "Bloom · 亲子成长记录"
+body_zh = '''设计 Bloom 婴儿成长 App 的宝宝页:宝宝档案头部(照片、月龄、身高体重最近值)、今日照护时间线(喂养/睡眠/换尿布的彩色节点)、成长曲线小图(带百分位)、里程碑卡横滑("第一次翻身"配照片)、给家人分享的入口。审美:晨间育儿房——极浅的暖粉与鹅黄、圆润但不腻的图形、照片配手写感标注,整体安宁喜悦。'''
+body_en = '''Design the Baby screen of Bloom, a family growth-tracking app: a baby profile header (photo, age in months, latest height & weight), today's care timeline (color-dotted feeds / naps / changes), a small growth-curve chart with percentiles, a milestones rail ("first roll-over" with a photo), and a share-with-family entry. Aesthetic: morning nursery — palest warm pink and cream-yellow, rounded but never saccharine shapes, photos with handwritten-style captions, altogether calm and joyful.'''
+
+[[prompt]]
+id = "freeform-wander"
+category = "mobile-app"
+tags = ["gallery", "freeform", "multi-screen", "travel"]
+title_key = "promptCenter.item.wander.title"
+title_fallback = "Wander · 旅行行程规划"
+body_zh = '''设计一个名为 Wander 的旅行行程 App,共 3 个页面:行程总览页、目的地详情页、收藏地点页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design a 3-screen travel itinerary app called Wander: a Trips overview, a Destination detail screen, and a Saved Places screen. Layout, color, and style are entirely your call — show me your best.'''
+screens = 3
+
+[[prompt]]
+id = "freeform-forage"
+category = "mobile-app"
+tags = ["gallery", "freeform", "food"]
+title_key = "promptCenter.item.forage.title"
+title_fallback = "Forage · 时令菜谱"
+body_zh = '''设计 Forage 时令菜谱 App 的首页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the home screen of Forage, a seasonal recipe app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-still"
+category = "mobile-app"
+tags = ["gallery", "freeform", "wellness"]
+title_key = "promptCenter.item.still.title"
+title_fallback = "Still · 冥想与睡前"
+body_zh = '''设计 Still 冥想与睡前 App 的今晚页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Tonight screen of Still, a meditation & wind-down app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-hearth"
+category = "mobile-app"
+tags = ["gallery", "freeform", "smart-home"]
+title_key = "promptCenter.item.hearth.title"
+title_fallback = "Hearth · 智能家居"
+body_zh = '''设计 Hearth 智能家居 App 的主控页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the main control screen of Hearth, a smart-home app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-meteo"
+category = "mobile-app"
+tags = ["gallery", "freeform", "weather"]
+title_key = "promptCenter.item.meteo.title"
+title_fallback = "Meteo · 沉浸式天气"
+body_zh = '''设计 Meteo 天气 App 的当前天气页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Now screen of Meteo, a weather app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-marginalia"
+category = "mobile-app"
+tags = ["gallery", "freeform", "reading"]
+title_key = "promptCenter.item.marginalia.title"
+title_fallback = "Marginalia · 阅读与批注"
+body_zh = '''设计 Marginalia 阅读与批注 App 的书房页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Study screen of Marginalia, a reading & annotation app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-lingua"
+category = "mobile-app"
+tags = ["gallery", "freeform", "education"]
+title_key = "promptCenter.item.lingua.title"
+title_fallback = "Lingua · 语言学习"
+body_zh = '''设计 Lingua 语言学习 App 的今日页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Today screen of Lingua, a language-learning app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-daybreak"
+category = "mobile-app"
+tags = ["gallery", "freeform", "multi-screen", "coffee"]
+title_key = "promptCenter.item.daybreak.title"
+title_fallback = "Daybreak · 咖啡预订"
+body_zh = '''设计 Daybreak 咖啡预订 App 的两个页面:菜单页、定制页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design two screens of Daybreak, a coffee-ordering app: a Menu screen and a Customize screen. Layout, color, and style are entirely your call — show me your best.'''
+screens = 2
+
+[[prompt]]
+id = "freeform-verdant"
+category = "mobile-app"
+tags = ["gallery", "freeform", "plants"]
+title_key = "promptCenter.item.verdant.title"
+title_fallback = "Verdant · 植物养护"
+body_zh = '''设计 Verdant 植物养护 App 的花园页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Garden screen of Verdant, a plant-care app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-companion"
+category = "mobile-app"
+tags = ["gallery", "freeform", "pets"]
+title_key = "promptCenter.item.companion.title"
+title_fallback = "Companion · 宠物生活"
+body_zh = '''设计 Companion 宠物生活 App 的主页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the home screen of Companion, a pet-life app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-relic"
+category = "mobile-app"
+tags = ["gallery", "freeform", "marketplace"]
+title_key = "promptCenter.item.relic.title"
+title_fallback = "Relic · 精品二手市集"
+body_zh = '''设计 Relic 精品二手市集 App 的发现页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Discover screen of Relic, a curated second-hand marketplace app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-nocturne"
+category = "mobile-app"
+tags = ["gallery", "freeform", "astronomy"]
+title_key = "promptCenter.item.nocturne.title"
+title_fallback = "Nocturne · 观星指南"
+body_zh = '''设计 Nocturne 观星指南 App 的今夜页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Tonight screen of Nocturne, a stargazing guide app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-marquee"
+category = "mobile-app"
+tags = ["gallery", "freeform", "multi-screen", "movies"]
+title_key = "promptCenter.item.marquee.title"
+title_fallback = "Marquee · 观影清单"
+body_zh = '''设计 Marquee 观影清单 App 的 3 个页面:发现页、影片详情页、我的清单页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design 3 screens of Marquee, a movie watchlist app: Discover, a Film detail screen, and My List. Layout, color, and style are entirely your call — show me your best.'''
+screens = 3
+
+[[prompt]]
+id = "freeform-ritual"
+category = "mobile-app"
+tags = ["gallery", "freeform", "habits"]
+title_key = "promptCenter.item.ritual.title"
+title_fallback = "Ritual · 习惯养成"
+body_zh = '''设计 Ritual 习惯养成 App 的总览页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Overview screen of Ritual, a habit app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-ember"
+category = "mobile-app"
+tags = ["gallery", "freeform", "journal"]
+title_key = "promptCenter.item.ember.title"
+title_fallback = "Ember · 心情日记"
+body_zh = '''设计 Ember 心情日记 App 的回顾页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Reflect screen of Ember, a mood-journal app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-volt"
+category = "mobile-app"
+tags = ["gallery", "freeform", "multi-screen", "ev"]
+title_key = "promptCenter.item.volt.title"
+title_fallback = "Volt · 电动车伴侣"
+body_zh = '''设计 Volt 电动车伴侣 App 的 3 个页面:车辆页、充电地图页、行程页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design 3 screens of Volt, an EV companion app: Vehicle, Charging Map, and Trips. Layout, color, and style are entirely your call — show me your best.'''
+screens = 3
+
+[[prompt]]
+id = "freeform-aloft"
+category = "mobile-app"
+tags = ["gallery", "freeform", "flights"]
+title_key = "promptCenter.item.aloft.title"
+title_fallback = "Aloft · 航班追踪"
+body_zh = '''设计 Aloft 航班追踪 App 的行程页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Trips screen of Aloft, a flight-tracking app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-gallery"
+category = "mobile-app"
+tags = ["gallery", "freeform", "culture"]
+title_key = "promptCenter.item.gallery.title"
+title_fallback = "Gallery · 展览与文化活动"
+body_zh = '''设计 Gallery 展览与文化活动 App 的本城页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the In-Town screen of Gallery, an exhibitions & culture app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-nightcap"
+category = "mobile-app"
+tags = ["gallery", "freeform", "cocktails"]
+title_key = "promptCenter.item.nightcap.title"
+title_fallback = "Nightcap · 家庭调酒"
+body_zh = '''设计 Nightcap 家庭调酒 App 的酒柜页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Cabinet screen of Nightcap, a home-bartending app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "freeform-bloom"
+category = "mobile-app"
+tags = ["gallery", "freeform", "family"]
+title_key = "promptCenter.item.bloom.title"
+title_fallback = "Bloom · 亲子成长记录"
+body_zh = '''设计 Bloom 亲子成长记录 App 的宝宝页。布局、配色、风格全由你决定,拿出最好的水平。'''
+body_en = '''Design the Baby screen of Bloom, a family growth-tracking app. Layout, color, and style are entirely your call — show me your best.'''
+
+[[prompt]]
+id = "extreme-weather"
+category = "mobile-app"
+tags = ["freeform", "extreme", "l0", "weather"]
+title_key = "promptCenter.item.extremeWeather.title"
+title_fallback = "极限 · 天气 App"
+body_zh = '''设计一个天气 App,惊艳我。'''
+body_en = '''Design a weather app. Stun me.'''
+
+[[prompt]]
+id = "extreme-now-playing"
+category = "mobile-app"
+tags = ["freeform", "extreme", "l0", "music"]
+title_key = "promptCenter.item.extremeNowPlaying.title"
+title_fallback = "极限 · 正在播放"
+body_zh = '''设计一个音乐 App 的正在播放页,美到可以直接发布。'''
+body_en = '''Design a now-playing screen for a music app, beautiful enough to ship as-is.'''
+
+[[prompt]]
+id = "extreme-daily-app"
+category = "mobile-app"
+tags = ["freeform", "extreme", "l0", "daily-use"]
+title_key = "promptCenter.item.extremeDailyApp.title"
+title_fallback = "极限 · 每天打开"
+body_zh = '''设计一个你自己最想每天打开的 App。'''
+body_en = '''Design the app you'd most want to open every day.'''
+
+[[prompt]]
+id = "extreme-calendar"
+category = "mobile-app"
+tags = ["freeform", "extreme", "l0", "calendar"]
+title_key = "promptCenter.item.extremeCalendar.title"
+title_fallback = "极限 · 重新发明日历"
+body_zh = '''设计一个日历 App,让人忘掉所有现存的日历 App。'''
+body_en = '''Design a calendar app that makes people forget every calendar app that exists.'''
+
+[[prompt]]
+id = "extreme-calm"
+category = "mobile-app"
+tags = ["freeform", "extreme", "l0", "calm"]
+title_key = "promptCenter.item.extremeCalm.title"
+title_fallback = "极限 · 一屏宁静"
+body_zh = '''用一屏设计表达「宁静」。'''
+body_en = '''Express "calm" in a single screen of app design.'''
+
+[[prompt]]
+id = "starter-travel-app"
+category = "starter"
+tags = ["quick-action", "travel", "mobile-app"]
+title_key = "ai.quickAction.travelApp"
+title_fallback = "旅行预订 App 发现页"
+body_zh = '''设计一个旅行预订App发现页。包含搜索区"想去哪？"输入框、日期选择标签、人数选择。热门目的地横向滑动卡片（目的地照片、城市名、起步价），"本周特惠"区2张特惠卡片带折扣标签，最近浏览区2张紧凑卡片。底部导航栏（发现、收藏、行程、消息、个人）。温暖友好的设计，橙色点缀。'''
+body_en = '''Design a travel booking mobile app explore page. Include a search section with "Where to?" input, date picker chips, and guest count. Popular destinations as horizontal scrollable cards with destination photos, city names and starting prices. "Deals of the Week" section with 2 featured deal cards showing discount badges. Recently viewed section with 2 compact cards. Bottom tab bar (Explore, Wishlists, Trips, Messages, Profile). Warm, inviting design with orange accents.'''
+
+[[prompt]]
+id = "starter-dashboard"
+category = "starter"
+tags = ["quick-action", "music", "mobile-app", "dashboard"]
+title_key = "ai.quickAction.dashboard"
+title_fallback = "暗色音乐流媒体 App 首页"
+body_zh = '''设计一个暗色音乐流媒体App首页。包含问候语"晚上好"、"最近播放"横向滑动专辑封面卡片、"为你推荐"区3张歌单卡片（封面和歌单名）、"新发行"区4张专辑卡片2x2网格、底部悬浮迷你播放器（当前曲目+播放/暂停控件）。底部导航栏（首页、搜索、音乐库、会员）。深色背景搭配荧光绿强调。'''
+body_en = '''Design a dark-themed music streaming mobile app home screen. Include a greeting "Good evening", horizontal scrollable "Recently Played" album art cards, "Made For You" section with 3 playlist cards showing cover art and playlist names, "New Releases" section with 4 album cards in a 2x2 grid, and a floating mini player bar at the bottom showing current track with play/pause controls. Bottom tab bar (Home, Search, Library, Premium). Dark background with lime green accent.'''
+
+[[prompt]]
+id = "starter-coffee-shop"
+category = "starter"
+tags = ["quick-action", "web-page", "coffee"]
+title_key = "ai.quickAction.coffeeShop"
+title_fallback = "面向布拉格咖啡店的深色大胆风格网站"
+body_zh = '''面向布拉格咖啡店的深色大胆风格网站'''
+body_en = '''Dark bold website for a coffee shop in Prague'''
+
+[[prompt]]
+id = "starter-barbershop"
+category = "starter"
+tags = ["quick-action", "web-app", "dashboard", "crm"]
+title_key = "ai.quickAction.barbershop"
+title_fallback = "用于管理理发店客户的豪华 Web 应用"
+body_zh = '''用于管理理发店客户的豪华 Web 应用'''
+body_en = '''Luxury webapp for managing barbershop clients'''
+
+[[prompt]]
+id = "web-orbit"
+category = "web-page"
+tags = ["web", "landing", "saas", "responsive"]
+title_key = "promptCenter.item.webOrbit.title"
+title_fallback = "Orbit · AI 工作台官网"
+body_zh = '''设计 Orbit AI 工作台的响应式桌面落地页：精简导航、分屏 Hero（明确价值主张、产品界面视觉和双 CTA）、客户品牌、三段能力叙事、工作流图、客户证言、两档定价、FAQ 和末尾 CTA。审美为编辑感企业科技：暖白、墨黑、电光钴蓝、精确排版和克制的动效暗示；避免泛滥的渐变光球。'''
+body_en = '''Design a responsive desktop landing page for Orbit, an AI workbench: a slim nav; split hero with a precise value proposition, product UI visual and two CTAs; customer logos; three capability stories; workflow diagram; customer proof; two pricing tiers; FAQ; and a final CTA. Aesthetic: editorial enterprise tech—warm white, ink black, electric cobalt, crisp type and restrained motion cues; avoid generic gradient blobs.'''
+screens = 1
+
+[[prompt]]
+id = "web-atelier"
+category = "web-page"
+tags = ["web", "commerce", "editorial", "photo", "responsive"]
+title_key = "promptCenter.item.webAtelier.title"
+title_fallback = "Atelier · 家居品牌电商"
+body_zh = '''设计 Atelier 当代家具工作室的响应式电商首页：电影感空间 Hero、品类横栏、编辑式系列网格、可购买的整屋故事、工艺介绍、设计师引言、门店与服务区、邮件订阅页脚。使用真实家具与室内摄影。审美为安静奢华：石灰岩、胡桃木与黑色，不对称编辑网格，大量留白。'''
+body_en = '''Design a responsive ecommerce homepage for Atelier, a contemporary furniture studio: a cinematic room hero, category rail, editorial collection grid, shoppable-room story, craftsmanship section, designer quote, stores and services strip, and newsletter footer. Use real furniture and interior photography. Aesthetic: quiet luxury—limestone, walnut and black, an asymmetric editorial grid, generous whitespace.'''
+screens = 1
+
+[[prompt]]
+id = "web-kilnform"
+category = "web-page"
+tags = ["web", "landing", "saas", "design-system", "responsive"]
+title_key = "promptCenter.item.webKilnform.title"
+title_fallback = "Kilnform · 设计基建官网"
+body_zh = '''设计 Kilnform 设计基建产品的桌面落地页，1200 宽单页长滚：细导航（品牌字标、五个栏目、登录、橙色主按钮）、左文右图 Hero（能力徽章、两行超大标题、副文案、双按钮，右侧是一台带标题栏和红黄绿圆点的应用窗口模型，窗口里画真实界面——工具栏、两张状态卡、一条进度条）、客户名单条（一行 uppercase 小标题加五组图标＋字标）、两枚大数字指标、三张能力卡、一段工作流演示（三个编号标签页＋深色画布截图＋右侧属性面板和代码输出）、三条客户证言、末尾订阅 CTA、四栏页脚加订阅框。审美：近白页面（#FAFAFA）上压近黑整块（#18181B），靠明暗分段而不是描边分区；唯一强调色是 #FF5A00，只给主按钮、激活态、进度条和链接箭头；字体 Inter，标题 64px/700 负字距，正文 14px/1.5，每段之前一行 11px uppercase 小标签（字距 +1.5）；圆角 8px 按钮、14px 面板。'''
+body_en = '''Design the desktop landing page for Kilnform, a design-infrastructure product — one 1200-wide scrolling page: a slim nav (wordmark, five links, sign-in, orange primary button); a split hero (capability badge, a two-line oversized headline, sub-copy, two buttons, and on the right a windowed application mock-up with a title bar and traffic-light dots containing real UI — a toolbar, two status cards, a progress bar); a customer strip (one uppercase label above five icon-plus-wordmark pairs); two large metric numerals; three capability cards; a workflow section (three numbered tabs, a dark canvas mock-up, a properties rail and a compiled-code panel); three testimonials; a closing subscribe CTA; and a four-column footer with a newsletter box. Aesthetic: a near-white page (#FAFAFA) interrupted by solid near-black blocks (#18181B) so light and dark bands do the sectioning instead of borders; one accent, #FF5A00, reserved for the primary button, active states, progress fills and link arrows; Inter throughout — 64px/700 headlines with negative tracking, 14px/1.5 body, and an 11px uppercase label (+1.5 tracking) above every section; 8px radii on buttons, 14px on panels.'''
+screens = 1
+
+[[prompt]]
+id = "web-reefwright"
+category = "web-page"
+tags = ["web", "landing", "saas", "pricing", "data"]
+title_key = "promptCenter.item.webReefwright.title"
+title_fallback = "Reefwright · AI 客服知识官网"
+body_zh = '''设计 Reefwright（AI 客服知识引擎）的桌面落地页，1200 宽单页长滚：状态胶囊＋左文右演示的 Hero（右侧是一张会动的"提问—回答"卡片：搜索框里一句真实问题、置信度、引用来源、一段代码端点、三枚追问 chip）、客户名单条、三块指标、能力区（一张宽卡讲持续同步并列出三条同步记录，两张窄卡讲即时索引与可核查引用）、实时分析区（三张指标卡＋七根柱子的周趋势图＋"知识缺口"数据表，每行带一个 Draft 按钮）、新旧方案左右对比（左边传统知识库的三条文章列表，右边一张即时回答卡）、两条带大字指标的客户证言、三档定价（中间一档用黑色描边和一枚亮色徽章强调）、末尾 CTA 和四栏页脚。审美：报刊感的纸白页面，#FFFFFF 与 #FAFAFA 交替，全部用 1px #E5E5E5 细线分隔、不加阴影；正文 Geist，每个标题里挑一个词用 Fraunces 斜体做强调；唯一强调色 #A3E635，只给主按钮、被推荐的定价档和图表里的那一根柱子，且亮色上永远配近黑文字；圆角只用 4px 和 8px，胶囊除外。'''
+body_en = '''Design the desktop landing page for Reefwright, an AI customer-knowledge engine — one 1200-wide scrolling page: a status pill and a split hero whose right side is a live question-and-answer card (a real question in the search field, a confidence score, a cited source, a code endpoint line, three follow-up chips); a customer strip; three headline metrics; a capability block (one wide card on continuous sync listing three sync records, two narrow cards on instant indexing and verifiable citations); a real-time analytics block (three metric cards, a seven-bar weekly chart, and a "knowledge gaps" table whose rows each carry a Draft button); an old-versus-new comparison (three stale article results on the left, one instant answer card on the right); two testimonials each led by a large metric; three pricing tiers with the middle one emphasised by an ink border and a bright badge; a closing CTA; and a four-column footer. Aesthetic: a broadsheet-white page alternating #FFFFFF and #FAFAFA, separated entirely by 1px #E5E5E5 rules with no shadows anywhere; Geist for everything, with exactly one word per headline set in Fraunces italic to carry the emphasis; one accent, #A3E635, spent only on the primary button, the featured pricing tier and a single bar in the chart, always with near-black text on it; radii limited to 4px and 8px apart from full capsules.'''
+screens = 1
+
+[[prompt]]
+id = "dashboard-pulse"
+category = "dashboard"
+tags = ["dashboard", "analytics", "saas", "data"]
+title_key = "promptCenter.item.dashboardPulse.title"
+title_fallback = "Pulse · 增长分析台"
+body_zh = '''设计 1440×900 的 Pulse 增长分析后台：固定侧栏、工作区与日期筛选、四张带环比的 KPI 卡、收入与激活趋势、留存 cohort 热图、获客渠道构成、转化漏斗、带状态和负责人的活动表，以及清晰的 tooltip 状态。白灰底配靛蓝点缀，信息密集但有呼吸感；图表必须有刻度、图例和可访问对比度。'''
+body_en = '''Design a 1440×900 desktop growth-analytics dashboard for Pulse: persistent sidebar, workspace and date filters, four KPI cards with deltas, revenue and activation trends, a cohort-retention heatmap, acquisition mix, conversion funnel, campaign table with status and owner, and a clear tooltip state. Use white and slate with an indigo accent; dense but breathable. Charts must include labels, legends and accessible contrast.'''
+screens = 1
+
+[[prompt]]
+id = "dashboard-sentinel"
+category = "dashboard"
+tags = ["dashboard", "operations", "logistics", "map", "data"]
+title_key = "promptCenter.item.dashboardSentinel.title"
+title_fallback = "Sentinel · 物流运维中心"
+body_zh = '''设计 1440×900 的 Sentinel 末端物流运维台：车队健康概览、实时配送地图、紧急告警队列、SLA 与风险指标、状态分布、路线表现图和可排序运单表。正常、警告和严重状态不能只靠颜色区分。审美为深海军蓝控制室，精确网格，青色表示活动态，琥珀与红色仅用于严重程度。'''
+body_en = '''Design a 1440×900 operations dashboard for Sentinel, a last-mile logistics platform: fleet-health summary, live delivery map, urgent-alert queue, SLA and risk KPIs, status breakdown, route-performance chart and sortable shipment table. Normal, warning and critical states must not rely on color alone. Aesthetic: dark-navy control room, crisp grids, cyan active states, amber and red reserved for severity.'''
+screens = 1
+
+[[prompt]]
+id = "component-data-grid"
+category = "component"
+tags = ["component", "design-system", "table", "states", "accessibility"]
+title_key = "promptCenter.item.componentDataGrid.title"
+title_fallback = "Gridworks · 企业数据表"
+body_zh = '''设计 1440×900 的企业数据表组件规范板：展示结构与 token，以及默认、hover、选中、排序、筛选、行内编辑、加载骨架、空、错误和分页状态；包含工具栏搜索、筛选 chip、批量操作、吸顶表头和密度控制，并标注间距与文字规格。中性设计系统、钴蓝焦点环、无障碍优先。'''
+body_en = '''Design a 1440×900 component-spec board for Gridworks, an enterprise data table. Show anatomy and tokens plus default, hover, selected, sorted, filtered, inline-edit, loading-skeleton, empty, error and pagination states. Include toolbar search, filter chips, bulk actions, sticky headers, density controls and spacing/type annotations. Use a neutral design system, cobalt focus rings and accessibility-first decisions.'''
+screens = 1
+
+[[prompt]]
+id = "component-form-lab"
+category = "component"
+tags = ["component", "design-system", "form", "states", "accessibility"]
+title_key = "promptCenter.item.componentFormLab.title"
+title_fallback = "Form Lab · 表单组件系统"
+body_zh = '''设计 1440×900 的表单组件规范板：文本框、文本域、选择器、组合框、日期输入、复选框、单选框、开关、文件上传和主次按钮；展示默认、hover、focus、已填、禁用、成功与错误状态、帮助文字和计数器，并组合出一张完整注册表单。采用一致 token、8pt 间距、清晰焦点和 WCAG 对比度。'''
+body_en = '''Design a 1440×900 component-spec board for Form Lab: text field, textarea, select, combobox, date input, checkbox, radio, switch, file upload and primary/secondary actions. Show default, hover, focus, filled, disabled, success and error states, helper/counter text, plus one composed sign-up form. Use consistent tokens, 8pt spacing, visible focus and WCAG contrast.'''
+screens = 1
+
+[[prompt]]
+id = "modify-polish-current"
+category = "modify"
+tags = ["modify", "polish", "layout", "typography"]
+title_key = "promptCenter.item.modifyPolishCurrent.title"
+title_fallback = "精修当前界面"
+body_zh = '''精修当前选中界面，但不改变产品意图、正文、数据、路由结构或交互。修正网格与对齐、间距节奏、文字层级、对比度、卡片分组和视觉密度；复用现有品牌 token，保留已有 events 和内容，不替换成另一个概念；达到可发布质量，并保持原屏幕数量。'''
+body_en = '''Polish the currently selected screen without changing its product intent, copy, data, route structure or interactions. Fix grid alignment, spacing rhythm, typography hierarchy, contrast, card grouping and visual density. Reuse existing brand tokens, preserve existing events and content, do not replace it with another concept, and leave the original screen count unchanged.'''
+
+[[prompt]]
+id = "modify-complete-states"
+category = "modify"
+tags = ["modify", "states", "accessibility", "interaction"]
+title_key = "promptCenter.item.modifyCompleteStates.title"
+title_fallback = "补齐组件状态"
+body_zh = '''在保留当前选中组件或界面的基础样式与数据的前提下，补齐适用的 hover、pressed、focus、disabled、loading、empty、error 和 success 状态；保证可读对比度与最小 44px 点击目标。把变体放到相邻的带标签状态板或组件 variants 中，保留原稿，并保留已有 events 与 routes。'''
+body_en = '''Complete the missing interaction and system states for the currently selected component or screen while preserving its base style and data. Add only applicable hover, pressed, focus, disabled, loading, empty, error and success states; ensure readable contrast and 44px minimum targets. Place variants on an adjacent labeled state board or as component variants, keep the original intact, and preserve existing events and routes.'''

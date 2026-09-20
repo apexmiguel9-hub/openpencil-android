@@ -1,0 +1,764 @@
+//! `NativeBackend` — frame-scoped widget facade backed by `jian_skia`.
+//!
+//! Spec v19 §5.2.1 (round 3 BLOCK-R3-3 fix): `NativeBackend` does **not**
+//! own a canvas borrow and does **not** carry a `'a` lifetime. Every
+//! drawing method takes `canvas: &skia_safe::Canvas` (immutable —
+//! skia-safe 0.97 `Canvas::*` are all `&self`) and forwards the work to
+//! `jian_skia::SkiaBackend::draw_on_canvas`. Callers obtain the borrow
+//! inside `SharedSkiaContext::with_frame(|canvas, glow| { … })` and pass
+//! it through.
+//!
+//! The backend deliberately does **not** `impl RenderBackend` for OP's
+//! widget-facing trait (spec §5.2.1 mirror surface, no direct impl in
+//! Step 1a; saved for Step 1c+ widget tree).
+
+use op_editor_ui::{Color, Point2D, Rect};
+
+/// OP `Rect` (`origin / size: Vec2`) → Jian `euclid::Rect<f32>`.
+pub fn to_jian_rect(r: Rect) -> jian_core::geometry::Rect {
+    jian_core::geometry::Rect::new(
+        jian_core::geometry::Point::new(r.origin.x, r.origin.y),
+        jian_core::geometry::Size::new(r.size.x, r.size.y),
+    )
+}
+
+/// `skia_safe::Rect` from an OP `Rect` — used by `clip_rect`.
+/// Aspect-fit (`contain`) `img_w × img_h` inside `outer`, centered.
+/// The result never exceeds `outer` on either axis; a degenerate
+/// (zero-dimension) image size returns `outer` unchanged so the
+/// caller's frame still paints something. Used by `draw_image` so
+/// the chat transcript can hand a plain box and let the backend
+/// (which knows the decoded dimensions) place the picture.
+fn contain_rect(outer: Rect, img_w: f32, img_h: f32) -> Rect {
+    if img_w <= 0.0 || img_h <= 0.0 || outer.size.x <= 0.0 || outer.size.y <= 0.0 {
+        return outer;
+    }
+    let scale = (outer.size.x / img_w).min(outer.size.y / img_h);
+    let w = img_w * scale;
+    let h = img_h * scale;
+    Rect {
+        origin: Point2D::new(
+            outer.origin.x + (outer.size.x - w) / 2.0,
+            outer.origin.y + (outer.size.y - h) / 2.0,
+        ),
+        size: Point2D::new(w, h),
+    }
+}
+
+// `pub(super)` so the sibling `gradient.rs` impl block can convert
+// rects without re-implementing the helper.
+pub(super) fn to_sk_rect(r: Rect) -> skia_safe::Rect {
+    skia_safe::Rect::from_xywh(r.origin.x, r.origin.y, r.size.x, r.size.y)
+}
+
+/// OP `Color` → `skia_safe::Color4f` — used by the direct-canvas
+/// helpers (stroke_line / fill_round_rect / stroke_round_rect)
+/// that skip the jian DrawOp pipeline.
+pub(super) fn jian_color_to_color4f(c: Color) -> skia_safe::Color4f {
+    skia_safe::Color4f::new(
+        c.r.clamp(0.0, 1.0),
+        c.g.clamp(0.0, 1.0),
+        c.b.clamp(0.0, 1.0),
+        c.a.clamp(0.0, 1.0),
+    )
+}
+
+// Gradient shader paint methods (`fill_round_rect_linear_gradient`
+// / `_radial_gradient`) and their helpers live in the sibling
+// `gradient.rs` so this spine stays under the 800-line cap. The
+// methods are added to `NativeBackend` via a sibling `impl` block.
+mod caches;
+mod gradient;
+mod image;
+mod image_diagnostics;
+mod layer;
+mod path;
+mod shaped_text;
+mod text;
+#[cfg(test)]
+use image::{cover_rect, figma_image_local_matrix, image_adjustment_matrix};
+pub use image_diagnostics::{
+    begin_image_paint_diagnostics, end_image_paint_diagnostics, image_paint_diagnostics_snapshot,
+    ImagePaintDiagnostics,
+};
+
+/// Frame-scoped Jian-DrawOp adapter (spec v19 §5.2.1).
+///
+/// The struct stays alive across frames so its underlying
+/// `jian_skia::SkiaBackend` keeps its image cache; the canvas borrow is
+/// passed in per-method so `&NativeBackend` and `&Canvas` can coexist
+/// inside the same `with_frame` closure without aliasing.
+pub struct NativeBackend {
+    skia: jian_skia::SkiaBackend,
+    dpi: f32,
+    /// Shared font resolver used by native text paint/measure and by
+    /// jian-skia's `SkiaMeasure`, so geometry sees the same typeface
+    /// and synthetic-bold branch the painter uses.
+    font_resolver: jian_skia::FontResolver,
+    /// Cached Paragraph shaper used only for authored line-box baselines.
+    paragraph_baseline: jian_skia::ParagraphBaseline,
+    /// Cached Paragraph shaper for complex scripts (Arabic and friends),
+    /// which the `draw_str` fast path cannot reorder or join. Shares the
+    /// same generation-guarded `FontCollection` discipline so the shaper
+    /// stays affordable on the paint path.
+    shaped_text: shaped_text::ShapedText,
+    /// Pre-rasterized image cache keyed by stable source id. Paint only
+    /// reads this cache; encoded bytes are decoded on desktop workers.
+    image_cache: std::collections::HashMap<u64, ImageCacheEntry>,
+    /// Sum of `ImageCacheEntry::bytes` across `image_cache`.
+    image_cache_bytes: usize,
+    /// Monotonic use counter driving LRU eviction.
+    image_cache_tick: u64,
+    /// Bumped only when newly decoded pixels are INSTALLED, so a cached
+    /// composition (the pan bitmap layer) can tell that a repaint would
+    /// now draw something different. `image_cache_tick` cannot serve
+    /// this: it also advances on every lookup.
+    raster_generation: u64,
+    /// Small, paint-thread-decoded blur-up rasters. This cache is isolated
+    /// from the full-resolution worker-populated image LRU.
+    thumb_cache: image::ThumbCache,
+    svg_path_cache: std::collections::HashMap<u64, path::SvgPathCacheEntry>,
+    svg_path_cache_order: std::collections::VecDeque<u64>,
+    /// Sum of `SvgPathCacheEntry` d-string lengths — the byte proxy the
+    /// path-cache budget evicts against (parsed path size tracks d length).
+    svg_path_cache_bytes: usize,
+    svg_raster_cache: std::collections::HashMap<path::SvgRasterKey, path::SvgRasterCacheEntry>,
+    svg_raster_cache_order: std::collections::VecDeque<path::SvgRasterKey>,
+    dot_point_buffer: Vec<skia_safe::Point>,
+    /// Compiled-SkSL `RuntimeEffect` cache (same spirit as the typeface
+    /// cache above): compile-once-per-unique-source so per-frame
+    /// repaints reuse the program instead of recompiling.
+    shader_cache: jian_skia::ShaderCache,
+}
+
+/// One resident raster image and its LRU accounting. `covers_edge_px`
+/// is the longest edge this raster can serve sharply — either the level
+/// it was decoded for, or the source's own size when that is smaller.
+struct ImageCacheEntry {
+    image: skia_safe::Image,
+    bytes: usize,
+    last_used: u64,
+    covers_edge_px: u32,
+}
+
+/// Raster-byte budget for decoded images (four bytes per pixel).
+const IMAGE_CACHE_BYTE_BUDGET: usize = 384 * 1024 * 1024;
+/// Safety cap on entry count for tiny images.
+const IMAGE_CACHE_MAX_ENTRIES: usize = 4096;
+
+/// Decode encoded bytes and force their pixels into a CPU raster image.
+/// This function is called by host workers, never by paint.
+pub fn decode_raster(encoded: &[u8]) -> Option<skia_safe::Image> {
+    decode_raster_capped(encoded, u32::MAX).map(|(image, _)| image)
+}
+
+/// Decode into a raster no larger than `max_edge_px` on its longest
+/// edge, returning the raster and the edge it can serve sharply.
+///
+/// Sizing the raster to what the view shows is what keeps an
+/// image-dense page cheap: 700 thumbnails at 128 px cost ~45 MB
+/// together, where the same images at their authored 2048 px would be
+/// 16 MB EACH and evict one another every frame.
+pub fn decode_raster_capped(encoded: &[u8], max_edge_px: u32) -> Option<(skia_safe::Image, u32)> {
+    image_diagnostics::record_full_decode();
+    let lazy = skia_safe::Image::from_encoded(skia_safe::Data::new_copy(encoded))?;
+    let (w, h) = (lazy.width().max(1), lazy.height().max(1));
+    let source_edge = w.max(h) as u32;
+    if max_edge_px >= source_edge {
+        // Already no larger than requested — the full raster IS the
+        // sharpest level, so record the source size as its coverage.
+        return lazy.make_raster_image(None, None).map(|i| (i, u32::MAX));
+    }
+    let scale = max_edge_px as f32 / source_edge as f32;
+    let (dst_w, dst_h) = (
+        ((w as f32 * scale).round() as i32).max(1),
+        ((h as f32 * scale).round() as i32).max(1),
+    );
+    let info = skia_safe::ImageInfo::new_n32_premul((dst_w, dst_h), None);
+    let mut surface = skia_safe::surfaces::raster(&info, None, None)?;
+    let sampling = skia_safe::SamplingOptions::new(
+        skia_safe::FilterMode::Linear,
+        skia_safe::MipmapMode::Linear,
+    );
+    surface.canvas().draw_image_rect_with_sampling_options(
+        &lazy,
+        None,
+        skia_safe::Rect::from_xywh(0.0, 0.0, dst_w as f32, dst_h as f32),
+        sampling,
+        &skia_safe::Paint::default(),
+    );
+    Some((surface.image_snapshot(), max_edge_px))
+}
+
+const ROBOTO_TTF: &[u8] = include_bytes!("../../assets/Roboto-Regular.ttf");
+
+/// Union of every CJK codepoint that appears in the editor chrome
+/// and the settings modal. Pre-warmed at `NativeBackend::new` so the
+/// first cross-tab paint doesn't synchronously call
+/// `FontMgr::match_family_style_character` for ~50 fresh glyphs.
+const PREWARM_CJK_CODEPOINTS: &str = "\
+设置\
+内置服务商添加直接配置密钥无需工具\
+尚未\
+连接外部兼容的\
+你可以在中设置额外的环境变量\
+模型\
+服务器已停止运行中端口启动\
+终端集成将在重启后生效\
+升级版本请重新安装确保兼容性\
+断开链接\
+代码\
+设计图层填充描边效果导出创建组件\
+弹性布局\
+位置尺寸不透明度旋转\
+形状矩形椭圆多边形直线钢笔\
+画布缩放\
+新建未命名页面\
+帧组文本路径\
+撤销重做\
+你可以在\
+普通粗体斜体下划线删除线\
+左中右两端对齐分散\
+颜色\
+红绿蓝色调饱和度明亮\
+搜索准备就绪\
+图片生成";
+
+impl NativeBackend {
+    /// Spec §5.2.1 / plan v7 Task 2 Step 11: take an externally
+    /// constructed `SkiaBackend` so callers can re-use one across
+    /// `NativeBackend` / Jian host adapters that rely on the same
+    /// image cache. The convenience `with_dpi` covers the common
+    /// "fresh backend" path.
+    pub fn new(skia: jian_skia::SkiaBackend, dpi: f32) -> Self {
+        // `FontMgr::new()` + `new_from_data` are DirectWrite on Windows.
+        // Serialize with all other font work (reentrant); the prewarm loop
+        // below resolves ~50 glyphs and is likewise locked per call.
+        let (font_mgr, default_typeface) = jian_skia::with_font_lock(|| {
+            let font_mgr = skia_safe::FontMgr::new();
+            let default_typeface = font_mgr.new_from_data(ROBOTO_TTF, None);
+            (font_mgr, default_typeface)
+        });
+        let font_resolver =
+            jian_skia::FontResolver::with_default_typeface(font_mgr, default_typeface);
+        let paragraph_baseline = jian_skia::ParagraphBaseline::new(&font_resolver);
+        let shaped_text = shaped_text::ShapedText::new(&font_resolver);
+        let mut this = Self {
+            skia,
+            dpi,
+            font_resolver,
+            paragraph_baseline,
+            shaped_text,
+            image_cache: std::collections::HashMap::new(),
+            image_cache_bytes: 0,
+            image_cache_tick: 0,
+            raster_generation: 0,
+            thumb_cache: image::ThumbCache::default(),
+            svg_path_cache: std::collections::HashMap::new(),
+            svg_path_cache_order: std::collections::VecDeque::new(),
+            svg_path_cache_bytes: 0,
+            svg_raster_cache: std::collections::HashMap::new(),
+            svg_raster_cache_order: std::collections::VecDeque::new(),
+            dot_point_buffer: Vec::new(),
+            shader_cache: jian_skia::ShaderCache::new(),
+        };
+        // Pre-warm the per-codepoint typeface cache with every CJK
+        // glyph that appears in the chrome (top bar, layer panel,
+        // settings modal, etc.). Without this, the first paint that
+        // touches a previously unseen codepoint pays the cost of a
+        // `FontMgr::match_family_style_character` call — visible to
+        // the user as a stutter the first time a tab is opened.
+        for c in PREWARM_CJK_CODEPOINTS.chars() {
+            let _ = this.typeface_for_char(c, 400);
+        }
+        this
+    }
+
+    /// Convenience constructor for tests and the basic-window demo.
+    pub fn with_dpi(dpi: f32) -> Self {
+        Self::new(jian_skia::SkiaBackend::new(), dpi)
+    }
+
+    /// `SharedSkiaContext` doesn't change the DPI per-frame, so callers
+    /// (e.g. `WindowEvent::ScaleFactorChanged` handler) push it down
+    /// here.
+    pub fn set_dpi(&mut self, dpi: f32) {
+        self.dpi = dpi;
+    }
+
+    /// Logical→physical scale factor (`window.scale_factor()`).
+    pub fn dpi_scale(&self) -> f32 {
+        self.dpi
+    }
+
+    // ── Frame markers ───────────────────────────────────────────────────
+
+    /// Mirrors `RenderBackend::begin_frame`; jian-skia v0.0.1's
+    /// `begin_frame` is a buffer-replay marker that needs a `SkiaSurface`
+    /// — OP holds the GPU surface itself, so this is a no-op. The
+    /// `canvas` argument is kept for API symmetry with the future
+    /// `WithCanvas<'a>` impl.
+    pub fn begin_frame(&mut self, _canvas: &skia_safe::Canvas) {}
+
+    /// Mirrors `RenderBackend::end_frame`. No-op for the same reason as
+    /// `begin_frame`; `SharedSkiaContext::present` flushes + swaps.
+    pub fn end_frame(&mut self, _canvas: &skia_safe::Canvas) {}
+
+    // ── Drawing primitives ──────────────────────────────────────────────
+
+    /// Direct `DrawOp` dispatch — used by callers that already build
+    /// `jian_core::render::DrawOp` (e.g. `jian_host_desktop::scene::collect_draws_with_state`).
+    /// Spec §5.2.1 round 5 CONCERN-R5-2: this is the only public path to
+    /// `self.skia.draw_on_canvas` so `skia` can stay private.
+    #[tracing::instrument(skip_all)]
+    pub fn draw_op(&mut self, canvas: &skia_safe::Canvas, op: &jian_core::render::DrawOp) {
+        self.skia.draw_on_canvas(canvas, op);
+    }
+
+    /// Filled rectangle. Translates `(rect, color)` → `DrawOp::Rect` with
+    /// a solid `Paint`.
+    #[tracing::instrument(skip(self, canvas))]
+    pub fn fill_rect(&mut self, canvas: &skia_safe::Canvas, rect: Rect, color: Color) {
+        // jian-skia multiplies authored colour alpha by `Paint.opacity`.
+        // This bridge has no separate opacity, so leave the paint at 1.0;
+        // copying `color.a` there would square every translucent fill.
+        let paint = jian_core::render::Paint::solid((color).to_jian());
+        let op = jian_core::render::DrawOp::Rect {
+            rect: to_jian_rect(rect),
+            paint,
+        };
+        self.draw_op(canvas, &op);
+    }
+
+    /// Stroked rectangle with a fixed width.
+    #[tracing::instrument(skip(self, canvas))]
+    pub fn stroke_rect(
+        &mut self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        color: Color,
+        width: f32,
+    ) {
+        let paint = jian_core::render::Paint {
+            fill: None,
+            stroke: Some(jian_core::render::StrokeOp {
+                color: (color).to_jian(),
+                width,
+            }),
+            // The stroke colour already carries its authored alpha.
+            opacity: 1.0,
+        };
+        let op = jian_core::render::DrawOp::Rect {
+            rect: to_jian_rect(rect),
+            paint,
+        };
+        self.draw_op(canvas, &op);
+    }
+
+    /// Push a clip region. Spec §5.2.1 / plan Step 14f.
+    pub fn clip_rect(&self, canvas: &skia_safe::Canvas, rect: Rect) {
+        canvas.clip_rect(to_sk_rect(rect), None, None);
+    }
+
+    /// Intersect the clip with a rounded rectangle — `clipContent`
+    /// containers clip children to their rounded corners (TS parity:
+    /// `canvas.clipRRect(..., ClipOp.Intersect, true)`).
+    pub fn clip_round_rect(&self, canvas: &skia_safe::Canvas, rect: Rect, radius: f32) {
+        let rrect = skia_safe::RRect::new_rect_xy(to_sk_rect(rect), radius, radius);
+        canvas.clip_rrect(rrect, skia_safe::ClipOp::Intersect, true);
+    }
+
+    pub fn clip_round_rect_per_corner(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radii: [f32; 4],
+    ) {
+        let vectors = radii.map(|radius| skia_safe::Vector::new(radius, radius));
+        let rrect = skia_safe::RRect::new_rect_radii(to_sk_rect(rect), &vectors);
+        canvas.clip_rrect(rrect, skia_safe::ClipOp::Intersect, true);
+    }
+
+    pub fn clip_oval(&self, canvas: &skia_safe::Canvas, bounds: Rect) {
+        let oval = skia_safe::RRect::new_oval(to_sk_rect(bounds));
+        canvas.clip_rrect(oval, skia_safe::ClipOp::Intersect, true);
+    }
+
+    pub fn clip_polygon(&self, canvas: &skia_safe::Canvas, points: &[Point2D]) {
+        if points.len() < 3 {
+            canvas.clip_rect(to_sk_rect(Rect::ZERO), skia_safe::ClipOp::Intersect, true);
+            return;
+        }
+        let mut builder = skia_safe::PathBuilder::new();
+        builder.move_to((points[0].x, points[0].y));
+        for point in &points[1..] {
+            builder.line_to((point.x, point.y));
+        }
+        builder.close();
+        canvas.clip_path(&builder.detach(), skia_safe::ClipOp::Intersect, true);
+    }
+
+    /// Stroke a single line segment. Step 4 visual lift addition —
+    /// `jian_core::render::DrawOp` lacks a `Line` variant, so this
+    /// bypasses jian and calls `Canvas::draw_line` directly. Same
+    /// shape as `clip_rect`'s direct-canvas pattern. Skia stroke cap
+    /// is set to `Round` so icon endpoints look like the lucide-react
+    /// reference.
+    pub fn stroke_line(
+        &self,
+        canvas: &skia_safe::Canvas,
+        from: Point2D,
+        to: Point2D,
+        color: Color,
+        width: f32,
+    ) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_stroke(true);
+        paint.set_stroke_width(width);
+        paint.set_anti_alias(true);
+        paint.set_stroke_cap(skia_safe::PaintCap::Round);
+        canvas.draw_line((from.x, from.y), (to.x, to.y), &paint);
+    }
+
+    /// Filled rounded rectangle — used for shadcn-style chip / panel /
+    /// button surfaces. Bypasses jian for the same reason as
+    /// `stroke_line`.
+    pub fn fill_round_rect(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radius: f32,
+        color: Color,
+    ) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        // Skia paints aren't AA by default — chip / button edges
+        // come out stair-stepped without this. Same call mirrored
+        // into stroke_round_rect / stroke_line / stroke_svg_path.
+        paint.set_anti_alias(true);
+        canvas.draw_round_rect(to_sk_rect(rect), radius, radius, &paint);
+    }
+
+    pub fn fill_round_rect_per_corner(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radii: [f32; 4],
+        color: Color,
+    ) {
+        let vectors = radii.map(|radius| skia_safe::Vector::new(radius, radius));
+        let rrect = skia_safe::RRect::new_rect_radii(to_sk_rect(rect), &vectors);
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        canvas.draw_rrect(rrect, &paint);
+    }
+
+    /// Drop shadow — a gaussian-blurred filled rounded rectangle.
+    /// `blur` is the CSS-style blur radius (doc-px × zoom, applied
+    /// by the caller); skia's mask-filter takes a sigma, and the
+    /// CSS blur-radius → sigma conversion is `radius / 2`. A zero
+    /// blur degrades to a crisp filled round rect.
+    pub fn fill_drop_shadow(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radius: f32,
+        blur: f32,
+        color: Color,
+    ) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        let sigma = blur * 0.5;
+        if sigma > 0.0 {
+            if let Some(mask) =
+                skia_safe::MaskFilter::blur(skia_safe::BlurStyle::Normal, sigma, false)
+            {
+                paint.set_mask_filter(mask);
+            }
+        }
+        canvas.draw_round_rect(to_sk_rect(rect), radius, radius, &paint);
+    }
+
+    /// Stroked rounded rectangle. Pairs with `fill_round_rect` for
+    /// outlined chips / buttons.
+    pub fn stroke_round_rect(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radius: f32,
+        color: Color,
+        width: f32,
+    ) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_stroke(true);
+        paint.set_stroke_width(width);
+        paint.set_anti_alias(true);
+        canvas.draw_round_rect(to_sk_rect(rect), radius, radius, &paint);
+    }
+
+    pub fn stroke_round_rect_per_corner(
+        &self,
+        canvas: &skia_safe::Canvas,
+        rect: Rect,
+        radii: [f32; 4],
+        color: Color,
+        width: f32,
+    ) {
+        let vectors = radii.map(|radius| skia_safe::Vector::new(radius, radius));
+        let rrect = skia_safe::RRect::new_rect_radii(to_sk_rect(rect), &vectors);
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_stroke(true);
+        paint.set_stroke_width(width);
+        paint.set_anti_alias(true);
+        canvas.draw_rrect(rrect, &paint);
+    }
+
+    /// Filled ellipse inscribed in `bounds`. Uses skia's native
+    /// oval primitive so the curve is properly anti-aliased.
+    pub fn fill_oval(&self, canvas: &skia_safe::Canvas, bounds: Rect, color: Color) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        canvas.draw_oval(to_sk_rect(bounds), &paint);
+    }
+
+    /// Stroked ellipse inscribed in `bounds`.
+    pub fn stroke_oval(&self, canvas: &skia_safe::Canvas, bounds: Rect, color: Color, width: f32) {
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        paint.set_stroke(true);
+        paint.set_stroke_width(width);
+        canvas.draw_oval(to_sk_rect(bounds), &paint);
+    }
+
+    /// Fill a closed polygon outlined by `points`. Builds a fresh
+    /// `Path` per call; cheap for triangles + handful-of-vertex
+    /// shapes.
+    pub fn fill_polygon(&self, canvas: &skia_safe::Canvas, points: &[Point2D], color: Color) {
+        if points.len() < 3 {
+            return;
+        }
+        // skia-safe 0.97 splits path construction onto `PathBuilder`;
+        // `Path::new()` itself is immutable for traversal.
+        let mut builder = skia_safe::PathBuilder::new();
+        builder.move_to((points[0].x, points[0].y));
+        for p in &points[1..] {
+            builder.line_to((p.x, p.y));
+        }
+        builder.close();
+        let path = builder.detach();
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        canvas.draw_path(&path, &paint);
+    }
+
+    /// Stroke a closed polygon as ONE antialiased path with round joins.
+    /// The trait default walks the edges as separate line segments, so every
+    /// vertex of a densely-sampled arc (the pencil cursor's rim) showed a
+    /// notch where two caps butted together and the rim's width visibly
+    /// wobbled — the jaggies the cursor outline was reported for.
+    pub fn stroke_polygon(
+        &self,
+        canvas: &skia_safe::Canvas,
+        points: &[Point2D],
+        color: Color,
+        width: f32,
+    ) {
+        if points.len() < 2 {
+            return;
+        }
+        let mut builder = skia_safe::PathBuilder::new();
+        builder.move_to((points[0].x, points[0].y));
+        for p in &points[1..] {
+            builder.line_to((p.x, p.y));
+        }
+        builder.close();
+        let path = builder.detach();
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        paint.set_stroke(true);
+        paint.set_stroke_width(width);
+        paint.set_stroke_join(skia_safe::PaintJoin::Round);
+        paint.set_stroke_cap(skia_safe::PaintCap::Round);
+        canvas.draw_path(&path, &paint);
+    }
+
+    /// Fill a batch of identical round dots in one draw call.
+    /// `PointMode::Points` with a round stroke cap paints each point
+    /// as a filled circle of diameter `2 * radius` — so the canvas
+    /// grid (~1000+ dots on a full viewport) costs a single batched
+    /// skia op per frame instead of one `draw_round_rect` per dot.
+    pub fn fill_dots(
+        &mut self,
+        canvas: &skia_safe::Canvas,
+        centers: &[Point2D],
+        radius: f32,
+        color: Color,
+    ) {
+        if centers.is_empty() {
+            return;
+        }
+        let mut paint = skia_safe::Paint::new(jian_color_to_color4f(color), None);
+        paint.set_anti_alias(true);
+        paint.set_stroke(true);
+        paint.set_stroke_cap(skia_safe::PaintCap::Round);
+        paint.set_stroke_width(radius * 2.0);
+        let pts = self.prepare_dot_points(centers);
+        canvas.draw_points(skia_safe::canvas::PointMode::Points, pts, &paint);
+    }
+
+    fn prepare_dot_points(&mut self, centers: &[Point2D]) -> &[skia_safe::Point] {
+        self.dot_point_buffer.clear();
+        self.dot_point_buffer.reserve(centers.len());
+        self.dot_point_buffer
+            .extend(centers.iter().map(|c| skia_safe::Point::new(c.x, c.y)));
+        &self.dot_point_buffer
+    }
+
+    /// Save the current canvas state. Returns the save count so
+    /// `restore_to` can pop back to it. (`Canvas::save` returns the
+    /// pre-save count; we pass it through.)
+    pub fn save(&self, canvas: &skia_safe::Canvas) -> usize {
+        canvas.save()
+    }
+
+    /// Begin a Gaussian-blur layer: draws until the matching
+    /// `restore` are captured into an offscreen layer and blurred by
+    /// `sigma` px on restore (Figma "Layer blur"). A non-positive
+    /// sigma degrades to a plain `save`.
+    pub fn push_blur_layer(&self, canvas: &skia_safe::Canvas, sigma: f32) {
+        if sigma <= 0.0 {
+            canvas.save();
+            return;
+        }
+        let filter =
+            skia_safe::image_filters::blur((sigma, sigma), skia_safe::TileMode::Decal, None, None);
+        let mut paint = skia_safe::Paint::default();
+        paint.set_anti_alias(true);
+        if let Some(f) = filter {
+            paint.set_image_filter(f);
+        }
+        let rec = skia_safe::canvas::SaveLayerRec::default().paint(&paint);
+        canvas.save_layer(&rec);
+    }
+
+    /// Begin a layer initialized from a Gaussian-filtered copy of the
+    /// already-painted canvas. The caller establishes the node clip
+    /// before this call and balances the layer with `restore`.
+    pub fn push_backdrop_blur_layer(&self, canvas: &skia_safe::Canvas, sigma: f32) {
+        if sigma <= 0.0 {
+            canvas.save();
+            return;
+        }
+        let Some(filter) =
+            skia_safe::image_filters::blur((sigma, sigma), skia_safe::TileMode::Clamp, None, None)
+        else {
+            canvas.save();
+            return;
+        };
+        let rec = skia_safe::canvas::SaveLayerRec::default()
+            .backdrop(&filter)
+            .backdrop_tile_mode(skia_safe::TileMode::Clamp);
+        canvas.save_layer(&rec);
+    }
+
+    /// Pop the most recent save.
+    pub fn restore(&self, canvas: &skia_safe::Canvas) {
+        canvas.restore();
+    }
+
+    /// Restore the canvas state stack down to a specific count returned
+    /// by [`save`]. Mirrors `Canvas::restore_to_count`.
+    pub fn restore_to(&self, canvas: &skia_safe::Canvas, count: usize) {
+        canvas.restore_to_count(count);
+    }
+
+    /// Translate the current canvas matrix.
+    pub fn translate(&self, canvas: &skia_safe::Canvas, offset: Point2D) {
+        canvas.translate((offset.x, offset.y));
+    }
+
+    /// Scale the current canvas matrix around `pivot`.
+    pub fn scale(&self, canvas: &skia_safe::Canvas, scale: Point2D, pivot: Point2D) {
+        canvas.translate((pivot.x, pivot.y));
+        canvas.scale((scale.x, scale.y));
+        canvas.translate((-pivot.x, -pivot.y));
+    }
+
+    /// Rotate the current canvas matrix `radians` clockwise about
+    /// `pivot`. Skia's `rotate_with_pivot` takes degrees, so the
+    /// conversion happens here.
+    pub fn rotate(&self, canvas: &skia_safe::Canvas, radians: f32, pivot: Point2D) {
+        let degrees = radians.to_degrees();
+        canvas.rotate(degrees, Some(skia_safe::Point::new(pivot.x, pivot.y)));
+    }
+
+    /// No-op; surface resize is owned by `SharedSkiaContext::resize`.
+    pub fn resize(&mut self, _width: u32, _height: u32) {}
+}
+
+/// Enumerate every installed font family via Skia's `FontMgr` —
+/// feeds the property panel's font-family picker (the native
+/// counterpart of the browser Local Font Access API the TS
+/// `use-system-fonts.ts` hook queries). Names come back in manager
+/// order; the caller sorts / dedupes.
+pub fn enumerate_system_font_families() -> Vec<String> {
+    // `FontMgr::new()` + family enumeration is DirectWrite on Windows;
+    // serialize with all other font work (reentrant).
+    jian_skia::with_font_lock(|| {
+        let mgr = skia_safe::FontMgr::new();
+        let count = mgr.count_families();
+        let mut out = Vec::with_capacity(count);
+        for i in 0..count {
+            let name = mgr.family_name(i);
+            if !name.trim().is_empty() {
+                out.push(name);
+            }
+        }
+        out
+    })
+}
+
+/// Return authored family names the system manager can resolve, even when
+/// they are absent from [`enumerate_system_font_families`].
+///
+/// Skia explicitly allows `match_family` to expose hidden or auto-activated
+/// families that `count_families` cannot enumerate. Missing-font detection
+/// must therefore use this resolver boundary instead of guessing aliases from
+/// similar names or shared font files.
+pub fn resolvable_system_font_families(candidates: &[String]) -> Vec<String> {
+    jian_skia::with_font_lock(|| {
+        let mgr = skia_safe::FontMgr::new();
+        candidates
+            .iter()
+            .filter(|family| !family.contains('\0'))
+            .filter(|family| {
+                let mut styles = mgr.match_family(family);
+                styles.count() > 0
+            })
+            .cloned()
+            .collect()
+    })
+}
+
+#[cfg(test)]
+#[path = "skia/tests.rs"]
+mod tests;
+
+#[cfg(test)]
+#[path = "skia/image_thumb_tests.rs"]
+mod image_thumb_tests;
+
+#[cfg(test)]
+#[path = "skia/font_fallback_tests.rs"]
+mod font_fallback_tests;
+
+#[cfg(test)]
+#[path = "skia/complex_script_tests.rs"]
+mod complex_script_tests;
+
+// Gated off Windows: exercises `jian_skia::register_imported_font` (skia
+// `FontMgr::new_from_data`, DirectWrite on Windows) from parallel test-worker
+// threads, which segfaults in Windows CI. Production resolves fonts on the
+// main render thread; macOS + Linux keep the coverage.
+#[cfg(all(test, not(target_os = "windows")))]
+#[path = "skia/font_import_tests.rs"]
+mod font_import_tests;

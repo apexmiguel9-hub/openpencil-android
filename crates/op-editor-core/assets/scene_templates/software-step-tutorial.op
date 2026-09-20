@@ -1,0 +1,797 @@
+{
+  "version": "1.0.0",
+  "name": "软件操作步骤卡 · 4:5 单卡",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#14171A"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#1D2126"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#262C33"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#3A424B"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#F3F6F8"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#9AA6B0"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#35D6A4"
+    },
+    "c-accent-ink": {
+      "type": "color",
+      "value": "#08231B"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "软件操作步骤卡",
+      "width": 1080,
+      "height": 1350,
+      "layout": "vertical",
+      "padding": [
+        64,
+        72
+      ],
+      "gap": 32,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "档位标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                20
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "档位文字",
+                  "content": "操作教程 · 共 3 步",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "三步把设计稿\n导成能直接发的图",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.2,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "菜单藏得深，记住下面这条路径就够了。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f15",
+          "name": "菜单路径条",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 12,
+          "alignItems": "center",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-panel"
+            }
+          ],
+          "padding": [
+            16,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f7",
+              "name": "路径段",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                12,
+                22
+              ],
+              "cornerRadius": 10,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-panel"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t8",
+                  "name": "路径段文字",
+                  "content": "文件",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "i9",
+              "name": "路径分隔",
+              "iconFontName": "chevron-right",
+              "width": 22,
+              "height": 22,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f10",
+              "name": "路径段",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                12,
+                22
+              ],
+              "cornerRadius": 10,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-panel"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t11",
+                  "name": "路径段文字",
+                  "content": "导出为",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "icon_font",
+              "id": "i12",
+              "name": "路径分隔",
+              "iconFontName": "chevron-right",
+              "width": 22,
+              "height": 22,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f13",
+              "name": "路径段",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                12,
+                22
+              ],
+              "cornerRadius": 10,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t14",
+                  "name": "路径段文字",
+                  "content": "PNG · 2x",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ],
+          "cornerRadius": 16,
+          "stroke": {
+            "thickness": 2,
+            "fill": [
+              {
+                "type": "solid",
+                "color": "$c-line"
+              }
+            ]
+          }
+        },
+        {
+          "type": "frame",
+          "id": "f16",
+          "name": "截图占位",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "alignItems": "center",
+          "justifyContent": "center",
+          "cornerRadius": 20,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-card"
+            }
+          ],
+          "stroke": {
+            "thickness": 2,
+            "fill": [
+              {
+                "type": "solid",
+                "color": "$c-line"
+              }
+            ]
+          },
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "i17",
+              "name": "占位图标",
+              "iconFontName": "image",
+              "width": 56,
+              "height": 56,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t18",
+              "name": "占位标题",
+              "content": "把导出面板的截图拖进来",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 30,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.35,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "textAlign": "center"
+            },
+            {
+              "type": "text",
+              "id": "t19",
+              "name": "占位规格",
+              "content": "占位比例 2.4:1，导出前记得关掉通知",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "textAlign": "center"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f38",
+          "name": "步骤区",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 18,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f25",
+              "name": "步骤",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f20",
+                  "name": "序号底",
+                  "width": 48,
+                  "height": 48,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 12,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t21",
+                      "name": "序号",
+                      "content": "1",
+                      "fontFamily": "Inter",
+                      "fontSize": 26,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f24",
+                  "name": "步骤文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t22",
+                      "name": "步骤标题",
+                      "content": "先把画板选中，再打开导出",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t23",
+                      "name": "步骤说明",
+                      "content": "没选中画板时导出的是整个画布，边上会多出一圈空白。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f31",
+              "name": "步骤",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "序号底",
+                  "width": 48,
+                  "height": 48,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 12,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t27",
+                      "name": "序号",
+                      "content": "2",
+                      "fontFamily": "Inter",
+                      "fontSize": 26,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f30",
+                  "name": "步骤文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t28",
+                      "name": "步骤标题",
+                      "content": "倍数选 2x，格式选 PNG",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t29",
+                      "name": "步骤说明",
+                      "content": "1x 发出去在手机上发虚；JPG 会把文字边缘压出灰边。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f37",
+              "name": "步骤",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f32",
+                  "name": "序号底",
+                  "width": 48,
+                  "height": 48,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 12,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t33",
+                      "name": "序号",
+                      "content": "3",
+                      "fontFamily": "Inter",
+                      "fontSize": 26,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f36",
+                  "name": "步骤文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t34",
+                      "name": "步骤标题",
+                      "content": "勾掉「包含背景」再导",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t35",
+                      "name": "步骤说明",
+                      "content": "留白交给发布平台去铺，导出时带底色会和它的底打架。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f41",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "fill": [],
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "id": "t39",
+              "name": "账号名",
+              "content": "@ 你的账号名",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "text",
+              "id": "t40",
+              "name": "用法提示",
+              "content": "深色块是图片位，直接把截图拖上去",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 22,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

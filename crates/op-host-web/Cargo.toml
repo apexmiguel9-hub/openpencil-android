@@ -1,0 +1,196 @@
+[package]
+name = "op-host-web"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil web host — wasm32-unknown-unknown web bundle entry (Step 1b §1.2, C-hard pipeline)"
+
+[lib]
+name = "op_host_web"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Pure-Rust font metadata parser — the vendored CanvasKit build exposes no
+# family-name introspection (no Typeface.getFamilyName / FontMgr family APIs),
+# so an imported font's family is extracted here (wasm-safe, unit-testable)
+# rather than in JS. See `font_meta`.
+ttf-parser = "0.25"
+# Phase 7.3 reorg: openpencil-shell-core dissolved — widget facade /
+# theme / layout scene / scene vars / render-backend / gesture types
+# all resolve through the op-editor-ui crate.
+op-editor-ui = { path = "../op-editor-ui", features = ["runtime-icon-catalog"] }
+# Reorg: the web host owns an `op_editor_core::EditorState` as its
+# single source of truth; `op-pen-loader` bridges it into the
+# read-only paint `Document` the shared widgets consume.
+#
+# op-editor-core is non-optional: it is wasm32-clean and already always
+# compiled through the unconditional op-editor-ui dep, and the baseline
+# `daemon_base` module reads its shared MCP-port/daemon-origin consts.
+op-editor-core = { path = "../op-editor-core" }
+
+# The canonical collaboration id grammar. Dependency-free and wasm32-clean —
+# the push gate parses namespaced ids with it rather than matching prefixes.
+op-util = { path = "../op-util" }
+# These stay optional and are pulled only by `canvaskit`, so the wasm32-clean
+# stub baseline (`--no-default-features --features web`) never compiles the
+# full editor pipeline. `op-pen-loader` disables `skia-measure` below; the web
+# shell uses CanvasKit/browser text measurement instead of the native Skia
+# measurement path.
+op-editor-host-core = { path = "../op-editor-host-core", optional = true, default-features = false }
+# default-features = false drops `skia-measure` for the browser bundle.
+op-pen-loader = { path = "../op-pen-loader", optional = true, default-features = false }
+# Web AI/codegen foundation. Optional + behind `canvaskit`, so the wasm32-clean
+# stub baseline never compiles it. End-to-end browser AI still depends on the
+# desktop daemon routes; unit tests cover the pure SSE parsing and bundle checks
+# cover wasm linkability.
+op-codegen = { path = "../op-codegen", features = ["ai"], optional = true }
+# P5 web codegen session: `build_codegen_input` resolves the selection into
+# `PenNode` subtrees (jian-ops-schema), serializes them (serde_json), and
+# constructs the pipeline `CodegenInput` whose param enums come from op-ai.
+# All optional + behind `canvaskit` so the wasm32-clean stub baseline never
+# pulls them.
+op-ai = { path = "../op-ai", optional = true }
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema", optional = true }
+serde = { workspace = true, features = ["derive"], optional = true }
+serde_json = { workspace = true, optional = true }
+# Browser file-IO P0: Figma `.fig` parsing + clipboard-HTML decoding for the
+# web shell. Pure-Rust (flate2/miniz_oxide + ruzstd + base64 — wasm32-clean,
+# no C toolchain), so the same crate the desktop host uses compiles for the
+# browser bundle. Optional + behind `canvaskit` with the rest of the document
+# pipeline deps so the wasm32-clean stub baseline never pulls it.
+op-figma = { path = "../op-figma", optional = true }
+op-html = { path = "../op-html" }
+# Step 1b §3.6: handwritten DOM mirror consumes accesskit::TreeUpdate (0.24).
+accesskit = "0.24"
+console_error_panic_hook = "0.1"
+js-sys = "0.3"
+base64 = "0.22"
+url = "2"
+# CanvasKit FFI: await the async CanvasKitInit() promise from Rust.
+wasm-bindgen-futures = { version = "0.4", optional = true }
+# Phase C1 DOM event mappers build `jian_core::gesture::WheelEvent` etc
+# whose position/delta fields use `jian_core::geometry::Point`. The
+# `geometry` module is not re-exported by shell-core (which only
+# re-exports `gesture::*`), so pull jian-core directly. Same path-with-
+# version pattern as shell-core's own jian-core dep.
+jian-core = { path = "../../vendor/jian/crates/jian-core", version = "0.0.1" }
+# Canvas Preview (Play) mode runtime — jian runtime integration, hit-testing
+# overlay, app-mode routing. Preview enters with CkMeasure as the text-measurement
+# backend, keeping layout in sync with the design canvas's CanvasKit rendering.
+op-preview-core = { path = "../op-preview-core" }
+# Preview device-switcher segment labels use the same i18n keys as the
+# native host so both shells read identically.
+op-i18n = { path = "../op-i18n" }
+# Pin to the reviewed wasm-bindgen CLI used by release workflows; the crate and
+# CLI must move together rather than floating independently.
+wasm-bindgen = "=0.2.117"
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "Blob",
+  "BlobPropertyBag",
+  "CanvasRenderingContext2d",
+  "Clipboard",
+  # Browser file-IO P0 (paste / drag-drop / hidden file input): the
+  # ClipboardEvent / DataTransfer / DragEvent / File* / HtmlInputElement
+  # bindings below are only *called* from the `canvaskit`-gated dom_io glue,
+  # but web-sys feature flags are compile-time binding toggles — they keep
+  # the `web` stub baseline compiling unchanged.
+  "ClipboardEvent",
+  "CompositionEvent",
+  "console",
+  "DataTransfer",
+  "DataTransferItem",
+  "DataTransferItemList",
+  "Document",
+  "DomRect",
+  "DragEvent",
+  "Element",
+  "Event",
+  "EventTarget",
+  # `EventSource` — the daemon's SSE channel (`GET /api/mcp/events`). It is a
+  # latency accelerator over the existing version poll, never a replacement:
+  # the poll stays armed so a proxy that buffers SSE, or a dropped stream,
+  # degrades to the old cadence instead of going silent.
+  "EventSource",
+  "File",
+  "FileList",
+  "FileReader",
+  "FocusEvent",
+  "HtmlAnchorElement",
+  "HtmlCanvasElement",
+  "HtmlElement",
+  "HtmlInputElement",
+  # IndexedDB persistence for user-imported fonts (Phase 4, font_store_idb).
+  # Compile-time binding toggles only — the `web` stub baseline stays green.
+  "IdbDatabase",
+  "IdbFactory",
+  # `beforeinput` on the hidden IME capture input — the only path that sees
+  # IME output which never opens a composition (CJK punctuation).
+  "InputEvent",
+  "IdbObjectStore",
+  "IdbOpenDbRequest",
+  "IdbRequest",
+  "IdbTransaction",
+  "IdbTransactionMode",
+  "ImageData",
+  "KeyboardEvent",
+  # `daemon_base` derives the daemon origin from `window.location`.
+  "Location",
+  # postMessage bridge (`vscode_bridge`): the window `message` listener reads
+  # `MessageEvent::{data,origin,source}`.
+  "MessageEvent",
+  "MouseEvent",
+  "Navigator",
+  "Performance",
+  "PointerEvent",
+  "ProgressEvent",
+  "Storage",
+  "TextMetrics",
+  "Url",
+  "WheelEvent",
+  "Window",
+  # Used only by the (opt-in) `live-sync` glue to poll the web-canvas daemon.
+  "XmlHttpRequest",
+  "XmlHttpRequestEventTarget",
+  # ArrayBuffer responses for the runtime-fetched product assets (preview
+  # JPEGs); `response_text` would mangle binary bodies.
+  "XmlHttpRequestResponseType",
+]
+
+[features]
+# `web` keeps the kickoff §1.2 wasm32-unknown-unknown CI baseline green —
+# the crate compile-checks as a wasm32-clean stub without pulling skia.
+default = ["web"]
+web = []
+# `canvaskit` renders the Rust web shell through the official CanvasKit skia
+# WASM artifact (no embedded skia-safe, no libc/GL shim). The backend calls
+# CanvasKit via the `op_ck_bridge.js` FFI; all widget/draw logic stays in Rust.
+canvaskit = [
+  "dep:wasm-bindgen-futures",
+  "dep:op-pen-loader",
+  "dep:jian-ops-schema",
+  "dep:serde",
+  # Web integration modules absorbed from the codegen/skia path: AI chat
+  # streaming (web_chat/web_ai_transport), live-sync, codegen, Figma/file IO.
+  # All are pure web_sys/serde logic — no skia-safe.
+  "dep:serde_json",
+  "dep:op-figma",
+  # Codegen pipeline (codegen_web/codegen_bundle) — pure AI/code-generation
+  # logic crates, no skia.
+  "dep:op-codegen",
+  "dep:op-ai",
+  "dep:op-editor-host-core",
+  "op-editor-host-core/chat",
+  "op-editor-host-core/codegen",
+]
+# (Retired 2026-06-17: the skia raster WebBackend (`skia`) + its codegen/AI
+# (`codegen`) and live-sync (`live-sync`) supersets, plus the from-scratch
+# WebGL2 Ganesh backend (`webgl`) + gl-webgl-shim. CanvasKit is the only web
+# renderer now; all their functionality was absorbed into `canvaskit` and the
+# skia-only raster modules were deleted. `skia-safe` reverted to upstream
+# crates.io — it has no wasm32-unknown-unknown target, so a wasm skia build is
+# no longer possible regardless.)

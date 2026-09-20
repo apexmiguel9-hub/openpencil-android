@@ -1,0 +1,18 @@
+[package]
+name = "op-design-lint"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil design diagnostics — pure detectors + fixes over jian PenDocument"
+
+[lib]
+name = "op_design_lint"
+path = "src/lib.rs"
+
+[dependencies]
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+# Canonical hex-color parsing (dependency-free, wasm-clean).
+op-util = { path = "../op-util" }
+serde = { workspace = true }
+serde_json = { workspace = true }

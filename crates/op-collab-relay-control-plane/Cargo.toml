@@ -1,0 +1,25 @@
+[package]
+name = "op-collab-relay-control-plane"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "MIT"
+repository.workspace = true
+description = "Open, HSM-ready locator issuance core for OpenPencil collaboration relay"
+
+[dependencies]
+getrandom = "0.3"
+op-auth-bridge = { path = "../op-auth-bridge" }
+op-collab-relay-protocol = { path = "../op-collab-relay-protocol" }
+reqwest = { version = "0.12", default-features = false, features = [
+  "blocking",
+  "rustls-tls",
+] }
+subtle = "2.6"
+thiserror = { workspace = true }
+url = "2"
+zeroize = "1"
+
+[dev-dependencies]
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+op-auth-bridge = { path = "../op-auth-bridge", features = ["test-issuer"] }

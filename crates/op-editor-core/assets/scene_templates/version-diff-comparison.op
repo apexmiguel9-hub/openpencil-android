@@ -1,0 +1,1001 @@
+{
+  "version": "1.0.0",
+  "name": "新旧版本变化",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#EEF2F1"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#DCE4E2"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#C7D2CF"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#0C1817"
+    },
+    "c-deep": {
+      "type": "color",
+      "value": "#1D3733"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#465F5B"
+    },
+    "c-faint": {
+      "type": "color",
+      "value": "#7C918D"
+    },
+    "c-inv-muted": {
+      "type": "color",
+      "value": "#9CB0AC"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "新旧版本变化",
+      "width": 1080,
+      "height": 1080,
+      "layout": "vertical",
+      "padding": [
+        56,
+        64
+      ],
+      "gap": 36,
+      "justifyContent": "space_between",
+      "alignItems": "start",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f10",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f7",
+              "name": "版本行",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f2",
+                  "name": "版本徽记",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    9,
+                    20
+                  ],
+                  "cornerRadius": 8,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-line"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t3",
+                      "name": "版本号",
+                      "content": "v1.4",
+                      "fontFamily": "Inter",
+                      "fontSize": 26,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i4",
+                  "name": "版本箭头",
+                  "iconFontName": "arrow-right",
+                  "width": 26,
+                  "height": 26,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f5",
+                  "name": "版本徽记",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    9,
+                    20
+                  ],
+                  "cornerRadius": 8,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t6",
+                      "name": "版本号",
+                      "content": "v2.0",
+                      "fontFamily": "Inter",
+                      "fontSize": 26,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t8",
+              "name": "主标题",
+              "content": "这版改了什么",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t9",
+              "name": "副标题",
+              "content": "五处能被立刻用上的变化，深色那一半是现在的样子。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f46",
+          "name": "变更列表",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 14,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f17",
+              "name": "变更行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t11",
+                  "name": "类别",
+                  "content": "首页加载",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 168
+                },
+                {
+                  "type": "frame",
+                  "id": "f12",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "取值文字",
+                      "content": "3.4 秒",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i14",
+                  "name": "变为",
+                  "iconFontName": "arrow-right",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f15",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t16",
+                      "name": "取值文字",
+                      "content": "0.9 秒",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f24",
+              "name": "变更行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t18",
+                  "name": "类别",
+                  "content": "导航层级",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 168
+                },
+                {
+                  "type": "frame",
+                  "id": "f19",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t20",
+                      "name": "取值文字",
+                      "content": "三层菜单",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i21",
+                  "name": "变为",
+                  "iconFontName": "arrow-right",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f22",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t23",
+                      "name": "取值文字",
+                      "content": "一层直达",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f31",
+              "name": "变更行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t25",
+                  "name": "类别",
+                  "content": "深色模式",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 168
+                },
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t27",
+                      "name": "取值文字",
+                      "content": "没有",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i28",
+                  "name": "变为",
+                  "iconFontName": "arrow-right",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f29",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t30",
+                      "name": "取值文字",
+                      "content": "跟随系统",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f38",
+              "name": "变更行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t32",
+                  "name": "类别",
+                  "content": "导出格式",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 168
+                },
+                {
+                  "type": "frame",
+                  "id": "f33",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t34",
+                      "name": "取值文字",
+                      "content": "只有 PNG",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i35",
+                  "name": "变为",
+                  "iconFontName": "arrow-right",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f36",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t37",
+                      "name": "取值文字",
+                      "content": "还能存 PDF",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f45",
+              "name": "变更行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t39",
+                  "name": "类别",
+                  "content": "免费额度",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 168
+                },
+                {
+                  "type": "frame",
+                  "id": "f40",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t41",
+                      "name": "取值文字",
+                      "content": "10 次 / 月",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "icon_font",
+                  "id": "i42",
+                  "name": "变为",
+                  "iconFontName": "arrow-right",
+                  "width": 24,
+                  "height": 24,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-faint"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f43",
+                  "name": "取值",
+                  "width": "fill_container",
+                  "height": 64,
+                  "layout": "horizontal",
+                  "padding": [
+                    0,
+                    22
+                  ],
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t44",
+                      "name": "取值文字",
+                      "content": "50 次 / 月",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f51",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink"
+            }
+          ],
+          "padding": [
+            32,
+            32
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t47",
+              "name": "结语",
+              "content": "另有六项小修复，都写在更新日志里。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 29,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "lineHeight": 1.3,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f50",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t48",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 25,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t49",
+                  "name": "更新说明",
+                  "content": "每次发版都出一张",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

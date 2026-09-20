@@ -1,0 +1,438 @@
+{
+  "version": "1.0.0",
+  "name": "金句卡 · 大字报 3:4",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#131110"
+    },
+    "c-surface": {
+      "type": "color",
+      "value": "#1E1B19"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#B5ADA2"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#FFE04D"
+    },
+    "c-border": {
+      "type": "color",
+      "value": "#33302C"
+    },
+    "c-glow": {
+      "type": "color",
+      "value": "#FFE04D22"
+    },
+    "c-glow-out": {
+      "type": "color",
+      "value": "#FFE04D00"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f21",
+      "name": "金句卡 · 大字报",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f1",
+          "name": "金句卡 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            88
+          ],
+          "gap": 0,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f5",
+              "name": "卡头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 30,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f2",
+                  "name": "标签",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    12,
+                    26
+                  ],
+                  "gap": 0,
+                  "cornerRadius": 999,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t3",
+                      "name": "标签文字",
+                      "content": "反常识 · 03",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-bg"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t4",
+                  "name": "主标题",
+                  "content": "你不是没时间\n你是没开始",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 120,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.15,
+                  "letterSpacing": -2,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f9",
+              "name": "主张",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 30,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f6",
+                  "name": "标语条",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    18,
+                    36
+                  ],
+                  "gap": 0,
+                  "cornerRadius": 14,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t7",
+                      "name": "标语文字",
+                      "content": "先做五分钟",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 88,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-bg"
+                        }
+                      ],
+                      "lineHeight": 1.25,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t8",
+                  "name": "说明",
+                  "content": "把「等我准备好」换成「我先做五分钟」。\n剩下的事，会在做的过程里自己长出来。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 40,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f17",
+              "name": "署名",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 26,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r16",
+                  "name": "分隔线",
+                  "width": "fill_container",
+                  "height": 3,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-border"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f15",
+                  "name": "署名行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f10",
+                      "name": "头像占位",
+                      "width": 84,
+                      "height": 84,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 42,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t11",
+                          "name": "头像文字",
+                          "content": "笔",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f14",
+                      "name": "署名文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t12",
+                          "name": "账号名",
+                          "content": "@ 你的账号名",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 36,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t13",
+                          "name": "一句话简介",
+                          "content": "每周一句，只讲能立刻用上的那种",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f22",
+          "name": "金句卡 · 大字报 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r18",
+              "name": "光晕",
+              "width": 940,
+              "height": 940,
+              "cornerRadius": 470,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 560,
+              "y": 900
+            },
+            {
+              "type": "rectangle",
+              "id": "r19",
+              "name": "光晕",
+              "width": 720,
+              "height": 720,
+              "cornerRadius": 360,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -240,
+              "y": -200,
+              "opacity": 0.9
+            },
+            {
+              "type": "rectangle",
+              "id": "r20",
+              "name": "落地线",
+              "width": 1080,
+              "height": 20,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "x": 0,
+              "y": 1420
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

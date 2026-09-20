@@ -1,0 +1,29 @@
+[package]
+name = "op-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil `op` CLI — drives the editor via the HTTP MCP transport"
+
+# The binary is `op` (the command users type); the crate is `op-cli`.
+[[bin]]
+name = "op"
+path = "src/main.rs"
+
+[dependencies]
+base64 = "0.22"
+op-ai-skills = { path = "../op-ai-skills" }
+op-config-store = { path = "../op-config-store" }
+# Shared MCP defaults (port + local endpoint URL helpers). Already in the
+# build graph transitively via op-pen-loader, so this adds no new crates.
+op-editor-core = { path = "../op-editor-core" }
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+op-figma = { path = "../op-figma" }
+op-html = { path = "../op-html" }
+op-pen-loader = { path = "../op-pen-loader", default-features = false }
+op-process-io = { path = "../op-process-io" }
+op-rpc-transport = { path = "../op-rpc-transport" }
+# Canonical JSON string escaping (dependency-free).
+op-util = { path = "../op-util" }
+serde_json = { workspace = true }

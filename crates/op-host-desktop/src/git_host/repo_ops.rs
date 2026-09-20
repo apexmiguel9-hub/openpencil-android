@@ -1,0 +1,508 @@
+//! Repository lifecycle actions on `DesktopApp` — hunk staging,
+//! document reload, branch merge + resolution, SSH / HTTPS credential
+//! setup, repo init / open / clone, and the Git error dialogs. Carved
+//! out of the `git_host.rs` spine to keep it under the 800-line cap;
+//! pure code motion.
+
+use crate::{git_jobs, persistence, DesktopApp};
+
+use super::auth_error::GitAuthError;
+use super::{build_hunk_patch, build_merge_resolve, merge_conflict_detail};
+
+impl DesktopApp {
+    /// Stage one hunk of the open file diff — `git apply --cached`
+    /// of a patch built from the diff view's lines (the file header
+    /// plus the chosen hunk). The file's diff is then re-fetched so
+    /// the staged hunk drops out of the (unstaged) view.
+    pub(super) fn stage_diff_hunk(&mut self, path: &str, hunk_index: usize) {
+        let lines = match &self.host.editor_state().editor_ui.git_panel.diff {
+            Some(view) => view.lines.clone(),
+            None => return,
+        };
+        let Some(patch) = build_hunk_patch(&lines, hunk_index) else {
+            return;
+        };
+        match self.git_session.repo() {
+            Some(repo) => {
+                if let Err(err) = repo.apply_cached(&patch) {
+                    eprintln!("openpencil-desktop: stage hunk failed: {err}");
+                    return;
+                }
+            }
+            None => return,
+        }
+        // Re-fetch the file diff so the now-staged hunk drops out.
+        if let Some(repo) = self.git_session.repo().cloned() {
+            let locale = self.host.editor_state().editor_ui.locale;
+            self.git_diff_job = Some(git_jobs::GitDiffJob::spawn(
+                repo,
+                op_editor_core::GitDiffTarget::Path(path.to_string()),
+                locale,
+            ));
+        }
+    }
+
+    /// Reload the tracked document from disk after a git op rewrote
+    /// it, marking the in-memory state as saved.
+    pub(crate) fn reload_tracked_document(&mut self) {
+        // Re-check at the final in-memory replacement sink. Synchronous Git
+        // actions already gate before touching the worktree; this second
+        // check also fails closed if an async pull somehow outlives a role /
+        // phase transition.
+        if !self.collaboration_allows_git_worktree_rewrite() {
+            return;
+        }
+        if let Some(path) = self.current_path.clone() {
+            if persistence::open_path(
+                &mut self.host,
+                path,
+                &mut self.current_path,
+                self.window.as_ref(),
+            ) {
+                self.mark_document_saved();
+            }
+        }
+    }
+
+    /// Merge `other` into the current branch through the isolated
+    /// worktree orchestrator (`op_git::merge_branch_isolated`).
+    ///
+    /// A clean merge advances the live branch — the document is
+    /// reloaded from disk. A conflict whose files are all structured
+    /// `.op` documents opens the interactive resolution view; any
+    /// other conflict is reported in a dialog.
+    pub(super) fn run_branch_merge(&mut self, other: &str) {
+        // A clean merge reloads the document — confirm first so the
+        // reload cannot silently discard unsaved in-memory edits.
+        if !self.collaboration_allows_git_worktree_rewrite() || !self.confirm_document_reload() {
+            return;
+        }
+        let Some(result) = self.git_session.merge_branch(other) else {
+            return;
+        };
+        let locale = self.host.editor_state().editor_ui.locale;
+        match result {
+            Ok(report) if report.outcome == op_git::MergeOutcome::Conflict => {
+                match build_merge_resolve(other, &report.conflicts, locale) {
+                    // Every conflicted file is a structured `.op` —
+                    // open the per-node resolution view.
+                    Some(state) => {
+                        self.host
+                            .editor_state_mut()
+                            .editor_ui
+                            .git_panel
+                            .merge_resolve = Some(state);
+                    }
+                    None => self.show_merge_conflict_dialog(other, &report.conflicts),
+                }
+            }
+            Ok(_) => {
+                // Clean merge / fast-forward / already-up-to-date —
+                // the live branch advanced on disk; reload it.
+                self.reload_tracked_document();
+            }
+            Err(err) => {
+                eprintln!("openpencil-desktop: git merge of {other} failed: {err}");
+            }
+        }
+        self.refresh_git_panel();
+        self.host.mark_editor_state_dirty();
+        self.request_redraw(true);
+    }
+
+    /// Re-run the branch merge with the per-node ours/theirs choices
+    /// the user picked in the resolution view (drained from
+    /// `git_panel.merge_resolve`). A clean re-run completes the merge
+    /// and reloads the document.
+    pub(super) fn apply_merge_resolution(&mut self) {
+        if !self.collaboration_allows_git_worktree_rewrite() {
+            return;
+        }
+        let Some(state) = self
+            .host
+            .editor_state_mut()
+            .editor_ui
+            .git_panel
+            .merge_resolve
+            .take()
+        else {
+            return;
+        };
+        // The completed merge reloads the document — confirm first.
+        if !self.confirm_document_reload() {
+            // Declined — restore the resolution view untouched.
+            self.host
+                .editor_state_mut()
+                .editor_ui
+                .git_panel
+                .merge_resolve = Some(state);
+            return;
+        }
+        match self.git_session.merge_branch_resolved(&state) {
+            Some(Ok(report)) if report.outcome == op_git::MergeOutcome::Conflict => {
+                // A conflict still slipped through (e.g. the branch
+                // tips moved) — fall back to the dialog.
+                self.show_merge_conflict_dialog(&state.branch, &report.conflicts);
+            }
+            Some(Ok(_)) => self.reload_tracked_document(),
+            Some(Err(err)) => {
+                eprintln!("openpencil-desktop: applying merge resolution failed: {err}");
+            }
+            None => {}
+        }
+        self.refresh_git_panel();
+        self.host.mark_editor_state_dirty();
+        self.request_redraw(true);
+    }
+
+    /// Set up SSH authentication for the `origin` remote: generate
+    /// (or reuse) an SSH key named after the host, bind it as that
+    /// host's stored credential, and show the public key so the user
+    /// can add it to their git host. From then on pull / push run
+    /// through `authed_repo` with that key.
+    pub(super) fn setup_ssh_auth(&mut self) {
+        use op_git::Credential;
+        let outcome: Result<(String, String), GitAuthError> = (|| {
+            let (auth, ssh) = self
+                .git_session
+                .auth_stores()
+                .ok_or(GitAuthError::CredentialStoresUnavailable)?;
+            let repo = self.git_session.repo().ok_or(GitAuthError::NoRepository)?;
+            let host = repo.origin_host().ok_or(GitAuthError::NoOriginRemote)?;
+            let key_name = format!("op-{}", host.replace(['/', '\\', ':'], "-"));
+            // Reuse an existing key of that name, else generate one.
+            let key = match ssh.load(&key_name) {
+                Ok(key) => key,
+                // `op-git` is not ours to type; carry its message.
+                Err(_) => ssh
+                    .generate(&key_name, &format!("openpencil@{host}"))
+                    .map_err(|e| GitAuthError::KeyGeneration(e.to_string()))?,
+            };
+            auth.set(&host, Credential::Ssh { key_name })
+                .map_err(|e| GitAuthError::StoreCredential(e.to_string()))?;
+            Ok((host, key.public_key))
+        })();
+        match outcome {
+            Ok((host, public_key)) => self.show_ssh_setup_dialog(&host, &public_key),
+            Err(err) => eprintln!("openpencil-desktop: ssh auth setup failed: {err}"),
+        }
+    }
+
+    /// Store an HTTPS credential for the `origin` host. The input is
+    /// the Remotes section's `username:token` text; pull / push then
+    /// authenticate with it via `authed_repo`. The draft is cleared
+    /// only on success, so a failure leaves it for a retry.
+    pub(super) fn store_https_credential(&mut self, credential: &str) {
+        use op_git::Credential;
+        let result: Result<(), GitAuthError> = (|| {
+            let (username, token) = credential
+                .split_once(':')
+                .ok_or(GitAuthError::CredentialFormat)?;
+            let username = username.trim().to_string();
+            let token = token.trim().to_string();
+            if username.is_empty() || token.is_empty() {
+                return Err(GitAuthError::MissingCredentialFields);
+            }
+            let (auth, _ssh) = self
+                .git_session
+                .auth_stores()
+                .ok_or(GitAuthError::CredentialStoreUnavailable)?;
+            let repo = self.git_session.repo().ok_or(GitAuthError::NoRepository)?;
+            // An HTTPS credential only belongs on an HTTPS remote —
+            // storing one for an SSH `origin` would shadow (and
+            // break) its SSH credential, since the store is
+            // host-keyed.
+            let url = repo
+                .remote_url("origin")
+                .ok()
+                .flatten()
+                .ok_or(GitAuthError::NoOriginRemote)?;
+            if !url.starts_with("https://") && !url.starts_with("http://") {
+                return Err(GitAuthError::OriginNotHttps);
+            }
+            let host = repo.origin_host().ok_or(GitAuthError::OriginHasNoHost)?;
+            auth.set(&host, Credential::Https { username, token })
+                .map_err(|e| GitAuthError::StoreCredential(e.to_string()))
+        })();
+        match result {
+            Ok(()) => {
+                let panel = &mut self.host.editor_state_mut().editor_ui.git_panel;
+                panel.https_input.set_text("");
+                panel.https_focused = false;
+            }
+            Err(err) => {
+                eprintln!("openpencil-desktop: store HTTPS credential failed: {err}");
+            }
+        }
+    }
+
+    /// Empty-state "Init" card — create a local repo at the saved
+    /// document's directory, then re-discover so the doc is tracked.
+    pub(super) fn init_repo_for_doc(&mut self) {
+        let Some(dir) = self
+            .current_path
+            .clone()
+            .and_then(|p| p.parent().map(|d| d.to_path_buf()))
+        else {
+            return;
+        };
+        match op_git::GitRepo::init(&dir) {
+            Ok(_) => self.rebind_git_session_for_current_path(),
+            Err(err) => self.show_git_empty_error(&format!("git init: {err}")),
+        }
+    }
+
+    /// Empty-state "Open" card — pick an existing repo folder and bind
+    /// it. The open doc is tracked only when it lives inside the repo.
+    pub(super) fn open_existing_repo(&mut self) {
+        let Some(folder) = rfd::FileDialog::new().pick_folder() else {
+            return;
+        };
+        match op_git::GitRepo::discover(&folder) {
+            Ok(Some(repo)) => {
+                self.git_session
+                    .bind_repo(repo, self.current_path.as_deref());
+                self.host.editor_state_mut().editor_ui.git_panel.loading = true;
+                self.host.mark_editor_state_dirty();
+                self.refresh_git_panel();
+            }
+            Ok(None) => {
+                let locale = self.host.editor_state().editor_ui.locale;
+                self.show_git_empty_error(op_i18n::translate(locale, "git.empty.openNotARepo"));
+            }
+            Err(err) => self.show_git_empty_error(&format!("git open: {err}")),
+        }
+    }
+
+    /// Empty-state "Clone" card — open the inline clone wizard, focused
+    /// on the URL field (a port of the TS `GitPanelCloneForm`).
+    pub(super) fn open_clone_form(&mut self) {
+        // Abandon any clone still running from a previously-cancelled
+        // wizard so the fresh form's submit isn't blocked by the dead
+        // job (its worker finishes on its own; the result is discarded).
+        self.git_clone_job = None;
+        let panel = &mut self.host.editor_state_mut().editor_ui.git_panel;
+        panel.clone_form = Some(op_editor_core::CloneFormState {
+            focus: Some(op_editor_core::CloneField::Url),
+            ..Default::default()
+        });
+    }
+
+    /// Clone wizard "浏览…" — a native folder picker for the clone
+    /// destination, written back into the form's destination input.
+    pub(super) fn pick_clone_dest(&mut self) {
+        let Some(folder) = rfd::FileDialog::new().pick_folder() else {
+            return;
+        };
+        let path = folder.to_string_lossy().to_string();
+        if let Some(form) = self
+            .host
+            .editor_state_mut()
+            .editor_ui
+            .git_panel
+            .clone_form
+            .as_mut()
+        {
+            form.dest_input.set_text(path);
+            form.focus = Some(op_editor_core::CloneField::Dest);
+            form.error = None;
+        }
+    }
+
+    /// Clone wizard submit — validate the URL + destination, then run
+    /// `git clone` on a worker thread. [`Self::poll_git_clone_job`] binds
+    /// the cloned repository when the job lands.
+    pub(super) fn submit_clone(&mut self) {
+        if self.git_clone_job.is_some() {
+            return;
+        }
+        let locale = self.host.editor_state().editor_ui.locale;
+        let (url, dest) = {
+            let Some(form) = self
+                .host
+                .editor_state()
+                .editor_ui
+                .git_panel
+                .clone_form
+                .as_ref()
+            else {
+                return;
+            };
+            (
+                form.url_input.text().trim().to_string(),
+                form.dest_input.text().trim().to_string(),
+            )
+        };
+        let validation = if url.is_empty() {
+            Some("git.wizard.clone.validationUrl")
+        } else if dest.is_empty() {
+            Some("git.wizard.clone.validationDest")
+        } else {
+            None
+        };
+        if let Some(key) = validation {
+            if let Some(form) = self
+                .host
+                .editor_state_mut()
+                .editor_ui
+                .git_panel
+                .clone_form
+                .as_mut()
+            {
+                form.error = Some(op_i18n::translate(locale, key).to_string());
+            }
+            return;
+        }
+        // Remember the document context so completion only binds when
+        // the user is still on the same document (see `poll_git_clone_job`).
+        self.git_clone_origin = self.current_path.clone();
+        self.git_clone_job = Some(git_jobs::GitCloneJob::spawn(
+            url,
+            std::path::PathBuf::from(&dest),
+        ));
+        if let Some(form) = self
+            .host
+            .editor_state_mut()
+            .editor_ui
+            .git_panel
+            .clone_form
+            .as_mut()
+        {
+            form.cloning = true;
+            form.error = None;
+            // No field is editable while the clone runs — drop focus so
+            // the caret vanishes and a single Escape cancels (rather than
+            // a first, invisible, focus-clearing press).
+            form.focus = None;
+        }
+    }
+
+    /// Drain a finished `git clone`. On success, discover + bind the
+    /// cloned repository and close the wizard; on failure, surface the
+    /// error inside the form so the user can retry. Returns `true` when
+    /// the job resolved (a repaint is due).
+    pub(crate) fn poll_git_clone_job(&mut self) -> bool {
+        // A clone wizard left over after the Git panel was closed is
+        // hidden state — clear it (and abandon any in-flight job) so it
+        // can neither capture the keyboard nor bind a repo while
+        // invisible. Runs even when no job exists, to also catch an idle
+        // form left open when the panel was closed.
+        if !self.host.editor_state().editor_ui.git_panel.open {
+            self.git_clone_job = None;
+            return self
+                .host
+                .editor_state_mut()
+                .editor_ui
+                .git_panel
+                .clone_form
+                .take()
+                .is_some();
+        }
+        if self.git_clone_job.is_none() {
+            return false;
+        }
+        // Panel is open. Abandon the job when the user cancelled the
+        // wizard (form gone or no longer `cloning`): drop the handle so
+        // the result is discarded (no repo bound behind the user's back)
+        // and a fresh clone isn't blocked. The worker finishes on its
+        // own; its channel send no-ops. Mirrors `poll_git_diff_job`
+        // dropping a stale diff for a closed view.
+        let active = self
+            .host
+            .editor_state()
+            .editor_ui
+            .git_panel
+            .clone_form
+            .as_ref()
+            .is_some_and(|f| f.cloning);
+        if !active {
+            self.git_clone_job = None;
+            return false;
+        }
+        let Some(result) = self.git_clone_job.as_mut().and_then(|job| job.poll()) else {
+            return false;
+        };
+        self.git_clone_job = None;
+        // The clone binds its repo onto the live document. If the user
+        // switched / saved-as to a different document while it ran, the
+        // bind target changed — discard the result rather than binding the
+        // cloned repo onto the wrong document, and close the now-stale
+        // wizard. (Opening a document already replaces the editor state +
+        // closes the panel, which the `!open` branch above catches; this
+        // covers an in-place path change, e.g. Save As.)
+        if self.current_path != self.git_clone_origin {
+            self.host.editor_state_mut().editor_ui.git_panel.clone_form = None;
+            self.host.mark_editor_state_dirty();
+            return true;
+        }
+        let locale = self.host.editor_state().editor_ui.locale;
+        let bound = match result {
+            Ok(dir) => match op_git::GitRepo::discover(&dir) {
+                Ok(Some(repo)) => {
+                    self.git_session
+                        .bind_repo(repo, self.current_path.as_deref());
+                    true
+                }
+                _ => false,
+            },
+            Err(err) => {
+                eprintln!("openpencil-desktop: git clone failed: {err}");
+                false
+            }
+        };
+        if bound {
+            let panel = &mut self.host.editor_state_mut().editor_ui.git_panel;
+            panel.clone_form = None;
+            panel.loading = true;
+            self.refresh_git_panel();
+        } else if let Some(form) = self
+            .host
+            .editor_state_mut()
+            .editor_ui
+            .git_panel
+            .clone_form
+            .as_mut()
+        {
+            form.cloning = false;
+            form.error =
+                Some(op_i18n::translate(locale, "git.wizard.clone.error.clone-failed").to_string());
+        }
+        self.host.mark_editor_state_dirty();
+        true
+    }
+
+    /// Info/error dialog for the empty-state cards.
+    fn show_git_empty_error(&self, msg: &str) {
+        crate::message_dialog::alert("Git", msg, rfd::MessageLevel::Warning);
+    }
+
+    /// Show the generated SSH public key so the user can register it
+    /// with their git host.
+    fn show_ssh_setup_dialog(&self, host: &str, public_key: &str) {
+        let locale = self.host.editor_state().editor_ui.locale;
+        let body = op_i18n::translate(locale, "git.ssh.readyBody").replace("{{host}}", host);
+        crate::message_dialog::alert(
+            op_i18n::translate(locale, "git.ssh.readyTitle"),
+            &format!("{body}\n\n{public_key}"),
+            rfd::MessageLevel::Info,
+        );
+    }
+
+    /// Report a quarantined merge conflict — the live tree is
+    /// untouched, so this is informational, not an error. For `.op`
+    /// files the three index stages are run through the structured
+    /// node-level merge so the report names the conflicting
+    /// PenNodes, not just the file.
+    fn show_merge_conflict_dialog(&self, other: &str, conflicts: &op_git::ConflictBag) {
+        let locale = self.host.editor_state().editor_ui.locale;
+        let detail = merge_conflict_detail(conflicts, locale);
+        let body = op_i18n::translate(locale, "git.merge.conflictBody")
+            .replace("{{branch}}", other)
+            .replace("{{count}}", &conflicts.files.len().to_string());
+        crate::message_dialog::alert(
+            op_i18n::translate(locale, "git.merge.conflictTitle"),
+            &format!("{body}\n\n{detail}"),
+            rfd::MessageLevel::Warning,
+        );
+    }
+}

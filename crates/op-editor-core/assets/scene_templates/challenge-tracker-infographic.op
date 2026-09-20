@@ -1,0 +1,2448 @@
+{
+  "version": "1.0.0",
+  "name": "30 天打卡挑战长图",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F2F6EF"
+    },
+    "c-surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-band": {
+      "type": "color",
+      "value": "#1B2A1C"
+    },
+    "c-band-muted": {
+      "type": "color",
+      "value": "#A3B49E"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#17231A"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#55665A"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#4C8A3F"
+    },
+    "c-accent-deep": {
+      "type": "color",
+      "value": "#3A6B30"
+    },
+    "c-accent-soft": {
+      "type": "color",
+      "value": "#E2EFDC"
+    },
+    "c-border": {
+      "type": "color",
+      "value": "#DDE7D8"
+    },
+    "c-grid": {
+      "type": "color",
+      "value": "#C2D2BC"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "30 天打卡挑战长图",
+      "width": 1080,
+      "height": 2692,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "01 页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            76,
+            80,
+            68,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "胶囊",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "胶囊文字",
+                  "content": "打卡挑战 · 30 天",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "三十天\n只做同一件事",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 76,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-surface"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "把这张图存进相册，做完一天划掉一格，别的都不用记。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f24",
+          "name": "02 规则",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f23",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r20",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t21",
+                  "name": "区块标题",
+                  "content": "开始之前，三条规则",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t22",
+                  "name": "区块说明",
+                  "content": "三条都是为了「断掉那天还能接着走」写的，不是为了自律。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f19",
+              "name": "规则网格",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 18,
+              "alignItems": "stretch",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f10",
+                  "name": "规则卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "cornerRadius": 20,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i7",
+                      "name": "规则图标",
+                      "iconFontName": "alarm-clock",
+                      "width": 32,
+                      "height": 32,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "规则标题",
+                      "content": "固定同一个时间",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t9",
+                      "name": "规则说明",
+                      "content": "哪怕只做五分钟。时间固定了，要不要做就不用每天重想。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-border"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f14",
+                  "name": "规则卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "cornerRadius": 20,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i11",
+                      "name": "规则图标",
+                      "iconFontName": "check",
+                      "width": 32,
+                      "height": 32,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t12",
+                      "name": "规则标题",
+                      "content": "做完立刻划掉",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "规则说明",
+                      "content": "不补昨天不提前",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-border"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f18",
+                  "name": "规则卡",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    26
+                  ],
+                  "cornerRadius": 20,
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i15",
+                      "name": "规则图标",
+                      "iconFontName": "refresh-cw",
+                      "width": 32,
+                      "height": 32,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t16",
+                      "name": "规则标题",
+                      "content": "断了不重来",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 28,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t17",
+                      "name": "规则说明",
+                      "content": "漏一天就往下走，别从第一天重来。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-border"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f95",
+          "name": "03 格子",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            68,
+            80,
+            0,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f93",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r90",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t91",
+                  "name": "区块标题",
+                  "content": "三十格，一天一格",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t92",
+                  "name": "区块说明",
+                  "content": "深色那三格是要停下来看一眼的日子，说明在下一节。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f94",
+              "name": "格子阵",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f37",
+                  "name": "第 1 行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f25",
+                      "name": "第 1 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t26",
+                          "name": "日号",
+                          "content": "1",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f27",
+                      "name": "第 2 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t28",
+                          "name": "日号",
+                          "content": "2",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f29",
+                      "name": "第 3 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t30",
+                          "name": "日号",
+                          "content": "3",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f31",
+                      "name": "第 4 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t32",
+                          "name": "日号",
+                          "content": "4",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f33",
+                      "name": "第 5 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t34",
+                          "name": "日号",
+                          "content": "5",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f35",
+                      "name": "第 6 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t36",
+                          "name": "日号",
+                          "content": "6",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f50",
+                  "name": "第 7 行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f38",
+                      "name": "第 7 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t39",
+                          "name": "日号",
+                          "content": "7",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-surface"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f40",
+                      "name": "第 8 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t41",
+                          "name": "日号",
+                          "content": "8",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f42",
+                      "name": "第 9 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t43",
+                          "name": "日号",
+                          "content": "9",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "第 10 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t45",
+                          "name": "日号",
+                          "content": "10",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f46",
+                      "name": "第 11 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t47",
+                          "name": "日号",
+                          "content": "11",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f48",
+                      "name": "第 12 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t49",
+                          "name": "日号",
+                          "content": "12",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f63",
+                  "name": "第 13 行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f51",
+                      "name": "第 13 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t52",
+                          "name": "日号",
+                          "content": "13",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f53",
+                      "name": "第 14 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t54",
+                          "name": "日号",
+                          "content": "14",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f55",
+                      "name": "第 15 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t56",
+                          "name": "日号",
+                          "content": "15",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-surface"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f57",
+                      "name": "第 16 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t58",
+                          "name": "日号",
+                          "content": "16",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f59",
+                      "name": "第 17 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t60",
+                          "name": "日号",
+                          "content": "17",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f61",
+                      "name": "第 18 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t62",
+                          "name": "日号",
+                          "content": "18",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f76",
+                  "name": "第 19 行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f64",
+                      "name": "第 19 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t65",
+                          "name": "日号",
+                          "content": "19",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f66",
+                      "name": "第 20 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t67",
+                          "name": "日号",
+                          "content": "20",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f68",
+                      "name": "第 21 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t69",
+                          "name": "日号",
+                          "content": "21",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f70",
+                      "name": "第 22 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t71",
+                          "name": "日号",
+                          "content": "22",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f72",
+                      "name": "第 23 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t73",
+                          "name": "日号",
+                          "content": "23",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f74",
+                      "name": "第 24 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t75",
+                          "name": "日号",
+                          "content": "24",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f89",
+                  "name": "第 25 行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f77",
+                      "name": "第 25 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t78",
+                          "name": "日号",
+                          "content": "25",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f79",
+                      "name": "第 26 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t80",
+                          "name": "日号",
+                          "content": "26",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f81",
+                      "name": "第 27 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t82",
+                          "name": "日号",
+                          "content": "27",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f83",
+                      "name": "第 28 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t84",
+                          "name": "日号",
+                          "content": "28",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f85",
+                      "name": "第 29 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-surface"
+                        }
+                      ],
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-grid"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t86",
+                          "name": "日号",
+                          "content": "29",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f87",
+                      "name": "第 30 天",
+                      "width": 140,
+                      "height": 120,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 16,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t88",
+                          "name": "日号",
+                          "content": "30",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-surface"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": -1,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f112",
+          "name": "04 节点",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            68,
+            80,
+            68,
+            80
+          ],
+          "gap": 32,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f111",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r108",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "cornerRadius": 999,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t109",
+                  "name": "区块标题",
+                  "content": "三个要停一下的日子",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t110",
+                  "name": "区块说明",
+                  "content": "其余二十七天不需要任何说明 —— 照着做就行。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 27,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f107",
+              "name": "节点面板",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 20,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent-soft"
+                }
+              ],
+              "padding": [
+                36,
+                34
+              ],
+              "cornerRadius": 22,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f98",
+                  "name": "节点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t96",
+                      "name": "节点日",
+                      "content": "第 7 天",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 140
+                    },
+                    {
+                      "type": "text",
+                      "id": "t97",
+                      "name": "节点说明",
+                      "content": "第一次想放弃通常在这天。把当天的量减到一半，但别停。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r99",
+                  "name": "节点分割线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-border"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f102",
+                  "name": "节点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t100",
+                      "name": "节点日",
+                      "content": "第 15 天",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 140
+                    },
+                    {
+                      "type": "text",
+                      "id": "t101",
+                      "name": "节点说明",
+                      "content": "过半了。回头看第 1 天做的东西，差距就是继续的理由。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r103",
+                  "name": "节点分割线",
+                  "width": "fill_container",
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-border"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f106",
+                  "name": "节点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t104",
+                      "name": "节点日",
+                      "content": "第 30 天",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent-deep"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 140
+                    },
+                    {
+                      "type": "text",
+                      "id": "t105",
+                      "name": "节点说明",
+                      "content": "挑三件这三十天做出来的东西写下来，再决定要不要续下一轮。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 27,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f117",
+          "name": "05 页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            44,
+            80
+          ],
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-band"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t113",
+              "name": "用法",
+              "content": "存图后用标注工具划格；换挑战只需改标题和三条规则。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-band-muted"
+                }
+              ],
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f116",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t114",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-surface"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t115",
+                  "name": "更新说明",
+                  "content": "每月开一轮新的三十天",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-band-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

@@ -1,0 +1,3272 @@
+{
+  "version": "1.0.0",
+  "name": "书影评拆解轮播 · 3:4 五板",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F0E7D2"
+    },
+    "c-deep": {
+      "type": "color",
+      "value": "#E3D6BC"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#362C24"
+    },
+    "c-soft": {
+      "type": "color",
+      "value": "#665B54"
+    },
+    "c-azurite": {
+      "type": "color",
+      "value": "#347CA9"
+    },
+    "c-azurite-d": {
+      "type": "color",
+      "value": "#114C71"
+    },
+    "c-malachite": {
+      "type": "color",
+      "value": "#5E9877"
+    },
+    "c-malachite-d": {
+      "type": "color",
+      "value": "#376A50"
+    },
+    "c-ochre": {
+      "type": "color",
+      "value": "#B59979"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f109",
+      "name": "01 封面 · 竖排书脊",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f100",
+          "name": "封面 · 竖排书脊 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            300,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f103",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t101",
+                  "name": "系列名",
+                  "content": "拆书 · 五板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t102",
+                  "name": "页码",
+                  "content": "01 / 05",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f9",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "padding": [
+                40,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f8",
+                  "name": "封面版心",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "start",
+                  "justifyContent": "space_between",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f4",
+                      "name": "封面文案",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 30,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t1",
+                          "name": "眉标",
+                          "content": "读完之后能拿走的三个零件",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-malachite-d"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t2",
+                          "name": "主标",
+                          "content": "这本书\n真正在讲的\n是选择",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 88,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.15,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 608
+                        },
+                        {
+                          "type": "text",
+                          "id": "t3",
+                          "name": "副标",
+                          "content": "不复述情节，只拆它的结构。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-soft"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 608
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f7",
+                      "name": "竖排书脊",
+                      "width": "fit_content",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t5",
+                          "name": "书脊字 1",
+                          "content": "拆",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 64,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-azurite-d"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t6",
+                          "name": "书脊字 2",
+                          "content": "书",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 64,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-azurite-d"
+                            }
+                          ],
+                          "lineHeight": 1.0,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f106",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r104",
+                  "name": "赭石分隔线",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t105",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f107",
+          "name": "封面 · 竖排书脊 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r10",
+              "name": "绢纹 1",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 0,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r11",
+              "name": "绢纹 2",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 16,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r12",
+              "name": "绢纹 3",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 32,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r13",
+              "name": "绢纹 4",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 48,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r14",
+              "name": "绢纹 5",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 64,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r15",
+              "name": "绢纹 6",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 80,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r16",
+              "name": "绢纹 7",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 96,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r17",
+              "name": "绢纹 8",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 112,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r18",
+              "name": "绢纹 9",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 128,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r19",
+              "name": "绢纹 10",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 144,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r20",
+              "name": "绢纹 11",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 160,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r21",
+              "name": "绢纹 12",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 176,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r22",
+              "name": "绢纹 13",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 192,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r23",
+              "name": "绢纹 14",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 208,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r24",
+              "name": "绢纹 15",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 224,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "绢纹 16",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 240,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "绢纹 17",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 256,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "绢纹 18",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 272,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "绢纹 19",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 288,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r29",
+              "name": "绢纹 20",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 304,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r30",
+              "name": "绢纹 21",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 320,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r31",
+              "name": "绢纹 22",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 336,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r32",
+              "name": "绢纹 23",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 352,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r33",
+              "name": "绢纹 24",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 368,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r34",
+              "name": "绢纹 25",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 384,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r35",
+              "name": "绢纹 26",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 400,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r36",
+              "name": "绢纹 27",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 416,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r37",
+              "name": "绢纹 28",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 432,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r38",
+              "name": "绢纹 29",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 448,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r39",
+              "name": "绢纹 30",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 464,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r40",
+              "name": "绢纹 31",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 480,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r41",
+              "name": "绢纹 32",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 496,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r42",
+              "name": "绢纹 33",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 512,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r43",
+              "name": "绢纹 34",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 528,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r44",
+              "name": "绢纹 35",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 544,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r45",
+              "name": "绢纹 36",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 560,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r46",
+              "name": "绢纹 37",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 576,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r47",
+              "name": "绢纹 38",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 592,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r48",
+              "name": "绢纹 39",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 608,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r49",
+              "name": "绢纹 40",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 624,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r50",
+              "name": "绢纹 41",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 640,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r51",
+              "name": "绢纹 42",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 656,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r52",
+              "name": "绢纹 43",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 672,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r53",
+              "name": "绢纹 44",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 688,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r54",
+              "name": "绢纹 45",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 704,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r55",
+              "name": "绢纹 46",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 720,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r56",
+              "name": "绢纹 47",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 736,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r57",
+              "name": "绢纹 48",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 752,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r58",
+              "name": "绢纹 49",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 768,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r59",
+              "name": "绢纹 50",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 784,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r60",
+              "name": "绢纹 51",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 800,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r61",
+              "name": "绢纹 52",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 816,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r62",
+              "name": "绢纹 53",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 832,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r63",
+              "name": "绢纹 54",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 848,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r64",
+              "name": "绢纹 55",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 864,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r65",
+              "name": "绢纹 56",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 880,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r66",
+              "name": "绢纹 57",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 896,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r67",
+              "name": "绢纹 58",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 912,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r68",
+              "name": "绢纹 59",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 928,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r69",
+              "name": "绢纹 60",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 944,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r70",
+              "name": "绢纹 61",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 960,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r71",
+              "name": "绢纹 62",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 976,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r72",
+              "name": "绢纹 63",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 992,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r73",
+              "name": "绢纹 64",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1008,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r74",
+              "name": "绢纹 65",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1024,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r75",
+              "name": "绢纹 66",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1040,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r76",
+              "name": "绢纹 67",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1056,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r77",
+              "name": "绢纹 68",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1072,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r78",
+              "name": "绢纹 69",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1088,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r79",
+              "name": "绢纹 70",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1104,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r80",
+              "name": "绢纹 71",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1120,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r81",
+              "name": "绢纹 72",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1136,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r82",
+              "name": "绢纹 73",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1152,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r83",
+              "name": "绢纹 74",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1168,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r84",
+              "name": "绢纹 75",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1184,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r85",
+              "name": "绢纹 76",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1200,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r86",
+              "name": "绢纹 77",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1216,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r87",
+              "name": "绢纹 78",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1232,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r88",
+              "name": "绢纹 79",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1248,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r89",
+              "name": "绢纹 80",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1264,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r90",
+              "name": "绢纹 81",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1280,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r91",
+              "name": "绢纹 82",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1296,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r92",
+              "name": "绢纹 83",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1312,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r93",
+              "name": "绢纹 84",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1328,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r94",
+              "name": "绢纹 85",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1344,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r95",
+              "name": "绢纹 86",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1360,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r96",
+              "name": "绢纹 87",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1376,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r97",
+              "name": "绢纹 88",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1392,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r98",
+              "name": "绢纹 89",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1408,
+              "opacity": 0.1
+            },
+            {
+              "type": "rectangle",
+              "id": "r99",
+              "name": "绢纹 90",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "x": 0,
+              "y": 1424,
+              "opacity": 0.1
+            },
+            {
+              "type": "path",
+              "id": "p108",
+              "name": "山形 1",
+              "d": "M 0.0 186.0 L 194.4 84.0 L 367.2 165.0 L 626.4 36.0 L 842.4 144.0 L 1080.0 102.0 L 1080 300 L 0 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 90,
+                  "stops": [
+                    {
+                      "offset": 0,
+                      "color": "#347CA9"
+                    },
+                    {
+                      "offset": 1,
+                      "color": "#5E9877"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1140
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f132",
+      "name": "02 原文 · 侧栏注解",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f123",
+          "name": "原文 · 侧栏注解 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            300,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f126",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t124",
+                  "name": "系列名",
+                  "content": "拆书 · 五板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t125",
+                  "name": "页码",
+                  "content": "02 / 05",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f122",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 40,
+              "padding": [
+                40,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t121",
+                  "name": "小标题",
+                  "content": "先看它怎么写",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "frame",
+                  "id": "f120",
+                  "name": "双栏",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 46,
+                  "alignItems": "start",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f114",
+                      "name": "主栏",
+                      "width": 530,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t110",
+                          "name": "栏标",
+                          "content": "原文",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-azurite-d"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t111",
+                          "name": "引文",
+                          "content": "他花了整整一章去解释为什么没有选另外一条路。读到这里才发现，前面所有铺垫都是为这一次不选做准备。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 530
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r112",
+                          "name": "栏内分隔",
+                          "width": 530,
+                          "height": 1,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ochre"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t113",
+                          "name": "引文续",
+                          "content": "作者全程没有评价它。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 40,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 530
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r119",
+                      "name": "栏线",
+                      "width": 1,
+                      "height": 280,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ochre"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f118",
+                      "name": "侧栏",
+                      "width": 296,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t115",
+                          "name": "栏标",
+                          "content": "我的注",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-malachite-d"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t116",
+                          "name": "注解 1",
+                          "content": "不评价，等于把判断整个留给读者。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-soft"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 296
+                        },
+                        {
+                          "type": "text",
+                          "id": "t117",
+                          "name": "注解 2",
+                          "content": "这也是全书唯一的一次视角外移。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-soft"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 296
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f129",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r127",
+                  "name": "赭石分隔线",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t128",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f130",
+          "name": "原文 · 侧栏注解 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "path",
+              "id": "p131",
+              "name": "山形 2",
+              "d": "M 0.0 120.0 L 237.6 198.0 L 475.2 60.0 L 712.8 174.0 L 928.8 90.0 L 1080.0 156.0 L 1080 300 L 0 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 90,
+                  "stops": [
+                    {
+                      "offset": 0,
+                      "color": "#347CA9"
+                    },
+                    {
+                      "offset": 1,
+                      "color": "#5E9877"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1140
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f163",
+      "name": "03 洞见 · 编号纵列",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f154",
+          "name": "洞见 · 编号纵列 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            300,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f157",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t155",
+                  "name": "系列名",
+                  "content": "拆书 · 五板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t156",
+                  "name": "页码",
+                  "content": "03 / 05",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f153",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 40,
+              "padding": [
+                40,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t151",
+                  "name": "小标题",
+                  "content": "三个能拿走的零件",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "frame",
+                  "id": "f152",
+                  "name": "洞见列表",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 36,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f138",
+                      "name": "洞见",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f133",
+                          "name": "序号 一",
+                          "width": 78,
+                          "height": 78,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-deep"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t134",
+                              "name": "序号字",
+                              "content": "一",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-azurite-d"
+                                }
+                              ],
+                              "lineHeight": 1.0,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f137",
+                          "name": "洞见文案",
+                          "width": 814,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t135",
+                              "name": "洞见标题",
+                              "content": "结构是论点",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t136",
+                              "name": "洞见注解",
+                              "content": "章节顺序本身在说话，别只读句子。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f144",
+                      "name": "洞见",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f139",
+                          "name": "序号 二",
+                          "width": 78,
+                          "height": 78,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-deep"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t140",
+                              "name": "序号字",
+                              "content": "二",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-azurite-d"
+                                }
+                              ],
+                              "lineHeight": 1.0,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f143",
+                          "name": "洞见文案",
+                          "width": 814,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t141",
+                              "name": "洞见标题",
+                              "content": "留白是态度",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t142",
+                              "name": "洞见注解",
+                              "content": "作者不写的部分，比写了的更能定位他。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f150",
+                      "name": "洞见",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "start",
+                      "justifyContent": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f145",
+                          "name": "序号 三",
+                          "width": 78,
+                          "height": 78,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-deep"
+                            }
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t146",
+                              "name": "序号字",
+                              "content": "三",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-azurite-d"
+                                }
+                              ],
+                              "lineHeight": 1.0,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f149",
+                          "name": "洞见文案",
+                          "width": 814,
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t147",
+                              "name": "洞见标题",
+                              "content": "结尾回指开头",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 48,
+                              "fontWeight": 700,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.3,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t148",
+                              "name": "洞见注解",
+                              "content": "读完再翻回第一页，那句话变了意思。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-soft"
+                                }
+                              ],
+                              "lineHeight": 1.7,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f160",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r158",
+                  "name": "赭石分隔线",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t159",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f161",
+          "name": "洞见 · 编号纵列 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "path",
+              "id": "p162",
+              "name": "山形 3",
+              "d": "M 0.0 165.0 L 151.2 54.0 L 432.0 186.0 L 669.6 108.0 L 907.2 42.0 L 1080.0 138.0 L 1080 300 L 0 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 90,
+                  "stops": [
+                    {
+                      "offset": 0,
+                      "color": "#347CA9"
+                    },
+                    {
+                      "offset": 1,
+                      "color": "#5E9877"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1140
+            }
+          ]
+        }
+      ],
+      "x": 2400,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f179",
+      "name": "04 书摘 · 引号框景",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f170",
+          "name": "书摘 · 引号框景 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            300,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f173",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t171",
+                  "name": "系列名",
+                  "content": "拆书 · 五板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t172",
+                  "name": "页码",
+                  "content": "04 / 05",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f169",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "padding": [
+                40,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f164",
+                  "name": "引号框",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": [
+                    48,
+                    44
+                  ],
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-deep"
+                    }
+                  ],
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-malachite"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t165",
+                      "name": "引号",
+                      "content": "「",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 88,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-azurite"
+                        }
+                      ],
+                      "lineHeight": 1.0,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t166",
+                      "name": "金句",
+                      "content": "不选，也是选完了。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 64,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f168",
+                  "name": "署名行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 0,
+                  "alignItems": "center",
+                  "justifyContent": "end",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t167",
+                      "name": "署名",
+                      "content": "—— 原书第七章",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-soft"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f176",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r174",
+                  "name": "赭石分隔线",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t175",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f177",
+          "name": "书摘 · 引号框景 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "path",
+              "id": "p178",
+              "name": "山形 4",
+              "d": "M 0.0 72.0 L 280.8 174.0 L 518.4 96.0 L 756.0 192.0 L 950.4 66.0 L 1080.0 120.0 L 1080 300 L 0 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 90,
+                  "stops": [
+                    {
+                      "offset": 0,
+                      "color": "#347CA9"
+                    },
+                    {
+                      "offset": 1,
+                      "color": "#5E9877"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1140
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1800
+    },
+    {
+      "type": "frame",
+      "id": "f194",
+      "name": "05 收束 · 签名",
+      "width": 1080,
+      "height": 1440,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f185",
+          "name": "收束 · 签名 · 内容",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            80,
+            300,
+            80
+          ],
+          "gap": 0,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f188",
+              "name": "页眉",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "justifyContent": "space_between",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t186",
+                  "name": "系列名",
+                  "content": "拆书 · 五板",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t187",
+                  "name": "页码",
+                  "content": "05 / 05",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f184",
+              "name": "主体",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 48,
+              "padding": [
+                40,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t180",
+                  "name": "收束句",
+                  "content": "值得读的书\n会改写你的旧记忆。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.15,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 920
+                },
+                {
+                  "type": "frame",
+                  "id": "f183",
+                  "name": "行动",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r181",
+                      "name": "短线",
+                      "width": 140,
+                      "height": 3,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-malachite-d"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t182",
+                      "name": "行动说明",
+                      "content": "读完回头翻第一页，看看它是不是变了意思。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-soft"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f191",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r189",
+                  "name": "赭石分隔线",
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t190",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f192",
+          "name": "收束 · 签名 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "path",
+              "id": "p193",
+              "name": "山形 5",
+              "d": "M 0.0 144.0 L 216.0 102.0 L 453.6 204.0 L 691.2 66.0 L 885.6 168.0 L 1080.0 78.0 L 1080 300 L 0 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 90,
+                  "stops": [
+                    {
+                      "offset": 0,
+                      "color": "#347CA9"
+                    },
+                    {
+                      "offset": 1,
+                      "color": "#5E9877"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1140
+            }
+          ]
+        }
+      ],
+      "x": 1200,
+      "y": 1800
+    }
+  ]
+}

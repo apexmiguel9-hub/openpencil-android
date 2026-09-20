@@ -1,0 +1,3322 @@
+{
+  "version": "1.0.0",
+  "name": "渐变科技风 · 16:9",
+  "variables": {
+    "c-grad-a": {
+      "type": "color",
+      "value": "#43056E"
+    },
+    "c-grad-b": {
+      "type": "color",
+      "value": "#2A0C7A"
+    },
+    "c-grad-c": {
+      "type": "color",
+      "value": "#00415F"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#C9D4F5"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#63D8FF"
+    },
+    "c-bar-base": {
+      "type": "color",
+      "value": "#8A79B6"
+    },
+    "c-glass-a": {
+      "type": "color",
+      "value": "#5A237F"
+    },
+    "c-glass-b": {
+      "type": "color",
+      "value": "#44298A"
+    },
+    "c-glass-c": {
+      "type": "color",
+      "value": "#1F5872"
+    },
+    "c-glass-edge": {
+      "type": "color",
+      "value": "#FFFFFF4D"
+    },
+    "c-glow-cyan": {
+      "type": "color",
+      "value": "#63D8FF33"
+    },
+    "c-glow-cyan-out": {
+      "type": "color",
+      "value": "#63D8FF00"
+    },
+    "c-glow-violet": {
+      "type": "color",
+      "value": "#B14DFF38"
+    },
+    "c-glow-violet-out": {
+      "type": "color",
+      "value": "#B14DFF00"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f9",
+      "name": "01 封面",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f8",
+          "name": "01 封面 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f11",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "gap": 0,
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 135,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glass-a"
+                    },
+                    {
+                      "offset": 0.55,
+                      "color": "$c-glass-b"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glass-c"
+                    }
+                  ]
+                }
+              ],
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-glass-edge"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t12",
+                  "name": "标签文字",
+                  "content": "v3.0 · 公测",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 1.0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f3",
+              "name": "主张",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 32,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t1",
+                  "name": "主标题",
+                  "content": "让每一次调用\n都在 20 毫秒内返回",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 112,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.08,
+                  "letterSpacing": -2.24,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t2",
+                  "name": "副标题",
+                  "content": "边缘推理网关 v3.0，现已开放公测。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.45,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f5",
+              "name": "安装行",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 135,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glass-a"
+                    },
+                    {
+                      "offset": 0.55,
+                      "color": "$c-glass-b"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glass-c"
+                    }
+                  ]
+                }
+              ],
+              "padding": [
+                26,
+                32
+              ],
+              "cornerRadius": 20,
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-glass-edge"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t4",
+                  "name": "安装命令",
+                  "content": "$ npm i -g edgegate && edgegate up",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f10",
+          "name": "01 封面 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r6",
+              "name": "光晕",
+              "width": 1500,
+              "height": 1500,
+              "cornerRadius": 750,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 1020,
+              "y": -400
+            },
+            {
+              "type": "rectangle",
+              "id": "r7",
+              "name": "光晕",
+              "width": 900,
+              "height": 900,
+              "cornerRadius": 450,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -320,
+              "y": 560
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f28",
+      "name": "02 痛点",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f27",
+          "name": "02 痛点 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 56,
+          "justifyContent": "start",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f32",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t30",
+                  "name": "页标题",
+                  "content": "在边缘跑推理，卡在三件事上",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 76,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.52,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t31",
+                  "name": "页副标题",
+                  "content": "都不是模型的问题，是它前面那一层的问题。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.45,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f34",
+              "name": "痛点区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f33",
+                  "name": "痛点网格",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 32,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f16",
+                      "name": "痛点卡",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t13",
+                          "name": "痛点序号",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.1,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t14",
+                          "name": "痛点标题",
+                          "content": "冷启动吃掉了首包",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 36,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.25,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t15",
+                          "name": "痛点说明",
+                          "content": "函数实例每次唤醒要 800ms，用户看到的却是整整一秒的白屏。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f20",
+                      "name": "痛点卡",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t17",
+                          "name": "痛点序号",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.1,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t18",
+                          "name": "痛点标题",
+                          "content": "账单没法归因",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 36,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.25,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t19",
+                          "name": "痛点说明",
+                          "content": "月底一张总额，分不清哪个模型、哪条链路花掉的。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f24",
+                      "name": "痛点卡",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        44,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t21",
+                          "name": "痛点序号",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.1,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t22",
+                          "name": "痛点标题",
+                          "content": "换云就得重写",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 36,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.25,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t23",
+                          "name": "痛点说明",
+                          "content": "每家的运行时都不一样，迁移一次等于把接入层重做一遍。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f29",
+          "name": "02 痛点 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "光晕",
+              "width": 1200,
+              "height": 1200,
+              "cornerRadius": 600,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -400,
+              "y": -320
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "光晕",
+              "width": 900,
+              "height": 900,
+              "cornerRadius": 450,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 1300,
+              "y": 620
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f53",
+      "name": "03 架构",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f52",
+          "name": "03 架构 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 56,
+          "justifyContent": "start",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f57",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t55",
+                  "name": "页标题",
+                  "content": "三层，一层只做一件事",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 76,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.52,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t56",
+                  "name": "页副标题",
+                  "content": "自上而下，每一层都能单独替换。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.45,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f59",
+              "name": "架构区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f58",
+                  "name": "架构堆叠",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f39",
+                      "name": "架构层",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        32,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f37",
+                          "name": "层头",
+                          "width": "fit_content",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 16,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t35",
+                              "name": "层名",
+                              "content": "接入层",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t36",
+                              "name": "层英文名",
+                              "content": "Gateway",
+                              "fontFamily": "Inter",
+                              "fontSize": 26,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ],
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t38",
+                          "name": "层说明",
+                          "content": "一个 Anycast 入口，就近落到最快的可用区。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "架构层",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        32,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f42",
+                          "name": "层头",
+                          "width": "fit_content",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 16,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t40",
+                              "name": "层名",
+                              "content": "调度层",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t41",
+                              "name": "层英文名",
+                              "content": "Scheduler",
+                              "fontFamily": "Inter",
+                              "fontSize": 26,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ],
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t43",
+                          "name": "层说明",
+                          "content": "按延迟预算和单价实时选模型，超时自动降级。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f49",
+                      "name": "架构层",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        32,
+                        36
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f47",
+                          "name": "层头",
+                          "width": "fit_content",
+                          "height": "fit_content",
+                          "layout": "horizontal",
+                          "gap": 16,
+                          "alignItems": "center",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t45",
+                              "name": "层名",
+                              "content": "运行层",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t46",
+                              "name": "层英文名",
+                              "content": "Runtime",
+                              "fontFamily": "Inter",
+                              "fontSize": 26,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ],
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t48",
+                          "name": "层说明",
+                          "content": "常驻实例池，冷启动摊薄到 3 毫秒以内。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 27,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.55,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f54",
+          "name": "03 架构 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r50",
+              "name": "光晕",
+              "width": 1300,
+              "height": 1300,
+              "cornerRadius": 650,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 1120,
+              "y": -420
+            },
+            {
+              "type": "rectangle",
+              "id": "r51",
+              "name": "光晕",
+              "width": 820,
+              "height": 820,
+              "cornerRadius": 410,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -260,
+              "y": 640
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f94",
+      "name": "04 性能",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f93",
+          "name": "04 性能 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 44,
+          "justifyContent": "start",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f97",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t96",
+                  "name": "页标题",
+                  "content": "数字是压测出来的，不是估的",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 76,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.52,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f98",
+              "name": "性能居中",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f90",
+                  "name": "性能区",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 32,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f89",
+                      "name": "性能网格",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 32,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f74",
+                          "name": "性能卡",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "padding": [
+                            40,
+                            32
+                          ],
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f71",
+                              "name": "数值",
+                              "width": "fit_content",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 8,
+                              "alignItems": "end",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t68",
+                                  "name": "数值文字",
+                                  "content": "20",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 132,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-accent"
+                                    }
+                                  ],
+                                  "lineHeight": 1.0,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f70",
+                                  "name": "单位",
+                                  "width": "fit_content",
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 0,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "padding": [
+                                    0,
+                                    0,
+                                    18,
+                                    0
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "t69",
+                                      "name": "单位文字",
+                                      "content": "ms",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 40,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-accent"
+                                        }
+                                      ],
+                                      "lineHeight": 1.0,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "auto",
+                                      "width": "fit_content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t72",
+                              "name": "指标名",
+                              "content": "P50 端到端",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t73",
+                              "name": "指标说明",
+                              "content": "含调度与网络",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 26,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f81",
+                          "name": "性能卡",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "padding": [
+                            40,
+                            32
+                          ],
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f78",
+                              "name": "数值",
+                              "width": "fit_content",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 8,
+                              "alignItems": "end",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t75",
+                                  "name": "数值文字",
+                                  "content": "3",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 132,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-accent"
+                                    }
+                                  ],
+                                  "lineHeight": 1.0,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f77",
+                                  "name": "单位",
+                                  "width": "fit_content",
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 0,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "padding": [
+                                    0,
+                                    0,
+                                    18,
+                                    0
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "t76",
+                                      "name": "单位文字",
+                                      "content": "ms",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 40,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-accent"
+                                        }
+                                      ],
+                                      "lineHeight": 1.0,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "auto",
+                                      "width": "fit_content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t79",
+                              "name": "指标名",
+                              "content": "冷启动",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t80",
+                              "name": "指标说明",
+                              "content": "常驻池摊薄后",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 26,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f88",
+                          "name": "性能卡",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "alignItems": "start",
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "padding": [
+                            40,
+                            32
+                          ],
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f85",
+                              "name": "数值",
+                              "width": "fit_content",
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 8,
+                              "alignItems": "end",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t82",
+                                  "name": "数值文字",
+                                  "content": "62",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 132,
+                                  "fontWeight": 700,
+                                  "fill": [
+                                    {
+                                      "type": "solid",
+                                      "color": "$c-accent"
+                                    }
+                                  ],
+                                  "lineHeight": 1.0,
+                                  "letterSpacing": 0,
+                                  "textGrowth": "auto",
+                                  "width": "fit_content"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f84",
+                                  "name": "单位",
+                                  "width": "fit_content",
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 0,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "padding": [
+                                    0,
+                                    0,
+                                    18,
+                                    0
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "t83",
+                                      "name": "单位文字",
+                                      "content": "%",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 40,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-accent"
+                                        }
+                                      ],
+                                      "lineHeight": 1.0,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "auto",
+                                      "width": "fit_content"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "t86",
+                              "name": "指标名",
+                              "content": "成本下降",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.25,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "text",
+                              "id": "t87",
+                              "name": "指标说明",
+                              "content": "同等 QPS 对比自建",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 26,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.45,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f67",
+                      "name": "延迟对比",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "linear_gradient",
+                          "angle": 135,
+                          "stops": [
+                            {
+                              "offset": 0.0,
+                              "color": "$c-glass-a"
+                            },
+                            {
+                              "offset": 0.55,
+                              "color": "$c-glass-b"
+                            },
+                            {
+                              "offset": 1.0,
+                              "color": "$c-glass-c"
+                            }
+                          ]
+                        }
+                      ],
+                      "padding": [
+                        32,
+                        40
+                      ],
+                      "cornerRadius": 20,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": [
+                          {
+                            "type": "solid",
+                            "color": "$c-glass-edge"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t60",
+                          "name": "对比标题",
+                          "content": "端到端延迟对比",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.25,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f63",
+                          "name": "对比条组",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t61",
+                              "name": "条目标签",
+                              "content": "本产品 · 20ms",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 26,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r62",
+                              "name": "对比条",
+                              "width": 152,
+                              "height": 16,
+                              "cornerRadius": 999,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f66",
+                          "name": "对比条组",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 10,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t64",
+                              "name": "条目标签",
+                              "content": "自建方案 · 210ms",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 26,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container"
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r65",
+                              "name": "对比条",
+                              "width": 1600,
+                              "height": 16,
+                              "cornerRadius": 999,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-bar-base"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f95",
+          "name": "04 性能 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r91",
+              "name": "光晕",
+              "width": 1100,
+              "height": 1100,
+              "cornerRadius": 550,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -360,
+              "y": -300
+            },
+            {
+              "type": "rectangle",
+              "id": "r92",
+              "name": "光晕",
+              "width": 980,
+              "height": 980,
+              "cornerRadius": 490,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 1240,
+              "y": 560
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f121",
+      "name": "05 客户",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f120",
+          "name": "05 客户 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 56,
+          "justifyContent": "start",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f125",
+              "name": "页头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t123",
+                  "name": "页标题",
+                  "content": "已经在生产环境上跑",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 76,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.52,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t124",
+                  "name": "页副标题",
+                  "content": "八家团队，日均 27 亿次调用。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.45,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f126",
+              "name": "Logo 区",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f117",
+                  "name": "Logo 网格",
+                  "width": "fill_container",
+                  "height": 420,
+                  "layout": "vertical",
+                  "gap": 28,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f115",
+                      "name": "Logo 行",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f99",
+                          "name": "Logo 位 1",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t100",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f101",
+                          "name": "Logo 位 2",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t102",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f103",
+                          "name": "Logo 位 3",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t104",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f105",
+                          "name": "Logo 位 4",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t106",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f116",
+                      "name": "Logo 行",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 28,
+                      "alignItems": "stretch",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f107",
+                          "name": "Logo 位 5",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t108",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f109",
+                          "name": "Logo 位 6",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t110",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f111",
+                          "name": "Logo 位 7",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t112",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f113",
+                          "name": "Logo 位 8",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "cornerRadius": 16,
+                          "fill": [
+                            {
+                              "type": "linear_gradient",
+                              "angle": 135,
+                              "stops": [
+                                {
+                                  "offset": 0.0,
+                                  "color": "$c-glass-a"
+                                },
+                                {
+                                  "offset": 0.55,
+                                  "color": "$c-glass-b"
+                                },
+                                {
+                                  "offset": 1.0,
+                                  "color": "$c-glass-c"
+                                }
+                              ]
+                            }
+                          ],
+                          "stroke": {
+                            "thickness": 2,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-glass-edge"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t114",
+                              "name": "占位提示",
+                              "content": "拖入 Logo",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 24,
+                              "fontWeight": 500,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-muted"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "auto",
+                              "width": "fit_content"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f122",
+          "name": "05 客户 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r118",
+              "name": "光晕",
+              "width": 1400,
+              "height": 1400,
+              "cornerRadius": 700,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 900,
+              "y": -500
+            },
+            {
+              "type": "rectangle",
+              "id": "r119",
+              "name": "光晕",
+              "width": 760,
+              "height": 760,
+              "cornerRadius": 380,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -220,
+              "y": 620
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f138",
+      "name": "06 CTA",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "linear_gradient",
+          "angle": 135,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "$c-grad-a"
+            },
+            {
+              "offset": 0.55,
+              "color": "$c-grad-b"
+            },
+            {
+              "offset": 1.0,
+              "color": "$c-grad-c"
+            }
+          ]
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f137",
+          "name": "06 CTA · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f140",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "gap": 0,
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 135,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glass-a"
+                    },
+                    {
+                      "offset": 0.55,
+                      "color": "$c-glass-b"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glass-c"
+                    }
+                  ]
+                }
+              ],
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-glass-edge"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t141",
+                  "name": "标签文字",
+                  "content": "公测开放中",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 1.0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f129",
+              "name": "结语",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 30,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t127",
+                  "name": "结语标题",
+                  "content": "十分钟接完\n剩下的交给我们",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 96,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.1,
+                  "letterSpacing": -1.92,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t128",
+                  "name": "结语副标题",
+                  "content": "公测期不限调用量，接入文档一页写完。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 30,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.45,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f134",
+              "name": "行动区",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f131",
+                  "name": "安装卡",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "linear_gradient",
+                      "angle": 135,
+                      "stops": [
+                        {
+                          "offset": 0.0,
+                          "color": "$c-glass-a"
+                        },
+                        {
+                          "offset": 0.55,
+                          "color": "$c-glass-b"
+                        },
+                        {
+                          "offset": 1.0,
+                          "color": "$c-glass-c"
+                        }
+                      ]
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "cornerRadius": 20,
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-glass-edge"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t130",
+                      "name": "安装命令",
+                      "content": "$ npm i -g edgegate",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f133",
+                  "name": "文档卡",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "linear_gradient",
+                      "angle": 135,
+                      "stops": [
+                        {
+                          "offset": 0.0,
+                          "color": "$c-glass-a"
+                        },
+                        {
+                          "offset": 0.55,
+                          "color": "$c-glass-b"
+                        },
+                        {
+                          "offset": 1.0,
+                          "color": "$c-glass-c"
+                        }
+                      ]
+                    }
+                  ],
+                  "padding": [
+                    26,
+                    32
+                  ],
+                  "cornerRadius": 20,
+                  "stroke": {
+                    "thickness": 2,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-glass-edge"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t132",
+                      "name": "文档地址",
+                      "content": "docs.edgegate.dev",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f139",
+          "name": "06 CTA · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r135",
+              "name": "光晕",
+              "width": 1600,
+              "height": 1600,
+              "cornerRadius": 800,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-violet"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-violet-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -560,
+              "y": -480
+            },
+            {
+              "type": "rectangle",
+              "id": "r136",
+              "name": "光晕",
+              "width": 1000,
+              "height": 1000,
+              "cornerRadius": 500,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-cyan-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 1180,
+              "y": 520
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 1440
+    }
+  ]
+}

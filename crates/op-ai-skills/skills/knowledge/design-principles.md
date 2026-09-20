@@ -1,0 +1,26 @@
+---
+name: design-principles
+description: Core design craft principles for high-quality output
+phase: [generation]
+trigger: null
+priority: 35
+budget: 800
+category: knowledge
+---
+
+DESIGN CRAFT:
+
+SCOPE — every number below is the SCREEN / PAGE scale (web app, landing page, mobile). A presentation deck overrides them wholesale: its type floors, margins, background policy and container rules come from `slides` / `deck-contract`, where body is 32px and a display title runs 88-168px. Never apply the sizes below to a slide.
+
+- Type scale with real contrast: display 48-64, heading 28-36, body 16. Weight: 700 titles, 500 subtitles, 400 body.
+- Line height: tighter at large sizes (1.05-1.15 for 40px+), looser at small (1.5-1.6 for 16px).
+- Palette: 1 primary action color, 1 accent, neutral scale. Max 2 saturated colors. Page bg slightly tinted (#F8FAFC not #FFFFFF).
+- Contrast law: WCAG AA (4.5:1 body, 3:1 large text). Text: primary #0F172A for headings, muted #475569 for body.
+- 8px grid spacing: related items 8-16px, groups 24-32px, sections 48-80px. Section padding 80-120px vertical.
+- Avoid crowded output: fewer, stronger modules with visible negative space beat dense screens full of equal-weight blocks.
+- Don't box everything: use a container (card / panel / bordered frame) only when it groups related content for a real structural or functional reason. Wrapping every element — or every section — in its own card is a common AI habit that reads generic; prefer spacing and typography for separation. Structural wrappers (section / header / page background) stay transparent, never filled white cards.
+- Hero: ONE headline, ONE subtitle, ONE CTA, optional visual. Every extra element dilutes focus.
+- Cards: consistent cornerRadius/padding/shadow. Content: image - title - description - action.
+- Nav: logo + 3-5 links + CTA. space_between distribution. Keep minimal.
+- Alternate section backgrounds (white/#F8FAFC) for natural separation.
+- Mobile: keep the page root at 0 horizontal padding for full-width chrome/full-bleed media; ordinary transparent root-direct content sections each own the same 24px rail exactly once. A clipped horizontal scroller stays full width, with a 24px-inset header and a 24px leading/0px trailing viewport inset.

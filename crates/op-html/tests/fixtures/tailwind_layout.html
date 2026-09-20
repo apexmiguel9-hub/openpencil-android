@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tailwind layout</title>
+  <style>
+    /* Hand-written equivalents of the Tailwind utilities the importer sees
+       after the framework has compiled: flex-wrap card grids, col-span,
+       absolute translate centering, aspect-video, mx-auto and a relative
+       badge nudge. */
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; }
+
+    .page { width: 1200px; }
+    .bar { width: 1200px; height: 60px; background: #0f172a; }
+
+    /* mx-auto */
+    .shell { width: 960px; margin-left: auto; margin-right: auto; }
+
+    /* flex-wrap card grid, fixed-width cards */
+    .cards { display: flex; flex-wrap: wrap; gap: 24px; }
+    .card { width: 300px; height: 180px; background: #eef2ff; }
+
+    /* grid with a col-span-2 item */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cell { height: 100px; background: #f1f5f9; }
+    .wide { grid-column: span 2; }
+
+    /* absolutely positioned hero copy centered with translate(-50%, -50%) */
+    .hero { position: relative; width: 800px; height: 400px; background: #0f172a; }
+    .hero-copy {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 400px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+    }
+
+    /* aspect-video */
+    .media { width: 640px; aspect-ratio: 16 / 9; background: #111827; }
+
+    /* viewport-relative height, exercised by the viewport_height option */
+    .tall { width: 100px; height: 50vh; background: #22c55e; }
+
+    /* position:relative nudge */
+    .badge { position: relative; top: -6px; left: 8px; width: 40px; height: 20px; background: #ef4444; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="bar">Nav</header>
+    <section class="shell">
+      <div class="cards">
+        <div class="card">One</div>
+        <div class="card">Two</div>
+        <div class="card">Three</div>
+        <div class="card">Four</div>
+      </div>
+      <div class="grid">
+        <div class="cell wide">Wide</div>
+        <div class="cell">B</div>
+        <div class="cell">C</div>
+        <div class="cell">D</div>
+      </div>
+      <div class="hero">
+        <div class="hero-copy">Centered hero</div>
+      </div>
+      <div class="media">Media</div>
+      <div class="tall">Tall</div>
+      <div class="badge">9</div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[package]
+name = "op-ai-skills"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil AI skill engine — phase-driven prompt-skill resolution, ported from the TS pen-ai-skills package"
+
+[dependencies]
+serde_json = { workspace = true }
+# Canonical hex-color parsing (dependency-free, wasm-clean).
+op-util = { path = "../op-util" }
+# Embeds the skill / style-guide markdown corpus into the crate at
+# compile time so the engine ships self-contained — no runtime file
+# IO, and the crate stays usable on wasm32 targets. Pure Rust.
+include_dir = "0.7"
+
+[dev-dependencies]
+# Test-only: the loader test asserts the jian-components skill teaches
+# every role string jian's promote table honours, so the doc and the
+# table can never silently drift apart.
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+serde_json = { workspace = true }

@@ -1,0 +1,26 @@
+[package]
+name = "op-figma"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil Figma import — .fig file detection + clipboard-node parsing onto PenNode"
+
+[lib]
+name = "op_figma"
+path = "src/lib.rs"
+
+[dependencies]
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+# Binary `.fig` pipeline. flate2's default miniz_oxide backend + ruzstd are
+# pure-Rust (no C toolchain, wasm32-clean); base64 builds the image data URLs.
+flate2 = "1"
+ruzstd = "0.7"
+base64 = "0.22"
+
+[dev-dependencies]
+op-editor-core = { path = "../op-editor-core" }
+op-editor-ui = { path = "../op-editor-ui" }
+op-host-services = { path = "../op-host-services" }
+op-pen-loader = { path = "../op-pen-loader" }
+serde_json = { workspace = true }

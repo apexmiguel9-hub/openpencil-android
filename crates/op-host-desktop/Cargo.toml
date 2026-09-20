@@ -1,0 +1,353 @@
+[package]
+name = "op-host-desktop"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil desktop host — winit + skia-safe binary that drives the Rust editor on macOS / Linux / Windows"
+
+# The shipped executable keeps the stable `openpencil-desktop` name so
+# release artifacts + external CLI integrations are unaffected by the
+# Phase 7.3 crate rename.
+[[bin]]
+name = "openpencil-desktop"
+path = "src/main.rs"
+
+# Clean stdio peer for the local ACP process-boundary E2E. Cargo builds
+# examples during an ordinary `cargo test`, but does not wrap their `main`
+# functions in libtest, so stdout contains ACP ndJSON and nothing else.
+[[example]]
+name = "op-acp-test-agent"
+path = "examples/op-acp-test-agent.rs"
+test = true
+harness = false
+
+[features]
+default = []
+mcp-debug-tools = ["op-mcp/debug-tools"]
+# Production release lane: a missing reviewed binary cache must fail instead
+# of silently compiling or downloading an unreviewed Skia build.
+pinned-skia-binaries = ["skia-safe/no-compile"]
+# Local-only collaboration development against an external private ABI-v2
+# archive. Release builds are rejected by op-auth-bridge's build script.
+dev-op-auth-abi-v2 = [
+  "op-auth-bridge/dev-abi-v2",
+  "op-collab-host/dev-op-auth-abi-v2",
+]
+
+# File-association metadata for `cargo-bundle` (`cargo bundle`). This
+# declares OpenPencil as the OS-level handler for `.op` / `.pen`
+# documents: macOS writes `CFBundleDocumentTypes` into the `.app`
+# Info.plist, Windows registers the extensions, Linux emits a
+# `.desktop` MimeType entry. Once the association is registered the
+# OS launches this binary with the document path in argv, which
+# `main.rs` opens at startup (see `src/main.rs` argv handling).
+[package.metadata.bundle]
+name = "OpenPencil"
+identifier = "com.zseven-w.openpencil"
+icon = ["assets/icon.icns"]
+
+[[package.metadata.bundle.file_associations]]
+ext = "op"
+name = "OpenPencil Document"
+role = "Editor"
+
+[[package.metadata.bundle.file_associations]]
+ext = "pen"
+name = "OpenPencil Document"
+role = "Editor"
+
+# Figma `.fig` binary exports — routes through the desktop's
+# background `figma_import_session` worker (see
+# `persistence::is_supported_figma_import` + the dispatch sites in
+# `app_handler::resumed` / `WindowEvent::DroppedFile` / `main::drain_opened_files`).
+# `cargo-bundle` 0.10.0 only writes `CFBundleTypeExtensions` here; the
+# modern UTI binding (`LSItemContentTypes = com.figma.document`,
+# `UTImportedTypeDeclarations`, `LSHandlerRank = Alternate`) is sunk
+# into the produced `Info.plist` by `scripts/bundle-macos.sh` because
+# the macOS file-association lookup since 10.10 is UTI-based, not
+# extension-based.
+[[package.metadata.bundle.file_associations]]
+ext = "fig"
+name = "Figma Document"
+role = "Editor"
+
+# Desktop-only binary. The op-host-native lib is multi-platform (mobile
+# stubs land in Step 1f) but the runner here pulls winit + glutin via
+# op-host-native's desktop dep set, so the whole crate is gated to
+# macos / linux / windows.
+[target.'cfg(any(target_os = "macos", target_os = "linux", target_os = "windows"))'.dependencies]
+# Phase 7.3 reorg: openpencil-shell-core dissolved — widget facade /
+# render-backend / layout scene paths resolve through op-editor-ui.
+op-editor-ui = { path = "../op-editor-ui" }
+op-host-native = { path = "../op-host-native", features = ["gl-host"] }
+# Phase 2: the headless daemon crate. The `--serve-web` closure migrates here
+# over Phases 2-5; op-host-desktop's serve-web dispatch + GUI residuals call into
+# it via `op_host_services::*`.
+op-host-services = { path = "../op-host-services" }
+# Accessibility (#67) — the platform-free `accesskit` core types
+# (`TreeUpdate` / `ActionRequest` / `ActivationHandler` …) used by the
+# desktop a11y adapter (`src/a11y.rs`). The OS-specific subclassing
+# adapters live in the per-target blocks below. Pinned to 0.24 to match
+# op-editor-ui / op-host-native + the adapter crates' transitive
+# accesskit (0.24.x), so only one accesskit lives in the tree.
+accesskit = "0.24"
+# Phase 5 strangler reorg: the stdio MCP server (`mcp_serve.rs`) drives an
+# `op_editor_core::EditorState` (canonical `.op` document) instead of the
+# old shell-core `Document`.
+op-editor-core = { path = "../op-editor-core" }
+# Transport-free host state machines shared with web/native hosts.
+op-editor-host-core = { path = "../op-editor-host-core" }
+# Shared `~/.openpencil` well-known paths used by CLI and desktop discovery.
+op-config-store = { path = "../op-config-store" }
+# Device-login bridge (prebuilt proprietary library or inert stub).
+op-auth-bridge = { path = "../op-auth-bridge" }
+# Open collaboration protocol + the native Noise/TCP/mDNS transport. The
+# production ticket issuer remains behind op-auth-bridge's private ABI; this
+# host only consumes opaque tickets and verifies them against the pinned,
+# public JWKS endpoint.
+op-collab = { path = "../op-collab" }
+# The collaboration runtime itself (owner/guest actors, relay bootstrap,
+# ticket verifier). `src/collab_runtime.rs` is the desktop shim over it.
+op-collab-host = { path = "../op-collab-host" }
+op-collab-transport = { path = "../op-collab-transport", features = ["mdns"] }
+op-collab-relay-client = { path = "../op-collab-relay-client" }
+op-collab-relay-control-plane = { path = "../op-collab-relay-control-plane" }
+op-collab-relay-protocol = { path = "../op-collab-relay-protocol" }
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+sha2 = "0.10"
+zeroize = "1"
+# D′ architecture: pre-validation adapter translates PlannedFix → EditorCommand.
+op-design-lint = { path = "../op-design-lint" }
+# AI code-generation pipeline. The `ai` feature compiles the pull-based
+# `CodegenPipeline` (`op_codegen::ai`) that `codegen_session.rs` drives on
+# a worker thread to back the Code panel's Generate button.
+op-codegen = { path = "../op-codegen", features = ["ai"] }
+# Locale tables — git dialog strings go through `op_i18n::translate`
+# so they are localized like the rest of the chrome.
+op-i18n = { path = "../op-i18n" }
+# Phase 7 strangler reorg: the MCP tool registry + JSON-RPC stdio layer
+# (`mcp.rs` + `mcp/*`) was extracted out of the dissolved shell-core into the
+# op-mcp crate; `mcp_serve.rs` registers tools through `op_mcp::*`.
+op-mcp = { path = "../op-mcp" }
+# S3a design orchestrator — driven by `chat_orchestrator.rs` when a chat
+# message classifies as a design request.
+op-orchestrator = { path = "../op-orchestrator" }
+# Debug-mode logging: a tracing subscriber over the orchestrator's tracing
+# events (LLM calls + parse failures with raw output). Silent unless RUST_LOG
+# is set — see `init_tracing` in main.rs.
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+# Phase 7 strangler reorg: the transport-free AI chat data shapes
+# (`ChatProvider` trait + model catalog + agent-settings state) were
+# extracted into op-ai; the `src/chat_*.rs` real transports + the
+# model-discovery path import them through `op_ai::*`.
+op-ai = { path = "../op-ai" }
+# Shared subprocess IO primitives for chat CLI bridges.
+op-process-io = { path = "../op-process-io" }
+# AI skill engine — the BuiltIn agent provider resolves
+# generation-phase prompt skills through it (`chat_runtime.rs`).
+op-ai-skills = { path = "../op-ai-skills" }
+# ACP client — the `AcpProvider` chat backend (`chat_acp.rs`) drives
+# third-party Agent Client Protocol agents through it.
+op-acp = { path = "../op-acp" }
+# Canonical `.op` (PenDocument) → shell `Document` loader / adapter.
+# Extracted out of this binary into a shared library crate so library
+# crates (op-host-native) can reuse the conversion;
+# `persistence.rs` keeps only the desktop-only `rfd` Save/Open + error
+# dialogs.
+op-pen-loader = { path = "../op-pen-loader" }
+# Shared image-slot detection + result write-back (lifted out of this
+# crate's image_search_session so op-host-services can reuse it without
+# depending on the desktop host).
+op-image-enrich = { path = "../op-image-enrich", features = ["net"] }
+# Binary `.fig` importer — `persistence.rs` runs `parse_fig_binary`
+# to turn a Figma file into a canonical `PenDocument`.
+op-figma = { path = "../op-figma" }
+op-html = { path = "../op-html" }
+# In-app Git — `git_session.rs` binds an `op_git::GitRepo` to the
+# currently-open document so the Git panel can show branch / status
+# / history and drive commits.
+op-git = { path = "../op-git" }
+# Structured node-level 3-way merge for `.op` documents — the in-app
+# Git merge orchestrator feeds it the conflicting file's three index
+# stages so a merge conflict resolves per PenNode, not as raw text.
+op-opmerge = { path = "../op-opmerge" }
+# Canonical `.op` / `.pen` schema — all persistence + interop goes
+# through `PenDocument` rather than the desktop's private DocPayload.
+# Falling back to the schema's `load_str` lets us open files saved by
+# the TS editor, Jian apps, or any tool that emits the canonical form.
+jian-ops-schema = { path = "../../vendor/jian/crates/jian-ops-schema" }
+# jian-core ships the taffy-backed `LayoutEngine` that is the
+# canonical flex solver for `.op` files. We reuse it (instead of
+# rolling our own) so layout stays bit-identical with what the TS
+# editor + future jian native runtime produce.
+jian-core = { path = "../../vendor/jian/crates/jian-core" }
+# jian-skia ships `SkiaMeasure` — a `MeasureBackend` impl that
+# defers to skia's paragraph shaper. Wiring it into the layout
+# engine replaces the ~10% character-count heuristic with real
+# glyph advances so text frames sized to `fit_content` agree
+# with what the canvas painter draws (TS parity for line-wrap +
+# fixed-width text growth).
+jian-skia = { path = "../../vendor/jian/crates/jian-skia", features = ["textlayout"] }
+skia-safe = { version = "0.97.0", default-features = false, features = [
+  "binary-cache",
+  "textlayout",
+  "gl",
+  "pdf",
+] }
+# `casement` — ZSeven-W's winit fork (vendored as a submodule under
+# `vendor/casement`). It adds `winit::platform::macos::drain_opened_file_urls`,
+# the macOS open-documents Apple-event hook upstream winit lacks. The
+# `package` key keeps the `winit` import name, so all `use winit::…`
+# stays unchanged.
+winit = { package = "casement", path = "../../vendor/casement", default-features = false, features = [
+  "x11",
+  "wayland",
+  # dlopen libwayland at runtime so X11-only hosts can still start the
+  # binary (without this, libwayland-client becomes a DT_NEEDED hard
+  # dependency and the dynamic linker refuses to load on X11-only boxes).
+  "wayland-dlopen",
+  "wayland-csd-adwaita",
+  "rwh_06",
+] }
+# Document Save / Open (.pen / .op). Serialization lives in
+# `src/persistence.rs` as a hand-rolled DTO so shell-core stays
+# serde-free (Color / Rect / Point2D come from glam + jian-core
+# which would otherwise need wrapper types). rfd pops the native
+# Save/Open file dialogs so the user picks the path.
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml_edit = "0.25"
+rfd = "0.14"
+# OS clipboard for Cmd+C / Cmd+V / Cmd+X, including canvas images.
+# Native Wayland access is opt-in in arboard; without this feature a
+# Wayland session still probes X11/XWayland and misses clipboard offers
+# made directly by apps such as KDE Spectacle.
+arboard = { version = "3", features = ["wayland-data-control"] }
+# Base64-encodes chat image attachments for providers that take
+# inline image content blocks (Claude SDK) or a base64 body field
+# (HTTP-server transport). Same pure-Rust crate op-figma uses.
+base64 = "0.22"
+# Packs generated code + extracted assets into a downloadable bundle for
+# the Code panel's Export Bundle action. Only store/deflate is needed for
+# small text + image payloads.
+zip = "2"
+# 2D affine transforms used by PNG export's bounds walker so nested
+# rotated containers don't clip their children. Pinned to the same
+# version shell-core uses for `Point2D = glam::Vec2`.
+glam = { version = "0.29", default-features = false, features = ["std"] }
+# Resolves the platform-specific user-config dir for the auto-saved
+# settings file (TS parity with `agent-settings-store` localStorage):
+# macOS  → ~/Library/Application Support/openpencil/settings.json
+# Linux  → ~/.config/openpencil/settings.json
+# Windows → %APPDATA%/openpencil/settings.json
+dirs = "5"
+# Cross-product Rust agent runtime — provides `QueryEngine` + the
+# generic `Provider` trait + streaming `Event`s. Vendored as the
+# `vendor/agent` git submodule (the agent-rs repo) and referenced by
+# relative path so the BuiltIn ChatProvider in `src/chat_runtime.rs`
+# can drive a real LLM turn. The submodule keeps CI self-contained.
+#
+# Compiled with NO default features: the BuiltIn bridge uses the trait,
+# engine wiring, and `from_provider`; concrete provider transports are
+# selected explicitly by OpenPencil rather than inherited from agent defaults.
+agent = { path = "../../vendor/agent/crates/agent", default-features = false }
+# Forked from bartolli/anthropic-agent-sdk — lives under
+# `vendor/anthropic-agent-sdk/` so OP owns the source and can diverge
+# from upstream. Provides the Claude Code CLI subprocess transport +
+# stream-json message parser that `src/chat_claude.rs` wraps as a
+# `ChatProvider`. Default features (no rmcp) keep the dep set tight.
+anthropic-agent-sdk = { path = "../../vendor/anthropic-agent-sdk" }
+async-trait = "0.1"
+# HTTP client for the Codex / OpenCode bridges. They run as local
+# HTTP servers (spawned via `<bin> serve`) and we POST JSON requests
+# to them — `reqwest` is already in the dep graph via
+# anthropic-agent-sdk so adding it here costs no new deps.
+# Default-features-off + rustls-tls keeps the TLS choice consistent
+# with the SDK's. We still talk to 127.0.0.1, but rustls is a
+# small price for not having two parallel TLS stacks.
+reqwest = { version = "0.12", default-features = false, features = [
+  "blocking",
+  "rustls-tls",
+  "json",
+  "stream",
+] }
+# Async runtime — agent-rs is async; the BuiltIn ChatProvider impl
+# bridges its `EventStream` into the sync `Iterator<ChatDelta>`
+# shape via a tokio task + std::sync::mpsc channel.
+tokio = { version = "1", default-features = false, features = [
+  "rt-multi-thread",
+  "macros",
+  "sync",
+  "io-util",
+  "process",
+  "net",
+  "time",
+] }
+futures = { version = "0.3", default-features = false, features = ["std"] }
+getrandom = "0.3"
+thiserror = { workspace = true }
+socket2 = "0.6"
+subtle = "2.6"
+if-addrs = "0.13"
+
+# Native menu bar (`src/menu.rs`). winit owns the window but has no
+# menu primitive, so `muda` builds the NSMenu and routes selections
+# through its global event channel. macOS only — Windows and Linux
+# fall back to the in-canvas File menu. `default-features = false`
+# drops the Linux-only `gtk` / `libxdo` feature deps.
+#
+# macOS-only — set the running app's Dock icon + process name at
+# startup so the dev (non-bundled) binary shows "OpenPencil" + the
+# brand icon instead of the bare executable name. Pinned to the
+# objc2 0.2 line winit / casement already use.
+[target.'cfg(target_os = "macos")'.dependencies]
+muda = { version = "0.17", default-features = false }
+objc2 = "0.5"
+objc2-app-kit = { version = "0.2", default-features = false, features = [
+  "std",
+  "NSApplication",
+  "NSColorSpace",
+  # `NSEvent::mouseLocation` — the live pointer position during a native
+  # file drag, which winit's drag events do not carry (`src/drag_cursor.rs`).
+  "NSEvent",
+  "NSImage",
+  "NSResponder",
+  "NSView",
+  "NSWindow",
+] }
+objc2-foundation = { version = "0.2", default-features = false, features = [
+  "std",
+  "NSData",
+  "NSString",
+  "NSProcessInfo",
+] }
+# Accessibility (#67) — macOS AT-SPI bridge. `SubclassingAdapter`
+# subclasses the window's NSView (raw pointer from
+# `Window::window_handle()`) so VoiceOver reads the assembled
+# `accesskit::TreeUpdate`. This is the raw-window-handle adapter, NOT
+# `accesskit_winit` — the latter hard-depends on upstream `winit`, which
+# would pull a second, incompatible winit alongside `casement` (the same
+# reason `glutin-winit` is rejected). 0.26.x's transitive accesskit is
+# 0.24.x, matching the workspace pin — no second accesskit.
+accesskit_macos = "0.26"
+
+# Accessibility (#67) — Windows UI Automation bridge. `SubclassingAdapter`
+# subclasses the HWND (from `Window::window_handle()` → `RawWindowHandle::Win32`).
+# Scaffolded + compiled here; on-device Narrator verification is pending.
+[target.'cfg(target_os = "windows")'.dependencies]
+accesskit_windows = "0.33"
+
+# Accessibility (#67) — Linux AT-SPI (D-Bus) bridge. The Unix adapter is
+# windowless (`Adapter::new` takes only the handler trio, no window
+# handle). Scaffolded + compiled here; on-device Orca verification is pending.
+[target.'cfg(target_os = "linux")'.dependencies]
+accesskit_unix = "0.22"
+# Keep native Wayland image/png bytes intact during paste. `arboard`'s
+# image API decodes PNG to RGBA, which would force the editor to encode
+# the same screenshot back to PNG before it can build the image data URL.
+wl-clipboard-rs = "0.9"
+
+[dev-dependencies]
+static_assertions = "1"

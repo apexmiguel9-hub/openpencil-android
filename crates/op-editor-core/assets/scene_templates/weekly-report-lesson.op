@@ -1,0 +1,2188 @@
+{
+  "version": "1.0.0",
+  "name": "职场周报小课长图",
+  "variables": {
+    "c-board": {
+      "type": "color",
+      "value": "#1E2E27"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#26382F"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#2C4139"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#3D5449"
+    },
+    "c-chalk": {
+      "type": "color",
+      "value": "#F0EBDF"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#A6B5AB"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#E8B14C"
+    },
+    "c-accent-ink": {
+      "type": "color",
+      "value": "#2A1E04"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "周报小课长图",
+      "width": 1080,
+      "height": 3116,
+      "layout": "vertical",
+      "gap": 0,
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-board"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "01 页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            80,
+            80,
+            70,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-panel"
+            }
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "课次标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                20
+              ],
+              "cornerRadius": 4,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "课次文字",
+                  "content": "职场小课 · Lesson 01",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-ink"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "周报不是流水账\n是一次汇报",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 76,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-chalk"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "四段结构 + 一张可以直接填的骨架。这节课学完就能用在这周五。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 28,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f21",
+          "name": "02 痛点",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f19",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r16",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t17",
+                  "name": "区块标题",
+                  "content": "先说清楚它为什么难写",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-chalk"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t18",
+                  "name": "区块说明",
+                  "content": "三条里只要中一条，你的周报就白写了。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f20",
+              "name": "痛点列表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f9",
+                  "name": "痛点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t7",
+                      "name": "痛点序号",
+                      "content": "01",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "痛点文字",
+                      "content": "写成流水账：把日程表复制一遍，读的人看不出你解决了什么。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f12",
+                  "name": "痛点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t10",
+                      "name": "痛点序号",
+                      "content": "02",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t11",
+                      "name": "痛点文字",
+                      "content": "只报喜不报忧：卡住的地方藏着，等到爆雷时才第一次被看见。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f15",
+                  "name": "痛点项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t13",
+                      "name": "痛点序号",
+                      "content": "03",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 64
+                    },
+                    {
+                      "type": "text",
+                      "id": "t14",
+                      "name": "痛点文字",
+                      "content": "没有下一步：写完这周就结束了，读的人不知道该给你什么支持。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f59",
+          "name": "03 结构",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f57",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r54",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t55",
+                  "name": "区块标题",
+                  "content": "四段，按这个顺序排",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-chalk"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t56",
+                  "name": "区块说明",
+                  "content": "段名可以换措辞，顺序不要换——读的人是按这个顺序找信息的。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f58",
+              "name": "结构列表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f29",
+                  "name": "结构段",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f24",
+                      "name": "段头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t22",
+                          "name": "段序号",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 62
+                        },
+                        {
+                          "type": "text",
+                          "id": "t23",
+                          "name": "段名",
+                          "content": "做成了什么",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t28",
+                      "name": "段要求",
+                      "content": "写结果，不写过程。一条一件事，动词开头。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f27",
+                      "name": "反面提示",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i25",
+                          "name": "反面图标",
+                          "iconFontName": "circle-x",
+                          "width": 24,
+                          "height": 24,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t26",
+                          "name": "反面文字",
+                          "content": "别写「推进了 XX 项目」——推进不是结果。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 23,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 12
+                },
+                {
+                  "type": "frame",
+                  "id": "f37",
+                  "name": "结构段",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f32",
+                      "name": "段头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t30",
+                          "name": "段序号",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 62
+                        },
+                        {
+                          "type": "text",
+                          "id": "t31",
+                          "name": "段名",
+                          "content": "数据怎么样",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t36",
+                      "name": "段要求",
+                      "content": "给一个能对比的数：跟上周比，或跟目标比。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f35",
+                      "name": "反面提示",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i33",
+                          "name": "反面图标",
+                          "iconFontName": "circle-x",
+                          "width": 24,
+                          "height": 24,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t34",
+                          "name": "反面文字",
+                          "content": "别只给绝对值，没有对照的数字说明不了任何事。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 23,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 12
+                },
+                {
+                  "type": "frame",
+                  "id": "f45",
+                  "name": "结构段",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f40",
+                      "name": "段头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t38",
+                          "name": "段序号",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 62
+                        },
+                        {
+                          "type": "text",
+                          "id": "t39",
+                          "name": "段名",
+                          "content": "卡在哪里",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t44",
+                      "name": "段要求",
+                      "content": "写清楚卡点 + 你需要谁做什么。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f43",
+                      "name": "反面提示",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i41",
+                          "name": "反面图标",
+                          "iconFontName": "circle-x",
+                          "width": 24,
+                          "height": 24,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t42",
+                          "name": "反面文字",
+                          "content": "别写「有一些困难」——那等于没写。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 23,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 12
+                },
+                {
+                  "type": "frame",
+                  "id": "f53",
+                  "name": "结构段",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "start",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "padding": [
+                    28,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f48",
+                      "name": "段头",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t46",
+                          "name": "段序号",
+                          "content": "04",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 62
+                        },
+                        {
+                          "type": "text",
+                          "id": "t47",
+                          "name": "段名",
+                          "content": "下周做什么",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 34,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t52",
+                      "name": "段要求",
+                      "content": "最多三件，按优先级排，写清交付物。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 26,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f51",
+                      "name": "反面提示",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i49",
+                          "name": "反面图标",
+                          "iconFontName": "circle-x",
+                          "width": 24,
+                          "height": 24,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t50",
+                          "name": "反面文字",
+                          "content": "别列十件。列十件等于告诉别人你没排过优先级。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 23,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.7,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    }
+                  ],
+                  "cornerRadius": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f111",
+          "name": "04 骨架",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f110",
+              "name": "区块头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r107",
+                  "name": "强调短线",
+                  "width": 72,
+                  "height": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t108",
+                  "name": "区块标题",
+                  "content": "直接抄这张骨架",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 46,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-chalk"
+                    }
+                  ],
+                  "lineHeight": 1.3,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t109",
+                  "name": "区块说明",
+                  "content": "琥珀色下划线的地方填你自己的内容，别的字一个都不用改。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.7,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f106",
+              "name": "骨架纸",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-panel"
+                }
+              ],
+              "padding": [
+                32,
+                32
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f69",
+                  "name": "骨架行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t67",
+                      "name": "骨架段名",
+                      "content": "本周做成",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f68",
+                      "name": "骨架内容",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t60",
+                          "name": "骨架文字",
+                          "content": "完成了",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f62",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r61",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t63",
+                          "name": "骨架文字",
+                          "content": "，",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t64",
+                          "name": "骨架文字",
+                          "content": "已交付给",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f66",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r65",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f81",
+                  "name": "骨架行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t79",
+                      "name": "骨架段名",
+                      "content": "关键数据",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f80",
+                      "name": "骨架内容",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f71",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r70",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t72",
+                          "name": "骨架文字",
+                          "content": "从",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f74",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r73",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t75",
+                          "name": "骨架文字",
+                          "content": "到",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f77",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r76",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t78",
+                          "name": "骨架文字",
+                          "content": "（对比上周）",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f93",
+                  "name": "骨架行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t91",
+                      "name": "骨架段名",
+                      "content": "当前卡点",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f92",
+                      "name": "骨架内容",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f83",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r82",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t84",
+                          "name": "骨架文字",
+                          "content": "卡住，需要",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f86",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r85",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t87",
+                          "name": "骨架文字",
+                          "content": "在",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f89",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r88",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t90",
+                          "name": "骨架文字",
+                          "content": "前确认",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f105",
+                  "name": "骨架行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t103",
+                      "name": "骨架段名",
+                      "content": "下周计划",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f104",
+                      "name": "骨架内容",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t94",
+                          "name": "骨架文字",
+                          "content": "1.",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f96",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r95",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t97",
+                          "name": "骨架文字",
+                          "content": "　2.",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f99",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r98",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t100",
+                          "name": "骨架文字",
+                          "content": "　3.",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 25,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-chalk"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f102",
+                          "name": "空格",
+                          "width": "fit_content",
+                          "height": 34,
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "justifyContent": "end",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r101",
+                              "name": "空格底线",
+                              "width": 150,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-accent"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-line"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f129",
+          "name": "05 收尾",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            64,
+            80,
+            56,
+            80
+          ],
+          "gap": 26,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-panel"
+            }
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t124",
+              "name": "收尾标题",
+              "content": "写之前，先记这三条",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 42,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-chalk"
+                }
+              ],
+              "lineHeight": 1.3,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f125",
+              "name": "收尾列表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f115",
+                  "name": "收尾项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f112",
+                      "name": "方框",
+                      "width": 36,
+                      "height": 36,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i113",
+                          "name": "勾",
+                          "iconFontName": "check",
+                          "width": 22,
+                          "height": 22,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t114",
+                      "name": "收尾文字",
+                      "content": "周五下班前发，不要拖到周一——周一发的周报没人有空看。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f119",
+                  "name": "收尾项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f116",
+                      "name": "方框",
+                      "width": 36,
+                      "height": 36,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i117",
+                          "name": "勾",
+                          "iconFontName": "check",
+                          "width": 22,
+                          "height": 22,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t118",
+                      "name": "收尾文字",
+                      "content": "长度控制在手机一屏半，超了就把细节挪到附件。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f123",
+                  "name": "收尾项",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f120",
+                      "name": "方框",
+                      "width": 36,
+                      "height": 36,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "i121",
+                          "name": "勾",
+                          "iconFontName": "check",
+                          "width": 22,
+                          "height": 22,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-accent-ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t122",
+                      "name": "收尾文字",
+                      "content": "先写「卡在哪」，再回头写「做成了什么」，顺序反着来更容易写。",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 25,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-chalk"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f128",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t126",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 25,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-chalk"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t127",
+                  "name": "更新说明",
+                  "content": "每周一节能当天用上的职场课",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

@@ -1,0 +1,647 @@
+{
+  "version": "1.0.0",
+  "name": "促销价格卡 · 霓虹骑楼 1:1",
+  "variables": {
+    "c-night": {
+      "type": "color",
+      "value": "#0F1225"
+    },
+    "c-night-deep": {
+      "type": "color",
+      "value": "#060816"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#1B2036"
+    },
+    "c-panel-raised": {
+      "type": "color",
+      "value": "#282F47"
+    },
+    "c-acrylic": {
+      "type": "color",
+      "value": "#E3E8EE"
+    },
+    "c-acrylic-dim": {
+      "type": "color",
+      "value": "#ABB2BA"
+    },
+    "c-acrylic-faint": {
+      "type": "color",
+      "value": "#757E88"
+    },
+    "c-magenta": {
+      "type": "color",
+      "value": "#FA618E"
+    },
+    "c-cyan": {
+      "type": "color",
+      "value": "#44D6D5"
+    },
+    "c-glow-magenta": {
+      "type": "color",
+      "value": "#FA618E1F"
+    },
+    "c-glow-cyan": {
+      "type": "color",
+      "value": "#44D6D51F"
+    },
+    "c-glow-out": {
+      "type": "color",
+      "value": "#FA618E00"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f30",
+      "name": "促销价格卡 · 霓虹骑楼",
+      "width": 1080,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-night"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f1",
+          "name": "价目卡 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            88,
+            80,
+            112,
+            80
+          ],
+          "gap": 0,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f4",
+              "name": "卡头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 18,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t2",
+                  "name": "店招",
+                  "content": "夜灯咖啡 · 价目",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-acrylic-faint"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0.6,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "主张",
+                  "content": "开到最后一班地铁",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-acrylic"
+                    }
+                  ],
+                  "lineHeight": 1.15,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f23",
+              "name": "价目表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 0,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f7",
+                  "name": "表头",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "fill": [],
+                  "padding": [
+                    0,
+                    28,
+                    12,
+                    28
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t5",
+                      "name": "表头 · 档位",
+                      "content": "档位",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-acrylic-faint"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t6",
+                      "name": "表头 · 价格",
+                      "content": "价格",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-acrylic-faint"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "textAlign": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f12",
+                  "name": "价目行 1",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "padding": [
+                    22,
+                    28
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f10",
+                      "name": "档位单元",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t8",
+                          "name": "档位名",
+                          "content": "单次体验",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 48,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t9",
+                          "name": "档位说明",
+                          "content": "含一杯手冲与一份点心",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic-dim"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0.6,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t11",
+                      "name": "价格",
+                      "content": "¥ 38",
+                      "fontFamily": "Inter",
+                      "fontSize": 48,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-acrylic"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "textAlign": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f17",
+                  "name": "价目行 2",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel-raised"
+                    }
+                  ],
+                  "padding": [
+                    22,
+                    28
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f15",
+                      "name": "档位单元",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t13",
+                          "name": "档位名",
+                          "content": "五次联票",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 48,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t14",
+                          "name": "档位说明",
+                          "content": "折合每次 32，三个月内有效",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic-dim"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0.6,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t16",
+                      "name": "价格",
+                      "content": "¥ 160",
+                      "fontFamily": "Inter",
+                      "fontSize": 48,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-acrylic"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "textAlign": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f22",
+                  "name": "价目行 3",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-panel"
+                    }
+                  ],
+                  "padding": [
+                    22,
+                    28
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f20",
+                      "name": "档位单元",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t18",
+                          "name": "档位名",
+                          "content": "月度畅饮",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 48,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic"
+                            }
+                          ],
+                          "lineHeight": 1.3,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t19",
+                          "name": "档位说明",
+                          "content": "每日一杯，不限品类",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-acrylic-dim"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0.6,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t21",
+                      "name": "价格",
+                      "content": "¥ 288",
+                      "fontFamily": "Inter",
+                      "fontSize": 48,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-acrylic"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "textAlign": "right"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t24",
+              "name": "备注",
+              "content": "价格含税，不与其他优惠同享。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 32,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-acrylic-faint"
+                }
+              ],
+              "lineHeight": 1.5,
+              "letterSpacing": 0.6,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f31",
+          "name": "促销价格卡 · 霓虹骑楼 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "外散射",
+              "width": 211,
+              "height": 1600,
+              "cornerRadius": 640,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-magenta"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 946,
+              "y": -360
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "灯管",
+              "width": 96,
+              "height": 640,
+              "cornerRadius": 320,
+              "fill": [],
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-magenta"
+                  }
+                ]
+              },
+              "x": 1004,
+              "y": 120
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "外散射",
+              "width": 792,
+              "height": 20,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "radial_gradient",
+                  "cx": 0.5,
+                  "cy": 0.5,
+                  "radius": 0.5,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-glow-cyan"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-out"
+                    }
+                  ]
+                }
+              ],
+              "x": -136,
+              "y": 294
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "灯管",
+              "width": 360,
+              "height": 8,
+              "cornerRadius": 4,
+              "fill": [],
+              "stroke": {
+                "thickness": 2,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-cyan"
+                  }
+                ]
+              },
+              "x": 80,
+              "y": 300
+            },
+            {
+              "type": "rectangle",
+              "id": "r29",
+              "name": "雨夜反光",
+              "width": 1080,
+              "height": 200,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 0,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-night-deep"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-glow-out"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 880
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

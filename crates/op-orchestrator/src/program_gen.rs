@@ -1,0 +1,162 @@
+//! The shared program→forest executor used by script-gen and the
+//! `batch_design` bridge.
+//!
+//! `run_program_to_forest` runs a `batch_design` DSL PROGRAM —
+//! `name=I(parent, {...})` insert operations with shared bindings — against a
+//! FRESH empty document and returns the produced section forest. Because a
+//! child is nested by passing its parent's *binding* (a captured variable),
+//! the two weak-model structural failures a flat `_parent` list suffers
+//! become near-inexpressible:
+//!   - a table/list cell cannot be emitted as a full-width SIBLING of its row
+//!     (the row id is a captured variable, not a string the model re-types), and
+//!   - a "header but zero rows" table cannot happen when each row is its own
+//!     `I(table, ...)` line authored alongside the data.
+//!
+//! `script_gen` is the only caller today: the sub-agent writes a real
+//! JavaScript program (`op_mcp::script_runner`), and the recorded
+//! `batch_design` program it produces is handed to
+//! [`run_program_to_forest`] here to build the section forest.
+//!
+//! ## Why this returns a `StateSchema` alongside the forest
+//!
+//! `op-mcp`'s generation-insert path (`batch_design.rs::hoist_generation_state`)
+//! hoists any node-level `state` block into a doc-root `MergeAppState` command
+//! BEFORE the insert command, tagged with the "unplanned" priority — it has no
+//! orchestrator plan index to stamp. That `MergeAppState` lands on whatever
+//! document it is applied to. Here that document is a SCRATCH `EditorState::new()`
+//! that exists only to run the program and get a forest back — its `doc.state`
+//! is discarded once this function returns the forest alone. The orchestrator
+//! (`subagent.rs`) is the one caller that actually knows the subtask's real
+//! `plan_idx`, so it needs the hoisted state handed back separately in order to
+//! re-tag it with that index (rather than the unplanned one baked in here) before
+//! merging it into the live document. Returning `(forest, program_state)` lets the
+//! caller do exactly that instead of silently losing every `$app.*` key a
+//! script-gen'd subtask declared.
+use std::collections::BTreeMap;
+
+use jian_ops_schema::node::PenNode;
+use jian_ops_schema::state::StateSchema;
+use op_editor_core::EditorState;
+
+/// Failure of [`run_program_to_forest`].
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum ProgramGenError {
+    /// `batch_design` returned an envelope with no command; carries the
+    /// envelope JSON so the caller can see which lines were dropped.
+    NoCommand { envelope_json: String },
+    /// `batch_design` returned an outcome shape this path cannot use;
+    /// carries the outcome's `Debug` rendering (`ToolOutcome` is not `Eq`).
+    UnexpectedOutcome { outcome_debug: String },
+    /// The scratch document rejected the program's command.
+    CommandRejected,
+    /// The program ran but produced an empty forest.
+    NoNodes,
+}
+
+impl std::fmt::Display for ProgramGenError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::NoCommand { envelope_json } => {
+                write!(f, "program produced no command: {envelope_json}")
+            }
+            Self::UnexpectedOutcome { outcome_debug } => {
+                write!(f, "unexpected batch_design outcome: {outcome_debug}")
+            }
+            Self::CommandRejected => write!(f, "program command rejected by document"),
+            Self::NoNodes => write!(f, "program produced no nodes"),
+        }
+    }
+}
+
+impl std::error::Error for ProgramGenError {}
+
+/// Keeps `?`-into-`Result<_, String>` call sites compiling unchanged.
+impl From<ProgramGenError> for String {
+    fn from(error: ProgramGenError) -> Self {
+        error.to_string()
+    }
+}
+
+/// Run a `batch_design` DSL PROGRAM string against a FRESH empty document and
+/// return the produced section forest plus any doc-root `state` the program's
+/// nodes hoisted (see the module doc for why the latter matters). The caller
+/// (`script_gen`) hands in the DSL a JS engine emitted by calling the bound
+/// `I`/`C`/… functions. The executor collects per-line errors and applies the
+/// surviving lines (best-effort); a program that builds nothing is an error.
+pub fn run_program_to_forest(
+    program: &str,
+) -> Result<(Vec<PenNode>, StateSchema), ProgramGenError> {
+    let mut state = EditorState::new();
+    let mut args: BTreeMap<String, String> = BTreeMap::new();
+    args.insert("operations".to_string(), program.to_string());
+    // The agent-facing batch_design surface is transactional (any failing
+    // line rolls back the whole batch). This scratch-document path keeps
+    // the old best-effort semantics on purpose: there is no model in a
+    // feedback loop to resend a corrected batch mid-subtask — drops are
+    // surfaced as warnings and the orchestrator's retry ladder + cleanup
+    // passes own the repair.
+    args.insert("_line_policy".to_string(), "best_effort".to_string());
+
+    let cmd = {
+        let tool = op_mcp::batch_design_snapshot(&state);
+        match op_mcp::McpTool::call(&tool, &args) {
+            op_mcp::ToolOutcome::OkJsonWithCommand(json, cmd) => {
+                surface_program_warnings(&json);
+                cmd
+            }
+            op_mcp::ToolOutcome::OkJson(json) => {
+                return Err(ProgramGenError::NoCommand {
+                    envelope_json: json,
+                });
+            }
+            other => {
+                return Err(ProgramGenError::UnexpectedOutcome {
+                    outcome_debug: format!("{other:?}"),
+                })
+            }
+        }
+    };
+    if !state.apply(cmd) {
+        return Err(ProgramGenError::CommandRejected);
+    }
+    let nodes = state.active_children().to_vec();
+    if nodes.is_empty() {
+        return Err(ProgramGenError::NoNodes);
+    }
+    // The scratch document starts empty, so anything sitting in `doc.state`
+    // now came from the program's own hoisted `MergeAppState` — drain it so
+    // the caller can re-tag it with the subtask's real plan_idx.
+    let program_state = state.doc.state.take().unwrap_or_default();
+    Ok((nodes, program_state))
+}
+
+/// Echo the executor's per-line `errors[]` (if any) to stderr — visibility
+/// without failing the section.
+fn surface_program_warnings(envelope_json: &str) {
+    if let Ok(serde_json::Value::Object(map)) = serde_json::from_str(envelope_json) {
+        if let Some(serde_json::Value::Array(errors)) = map.get("errors") {
+            for err in errors {
+                if let Some(warning) = format_program_warning(err) {
+                    eprintln!("{warning}");
+                }
+            }
+        }
+    }
+}
+
+fn format_program_warning(error: &serde_json::Value) -> Option<String> {
+    let message = error.get("error").and_then(|value| value.as_str())?;
+    match error
+        .get("line")
+        .and_then(|value| value.as_str())
+        .map(str::trim)
+        .filter(|line| !line.is_empty())
+    {
+        Some(line) => Some(format!("[program-gen] dropped line `{line}`: {message}")),
+        None => Some(format!("[program-gen] dropped line: {message}")),
+    }
+}
+
+#[cfg(test)]
+#[path = "program_gen_tests.rs"]
+mod tests;

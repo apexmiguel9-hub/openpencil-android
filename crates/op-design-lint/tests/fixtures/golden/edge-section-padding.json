@@ -1,0 +1,30 @@
+[
+  {
+    "nodeId": "categories",
+    "category": "edge-section-padding",
+    "severity": "warning",
+    "property": "padding",
+    "currentValue": null,
+    "suggestedValue": [
+      0,
+      24,
+      0,
+      24
+    ],
+    "reason": "mobile content section has 0 horizontal padding; apply a 24px symmetric page rail"
+  },
+  {
+    "nodeId": "list",
+    "category": "edge-section-padding",
+    "severity": "warning",
+    "property": "padding",
+    "currentValue": null,
+    "suggestedValue": [
+      0,
+      24,
+      0,
+      24
+    ],
+    "reason": "mobile content section has 0 horizontal padding; apply a 24px symmetric page rail"
+  }
+]

@@ -1,0 +1,497 @@
+// Browser/daemon boundary: Iconify XHR uses the public CORS API while the brand
+// catalog comes from the daemon-served asset; parsing/apply logic is unit-tested.
+//! Web Iconify bridge — the browser consumer of the icon picker's
+//! `icon_picker_load_more_request` flag.
+//!
+//! TS (`icon-picker-dialog.tsx`) fetches `https://api.iconify.design`
+//! DIRECTLY from the browser — the Iconify API is public + CORS-open —
+//! so the web host goes direct too; no daemon route is needed (unlike
+//! chat / model discovery, which proxy through the daemon).
+//!
+//! Pipeline mirrors the desktop `iconify_host.rs` worker:
+//! `/search?query=…&limit=…&start=…` → group result ids by collection
+//! → `{prefix}.json?icons=…` per collection → `parse_iconify_body`
+//! (shared, platform-free) → [`IconPickerRemoteIcon`]s in search-result
+//! order. The apply step mirrors `poll_iconify_job`: stale-query guard,
+//! page-0 reset, dedupe-append, `total` / `next_start` bookkeeping.
+//! Collection bodies are fetched sequentially (continuation-passing) —
+//! result pages are ≤48 ids across a handful of collections, so the
+//! extra round-trip latency is negligible and the code stays borrow-safe.
+
+use std::cell::RefCell;
+use std::collections::HashMap;
+use std::rc::Rc;
+
+use op_editor_core::{IconPickerRemoteIcon, IconifyLoadMoreRequest};
+use wasm_bindgen::closure::Closure;
+use wasm_bindgen::JsCast;
+
+use crate::repaint_ctx::RepaintContext;
+
+type DoneFn = Box<dyn FnOnce(Result<String, IconifyError>)>;
+
+/// A failed Iconify (or daemon brand-catalog) fetch / parse.
+///
+/// `Display` reproduces the ad-hoc `String` messages this enum replaced byte
+/// for byte, so the picker's error row reads exactly the same.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub(crate) enum IconifyError {
+    /// The browser exposes no `XMLHttpRequest` constructor.
+    XhrUnavailable,
+    /// `XMLHttpRequest.open` refused the URL.
+    RequestOpenFailed,
+    /// `XMLHttpRequest.send` refused the request.
+    RequestSendFailed,
+    /// A non-2xx (or bodyless) response.
+    Http(u16),
+    /// The response body is not valid JSON.
+    ResponseParse(String),
+    /// A search response carries no `icons` array.
+    MalformedSearch,
+    /// A collection response carries no `icons` object.
+    MalformedCollection,
+}
+
+impl std::fmt::Display for IconifyError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            IconifyError::XhrUnavailable => write!(f, "XMLHttpRequest unavailable"),
+            IconifyError::RequestOpenFailed => write!(f, "iconify request open failed"),
+            IconifyError::RequestSendFailed => write!(f, "iconify request send failed"),
+            IconifyError::Http(status) => write!(f, "iconify HTTP {status}"),
+            IconifyError::ResponseParse(error) => write!(f, "{error}"),
+            IconifyError::MalformedSearch => write!(f, "malformed iconify search response"),
+            IconifyError::MalformedCollection => {
+                write!(f, "malformed iconify collection response")
+            }
+        }
+    }
+}
+
+impl std::error::Error for IconifyError {}
+
+impl From<IconifyError> for String {
+    fn from(error: IconifyError) -> String {
+        error.to_string()
+    }
+}
+
+/// Shared with the desktop worker (`op-host-desktop/src/iconify_host.rs`).
+const ICONIFY_API: &str = op_editor_core::icon_picker_state::ICONIFY_API_BASE;
+/// Same budget as the desktop worker's reqwest client.
+const FETCH_TIMEOUT_MS: u32 = crate::live_sync::DAEMON_FETCH_TIMEOUT_MS;
+
+/// Daemon route serving the brand-logo catalog (simple-icons) — the shared
+/// const `op-host-services`' `web_static` serves, so client and daemon can't
+/// drift. The daemon embeds the asset the wasm bundle omits, like
+/// `/api/ai/models` for model discovery.
+const BRAND_CATALOG_PATH: &str = op_editor_ui::ICONIFY_BRANDS_ROUTE;
+
+/// Fetch the brand-logo catalog from the daemon once at mount and register it
+/// with the shared icon catalog. The wasm bundle omits these ~3700 simple-icons
+/// (~4.8 MB) to keep the first-load small; this pulls them in the background so
+/// the icon picker and figma icon substitution can resolve brand logos shortly
+/// after load. Best-effort: a missing daemon / failed fetch just leaves brand
+/// logos unavailable (lookups fall back to the unknown-glyph dot).
+/// Fetch the core (lucide + feather) catalog the first time the icon panel is
+/// opened, and register it.
+///
+/// Unlike the brand catalog this is NOT pulled at mount: it is only needed by
+/// the icon picker and the iconFont resolver, so pulling it on first open
+/// keeps it off the critical path of a session that never opens either. The
+/// route is a `/pkg/assets/` asset (the bundle no longer embeds it), so it
+/// rides the shared `web_assets` single-flight rather than a private latch —
+/// a failed fetch leaves the panel on its "still loading" empty state and the
+/// next open asks again.
+pub(crate) fn ensure_core_catalog() {
+    if op_editor_ui::core_catalog_loaded() {
+        return;
+    }
+    op_editor_core::web_assets::request(op_editor_ui::ICONIFY_CORE_ROUTE);
+}
+
+pub(crate) fn fetch_brand_catalog<C: RepaintContext + 'static>(inner: &Rc<RefCell<C>>) {
+    // Crate-root re-exports (not the `widgets` facade) so this stays within the
+    // op-host-web widget-boundary rule (`tools/check-widget-boundary.sh` F4).
+    if op_editor_ui::brand_catalog_loaded() {
+        return;
+    }
+    let base = crate::daemon_base::daemon_base();
+    let url = format!("{base}{BRAND_CATALOG_PATH}");
+    let inner_cb = inner.clone();
+    fetch_text(
+        &url,
+        Box::new(move |result| {
+            let Ok(body) = result else {
+                return;
+            };
+            if op_editor_ui::set_brand_catalog(&body) {
+                // Repaint so an open icon picker / brand iconFont nodes pick up
+                // the now-available logos.
+                if let Ok(mut b) = inner_cb.try_borrow_mut() {
+                    let _ = b.repaint();
+                }
+            }
+        }),
+    );
+}
+
+/// One in-flight result page being assembled across the search +
+/// per-collection fetches.
+struct PendingPage {
+    request: IconifyLoadMoreRequest,
+    /// `"collection:name"` ids in search-result order.
+    order: Vec<String>,
+    /// Collections still to fetch, with their icon names.
+    remaining: Vec<(String, Vec<String>)>,
+    loaded: HashMap<String, IconPickerRemoteIcon>,
+    total: usize,
+    start: usize,
+}
+
+/// Drain a queued remote-search request (raised by the picker's
+/// Load-more press). Called from the mousedown listener after the
+/// `inner` borrow is released, like the other web drains.
+pub(crate) fn drain_iconify_request<C: RepaintContext + 'static>(inner: &Rc<RefCell<C>>) {
+    let request = {
+        let mut b = inner.borrow_mut();
+        b.host_mut()
+            .editor_state_mut()
+            .editor_ui
+            .icon_picker_load_more_request
+            .take()
+    };
+    let Some(request) = request else {
+        return;
+    };
+    let url = format!(
+        "{ICONIFY_API}/search?query={}&limit={}&start={}",
+        encode_component(&request.query),
+        request.limit,
+        request.start
+    );
+    let inner_cb = inner.clone();
+    fetch_text(
+        &url,
+        Box::new(
+            move |result| match result.and_then(|body| parse_search(&body, &request)) {
+                Ok(page) => fetch_next_collection(inner_cb, page),
+                Err(err) => apply_error(&inner_cb, &request, err),
+            },
+        ),
+    );
+}
+
+/// Pop the next collection off the page and fetch its icon bodies;
+/// when none remain, apply the assembled page.
+fn fetch_next_collection<C: RepaintContext + 'static>(
+    inner: Rc<RefCell<C>>,
+    mut page: PendingPage,
+) {
+    let Some((collection, names)) = page.remaining.pop() else {
+        apply_page(&inner, page);
+        return;
+    };
+    let url = format!(
+        "{ICONIFY_API}/{}.json?icons={}",
+        encode_component(&collection),
+        names
+            .iter()
+            .map(|name| encode_component(name))
+            .collect::<Vec<_>>()
+            .join(",")
+    );
+    fetch_text(
+        &url,
+        Box::new(move |result| {
+            match result.and_then(|body| parse_collection(&collection, &body)) {
+                Ok(icons) => {
+                    page.loaded.extend(icons);
+                    fetch_next_collection(inner, page);
+                }
+                // Any collection failure fails the whole page — the
+                // desktop worker behaves the same way.
+                Err(err) => apply_error(&inner, &page.request, err),
+            }
+        }),
+    );
+}
+
+// ---------------------------------------------------------------------
+// Apply — mirrors `iconify_host.rs::poll_iconify_job`.
+// ---------------------------------------------------------------------
+
+fn apply_page<C: RepaintContext + 'static>(inner: &Rc<RefCell<C>>, mut page: PendingPage) {
+    let mut b = inner.borrow_mut();
+    let ui = &mut b.host_mut().editor_state_mut().editor_ui;
+    // Stale-query guard: a newer search reset the remote state.
+    if ui.icon_picker_remote.query != page.request.query {
+        return;
+    }
+    ui.icon_picker_remote.loading = false;
+    if page.start == 0 {
+        ui.icon_picker_remote.icons.clear();
+    }
+    for id in &page.order {
+        if let Some(icon) = page.loaded.remove(id) {
+            if !ui
+                .icon_picker_remote
+                .icons
+                .iter()
+                .any(|i| i.collection == icon.collection && i.name == icon.name)
+            {
+                ui.icon_picker_remote.icons.push(icon);
+            }
+        }
+    }
+    ui.icon_picker_remote.total = page.total;
+    ui.icon_picker_remote.next_start = page.start + page.request.limit;
+    ui.icon_picker_remote.error = None;
+    b.host_mut().mark_editor_state_dirty();
+    let _ = b.repaint();
+}
+
+fn apply_error<C: RepaintContext + 'static>(
+    inner: &Rc<RefCell<C>>,
+    request: &IconifyLoadMoreRequest,
+    err: IconifyError,
+) {
+    let mut b = inner.borrow_mut();
+    let ui = &mut b.host_mut().editor_state_mut().editor_ui;
+    if ui.icon_picker_remote.query != request.query {
+        return;
+    }
+    ui.icon_picker_remote.loading = false;
+    // `icon_picker_remote.error` is a display string on shared editor state,
+    // so the typed error renders exactly once here at the UI edge.
+    ui.icon_picker_remote.error = Some(err.to_string());
+    b.host_mut().mark_editor_state_dirty();
+    let _ = b.repaint();
+}
+
+// ---------------------------------------------------------------------
+// Parsing — lenient `serde_json::Value` walks (web_chat idiom), same
+// field contract as the desktop's typed deserializers.
+// ---------------------------------------------------------------------
+
+fn parse_search(body: &str, request: &IconifyLoadMoreRequest) -> Result<PendingPage, IconifyError> {
+    let value: serde_json::Value =
+        serde_json::from_str(body).map_err(|e| IconifyError::ResponseParse(e.to_string()))?;
+    let ids: Vec<String> = value
+        .get("icons")
+        .and_then(|i| i.as_array())
+        .ok_or(IconifyError::MalformedSearch)?
+        .iter()
+        .filter_map(|v| v.as_str())
+        .map(str::to_string)
+        .collect();
+    let total = value.get("total").and_then(|t| t.as_u64()).unwrap_or(0) as usize;
+    let start = value
+        .get("start")
+        .and_then(|s| s.as_u64())
+        .map(|s| s as usize)
+        .unwrap_or(request.start);
+    let mut grouped: HashMap<String, Vec<String>> = HashMap::new();
+    for id in &ids {
+        if let Some((collection, name)) = id.split_once(':') {
+            grouped
+                .entry(collection.to_string())
+                .or_default()
+                .push(name.to_string());
+        }
+    }
+    Ok(PendingPage {
+        request: request.clone(),
+        order: ids,
+        remaining: grouped.into_iter().collect(),
+        loaded: HashMap::new(),
+        total,
+        start,
+    })
+}
+
+fn parse_collection(
+    collection: &str,
+    body: &str,
+) -> Result<HashMap<String, IconPickerRemoteIcon>, IconifyError> {
+    let value: serde_json::Value =
+        serde_json::from_str(body).map_err(|e| IconifyError::ResponseParse(e.to_string()))?;
+    let default_w = value
+        .get("width")
+        .and_then(|v| v.as_f64())
+        .map(|v| v as f32);
+    let default_h = value
+        .get("height")
+        .and_then(|v| v.as_f64())
+        .map(|v| v as f32);
+    let icons = value
+        .get("icons")
+        .and_then(|i| i.as_object())
+        .ok_or(IconifyError::MalformedCollection)?;
+    let mut out = HashMap::new();
+    for (name, icon) in icons {
+        let Some(svg_body) = icon.get("body").and_then(|b| b.as_str()) else {
+            continue;
+        };
+        let w = icon
+            .get("width")
+            .and_then(|v| v.as_f64())
+            .map(|v| v as f32)
+            .or(default_w)
+            .unwrap_or(24.0);
+        let h = icon
+            .get("height")
+            .and_then(|v| v.as_f64())
+            .map(|v| v as f32)
+            .or(default_h)
+            .unwrap_or(24.0);
+        if let Some(parsed) = crate::widget_host::icon_ingest::ingest_iconify_body(svg_body, w, h) {
+            out.insert(
+                format!("{collection}:{name}"),
+                IconPickerRemoteIcon {
+                    collection: collection.to_string(),
+                    name: name.clone(),
+                    width: parsed.width,
+                    height: parsed.height,
+                    style: parsed.style.to_string(),
+                    d: parsed.d,
+                },
+            );
+        }
+    }
+    Ok(out)
+}
+
+// ---------------------------------------------------------------------
+// XHR plumbing.
+// ---------------------------------------------------------------------
+
+/// Fire a GET and hand the body (or an error) to `on_done` exactly
+/// once. The callback is slot-wrapped so the synchronous failure paths
+/// (XHR construction / open / send) still resolve it — a dropped
+/// callback would strand the picker's loading row forever.
+fn fetch_text(url: &str, on_done: DoneFn) {
+    let slot: Rc<RefCell<Option<DoneFn>>> = Rc::new(RefCell::new(Some(on_done)));
+    let resolve = |slot: &Rc<RefCell<Option<DoneFn>>>, result: Result<String, IconifyError>| {
+        if let Some(done) = slot.borrow_mut().take() {
+            done(result);
+        }
+    };
+    let Ok(xhr) = web_sys::XmlHttpRequest::new() else {
+        resolve(&slot, Err(IconifyError::XhrUnavailable));
+        return;
+    };
+    if xhr.open_with_async("GET", url, true).is_err() {
+        resolve(&slot, Err(IconifyError::RequestOpenFailed));
+        return;
+    }
+    // `fetch_text` serves BOTH the daemon brand-catalog fetch and the public
+    // Iconify CDN search/collection fetches. `attach_daemon_headers` only
+    // attaches the token when `url` targets the daemon origin, so the public
+    // Iconify requests are guaranteed never to leak the token.
+    crate::live_sync::attach_daemon_headers(&xhr, url);
+    xhr.set_timeout(FETCH_TIMEOUT_MS);
+    let xhr_cb = xhr.clone();
+    let slot_cb = slot.clone();
+    // `once_into_js` self-cleans after the single firing (live_sync idiom).
+    let onloadend = Closure::<dyn FnMut()>::once_into_js(move || {
+        let status = xhr_cb.status().unwrap_or(0);
+        let result = match xhr_cb.response_text() {
+            Ok(Some(text)) if (200..300).contains(&status) => Ok(text),
+            _ => Err(IconifyError::Http(status)),
+        };
+        if let Some(done) = slot_cb.borrow_mut().take() {
+            done(result);
+        }
+    });
+    xhr.set_onloadend(Some(onloadend.unchecked_ref()));
+    if xhr.send().is_err() {
+        resolve(&slot, Err(IconifyError::RequestSendFailed));
+    }
+}
+
+/// Percent-encode a URL component (same table as the desktop host).
+fn encode_component(input: &str) -> String {
+    let mut out = String::new();
+    for byte in input.as_bytes() {
+        match *byte {
+            b'A'..=b'Z' | b'a'..=b'z' | b'0'..=b'9' | b'-' | b'_' | b'.' | b'~' => {
+                out.push(*byte as char)
+            }
+            b => out.push_str(&format!("%{b:02X}")),
+        }
+    }
+    out
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn request() -> IconifyLoadMoreRequest {
+        IconifyLoadMoreRequest {
+            query: "home".to_string(),
+            start: 0,
+            limit: 48,
+        }
+    }
+
+    #[test]
+    fn parse_search_groups_ids_by_collection_and_keeps_order() {
+        let body = r#"{"icons":["mdi:home","ph:house","mdi:home-circle"],"total":120,"start":0}"#;
+        let page = parse_search(body, &request()).expect("page");
+        assert_eq!(page.order, vec!["mdi:home", "ph:house", "mdi:home-circle"]);
+        assert_eq!(page.total, 120);
+        assert_eq!(page.start, 0);
+        let mut collections: Vec<(String, usize)> = page
+            .remaining
+            .iter()
+            .map(|(c, names)| (c.clone(), names.len()))
+            .collect();
+        collections.sort();
+        assert_eq!(
+            collections,
+            vec![("mdi".to_string(), 2), ("ph".to_string(), 1)]
+        );
+    }
+
+    #[test]
+    fn parse_search_defaults_mirror_the_desktop_worker() {
+        // Missing total → 0; missing start → request.start.
+        let body = r#"{"icons":["mdi:home"]}"#;
+        let mut req = request();
+        req.start = 48;
+        let page = parse_search(body, &req).expect("page");
+        assert_eq!(page.total, 0);
+        assert_eq!(page.start, 48);
+    }
+
+    #[test]
+    fn parse_search_rejects_malformed_payloads() {
+        assert!(parse_search("not json", &request()).is_err());
+        assert!(parse_search(r#"{"nope":true}"#, &request()).is_err());
+    }
+
+    #[test]
+    fn parse_collection_extracts_path_data_with_size_fallbacks() {
+        let body = r#"{"width":24,"height":24,"icons":{
+            "home":{"body":"<path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>"},
+            "wide":{"body":"<path d=\"M0 0h32v32H0z\"/>","width":32,"height":32}
+        }}"#;
+        let icons = parse_collection("mdi", body).expect("icons");
+        let home = icons.get("mdi:home").expect("home");
+        assert_eq!(home.collection, "mdi");
+        assert_eq!(home.name, "home");
+        assert_eq!(home.width, 24.0);
+        assert!(home.d.starts_with("M3 9"));
+        let wide = icons.get("mdi:wide").expect("wide");
+        assert_eq!(wide.width, 32.0);
+    }
+
+    #[test]
+    fn encode_component_percent_encodes_reserved_bytes() {
+        assert_eq!(encode_component("home icon"), "home%20icon");
+        assert_eq!(encode_component("a+b/c"), "a%2Bb%2Fc");
+        assert_eq!(encode_component("safe-_.~09AZ"), "safe-_.~09AZ");
+    }
+}

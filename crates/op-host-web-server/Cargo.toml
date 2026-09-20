@@ -1,0 +1,23 @@
+[package]
+name = "op-host-web-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil headless web/MCP server binary — links op-host-services only, no winit/skia-GL"
+
+[[bin]]
+name = "op-host-web-server"
+path = "src/main.rs"
+
+[features]
+pinned-skia-binaries = ["op-host-services/pinned-skia-binaries"]
+# Forwarded to op-host-services so a dev daemon can mint collaboration
+# tickets from the locally built ABI-v2 op-auth archive (debug only).
+dev-op-auth-abi-v2 = ["op-host-services/dev-op-auth-abi-v2"]
+
+[dependencies]
+op-host-services = { path = "../op-host-services" }
+
+[dev-dependencies]
+serde_json = { workspace = true }

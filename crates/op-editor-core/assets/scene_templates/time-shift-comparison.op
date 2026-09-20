@@ -1,0 +1,1127 @@
+{
+  "version": "1.0.0",
+  "name": "时间对比 一年前与现在",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#F4F3F1"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-panel": {
+      "type": "color",
+      "value": "#E7E5E1"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#14120F"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#57534C"
+    },
+    "c-faint": {
+      "type": "color",
+      "value": "#6B665E"
+    },
+    "c-inv-muted": {
+      "type": "color",
+      "value": "#A9A49B"
+    },
+    "c-now": {
+      "type": "color",
+      "value": "#A94E24"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "时间对比 一年前与现在",
+      "width": 1080,
+      "height": 1440,
+      "layout": "vertical",
+      "padding": [
+        68,
+        64
+      ],
+      "gap": 40,
+      "justifyContent": "space_between",
+      "alignItems": "start",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f6",
+          "name": "页头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f2",
+              "name": "标签",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                10,
+                22
+              ],
+              "cornerRadius": 999,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t3",
+                  "name": "标签文字",
+                  "content": "时间对比 · 一年",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t4",
+              "name": "主标题",
+              "content": "一年时间\n到底变了什么",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 70,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.2,
+              "letterSpacing": -1.4,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t5",
+              "name": "副标题",
+              "content": "左边是去年，右边是现在。有颜色的那一侧是当下。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 26,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f58",
+          "name": "中轴",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 22,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f54",
+              "name": "时代行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 40,
+              "alignItems": "center",
+              "justifyContent": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f50",
+                  "name": "左时代",
+                  "width": 336,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t49",
+                      "name": "去年标签",
+                      "content": "一年前",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-faint"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "right"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f51",
+                  "name": "轴头",
+                  "width": 200,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": []
+                },
+                {
+                  "type": "frame",
+                  "id": "f53",
+                  "name": "右时代",
+                  "width": 336,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 0,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t52",
+                      "name": "现在标签",
+                      "content": "现在",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 30,
+                      "fontWeight": 700,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-now"
+                        }
+                      ],
+                      "lineHeight": 1.3,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "left"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f55",
+              "name": "变化列表",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f13",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f8",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t7",
+                          "name": "去年文字",
+                          "content": "想起来才发",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f9",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t10",
+                          "name": "轴标签文字",
+                          "content": "更新节奏",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f12",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t11",
+                          "name": "现在文字",
+                          "content": "每周三固定",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f20",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f15",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t14",
+                          "name": "去年文字",
+                          "content": "六个小时",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f16",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t17",
+                          "name": "轴标签文字",
+                          "content": "单条耗时",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f19",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t18",
+                          "name": "现在文字",
+                          "content": "九十分钟",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f27",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f22",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t21",
+                          "name": "去年文字",
+                          "content": "刷到什么写什么",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f23",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t24",
+                          "name": "轴标签文字",
+                          "content": "选题来源",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f26",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t25",
+                          "name": "现在文字",
+                          "content": "读者的提问",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f34",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f29",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t28",
+                          "name": "去年文字",
+                          "content": "每次重做",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f30",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t31",
+                          "name": "轴标签文字",
+                          "content": "封面",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f33",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t32",
+                          "name": "现在文字",
+                          "content": "一套模板",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f41",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f36",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t35",
+                          "name": "去年文字",
+                          "content": "1.2%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f37",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t38",
+                          "name": "轴标签文字",
+                          "content": "收藏率",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f40",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t39",
+                          "name": "现在文字",
+                          "content": "6.8%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f48",
+                  "name": "变化行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 40,
+                  "alignItems": "center",
+                  "justifyContent": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f43",
+                      "name": "去年值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "end",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t42",
+                          "name": "去年文字",
+                          "content": "偶尔一两条",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-faint"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "轴标签",
+                      "width": 200,
+                      "height": 64,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "cornerRadius": 6,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-panel"
+                        }
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t45",
+                          "name": "轴标签文字",
+                          "content": "读者留言",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 24,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-muted"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "auto",
+                          "width": "fit_content",
+                          "textAlign": "center"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f47",
+                      "name": "现在值",
+                      "width": 336,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 0,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t46",
+                          "name": "现在文字",
+                          "content": "每条都有人问",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-now"
+                            }
+                          ],
+                          "lineHeight": 1.5,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "textAlign": "left"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f56",
+              "name": "中轴收尾",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "padding": [
+                22,
+                26
+              ],
+              "cornerRadius": 6,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-panel"
+                }
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t57",
+                  "name": "收尾文字",
+                  "content": "六项里只有第一项是主动改的，其余五项都是它带来的。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 25,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f63",
+          "name": "页脚",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 12,
+          "alignItems": "start",
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-ink"
+            }
+          ],
+          "padding": [
+            32,
+            32
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "t59",
+              "name": "结语",
+              "content": "变的不是能力，是把哪件事固定了下来。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 29,
+              "fontWeight": 600,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-card"
+                }
+              ],
+              "lineHeight": 1.3,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "f62",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 14,
+              "alignItems": "center",
+              "justifyContent": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t60",
+                  "name": "账号名",
+                  "content": "@ 你的账号名",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 25,
+                  "fontWeight": 600,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-card"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t61",
+                  "name": "更新说明",
+                  "content": "每年这个时候复盘一次",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 23,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-inv-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

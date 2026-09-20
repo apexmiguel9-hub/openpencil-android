@@ -1,0 +1,13 @@
+# Leaf utility crate — MUST stay dependency-free and wasm32-clean.
+# It is depped by wasm-facing crates (op-editor-core / op-editor-ui via
+# op-host-web) as well as native-only ones, so nothing platform-specific
+# may ever land here.
+[package]
+name = "op-util"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "OpenPencil dependency-free leaf utilities: ids, colors, escaping, and image metadata"
+
+[dependencies]

@@ -1,0 +1,764 @@
+{
+  "version": "1.0.0",
+  "name": "清单卡片 · 知识库风 4:5",
+  "variables": {
+    "c-bg": {
+      "type": "color",
+      "value": "#EEF0F3"
+    },
+    "c-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#0C0D0F"
+    },
+    "c-muted": {
+      "type": "color",
+      "value": "#4A4D51"
+    },
+    "c-done": {
+      "type": "color",
+      "value": "#83878B"
+    },
+    "c-line": {
+      "type": "color",
+      "value": "#DCDEE0"
+    },
+    "c-box": {
+      "type": "color",
+      "value": "#7D8792"
+    },
+    "c-accent": {
+      "type": "color",
+      "value": "#3B596E"
+    },
+    "c-accent-soft": {
+      "type": "color",
+      "value": "#DEEAF3"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f1",
+      "name": "清单卡片 · 知识库风",
+      "width": 1080,
+      "height": 1350,
+      "layout": "vertical",
+      "padding": [
+        96,
+        88
+      ],
+      "gap": 0,
+      "justifyContent": "space_between",
+      "alignItems": "start",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-bg"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f8",
+          "name": "卡头",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f5",
+              "name": "元信息",
+              "width": "fit_content",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f2",
+                  "name": "标签",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "padding": [
+                    9,
+                    20
+                  ],
+                  "gap": 0,
+                  "cornerRadius": 999,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent-soft"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t3",
+                      "name": "标签文字",
+                      "content": "周计划",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-accent"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t4",
+                  "name": "日期",
+                  "content": "2026 / 08 · 第 2 周",
+                  "fontFamily": "Inter",
+                  "fontSize": 32,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-muted"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t6",
+              "name": "主标题",
+              "content": "本周只做这五件事",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ink"
+                }
+              ],
+              "lineHeight": 1.3,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            },
+            {
+              "type": "text",
+              "id": "t7",
+              "name": "副标题",
+              "content": "写不下的都不是这周的事。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 40,
+              "fontWeight": 400,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f40",
+          "name": "清单卡",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "vertical",
+          "padding": [
+            32,
+            36
+          ],
+          "gap": 18,
+          "cornerRadius": 12,
+          "fill": [
+            {
+              "type": "solid",
+              "color": "$c-card"
+            }
+          ],
+          "stroke": {
+            "thickness": 2,
+            "fill": [
+              {
+                "type": "solid",
+                "color": "$c-line"
+              }
+            ]
+          },
+          "children": [
+            {
+              "type": "frame",
+              "id": "f14",
+              "name": "待办",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f9",
+                  "name": "方框 · 已勾",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i10",
+                      "name": "勾",
+                      "iconFontName": "check",
+                      "width": 26,
+                      "height": 26,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f13",
+                  "name": "待办文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t11",
+                      "name": "待办标题",
+                      "content": "把这周要交的东西列出来",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-done"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t12",
+                      "name": "待办说明",
+                      "content": "只列交付物，不列过程",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-done"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r15",
+              "name": "分隔线",
+              "width": "fill_container",
+              "height": 2,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-line"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f21",
+              "name": "待办",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f16",
+                  "name": "方框 · 已勾",
+                  "width": 44,
+                  "height": 44,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "cornerRadius": 8,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-accent"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "i17",
+                      "name": "勾",
+                      "iconFontName": "check",
+                      "width": 26,
+                      "height": 26,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-card"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f20",
+                  "name": "待办文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t18",
+                      "name": "待办标题",
+                      "content": "给最难的那件事定个开始时间",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-done"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t19",
+                      "name": "待办说明",
+                      "content": "写死到几点，不写「上午」",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-done"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r22",
+              "name": "分隔线",
+              "width": "fill_container",
+              "height": 2,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-line"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f27",
+              "name": "待办",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r23",
+                  "name": "方框 · 待办",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 8,
+                  "fill": [],
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-box"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "待办文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t24",
+                      "name": "待办标题",
+                      "content": "砍掉一件本来就不该做的事",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t25",
+                      "name": "待办说明",
+                      "content": "每周至少砍一件",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "分隔线",
+              "width": "fill_container",
+              "height": 2,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-line"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f33",
+              "name": "待办",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r29",
+                  "name": "方框 · 待办",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 8,
+                  "fill": [],
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-box"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f32",
+                  "name": "待办文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t30",
+                      "name": "待办标题",
+                      "content": "留两个小时不安排任何事",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t31",
+                      "name": "待办说明",
+                      "content": "留白也要写进日程才守得住",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "r34",
+              "name": "分隔线",
+              "width": "fill_container",
+              "height": 2,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-line"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f39",
+              "name": "待办",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "r35",
+                  "name": "方框 · 待办",
+                  "width": 44,
+                  "height": 44,
+                  "cornerRadius": 8,
+                  "fill": [],
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": [
+                      {
+                        "type": "solid",
+                        "color": "$c-box"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "f38",
+                  "name": "待办文案",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t36",
+                      "name": "待办标题",
+                      "content": "周日晚上花十分钟复盘",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t37",
+                      "name": "待办说明",
+                      "content": "只问三件事：成了、卡了、下周",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-muted"
+                        }
+                      ],
+                      "lineHeight": 1.7,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f43",
+          "name": "引用块",
+          "width": "fill_container",
+          "height": "fit_content",
+          "layout": "horizontal",
+          "gap": 22,
+          "alignItems": "stretch",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r41",
+              "name": "引用竖线",
+              "width": 6,
+              "height": "fill_container",
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-accent"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "t42",
+              "name": "引用文字",
+              "content": "打完前两个，这周就已经赢了一半。",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 40,
+              "fontWeight": 500,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-muted"
+                }
+              ],
+              "lineHeight": 1.7,
+              "letterSpacing": 0,
+              "textGrowth": "fixed-width",
+              "width": "fill_container"
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

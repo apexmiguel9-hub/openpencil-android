@@ -1,0 +1,328 @@
+//! Inline canvas text-edit pointer + caret-key glue — click-to-place
+//! caret, drag-select, and the arrow-key visual-line mapping.
+//!
+//! Mirrors the chat-input precedent (`AIChatHit::SelectInputText` +
+//! `chat_input_selection_drag`), but the canvas text node paints with
+//! REAL font metrics, so hit-testing goes through the same
+//! `canvas_text_edit::text_edit_layout` + a measure-only
+//! `NativeBackend` (`measure_text_weighted` is canvas-free) instead
+//! of a fixed-advance approximation. That keeps the placed caret on
+//! the same wrapped line / glyph the painter draws.
+
+use super::{TextEditSelectionDragState, WidgetHostNative};
+use op_editor_ui::layout_scene::SceneNode;
+use op_editor_ui::widgets::canvas_text_edit::{text_edit_layout, TextEditLayout};
+use op_editor_ui::widgets::host_canvas_geometry as canvas_geometry;
+use op_editor_ui::{Color, Point2D, Rect, RenderBackend, TextLayout};
+
+/// Measure-only [`RenderBackend`] facade over a [`crate::NativeBackend`].
+/// Every paint primitive is a no-op (there is no canvas outside the
+/// paint pass); only the text measurement forwards to the real
+/// FontMgr-backed advance, which is what the layout helper needs.
+struct MeasureOnly<'a> {
+    inner: &'a mut crate::NativeBackend,
+}
+
+impl RenderBackend for MeasureOnly<'_> {
+    fn begin_frame(&mut self) {}
+    fn end_frame(&mut self) {}
+    fn fill_rect(&mut self, _: Rect, _: Color) {}
+    fn stroke_rect(&mut self, _: Rect, _: Color, _: f32) {}
+    fn draw_text(&mut self, _: &TextLayout, _: Point2D) {}
+    fn clip_rect(&mut self, _: Rect) {}
+    fn stroke_line(&mut self, _: Point2D, _: Point2D, _: Color, _: f32) {}
+    fn fill_round_rect(&mut self, _: Rect, _: f32, _: Color) {}
+    fn stroke_round_rect(&mut self, _: Rect, _: f32, _: Color, _: f32) {}
+    fn stroke_svg_path(&mut self, _: &str, _: Point2D, _: f32, _: Color, _: f32) {}
+    fn save(&mut self) {}
+    fn restore(&mut self) {}
+    fn translate(&mut self, _: Point2D) {}
+    fn resize(&mut self, _: u32, _: u32) {}
+    fn dpi_scale(&self) -> f32 {
+        1.0
+    }
+    fn measure_text(&mut self, text: &str, font_size: f32) -> f32 {
+        self.inner.measure_text(text, font_size)
+    }
+    fn measure_text_weighted(&mut self, text: &str, font_size: f32, weight: u16) -> f32 {
+        self.inner.measure_text_weighted(text, font_size, weight)
+    }
+    fn measure_text_family(&mut self, text: &str, font_size: f32, family: &str) -> f32 {
+        self.inner.measure_text_family(text, font_size, family)
+    }
+    fn text_ascent(&mut self, font_size: f32, weight: u16) -> f32 {
+        self.inner.text_ascent(font_size, weight)
+    }
+    fn text_ascent_family(&mut self, font_size: f32, family: &str, weight: u16) -> f32 {
+        self.inner.text_ascent_family(font_size, family, weight)
+    }
+}
+
+/// Inverse-rotate a doc point about the node's bounds centre so hit
+/// geometry tracks a rotated text node's painted glyphs. Mirroring
+/// (`flip_x` / `flip_y`) is not compensated — flipped text is rare
+/// and the caret stays within the node either way.
+fn inverse_rotate_doc(p: Point2D, node: &SceneNode) -> Point2D {
+    if node.rotation.abs() <= f32::EPSILON {
+        return p;
+    }
+    let b = node.bounds;
+    let cx = b.origin.x + b.size.x / 2.0;
+    let cy = b.origin.y + b.size.y / 2.0;
+    let (s, c) = (-node.rotation).sin_cos();
+    Point2D::new(
+        c * (p.x - cx) - s * (p.y - cy) + cx,
+        s * (p.x - cx) + c * (p.y - cy) + cy,
+    )
+}
+
+impl WidgetHostNative {
+    fn with_measure_only<R>(&self, f: impl FnOnce(&mut MeasureOnly<'_>) -> R) -> R {
+        let mut measure = self
+            .text_measure
+            .borrow_mut()
+            .take()
+            .unwrap_or_else(|| crate::NativeBackend::with_dpi(1.0));
+        let out = f(&mut MeasureOnly {
+            inner: &mut measure,
+        });
+        *self.text_measure.borrow_mut() = Some(measure);
+        out
+    }
+
+    /// Width (px) of the agent chip's text at the paint font size (11),
+    /// measured with the shared measure-only backend so `TopBar`'s
+    /// agent-chip hit area matches the painted chip exactly instead of a
+    /// char-count estimate that overran into the file-name gap.
+    ///
+    /// Family-aware, and it has to stay that way: `top_bar_paint` sizes the
+    /// painted chip through `op_editor_ui::widgets::text_metrics`, so a
+    /// family-blind number here would resolve the bundled Roboto and hand
+    /// back a hit rect narrower than the chip the user can see.
+    pub(in crate::widget_host) fn topbar_chip_text_w(
+        &self,
+        top_bar: &op_editor_ui::widgets::TopBar,
+    ) -> f32 {
+        let chip_text = top_bar.chip_text();
+        self.with_measure_only(|backend| {
+            op_editor_ui::widgets::text_metrics::measure_chrome(backend, &chip_text, 11.0)
+        })
+    }
+
+    /// Family-aware TopBar hit-test. The centered title group's horizontal
+    /// position depends on its actual glyph advances, so the native target must
+    /// use the same system-font measurement as paint.
+    pub(in crate::widget_host) fn topbar_hit_test(
+        &self,
+        top_bar: &op_editor_ui::widgets::TopBar,
+        rect: Rect,
+        point: Point2D,
+    ) -> Option<op_editor_ui::widgets::TopBarHit> {
+        self.with_measure_only(|backend| {
+            top_bar.hit_test_with_measure(rect, point, |text, size| {
+                backend.measure_text_family(text, size, "system-ui")
+            })
+        })
+    }
+
+    /// Exact center of the painted TopBar Git button, shared by the Git
+    /// popover body and caret placement.
+    pub(in crate::widget_host) fn topbar_git_button_center_x(
+        &self,
+        top_bar: &op_editor_ui::widgets::TopBar,
+        rect: Rect,
+    ) -> Option<f32> {
+        self.with_measure_only(|backend| {
+            top_bar.git_button_center_x_with_measure(rect, |text, size| {
+                backend.measure_text_family(text, size, "system-ui")
+            })
+        })
+    }
+
+    /// The edited Text node's resolved scene node, cloned out of the
+    /// layout scene so no scene borrow survives into the mutators.
+    fn text_edit_scene_node(&mut self) -> Option<SceneNode> {
+        let id = self
+            .editor_state
+            .ui
+            .text_editing
+            .as_ref()?
+            .as_str()
+            .to_string();
+        self.refresh_layout_scene();
+        self.layout_scene.active_page()?.find(&id).cloned()
+    }
+
+    /// Run `f` against the shared text-edit layout of `node`, lazily
+    /// creating (and caching) the measure-only backend. Take/put-back
+    /// keeps the borrow checker happy across `&mut self` use inside.
+    fn with_text_edit_layout<R>(
+        &mut self,
+        node: &SceneNode,
+        f: impl FnOnce(&TextEditLayout, &mut dyn RenderBackend) -> R,
+    ) -> R {
+        self.with_measure_only(|backend| {
+            let layout = text_edit_layout(backend, node);
+            f(&layout, backend)
+        })
+    }
+
+    /// Convert a screen point to the edited node's un-rotated doc
+    /// space (canvas-region origin + viewport pan/zoom + inverse node
+    /// rotation).
+    fn text_edit_doc_point(&self, x: f32, y: f32, node: &SceneNode) -> Point2D {
+        let doc = canvas_geometry::canvas_doc_point_unclamped(&self.editor_state, x, y);
+        inverse_rotate_doc(doc, node)
+    }
+
+    /// Byte offset a press at screen `(x, y)` places the caret at —
+    /// `Some` ONLY when the press is a caret placement: a text-edit
+    /// session is active, no modal / floating overlay owns the point,
+    /// the point is over the canvas region, and it lands INSIDE the
+    /// edited node's bounds. `apply_press` keeps its commit-on-blur
+    /// for every other press (TS textarea parity: a click inside the
+    /// textarea moves the caret; a click outside blurs + commits).
+    pub(in crate::widget_host) fn text_edit_press_offset(
+        &mut self,
+        x: f32,
+        y: f32,
+        viewport_w: f32,
+        viewport_h: f32,
+    ) -> Option<usize> {
+        self.editor_state.ui.text_editing.as_ref()?;
+        let eui = &self.editor_state.editor_ui;
+        // Modal layers + outside-click-dismiss dropdowns route presses
+        // to themselves — never a caret hit while one is open.
+        if eui.agent_settings_open
+            || eui.export_dialog_open
+            || eui.figma_import_open
+            || eui.file_menu_open
+            || eui.export_quick_menu_open
+            || eui.locale_picker.open
+            || eui.shape_picker.open
+            || eui.layer_context_menu.is_some()
+            || self.editor_state.ui.color_picker.is_some()
+        {
+            return None;
+        }
+        // An open Git ready-popover is modal too (`apply_press` §0-git).
+        let gp = &eui.git_panel;
+        if gp.open && (gp.branch_picker_open || gp.overflow_open) {
+            return None;
+        }
+        if !self.over_canvas(x, y, viewport_w, viewport_h)
+            || self.over_floating_overlay(x, y, viewport_w, viewport_h)
+        {
+            return None;
+        }
+        let node = self.text_edit_scene_node()?;
+        let p = self.text_edit_doc_point(x, y, &node);
+        if !node.bounds.contains(p) {
+            return None;
+        }
+        Some(
+            self.with_text_edit_layout(&node, |layout, backend| layout.offset_at_point(backend, p)),
+        )
+    }
+
+    /// Place the caret from a press (shift extends, mirroring a
+    /// shift+click in a textarea) and start the selection drag.
+    pub(in crate::widget_host) fn place_text_edit_caret(&mut self, offset: usize) {
+        let extend = self.shift_held;
+        let _ = self
+            .editor_state
+            .text_edit_set_caret(offset, extend, self.now_ms);
+        let anchor = self.editor_state.ui.text_edit_input.selection().anchor;
+        self.text_edit_selection_drag = Some(TextEditSelectionDragState { anchor });
+        self.mark_dirty();
+    }
+
+    /// Live drag-select: map the cursor back to a byte offset (lines
+    /// clamp vertically, x clamps to line ends — so dragging past the
+    /// node keeps selecting to the boundary) and extend the selection
+    /// from the press anchor.
+    pub(in crate::widget_host) fn apply_text_edit_selection_drag_cursor_move(
+        &mut self,
+        x: f32,
+        y: f32,
+    ) -> bool {
+        let Some(drag) = self.text_edit_selection_drag else {
+            return false;
+        };
+        let Some(node) = self.text_edit_scene_node() else {
+            return true;
+        };
+        let p = self.text_edit_doc_point(x, y, &node);
+        let focus =
+            self.with_text_edit_layout(&node, |layout, backend| layout.offset_at_point(backend, p));
+        let current = self.editor_state.ui.text_edit_input.selection();
+        if self
+            .editor_state
+            .text_edit_select_range(drag.anchor, focus, self.now_ms)
+        {
+            let next = self.editor_state.ui.text_edit_input.selection();
+            if next != current {
+                self.mark_dirty();
+            }
+        }
+        true
+    }
+
+    /// Byte `(start, end)` ranges of the edited node's painted lines
+    /// — the visual-line contract `text_edit_caret_vertical` and
+    /// `text_edit_line_edge` consume.
+    fn text_edit_line_ranges(&mut self) -> Option<Vec<(usize, usize)>> {
+        let node = self.text_edit_scene_node()?;
+        Some(self.with_text_edit_layout(&node, |layout, _| layout.line_ranges()))
+    }
+
+    /// Left / Right arrow while a text-edit session is active —
+    /// returns `false` when none is, so the caller falls through to
+    /// the rename / property / nudge handlers.
+    pub fn apply_text_edit_caret(&mut self, forward: bool) -> bool {
+        if self.editor_state.ui.text_editing.is_none() {
+            return false;
+        }
+        if self
+            .editor_state
+            .text_edit_caret_horizontal(forward, self.shift_held, self.now_ms)
+        {
+            self.mark_dirty();
+        }
+        // Consumed regardless — an arrow over the inline editor must
+        // never fall through to nudging the node.
+        true
+    }
+
+    /// Up / Down arrow — move the caret by VISUAL line through the
+    /// painted wrap (char-column approximation; see
+    /// `EditorState::text_edit_caret_vertical`).
+    pub fn apply_text_edit_vertical(&mut self, down: bool) -> bool {
+        if self.editor_state.ui.text_editing.is_none() {
+            return false;
+        }
+        let ranges = self.text_edit_line_ranges().unwrap_or_default();
+        if self
+            .editor_state
+            .text_edit_caret_vertical(down, self.shift_held, &ranges, self.now_ms)
+        {
+            self.mark_dirty();
+        }
+        true
+    }
+
+    /// Cmd+Left / Cmd+Right — jump to the visual line's start / end.
+    pub fn apply_text_edit_line_edge(&mut self, forward: bool) -> bool {
+        if self.editor_state.ui.text_editing.is_none() {
+            return false;
+        }
+        let ranges = self.text_edit_line_ranges().unwrap_or_default();
+        if self
+            .editor_state
+            .text_edit_line_edge(forward, self.shift_held, &ranges, self.now_ms)
+        {
+            self.mark_dirty();
+        }
+        true
+    }
+}

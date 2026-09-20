@@ -1,0 +1,1233 @@
+{
+  "version": "1.0.0",
+  "name": "引用书摘卡 · 绢本青绿 4:5",
+  "variables": {
+    "c-silk": {
+      "type": "color",
+      "value": "#F0E7D2"
+    },
+    "c-silk-deep": {
+      "type": "color",
+      "value": "#E3D6BC"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#362C24"
+    },
+    "c-ink-soft": {
+      "type": "color",
+      "value": "#665B54"
+    },
+    "c-azurite": {
+      "type": "color",
+      "value": "#347CA9"
+    },
+    "c-azurite-deep": {
+      "type": "color",
+      "value": "#114C71"
+    },
+    "c-malachite": {
+      "type": "color",
+      "value": "#5E9877"
+    },
+    "c-ochre": {
+      "type": "color",
+      "value": "#B59979"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f72",
+      "name": "引用书摘卡 · 绢本青绿",
+      "width": 1080,
+      "height": 1350,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-silk"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f1",
+          "name": "书摘卡 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            92,
+            80,
+            348,
+            80
+          ],
+          "gap": 0,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f4",
+              "name": "卡头",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 16,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t2",
+                  "name": "导语",
+                  "content": "书摘 · 第十二则",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 32,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-soft"
+                    }
+                  ],
+                  "lineHeight": 1.5,
+                  "letterSpacing": 0.6,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r3",
+                  "name": "赭石细线",
+                  "width": 120,
+                  "height": 1,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f5",
+              "name": "引号框",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "padding": [
+                56,
+                48
+              ],
+              "gap": 28,
+              "alignItems": "start",
+              "fill": [],
+              "stroke": {
+                "thickness": 1,
+                "fill": [
+                  {
+                    "type": "solid",
+                    "color": "$c-ochre"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t6",
+                  "name": "开引号",
+                  "content": "「",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 88,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ochre"
+                    }
+                  ],
+                  "lineHeight": 1.0,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t7",
+                  "name": "金句",
+                  "content": "读得慢一点，\n书才会开口。",
+                  "fontFamily": "Songti SC",
+                  "fontSize": 88,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.15,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f11",
+              "name": "署名行",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 0,
+              "justifyContent": "end",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f10",
+                  "name": "署名",
+                  "width": "fit_content",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "end",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t8",
+                      "name": "作者",
+                      "content": "—— 《慢读》第 3 章",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t9",
+                      "name": "账号",
+                      "content": "@ 你的账号名",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-soft"
+                        }
+                      ],
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0.6,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f73",
+          "name": "引用书摘卡 · 绢本青绿 · 装饰",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "fill": [],
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r12",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 120
+            },
+            {
+              "type": "rectangle",
+              "id": "r13",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 136
+            },
+            {
+              "type": "rectangle",
+              "id": "r14",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 152
+            },
+            {
+              "type": "rectangle",
+              "id": "r15",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 168
+            },
+            {
+              "type": "rectangle",
+              "id": "r16",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 184
+            },
+            {
+              "type": "rectangle",
+              "id": "r17",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 200
+            },
+            {
+              "type": "rectangle",
+              "id": "r18",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 216
+            },
+            {
+              "type": "rectangle",
+              "id": "r19",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 232
+            },
+            {
+              "type": "rectangle",
+              "id": "r20",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 248
+            },
+            {
+              "type": "rectangle",
+              "id": "r21",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 264
+            },
+            {
+              "type": "rectangle",
+              "id": "r22",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 280
+            },
+            {
+              "type": "rectangle",
+              "id": "r23",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 296
+            },
+            {
+              "type": "rectangle",
+              "id": "r24",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 312
+            },
+            {
+              "type": "rectangle",
+              "id": "r25",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 328
+            },
+            {
+              "type": "rectangle",
+              "id": "r26",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 344
+            },
+            {
+              "type": "rectangle",
+              "id": "r27",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 360
+            },
+            {
+              "type": "rectangle",
+              "id": "r28",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 376
+            },
+            {
+              "type": "rectangle",
+              "id": "r29",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 392
+            },
+            {
+              "type": "rectangle",
+              "id": "r30",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 408
+            },
+            {
+              "type": "rectangle",
+              "id": "r31",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 424
+            },
+            {
+              "type": "rectangle",
+              "id": "r32",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 440
+            },
+            {
+              "type": "rectangle",
+              "id": "r33",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 456
+            },
+            {
+              "type": "rectangle",
+              "id": "r34",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 472
+            },
+            {
+              "type": "rectangle",
+              "id": "r35",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 488
+            },
+            {
+              "type": "rectangle",
+              "id": "r36",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 504
+            },
+            {
+              "type": "rectangle",
+              "id": "r37",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 520
+            },
+            {
+              "type": "rectangle",
+              "id": "r38",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 536
+            },
+            {
+              "type": "rectangle",
+              "id": "r39",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 552
+            },
+            {
+              "type": "rectangle",
+              "id": "r40",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 568
+            },
+            {
+              "type": "rectangle",
+              "id": "r41",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 584
+            },
+            {
+              "type": "rectangle",
+              "id": "r42",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 600
+            },
+            {
+              "type": "rectangle",
+              "id": "r43",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 616
+            },
+            {
+              "type": "rectangle",
+              "id": "r44",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 632
+            },
+            {
+              "type": "rectangle",
+              "id": "r45",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 648
+            },
+            {
+              "type": "rectangle",
+              "id": "r46",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 664
+            },
+            {
+              "type": "rectangle",
+              "id": "r47",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 680
+            },
+            {
+              "type": "rectangle",
+              "id": "r48",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 696
+            },
+            {
+              "type": "rectangle",
+              "id": "r49",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 712
+            },
+            {
+              "type": "rectangle",
+              "id": "r50",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 728
+            },
+            {
+              "type": "rectangle",
+              "id": "r51",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 744
+            },
+            {
+              "type": "rectangle",
+              "id": "r52",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 760
+            },
+            {
+              "type": "rectangle",
+              "id": "r53",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 776
+            },
+            {
+              "type": "rectangle",
+              "id": "r54",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 792
+            },
+            {
+              "type": "rectangle",
+              "id": "r55",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 808
+            },
+            {
+              "type": "rectangle",
+              "id": "r56",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 824
+            },
+            {
+              "type": "rectangle",
+              "id": "r57",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 840
+            },
+            {
+              "type": "rectangle",
+              "id": "r58",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 856
+            },
+            {
+              "type": "rectangle",
+              "id": "r59",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 872
+            },
+            {
+              "type": "rectangle",
+              "id": "r60",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 888
+            },
+            {
+              "type": "rectangle",
+              "id": "r61",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 904
+            },
+            {
+              "type": "rectangle",
+              "id": "r62",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 920
+            },
+            {
+              "type": "rectangle",
+              "id": "r63",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 936
+            },
+            {
+              "type": "rectangle",
+              "id": "r64",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 952
+            },
+            {
+              "type": "rectangle",
+              "id": "r65",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 968
+            },
+            {
+              "type": "rectangle",
+              "id": "r66",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 984
+            },
+            {
+              "type": "rectangle",
+              "id": "r67",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 1000
+            },
+            {
+              "type": "rectangle",
+              "id": "r68",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 1016
+            },
+            {
+              "type": "rectangle",
+              "id": "r69",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 1032
+            },
+            {
+              "type": "rectangle",
+              "id": "r70",
+              "name": "绢纹",
+              "width": 1080,
+              "height": 1,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-ochre"
+                }
+              ],
+              "opacity": 0.1,
+              "x": 0,
+              "y": 1048
+            },
+            {
+              "type": "path",
+              "id": "p71",
+              "name": "山形",
+              "d": "M0 300 L0 214 L196 62 L352 168 L560 0 L760 148 L920 66 L1080 186 L1080 300 Z",
+              "width": 1080,
+              "height": 300,
+              "fill": [
+                {
+                  "type": "linear_gradient",
+                  "angle": 0,
+                  "stops": [
+                    {
+                      "offset": 0.0,
+                      "color": "$c-malachite"
+                    },
+                    {
+                      "offset": 1.0,
+                      "color": "$c-azurite"
+                    }
+                  ]
+                }
+              ],
+              "x": 0,
+              "y": 1050
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

@@ -1,0 +1,4292 @@
+{
+  "version": "1.0.0",
+  "name": "测深海图 · 咨询策略档 16:9",
+  "variables": {
+    "c-paper": {
+      "type": "color",
+      "value": "#F7F4EE"
+    },
+    "c-paper-deep": {
+      "type": "color",
+      "value": "#EBE7DF"
+    },
+    "c-navy": {
+      "type": "color",
+      "value": "#091E32"
+    },
+    "c-navy-low": {
+      "type": "color",
+      "value": "#031223"
+    },
+    "c-ink": {
+      "type": "color",
+      "value": "#1D2228"
+    },
+    "c-ink-soft": {
+      "type": "color",
+      "value": "#565B61"
+    },
+    "c-ink-faint": {
+      "type": "color",
+      "value": "#7C8186"
+    },
+    "c-on-navy": {
+      "type": "color",
+      "value": "#F0F4F7"
+    },
+    "c-on-navy-dim": {
+      "type": "color",
+      "value": "#B3B8BE"
+    },
+    "c-steel": {
+      "type": "color",
+      "value": "#266EA4"
+    },
+    "c-steel-deep": {
+      "type": "color",
+      "value": "#044A7D"
+    },
+    "c-steel-lift": {
+      "type": "color",
+      "value": "#83B0D7"
+    },
+    "c-ochre": {
+      "type": "color",
+      "value": "#A46D1A"
+    },
+    "c-rule": {
+      "type": "color",
+      "value": "#D3D1CD"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "id": "f9",
+      "name": "01 封面",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-navy"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f8",
+          "name": "01 封面 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "text",
+              "id": "t1",
+              "name": "项目代号",
+              "content": "MLN · 26H1 渠道诊断",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 24,
+              "fontWeight": 500,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-steel-lift"
+                }
+              ],
+              "lineHeight": 1.4,
+              "letterSpacing": 0,
+              "textGrowth": "auto",
+              "width": "fit_content"
+            },
+            {
+              "type": "frame",
+              "id": "f4",
+              "name": "主张",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t2",
+                  "name": "主标题",
+                  "content": "换渠道救不回毛利\n漏水口在安装这一段",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 104,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy"
+                    }
+                  ],
+                  "lineHeight": 1.08,
+                  "letterSpacing": -2.08,
+                  "textGrowth": "fixed-width",
+                  "width": 1680
+                },
+                {
+                  "type": "rectangle",
+                  "id": "r3",
+                  "name": "短线",
+                  "width": 120,
+                  "height": 3,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-steel-lift"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f7",
+              "name": "落款",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t5",
+                  "name": "委托方",
+                  "content": "明澜家用水处理 · 战略办公室",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t6",
+                  "name": "日期",
+                  "content": "2026.08",
+                  "fontFamily": "Inter",
+                  "fontSize": 26,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 1.0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f30",
+      "name": "02 议题航迹",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-navy"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f29",
+          "name": "02 议题航迹 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "text",
+              "id": "t31",
+              "name": "页标题",
+              "content": "这次诊断，我们只下了五个测点",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 64,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-on-navy"
+                }
+              ],
+              "lineHeight": 1.12,
+              "letterSpacing": -1.28,
+              "textGrowth": "fixed-width",
+              "width": 1680
+            },
+            {
+              "type": "frame",
+              "id": "f28",
+              "name": "航迹目录",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f27",
+                  "name": "航迹线",
+                  "width": 1680,
+                  "height": 2,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f20",
+                  "name": "航迹点行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f10",
+                      "name": "航迹点位",
+                      "width": "fill_container",
+                      "height": 20,
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r11",
+                          "name": "航迹点",
+                          "width": 20,
+                          "height": 20,
+                          "cornerRadius": 10,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-steel-lift"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f12",
+                      "name": "航迹点位",
+                      "width": "fill_container",
+                      "height": 20,
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r13",
+                          "name": "航迹点",
+                          "width": 20,
+                          "height": 20,
+                          "cornerRadius": 10,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel-lift"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f14",
+                      "name": "航迹点位",
+                      "width": "fill_container",
+                      "height": 20,
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r15",
+                          "name": "航迹点",
+                          "width": 20,
+                          "height": 20,
+                          "cornerRadius": 10,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel-lift"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f16",
+                      "name": "航迹点位",
+                      "width": "fill_container",
+                      "height": 20,
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r17",
+                          "name": "航迹点",
+                          "width": 20,
+                          "height": 20,
+                          "cornerRadius": 10,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel-lift"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f18",
+                      "name": "航迹点位",
+                      "width": "fill_container",
+                      "height": 20,
+                      "layout": "horizontal",
+                      "gap": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r19",
+                          "name": "航迹点",
+                          "width": 20,
+                          "height": 20,
+                          "cornerRadius": 10,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel-lift"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f26",
+                  "name": "节名行",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t21",
+                      "name": "节名",
+                      "content": "总体结论",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t22",
+                      "name": "节名",
+                      "content": "毛利去向",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t23",
+                      "name": "节名",
+                      "content": "安装网络",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t24",
+                      "name": "节名",
+                      "content": "取舍判断",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    },
+                    {
+                      "type": "text",
+                      "id": "t25",
+                      "name": "节名",
+                      "content": "行动清单",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 40,
+                      "fontWeight": 600,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f34",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t32",
+                  "name": "页脚眉标",
+                  "content": "明澜 · 渠道诊断",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "text",
+                  "id": "t33",
+                  "name": "页码",
+                  "content": "02 / 07",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 1.0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f51",
+      "name": "03 结论",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-paper"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f50",
+          "name": "03 结论 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f55",
+              "name": "论证",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t52",
+                  "name": "页标题",
+                  "content": "复购只发生在\n上门当天能装完的门店",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.28,
+                  "textGrowth": "fixed-width",
+                  "width": 1680
+                },
+                {
+                  "type": "text",
+                  "id": "t53",
+                  "name": "引导句",
+                  "content": "同一款机器、同一个价，差别不在渠道，在人。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 36,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-soft"
+                    }
+                  ],
+                  "lineHeight": 1.75,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 1080
+                },
+                {
+                  "type": "frame",
+                  "id": "f54",
+                  "name": "论据列表",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f39",
+                      "name": "论据 1",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t35",
+                          "name": "论据序号",
+                          "content": "01",
+                          "fontFamily": "Inter",
+                          "fontSize": 40,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-faint"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 72
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f38",
+                          "name": "论据文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t36",
+                              "name": "论据标题",
+                              "content": "上门当天装完的门店，复购没掉过",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.35,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1200
+                            },
+                            {
+                              "type": "text",
+                              "id": "t37",
+                              "name": "论据说明",
+                              "content": "华东 91% 的工单当天闭环，华南 88%。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 960
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f44",
+                      "name": "论据 2",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t40",
+                          "name": "论据序号",
+                          "content": "02",
+                          "fontFamily": "Inter",
+                          "fontSize": 40,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-faint"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 72
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f43",
+                          "name": "论据文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t41",
+                              "name": "论据标题",
+                              "content": "被改约一次，客户基本就走了",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.35,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1200
+                            },
+                            {
+                              "type": "text",
+                              "id": "t42",
+                              "name": "论据说明",
+                              "content": "改约过的工单，年内复购只剩 9%。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 960
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f49",
+                      "name": "论据 3",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t45",
+                          "name": "论据序号",
+                          "content": "03",
+                          "fontFamily": "Inter",
+                          "fontSize": 40,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-faint"
+                            }
+                          ],
+                          "lineHeight": 1.35,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 72
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f48",
+                          "name": "论据文案",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t46",
+                              "name": "论据标题",
+                              "content": "装不好不是缺人，是缺件",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 40,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.35,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1200
+                            },
+                            {
+                              "type": "text",
+                              "id": "t47",
+                              "name": "论据说明",
+                              "content": "西南 47% 的改约理由是配件不在车上。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 32,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 960
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f72",
+              "name": "页尾",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 32,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f60",
+                  "name": "读数条",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "r56",
+                      "name": "读数上边线",
+                      "width": "fill_container",
+                      "height": 3,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-steel"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f59",
+                      "name": "读数",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 48,
+                      "alignItems": "center",
+                      "fill": [],
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t57",
+                          "name": "读数数值",
+                          "content": "3.1×",
+                          "fontFamily": "Inter",
+                          "fontSize": 48,
+                          "fontWeight": 700,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-steel-deep"
+                            }
+                          ],
+                          "lineHeight": 1.05,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "auto",
+                          "width": "fit_content"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t58",
+                          "name": "读数结论",
+                          "content": "复购差距来自安装，不来自价格。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 500,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.6,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 960,
+                          "textAlign": "right"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f71",
+                  "name": "页脚",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t61",
+                      "name": "页脚眉标",
+                      "content": "明澜 · 渠道诊断｜总体结论",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f70",
+                      "name": "航迹条",
+                      "width": 200,
+                      "height": 8,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f68",
+                          "name": "航迹点层",
+                          "width": 200,
+                          "height": 8,
+                          "layout": "none",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r63",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-steel"
+                                }
+                              ],
+                              "x": 0.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r64",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 48.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r65",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 96.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r66",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 144.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r67",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 192.0,
+                              "y": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r69",
+                          "name": "航迹线",
+                          "width": 200,
+                          "height": 2,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ],
+                          "x": 0,
+                          "y": 3.0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t62",
+                      "name": "页码",
+                      "content": "03 / 07",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "id": "f111",
+      "name": "04 证据",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-paper"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f110",
+          "name": "04 证据 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f113",
+              "name": "论证",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t112",
+                  "name": "页标题",
+                  "content": "毛利不是被渠道拿走的\n是被返工吃掉的",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.28,
+                  "textGrowth": "fixed-width",
+                  "width": 1680
+                },
+                {
+                  "type": "frame",
+                  "id": "f109",
+                  "name": "证据区",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 48,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f107",
+                      "name": "深度剖面条",
+                      "width": 1152,
+                      "height": 504,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f106",
+                          "name": "剖面内容",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r105",
+                              "name": "剖面基线",
+                              "width": 1152,
+                              "height": 2,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "f104",
+                              "name": "剖面列",
+                              "width": 1152,
+                              "height": "fit_content",
+                              "layout": "horizontal",
+                              "gap": 24,
+                              "alignItems": "start",
+                              "fill": [],
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "f83",
+                                  "name": "出厂毛利 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r80",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 420,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-steel-deep"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t81",
+                                      "name": "剖面数值",
+                                      "content": "42.0",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t82",
+                                      "name": "剖面标签",
+                                      "content": "出厂毛利",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f87",
+                                  "name": "渠道返点 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r84",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 64,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t85",
+                                      "name": "剖面数值",
+                                      "content": "6.4",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-soft"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t86",
+                                      "name": "剖面标签",
+                                      "content": "渠道返点",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f91",
+                                  "name": "仓配摊销 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r88",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 31,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t89",
+                                      "name": "剖面数值",
+                                      "content": "3.1",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-soft"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t90",
+                                      "name": "剖面标签",
+                                      "content": "仓配摊销",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f95",
+                                  "name": "安装返工 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r92",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 118,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-steel"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t93",
+                                      "name": "剖面数值",
+                                      "content": "11.8",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t94",
+                                      "name": "剖面标签",
+                                      "content": "安装返工",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f99",
+                                  "name": "退换保修 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r96",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 27,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t97",
+                                      "name": "剖面数值",
+                                      "content": "2.7",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-soft"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t98",
+                                      "name": "剖面标签",
+                                      "content": "退换保修",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f103",
+                                  "name": "到手毛利 列",
+                                  "width": 172,
+                                  "height": "fit_content",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "alignItems": "start",
+                                  "fill": [],
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r100",
+                                      "name": "剖面条",
+                                      "width": 172,
+                                      "height": 180,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-steel-deep"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t101",
+                                      "name": "剖面数值",
+                                      "content": "18.0",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 28,
+                                      "fontWeight": 600,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink"
+                                        }
+                                      ],
+                                      "lineHeight": 1.2,
+                                      "letterSpacing": 1.0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "t102",
+                                      "name": "剖面标签",
+                                      "content": "到手毛利",
+                                      "fontFamily": "Noto Sans SC",
+                                      "fontSize": 24,
+                                      "fontWeight": 400,
+                                      "fill": [
+                                        {
+                                          "type": "solid",
+                                          "color": "$c-ink-faint"
+                                        }
+                                      ],
+                                      "lineHeight": 1.4,
+                                      "letterSpacing": 0,
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "textAlign": "center"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f108",
+                      "name": "注解栏",
+                      "width": 480,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 32,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f75",
+                          "name": "注解组",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t73",
+                              "name": "注解标题",
+                              "content": "返工的钱不在财务账上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 480
+                            },
+                            {
+                              "type": "text",
+                              "id": "t74",
+                              "name": "注解说明",
+                              "content": "它记在售后工时里，\n季度报表看不见，\n年底盘账才发现。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 480
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r76",
+                          "name": "横线",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f79",
+                          "name": "注解组",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t77",
+                              "name": "注解标题",
+                              "content": "换渠道省不下这一段",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 480
+                            },
+                            {
+                              "type": "text",
+                              "id": "t78",
+                              "name": "注解说明",
+                              "content": "经销商换一轮，\n安装还是那批人。\n返点让掉两个点，返工照旧。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 480
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f126",
+              "name": "页脚区",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t125",
+                  "name": "来源脚注",
+                  "content": "数据来源：明澜 2026 年 1–6 月工单与售后台账，单位 元/台，样本 626 家门店。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 720
+                },
+                {
+                  "type": "frame",
+                  "id": "f124",
+                  "name": "页脚",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t114",
+                      "name": "页脚眉标",
+                      "content": "明澜 · 渠道诊断｜毛利去向",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f123",
+                      "name": "航迹条",
+                      "width": 200,
+                      "height": 8,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f121",
+                          "name": "航迹点层",
+                          "width": 200,
+                          "height": 8,
+                          "layout": "none",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r116",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 0.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r117",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-steel"
+                                }
+                              ],
+                              "x": 48.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r118",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 96.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r119",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 144.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r120",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 192.0,
+                              "y": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r122",
+                          "name": "航迹线",
+                          "width": 200,
+                          "height": 2,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ],
+                          "x": 0,
+                          "y": 3.0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t115",
+                      "name": "页码",
+                      "content": "04 / 07",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f128",
+      "name": "05 数据",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-paper"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f127",
+          "name": "05 数据 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f179",
+              "name": "论证",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t129",
+                  "name": "页标题",
+                  "content": "装得快的区域，复购就没有掉过",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.28,
+                  "textGrowth": "fixed-width",
+                  "width": 1680
+                },
+                {
+                  "type": "frame",
+                  "id": "f178",
+                  "name": "区域表",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 18,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f135",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t130",
+                          "name": "表头单元",
+                          "content": "区域",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t131",
+                          "name": "表头单元",
+                          "content": "门店数",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t132",
+                          "name": "表头单元",
+                          "content": "平均上门（天）",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t133",
+                          "name": "表头单元",
+                          "content": "一次装成率",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t134",
+                          "name": "表头单元",
+                          "content": "年内复购",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 26,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r136",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-steel"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f142",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t137",
+                          "name": "表格单元",
+                          "content": "华东",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t138",
+                          "name": "表格单元",
+                          "content": "186",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t139",
+                          "name": "表格单元",
+                          "content": "2.4",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t140",
+                          "name": "表格单元",
+                          "content": "91%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t141",
+                          "name": "表格单元",
+                          "content": "34%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r143",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f149",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t144",
+                          "name": "表格单元",
+                          "content": "华南",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t145",
+                          "name": "表格单元",
+                          "content": "142",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t146",
+                          "name": "表格单元",
+                          "content": "3.1",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t147",
+                          "name": "表格单元",
+                          "content": "88%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t148",
+                          "name": "表格单元",
+                          "content": "29%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r150",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f156",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t151",
+                          "name": "表格单元",
+                          "content": "华北",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t152",
+                          "name": "表格单元",
+                          "content": "128",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t153",
+                          "name": "表格单元",
+                          "content": "4.6",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t154",
+                          "name": "表格单元",
+                          "content": "74%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t155",
+                          "name": "表格单元",
+                          "content": "18%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r157",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f163",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t158",
+                          "name": "表格单元",
+                          "content": "华中",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t159",
+                          "name": "表格单元",
+                          "content": "96",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t160",
+                          "name": "表格单元",
+                          "content": "5.2",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t161",
+                          "name": "表格单元",
+                          "content": "69%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t162",
+                          "name": "表格单元",
+                          "content": "15%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r164",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f170",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t165",
+                          "name": "表格单元",
+                          "content": "西南",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t166",
+                          "name": "表格单元",
+                          "content": "74",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t167",
+                          "name": "表格单元",
+                          "content": "6.8",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t168",
+                          "name": "表格单元",
+                          "content": "61%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t169",
+                          "name": "表格单元",
+                          "content": "11%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink-soft"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r171",
+                      "name": "横线",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f177",
+                      "name": "表行",
+                      "width": "fill_container",
+                      "height": "fit_content",
+                      "layout": "horizontal",
+                      "gap": 24,
+                      "alignItems": "center",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t172",
+                          "name": "表格单元",
+                          "content": "合计",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 384
+                        },
+                        {
+                          "type": "text",
+                          "id": "t173",
+                          "name": "表格单元",
+                          "content": "626",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t174",
+                          "name": "表格单元",
+                          "content": "4.1",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t175",
+                          "name": "表格单元",
+                          "content": "78%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "textAlign": "right"
+                        },
+                        {
+                          "type": "text",
+                          "id": "t176",
+                          "name": "表格单元",
+                          "content": "22%",
+                          "fontFamily": "Inter",
+                          "fontSize": 30,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 1.0,
+                          "textGrowth": "fixed-width",
+                          "width": 360,
+                          "textAlign": "right"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f192",
+              "name": "页脚区",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t191",
+                  "name": "来源脚注",
+                  "content": "数据来源：明澜工单系统 2026 年 1–6 月，一次装成率指首次上门即完成安装并通过验收的比例。",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 720
+                },
+                {
+                  "type": "frame",
+                  "id": "f190",
+                  "name": "页脚",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t180",
+                      "name": "页脚眉标",
+                      "content": "明澜 · 渠道诊断｜安装网络",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f189",
+                      "name": "航迹条",
+                      "width": 200,
+                      "height": 8,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f187",
+                          "name": "航迹点层",
+                          "width": 200,
+                          "height": 8,
+                          "layout": "none",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r182",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 0.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r183",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 48.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r184",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-steel"
+                                }
+                              ],
+                              "x": 96.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r185",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 144.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r186",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel"
+                                  }
+                                ]
+                              },
+                              "x": 192.0,
+                              "y": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r188",
+                          "name": "航迹线",
+                          "width": 200,
+                          "height": 2,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ],
+                          "x": 0,
+                          "y": 3.0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t181",
+                      "name": "页码",
+                      "content": "05 / 07",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-ink-faint"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 2040,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f212",
+      "name": "06 取舍",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-paper"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f211",
+          "name": "06 取舍 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "frame",
+              "id": "f214",
+              "name": "论证",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t213",
+                  "name": "页标题",
+                  "content": "该换的不是经销商\n是把安装收回来自己做",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 64,
+                  "fontWeight": 700,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink"
+                    }
+                  ],
+                  "lineHeight": 1.12,
+                  "letterSpacing": -1.28,
+                  "textGrowth": "fixed-width",
+                  "width": 1680
+                },
+                {
+                  "type": "frame",
+                  "id": "f210",
+                  "name": "取舍区",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "stretch",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f208",
+                      "name": "证据栏",
+                      "width": 1140,
+                      "height": "fit_content",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f195",
+                          "name": "证据条",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t193",
+                              "name": "证据标题",
+                              "content": "自有师傅的一次装成率是 94%",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1080
+                            },
+                            {
+                              "type": "text",
+                              "id": "t194",
+                              "name": "证据说明",
+                              "content": "外包队伍 68%。\n同样的培训，差别在返修要不要自己扛。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 900
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r196",
+                          "name": "横线",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f199",
+                          "name": "证据条",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t197",
+                              "name": "证据标题",
+                              "content": "改约主要卡在配件不在车上",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1080
+                            },
+                            {
+                              "type": "text",
+                              "id": "t198",
+                              "name": "证据说明",
+                              "content": "不是人手不够。\n配件调度这一段本来就在我们自己手里。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 900
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r200",
+                          "name": "横线",
+                          "width": "fill_container",
+                          "height": 1,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-rule"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f203",
+                          "name": "证据条",
+                          "width": "fill_container",
+                          "height": "fit_content",
+                          "layout": "vertical",
+                          "gap": 8,
+                          "alignItems": "start",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t201",
+                              "name": "证据标题",
+                              "content": "经销商并不反对我们自己装",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 36,
+                              "fontWeight": 600,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink"
+                                }
+                              ],
+                              "lineHeight": 1.4,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 1080
+                            },
+                            {
+                              "type": "text",
+                              "id": "t202",
+                              "name": "证据说明",
+                              "content": "他们要的是卖机器那笔返点，\n安装对他们一直是成本中心。",
+                              "fontFamily": "Noto Sans SC",
+                              "fontSize": 30,
+                              "fontWeight": 400,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-ink-soft"
+                                }
+                              ],
+                              "lineHeight": 1.75,
+                              "letterSpacing": 0,
+                              "textGrowth": "fixed-width",
+                              "width": 900
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r209",
+                      "name": "竖线",
+                      "width": 1,
+                      "height": "fill_container",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f207",
+                      "name": "判断栏",
+                      "width": 491,
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "alignItems": "start",
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-paper-deep"
+                        }
+                      ],
+                      "padding": [
+                        32,
+                        32
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r204",
+                          "name": "警戒短线",
+                          "width": 96,
+                          "height": 4,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ochre"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "t205",
+                          "name": "判断标题",
+                          "content": "这一步的代价",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 32,
+                          "fontWeight": 600,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.4,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 427
+                        },
+                        {
+                          "type": "text",
+                          "id": "t206",
+                          "name": "判断说明",
+                          "content": "自建安装要多背\n三年四千三百万固定成本。\n换来的是复购，\n不是当期毛利。",
+                          "fontFamily": "Noto Sans SC",
+                          "fontSize": 30,
+                          "fontWeight": 400,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-ink"
+                            }
+                          ],
+                          "lineHeight": 1.75,
+                          "letterSpacing": 0,
+                          "textGrowth": "fixed-width",
+                          "width": 427
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f225",
+              "name": "页脚",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "fill": [],
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t215",
+                  "name": "页脚眉标",
+                  "content": "明澜 · 渠道诊断｜取舍判断",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 24,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                },
+                {
+                  "type": "frame",
+                  "id": "f224",
+                  "name": "航迹条",
+                  "width": 200,
+                  "height": 8,
+                  "layout": "none",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f222",
+                      "name": "航迹点层",
+                      "width": 200,
+                      "height": 8,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "r217",
+                          "name": "航迹点",
+                          "width": 8,
+                          "height": 8,
+                          "cornerRadius": 4,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel"
+                              }
+                            ]
+                          },
+                          "x": 0.0,
+                          "y": 0
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r218",
+                          "name": "航迹点",
+                          "width": 8,
+                          "height": 8,
+                          "cornerRadius": 4,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel"
+                              }
+                            ]
+                          },
+                          "x": 48.0,
+                          "y": 0
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r219",
+                          "name": "航迹点",
+                          "width": 8,
+                          "height": 8,
+                          "cornerRadius": 4,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel"
+                              }
+                            ]
+                          },
+                          "x": 96.0,
+                          "y": 0
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r220",
+                          "name": "航迹点",
+                          "width": 8,
+                          "height": 8,
+                          "cornerRadius": 4,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-steel"
+                            }
+                          ],
+                          "x": 144.0,
+                          "y": 0
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r221",
+                          "name": "航迹点",
+                          "width": 8,
+                          "height": 8,
+                          "cornerRadius": 4,
+                          "fill": [],
+                          "stroke": {
+                            "thickness": 1.5,
+                            "fill": [
+                              {
+                                "type": "solid",
+                                "color": "$c-steel"
+                              }
+                            ]
+                          },
+                          "x": 192.0,
+                          "y": 0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "r223",
+                      "name": "航迹线",
+                      "width": 200,
+                      "height": 2,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-rule"
+                        }
+                      ],
+                      "x": 0,
+                      "y": 3.0
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "t216",
+                  "name": "页码",
+                  "content": "06 / 07",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": 500,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-ink-faint"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 1.0,
+                  "textGrowth": "auto",
+                  "width": "fit_content"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 1440
+    },
+    {
+      "type": "frame",
+      "id": "f236",
+      "name": "07 行动",
+      "width": 1920,
+      "height": 1080,
+      "layout": "none",
+      "fill": [
+        {
+          "type": "solid",
+          "color": "$c-navy"
+        }
+      ],
+      "clipContent": true,
+      "children": [
+        {
+          "type": "frame",
+          "id": "f235",
+          "name": "07 行动 · 正文",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            96,
+            120,
+            120,
+            120
+          ],
+          "gap": 48,
+          "justifyContent": "space_between",
+          "alignItems": "start",
+          "fill": [],
+          "children": [
+            {
+              "type": "text",
+              "id": "t237",
+              "name": "收束句",
+              "content": "先把华南的安装收回来\n再谈全国",
+              "fontFamily": "Noto Sans SC",
+              "fontSize": 72,
+              "fontWeight": 700,
+              "fill": [
+                {
+                  "type": "solid",
+                  "color": "$c-on-navy"
+                }
+              ],
+              "lineHeight": 1.12,
+              "letterSpacing": -1.44,
+              "textGrowth": "fixed-width",
+              "width": 1680
+            },
+            {
+              "type": "frame",
+              "id": "f238",
+              "name": "行动区",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "horizontal",
+              "gap": 48,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f228",
+                  "name": "行动 1",
+                  "width": 528,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t226",
+                      "name": "行动序号",
+                      "content": "01",
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-steel-lift"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    },
+                    {
+                      "type": "text",
+                      "id": "t227",
+                      "name": "行动文案",
+                      "content": "九月底前接管\n华南两个仓的配件调度",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy"
+                        }
+                      ],
+                      "lineHeight": 1.75,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f231",
+                  "name": "行动 2",
+                  "width": 528,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t229",
+                      "name": "行动序号",
+                      "content": "02",
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-steel-lift"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    },
+                    {
+                      "type": "text",
+                      "id": "t230",
+                      "name": "行动文案",
+                      "content": "十月起在广深\n自招一百二十名安装师傅",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy"
+                        }
+                      ],
+                      "lineHeight": 1.75,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f234",
+                  "name": "行动 3",
+                  "width": 528,
+                  "height": "fit_content",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "alignItems": "start",
+                  "fill": [],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t232",
+                      "name": "行动序号",
+                      "content": "03",
+                      "fontFamily": "Inter",
+                      "fontSize": 40,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-steel-lift"
+                        }
+                      ],
+                      "lineHeight": 1.35,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    },
+                    {
+                      "type": "text",
+                      "id": "t233",
+                      "name": "行动文案",
+                      "content": "年底复盘一次装成率，\n到不了九成就停",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 32,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy"
+                        }
+                      ],
+                      "lineHeight": 1.75,
+                      "letterSpacing": 0,
+                      "textGrowth": "fixed-width",
+                      "width": 528
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "f251",
+              "name": "页尾",
+              "width": "fill_container",
+              "height": "fit_content",
+              "layout": "vertical",
+              "gap": 24,
+              "alignItems": "start",
+              "fill": [],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "t239",
+                  "name": "落款",
+                  "content": "明澜家用水处理 · 战略办公室｜2026 年 8 月 12 日",
+                  "fontFamily": "Noto Sans SC",
+                  "fontSize": 26,
+                  "fontWeight": 400,
+                  "fill": [
+                    {
+                      "type": "solid",
+                      "color": "$c-on-navy-dim"
+                    }
+                  ],
+                  "lineHeight": 1.4,
+                  "letterSpacing": 0,
+                  "textGrowth": "fixed-width",
+                  "width": 780
+                },
+                {
+                  "type": "frame",
+                  "id": "f250",
+                  "name": "页脚",
+                  "width": "fill_container",
+                  "height": "fit_content",
+                  "layout": "horizontal",
+                  "gap": 24,
+                  "alignItems": "center",
+                  "fill": [],
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t240",
+                      "name": "页脚眉标",
+                      "content": "明澜 · 渠道诊断｜行动清单",
+                      "fontFamily": "Noto Sans SC",
+                      "fontSize": 24,
+                      "fontWeight": 400,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f249",
+                      "name": "航迹条",
+                      "width": 200,
+                      "height": 8,
+                      "layout": "none",
+                      "fill": [],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "f247",
+                          "name": "航迹点层",
+                          "width": 200,
+                          "height": 8,
+                          "layout": "none",
+                          "fill": [],
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "r242",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel-lift"
+                                  }
+                                ]
+                              },
+                              "x": 0.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r243",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel-lift"
+                                  }
+                                ]
+                              },
+                              "x": 48.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r244",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel-lift"
+                                  }
+                                ]
+                              },
+                              "x": 96.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r245",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [],
+                              "stroke": {
+                                "thickness": 1.5,
+                                "fill": [
+                                  {
+                                    "type": "solid",
+                                    "color": "$c-steel-lift"
+                                  }
+                                ]
+                              },
+                              "x": 144.0,
+                              "y": 0
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "r246",
+                              "name": "航迹点",
+                              "width": 8,
+                              "height": 8,
+                              "cornerRadius": 4,
+                              "fill": [
+                                {
+                                  "type": "solid",
+                                  "color": "$c-steel-lift"
+                                }
+                              ],
+                              "x": 192.0,
+                              "y": 0
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "r248",
+                          "name": "航迹线",
+                          "width": 200,
+                          "height": 2,
+                          "fill": [
+                            {
+                              "type": "solid",
+                              "color": "$c-on-navy-dim"
+                            }
+                          ],
+                          "x": 0,
+                          "y": 3.0
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "t241",
+                      "name": "页码",
+                      "content": "07 / 07",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": 500,
+                      "fill": [
+                        {
+                          "type": "solid",
+                          "color": "$c-on-navy-dim"
+                        }
+                      ],
+                      "lineHeight": 1.4,
+                      "letterSpacing": 1.0,
+                      "textGrowth": "auto",
+                      "width": "fit_content"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 2880
+    }
+  ]
+}

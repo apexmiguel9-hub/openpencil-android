@@ -1,0 +1,650 @@
+//! TS-parity floating editor for image fills.
+//!
+//! The body row in the Fill section toggles this popover; the upload
+//! well inside it triggers the native file picker.
+
+use crate::theme::Theme;
+use crate::widgets::icons::{draw_icon, Icon};
+use crate::widgets::property_panel::{FillSummary, NodeSnapshot, PropertyPanelAction};
+use crate::widgets::property_panel_image_preview::paint_image_preview;
+use crate::widgets::property_panel_inputs::{paint_input_with_prefix_focused_state, INPUT_HEIGHT};
+use crate::widgets::property_panel_interactions::InteractionSummary;
+use crate::widgets::property_panel_layout::{
+    action_button_rects_with_fill_picker, VisibleSections,
+};
+use crate::widgets::property_panel_sections::EditContext;
+use crate::widgets::text_metrics;
+use crate::widgets::PaintCx;
+use crate::{Color, Point2D, Rect, TextLayout};
+
+const PANEL_W: f32 = 220.0;
+const PANEL_GAP: f32 = 8.0;
+const PANEL_PAD: f32 = 12.0;
+const HEADER_H: f32 = 44.0;
+const MODE_H: f32 = 30.0;
+const TILE_SCALE_ROW_H: f32 = 36.0;
+const UPLOAD_H: f32 = 112.0;
+/// The match-ratio row sits between the upload well and the adjustments
+/// divider — it acts on the image itself, not on its colour grading.
+/// Both metrics are unconditional so picking an image never reflows the
+/// popover under the cursor.
+const MATCH_RATIO_GAP: f32 = 8.0;
+const MATCH_RATIO_H: f32 = 28.0;
+const ADJ_HEADER_H: f32 = 28.0;
+const ADJ_ROW_H: f32 = 34.0;
+
+fn panel_h(show_tile_scale: bool) -> f32 {
+    HEADER_H
+        + MODE_H
+        + if show_tile_scale {
+            TILE_SCALE_ROW_H
+        } else {
+            0.0
+        }
+        + 10.0
+        + UPLOAD_H
+        + MATCH_RATIO_GAP
+        + MATCH_RATIO_H
+        + 12.0
+        + 1.0
+        + ADJ_HEADER_H
+        + op_editor_core::ImageAdjustmentField::ALL.len() as f32 * ADJ_ROW_H
+        + PANEL_PAD
+}
+
+fn tile_scale_visible(snapshot: &NodeSnapshot) -> bool {
+    snapshot.image_fill.as_ref().is_some_and(|summary| {
+        summary.mode == op_editor_core::ImageFillMode::Tile && summary.tile_scale.is_some()
+    })
+}
+
+fn image_body_rect(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    fills: &[FillSummary],
+) -> Option<Rect> {
+    if !visible.image && (!visible.fill || visible.fill_type != op_editor_core::FillType::Image) {
+        return None;
+    }
+    action_button_rects_with_fill_picker(
+        panel_rect,
+        visible,
+        &[],
+        fills,
+        &InteractionSummary::default(),
+        false,
+        0,
+        false,
+        false,
+        false,
+        false,
+        false,
+    )
+    .into_iter()
+    .find_map(|(action, rect)| {
+        matches!(action, PropertyPanelAction::ToggleImageFillPopover).then_some(rect)
+    })
+}
+
+fn popover_rect(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+) -> Option<Rect> {
+    let anchor = image_body_rect(panel_rect, visible, &snapshot.fills)?;
+    let h = panel_h(tile_scale_visible(snapshot));
+    let min_top = panel_rect.origin.y + 8.0;
+    let max_top = (panel_rect.origin.y + panel_rect.size.y - h - 8.0).max(min_top);
+    Some(Rect {
+        origin: Point2D::new(
+            anchor.origin.x - PANEL_W - PANEL_GAP,
+            anchor.origin.y.clamp(min_top, max_top),
+        ),
+        size: Point2D::new(PANEL_W, h),
+    })
+}
+
+pub fn image_fill_popover_action_rects(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+) -> Vec<(PropertyPanelAction, Rect)> {
+    let Some(pop) = popover_rect(panel_rect, visible, snapshot) else {
+        return Vec::new();
+    };
+    let mut out = Vec::new();
+    out.push((
+        PropertyPanelAction::CloseImageFillPopover,
+        Rect {
+            origin: Point2D::new(pop.origin.x + pop.size.x - 34.0, pop.origin.y + 8.0),
+            size: Point2D::new(26.0, 26.0),
+        },
+    ));
+
+    let mode_y = pop.origin.y + HEADER_H;
+    let mode_rect = Rect {
+        origin: Point2D::new(pop.origin.x + PANEL_PAD, mode_y),
+        size: Point2D::new(pop.size.x - PANEL_PAD * 2.0, MODE_H),
+    };
+    let chip_w = mode_rect.size.x / op_editor_core::ImageFillMode::ALL.len() as f32;
+    for (i, mode) in op_editor_core::ImageFillMode::ALL.iter().enumerate() {
+        out.push((
+            PropertyPanelAction::SetImageFillMode(*mode),
+            Rect {
+                origin: Point2D::new(mode_rect.origin.x + i as f32 * chip_w, mode_rect.origin.y),
+                size: Point2D::new(chip_w, mode_rect.size.y),
+            },
+        ));
+    }
+
+    let show_tile_scale = tile_scale_visible(snapshot);
+    let upload = upload_rect(pop, show_tile_scale);
+    out.push((PropertyPanelAction::PickFillImage, upload));
+
+    if match_ratio_target_height(snapshot).is_some() {
+        out.push((
+            PropertyPanelAction::MatchImageAspectRatio,
+            match_ratio_rect(pop, show_tile_scale),
+        ));
+    }
+
+    if snapshot
+        .image_fill
+        .as_ref()
+        .map(|summary| summary.has_adjustments())
+        .unwrap_or(false)
+    {
+        out.push((
+            PropertyPanelAction::ResetImageAdjustments,
+            Rect {
+                origin: Point2D::new(
+                    pop.origin.x + pop.size.x - 62.0,
+                    adjustments_header_y(pop, show_tile_scale) + 3.0,
+                ),
+                size: Point2D::new(50.0, 20.0),
+            },
+        ));
+    }
+    out
+}
+
+pub fn image_fill_popover_action_at(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+    point: Point2D,
+) -> Option<PropertyPanelAction> {
+    for (action, rect) in image_fill_popover_action_rects(panel_rect, visible, snapshot)
+        .into_iter()
+        .rev()
+    {
+        if (rect).contains(point) {
+            return Some(action);
+        }
+    }
+    let pop = popover_rect(panel_rect, visible, snapshot)?;
+    for (field, track) in adjustment_track_rects(pop, tile_scale_visible(snapshot)) {
+        if (track).contains(point) {
+            let pct = ((point.x - track.origin.x) / track.size.x).clamp(0.0, 1.0);
+            return Some(PropertyPanelAction::SetImageAdjustment {
+                field,
+                value: (pct * 200.0 - 100.0).round(),
+            });
+        }
+    }
+    None
+}
+
+/// Editable input inside the floating image-fill popover. Tile scale
+/// exists only on an authored `PenFill::Image`, so standalone Image
+/// nodes (whose summary reports `tile_scale: None`) never return it.
+pub fn image_fill_popover_input_at(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+    point: Point2D,
+) -> Option<op_editor_core::PropertyFocus> {
+    image_fill_popover_input_rect(panel_rect, visible, snapshot)?
+        .contains(point)
+        .then_some(op_editor_core::PropertyFocus::ImageTileScale)
+}
+
+/// Exact Tile-scale input bounds. Paint and host focus hit-testing
+/// both derive from this helper, so the floating input cannot drift.
+pub fn image_fill_popover_input_rect(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+) -> Option<Rect> {
+    if !tile_scale_visible(snapshot) {
+        return None;
+    }
+    let pop = popover_rect(panel_rect, visible, snapshot)?;
+    Some(tile_scale_rect(pop))
+}
+
+pub fn image_fill_popover_contains(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+    point: Point2D,
+) -> bool {
+    popover_rect(panel_rect, visible, snapshot)
+        .map(|pop| (pop).contains(point))
+        .unwrap_or(false)
+}
+
+pub fn image_fill_popover_adjustment_action_for_drag(
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+    field: op_editor_core::ImageAdjustmentField,
+    x: f32,
+) -> Option<PropertyPanelAction> {
+    let pop = popover_rect(panel_rect, visible, snapshot)?;
+    let track = adjustment_track_rects(pop, tile_scale_visible(snapshot))
+        .into_iter()
+        .find_map(|(candidate, rect)| (candidate == field).then_some(rect))?;
+    let pct = ((x - track.origin.x) / track.size.x).clamp(0.0, 1.0);
+    Some(PropertyPanelAction::SetImageAdjustment {
+        field,
+        value: (pct * 200.0 - 100.0).round(),
+    })
+}
+
+pub fn paint_image_fill_popover(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    panel_rect: Rect,
+    visible: VisibleSections,
+    snapshot: &NodeSnapshot,
+    edit: &EditContext<'_>,
+    locale: op_editor_core::Locale,
+) {
+    let Some(pop) = popover_rect(panel_rect, visible, snapshot) else {
+        return;
+    };
+    let summary = snapshot
+        .image_fill
+        .clone()
+        .unwrap_or(op_editor_core::ImageFillSummary {
+            mode: op_editor_core::ImageFillMode::Fill,
+            has_image: false,
+            image_url: None,
+            tile_scale: None,
+            transform: None,
+            original_size: None,
+            exposure: 0.0,
+            contrast: 0.0,
+            saturation: 0.0,
+            temperature: 0.0,
+            tint: 0.0,
+            highlights: 0.0,
+            shadows: 0.0,
+        });
+    cx.backend.fill_round_rect(pop, 8.0, theme.popover);
+    cx.backend.stroke_round_rect(pop, 8.0, theme.border, 1.0);
+
+    paint_label(
+        cx,
+        theme,
+        op_i18n::translate(locale, "image.title"),
+        pop.origin.x + PANEL_PAD,
+        pop.origin.y + 28.0,
+        13.0,
+        theme.foreground,
+    );
+    draw_icon(
+        cx.backend,
+        Icon::Close,
+        Point2D::new(pop.origin.x + pop.size.x - 30.0, pop.origin.y + 13.0),
+        18.0,
+        theme.foreground,
+        1.8,
+    );
+    paint_mode_control(cx, theme, pop, summary.mode, locale);
+    if tile_scale_visible(snapshot) {
+        paint_tile_scale(cx, theme, pop, &summary, edit, locale);
+    }
+    paint_upload(cx, theme, pop, &summary, locale);
+    paint_match_ratio(
+        cx,
+        theme,
+        pop,
+        snapshot,
+        tile_scale_visible(snapshot),
+        locale,
+    );
+    paint_adjustments(cx, theme, pop, &summary, locale);
+}
+
+fn paint_match_ratio(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    pop: Rect,
+    snapshot: &NodeSnapshot,
+    show_tile_scale: bool,
+    locale: op_editor_core::Locale,
+) {
+    jian_widgets::components::button::Button {
+        label: op_i18n::translate(locale, "image.matchRatio"),
+        icon_paths: Some(Icon::Maximize.paths()),
+        variant: jian_widgets::components::button::ButtonVariant::Secondary,
+        enabled: match_ratio_target_height(snapshot).is_some(),
+        hovered: false,
+        pressed: false,
+        font_size: 11.0,
+    }
+    .paint(
+        cx.backend,
+        match_ratio_rect(pop, show_tile_scale),
+        &crate::widgets::button::tokens_from_theme(theme),
+    );
+}
+
+fn tile_scale_rect(pop: Rect) -> Rect {
+    Rect {
+        origin: Point2D::new(
+            pop.origin.x + PANEL_PAD,
+            pop.origin.y + HEADER_H + MODE_H + 6.0,
+        ),
+        size: Point2D::new(pop.size.x - PANEL_PAD * 2.0, INPUT_HEIGHT),
+    }
+}
+
+fn upload_rect(pop: Rect, show_tile_scale: bool) -> Rect {
+    Rect {
+        origin: Point2D::new(
+            pop.origin.x + PANEL_PAD,
+            pop.origin.y
+                + HEADER_H
+                + MODE_H
+                + 10.0
+                + if show_tile_scale {
+                    TILE_SCALE_ROW_H
+                } else {
+                    0.0
+                },
+        ),
+        size: Point2D::new(pop.size.x - PANEL_PAD * 2.0, UPLOAD_H),
+    }
+}
+
+fn match_ratio_rect(pop: Rect, show_tile_scale: bool) -> Rect {
+    let upload = upload_rect(pop, show_tile_scale);
+    Rect {
+        origin: Point2D::new(
+            upload.origin.x,
+            upload.origin.y + UPLOAD_H + MATCH_RATIO_GAP,
+        ),
+        size: Point2D::new(upload.size.x, MATCH_RATIO_H),
+    }
+}
+
+/// The height the match-ratio row would write, or `None` when it has
+/// nothing to compute from — no image fill, an unknown intrinsic size,
+/// or a node with no resolved width. Paint uses it for the disabled
+/// state and the hit walker uses it as the gate, so a greyed-out row
+/// can never also be clickable.
+fn match_ratio_target_height(snapshot: &NodeSnapshot) -> Option<f32> {
+    let summary = snapshot.image_fill.as_ref()?;
+    let source = crate::widgets::property_panel_image_ratio::image_source_size(summary)?;
+    op_editor_core::aspect_matched_height(snapshot.width as f32, source)
+}
+
+fn adjustments_header_y(pop: Rect, show_tile_scale: bool) -> f32 {
+    match_ratio_rect(pop, show_tile_scale).origin.y + MATCH_RATIO_H + 13.0
+}
+
+fn adjustment_track_rects(
+    pop: Rect,
+    show_tile_scale: bool,
+) -> Vec<(op_editor_core::ImageAdjustmentField, Rect)> {
+    let mut out = Vec::new();
+    let start_y = adjustments_header_y(pop, show_tile_scale) + ADJ_HEADER_H;
+    for (i, field) in op_editor_core::ImageAdjustmentField::ALL.iter().enumerate() {
+        out.push((
+            *field,
+            Rect {
+                origin: Point2D::new(pop.origin.x + 80.0, start_y + i as f32 * ADJ_ROW_H + 15.0),
+                size: Point2D::new(86.0, 8.0),
+            },
+        ));
+    }
+    out
+}
+
+fn paint_mode_control(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    pop: Rect,
+    active: op_editor_core::ImageFillMode,
+    locale: op_editor_core::Locale,
+) {
+    let mode_y = pop.origin.y + HEADER_H;
+    let rect = Rect {
+        origin: Point2D::new(pop.origin.x + PANEL_PAD, mode_y),
+        size: Point2D::new(pop.size.x - PANEL_PAD * 2.0, MODE_H),
+    };
+    // Mode segmented control via jian ToggleGroup (even cells aligned with the
+    // full-cell hit walker above); active cell fills primary.
+    let labels: Vec<&str> = op_editor_core::ImageFillMode::ALL
+        .iter()
+        .map(|m| op_i18n::translate(locale, m.label_key()))
+        .collect();
+    let active_idx = op_editor_core::ImageFillMode::ALL
+        .iter()
+        .position(|m| *m == active)
+        .unwrap_or(0);
+    jian_widgets::components::toggle_group::ToggleGroup {
+        options: &labels,
+        icons: None,
+        active: active_idx,
+        hover: None,
+        font_size: 11.0,
+    }
+    .paint(
+        cx.backend,
+        rect,
+        &crate::widgets::button::tokens_from_theme(theme),
+    );
+}
+
+fn paint_tile_scale(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    pop: Rect,
+    summary: &op_editor_core::ImageFillSummary,
+    edit: &EditContext<'_>,
+    locale: op_editor_core::Locale,
+) {
+    let focus = op_editor_core::PropertyFocus::ImageTileScale;
+    let fallback = crate::util::format_panel_number_roundtrip(summary.tile_scale.unwrap_or(1.0));
+    let value = edit.value_for(focus, &fallback);
+    paint_input_with_prefix_focused_state(
+        cx,
+        theme,
+        tile_scale_rect(pop),
+        op_i18n::translate(locale, "image.tileScale"),
+        value,
+        edit.focus == Some(focus),
+        edit.caret_at(focus),
+        edit.select_all_at(focus),
+        edit.input_at(focus),
+        edit.now_ms,
+    );
+}
+
+fn paint_upload(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    pop: Rect,
+    summary: &op_editor_core::ImageFillSummary,
+    locale: op_editor_core::Locale,
+) {
+    let rect = upload_rect(
+        pop,
+        summary.tile_scale.is_some() && summary.mode == op_editor_core::ImageFillMode::Tile,
+    );
+    cx.backend.fill_round_rect(rect, 6.0, theme.muted);
+    if let Some(src) = summary.image_url.as_deref() {
+        let preview = Rect {
+            origin: Point2D::new(rect.origin.x + 6.0, rect.origin.y + 6.0),
+            size: Point2D::new((rect.size.x - 12.0).max(0.0), (rect.size.y - 12.0).max(0.0)),
+        };
+        if paint_image_preview(cx, preview, src, summary) {
+            cx.backend.stroke_round_rect(rect, 6.0, theme.border, 1.0);
+            return;
+        }
+    }
+    draw_icon(
+        cx.backend,
+        Icon::ImagePlus,
+        Point2D::new(
+            rect.origin.x + rect.size.x / 2.0 - 12.0,
+            rect.origin.y + 35.0,
+        ),
+        24.0,
+        theme.muted_foreground,
+        1.6,
+    );
+    let label = if summary.has_image {
+        op_i18n::translate(locale, "image.title")
+    } else {
+        op_i18n::translate(locale, "image.clickToUpload")
+    };
+    paint_centered_label(
+        cx,
+        theme,
+        label,
+        Rect {
+            origin: Point2D::new(rect.origin.x, rect.origin.y + 64.0),
+            size: Point2D::new(rect.size.x, 24.0),
+        },
+        theme.muted_foreground,
+    );
+    cx.backend.stroke_round_rect(rect, 6.0, theme.border, 1.0);
+}
+
+fn paint_adjustments(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    pop: Rect,
+    summary: &op_editor_core::ImageFillSummary,
+    locale: op_editor_core::Locale,
+) {
+    let show_tile_scale =
+        summary.tile_scale.is_some() && summary.mode == op_editor_core::ImageFillMode::Tile;
+    let divider_y = match_ratio_rect(pop, show_tile_scale).origin.y + MATCH_RATIO_H + 12.0;
+    cx.backend.fill_rect(
+        Rect {
+            origin: Point2D::new(pop.origin.x, divider_y),
+            size: Point2D::new(pop.size.x, 1.0),
+        },
+        theme.border,
+    );
+    let header_y = adjustments_header_y(pop, show_tile_scale);
+    paint_label(
+        cx,
+        theme,
+        op_i18n::translate(locale, "image.adjustments"),
+        pop.origin.x + PANEL_PAD,
+        header_y + 18.0,
+        11.0,
+        theme.muted_foreground,
+    );
+    if summary.has_adjustments() {
+        paint_label(
+            cx,
+            theme,
+            op_i18n::translate(locale, "image.reset"),
+            pop.origin.x + pop.size.x - 56.0,
+            header_y + 18.0,
+            10.0,
+            theme.muted_foreground,
+        );
+    }
+    let start_y = header_y + ADJ_HEADER_H;
+    for (i, field) in op_editor_core::ImageAdjustmentField::ALL.iter().enumerate() {
+        let row_y = start_y + i as f32 * ADJ_ROW_H;
+        let value = summary.adjustment(*field).clamp(-100.0, 100.0);
+        paint_label(
+            cx,
+            theme,
+            op_i18n::translate(locale, field.label_key()),
+            pop.origin.x + PANEL_PAD,
+            row_y + 21.0,
+            11.0,
+            theme.muted_foreground,
+        );
+        let track = Rect {
+            origin: Point2D::new(pop.origin.x + 80.0, row_y + 17.0),
+            size: Point2D::new(86.0, 4.0),
+        };
+        cx.backend.fill_round_rect(track, 2.0, theme.border);
+        let fill_w = ((value + 100.0) / 200.0 * track.size.x).clamp(0.0, track.size.x);
+        cx.backend.fill_round_rect(
+            Rect {
+                origin: track.origin,
+                size: Point2D::new(fill_w, track.size.y),
+            },
+            2.0,
+            theme.primary,
+        );
+        let knob_x = track.origin.x + fill_w;
+        cx.backend.fill_oval(
+            Rect {
+                origin: Point2D::new(knob_x - 6.0, track.origin.y - 4.0),
+                size: Point2D::new(12.0, 12.0),
+            },
+            theme.foreground,
+        );
+        paint_label(
+            cx,
+            theme,
+            &format!("{}", value.round() as i32),
+            pop.origin.x + pop.size.x - 30.0,
+            row_y + 21.0,
+            11.0,
+            theme.muted_foreground,
+        );
+    }
+}
+
+fn paint_centered_label(
+    cx: &mut PaintCx<'_>,
+    theme: &Theme,
+    label: &str,
+    rect: Rect,
+    color: Color,
+) {
+    let w = text_metrics::measure_chrome(cx.backend, label, 11.0);
+    paint_label(
+        cx,
+        theme,
+        label,
+        rect.origin.x + (rect.size.x - w) / 2.0,
+        rect.origin.y + rect.size.y / 2.0 + 4.0,
+        11.0,
+        color,
+    );
+}
+
+fn paint_label(
+    cx: &mut PaintCx<'_>,
+    _theme: &Theme,
+    label: &str,
+    x: f32,
+    baseline_y: f32,
+    size: f32,
+    color: Color,
+) {
+    let layout = TextLayout::single_run(
+        label,
+        "system-ui",
+        size,
+        (color).to_jian(),
+        Point2D::new(0.0, 0.0),
+    );
+    cx.backend.draw_text(&layout, Point2D::new(x, baseline_y));
+}
