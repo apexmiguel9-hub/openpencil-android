@@ -97,10 +97,13 @@ jobs:
       - name: Install cargo-ndk
         run: cargo install cargo-ndk --locked
 
-      - name: Install Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: platform-${{ env.ANDROID_API_LEVEL }} build-tools-${{ env.ANDROID_BUILD_TOOLS_VERSION }} ndk-${{ env.ANDROID_NDK_VERSION }}
+      - name: Install Android SDK (pinned)
+        env:
+          ANDROID_API_LEVEL: ${{ env.ANDROID_API_LEVEL }}
+          ANDROID_BUILD_TOOLS_VERSION: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+          ANDROID_NDK_VERSION: ${{ env.ANDROID_NDK_VERSION }}
+        run: |
+          bash tools/install-pinned-android-sdk.sh "${{ github.workspace }}/android-sdk"
 
       - name: Configure cargo for Android targets
         run: |
