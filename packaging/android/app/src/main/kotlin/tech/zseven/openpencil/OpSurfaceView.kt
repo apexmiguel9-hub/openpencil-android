@@ -12,6 +12,7 @@ import android.view.ViewTreeObserver
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import java.io.File
+import java.util.Locale
 
 private const val TAG = "OpenPencilPlayer"
 
@@ -278,6 +279,12 @@ class OpSurfaceView(context: Context) : SurfaceView(context), SurfaceHolder.Call
             }
             EngineLanguage.storedPreference(context)?.let { tag ->
                 OpNative.nativeEditorSetLocale(engine, tag)
+            } ?: run {
+                // No stored preference: fall back to device locale so the UI
+                // respects the user's system language (en-US, es-ES, zh-CN, etc.).
+                // The engine validates the tag and rejects unsupported ones.
+                val deviceTag = Locale.getDefault().toLanguageTag()
+                OpNative.nativeEditorSetLocale(engine, deviceTag)
             }
         }
         BackgroundGenerationController.markSurfaceResuming(context, engine)
