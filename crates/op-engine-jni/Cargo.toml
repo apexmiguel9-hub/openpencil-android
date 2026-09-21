@@ -34,3 +34,4 @@ op-engine-ffi = { path = "../op-engine-ffi" }
 jni         = "0.21"
 ndk-sys     = "0.6"
 zeroize     = "1"
+libc        = "0.2"
