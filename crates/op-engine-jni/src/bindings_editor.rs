@@ -2,10 +2,23 @@
 
 //! Editor-mode natives — split out of `bindings.rs`.
 
-use android_log::Log;
+use libc::{__android_log_write, c_char, c_int};
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
+
+// Android log priority levels
+const ANDROID_LOG_DEBUG: c_int = 3;
+const ANDROID_LOG_INFO: c_int = 4;
+
+// Safe wrapper for __android_log_write
+macro_rules! log_debug {
+    ($tag:expr, $msg:expr) => {{
+        use std::ffi::CString;
+        if let (Ok(tag), Ok(msg)) = (CString::new($tag), CString::new($msg)) {
+            unsafe { __android_log_write(3, tag.as_ptr(), msg.as_ptr()) };
+        }
+    }};
 
 use op_engine_ffi::{
     op_editor_account_snapshot, op_editor_auth_sign_out, op_editor_begin_login,
@@ -813,10 +826,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
         return OpStatus::InvalidArg as jint;
     };
     let node_id_str = std::str::from_utf8(&node_id_bytes).unwrap_or("");
-    android_log::Log::debug("OpenPencil", &format!(
-        "nativeEditorGeometryEnter: engine={}, node_id='{}'",
-        engine, node_id_str
-    ));
+    log_debug!("OpenPencil", format!("nativeEditorGeometryEnter: engine={}, node_id='{}'", engine, node_id_str));
     // Ensure null-termination for C string
     node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
@@ -832,7 +842,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jint {
-    android_log::Log::debug("OpenPencil", &format!("nativeEditorGeometryExit: engine={}", engine));
+    log_debug!("OpenPencil", format!("nativeEditorGeometryExit: engine={}", engine));
     call_status(engine, move |e| unsafe { op_editor_geometry_exit(e) }) as jint
 }
 
@@ -850,12 +860,12 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     canvas_h: jint,
 ) -> jint {
     // Log to Android logcat
-    android_log::Log::debug("OpenPencil", &format!(
-        "nativeEditorGeometryHitTest: engine={}, screen=({},{}), canvas=({},{})",
-        engine, screen_x, screen_y, canvas_w, canvas_h
-    ));
+log_debug!("OpenPencil", format!(
+            "nativeEditorGeometryHitTest: engine={}, screen=({},{}), canvas=({},{})",
+            engine, screen_x, screen_y, canvas_w, canvas_h
+        ));
     let result = unsafe { op_editor_geometry_hit_test(engine as *mut _, screen_x, screen_y, canvas_w, canvas_h) };
-    android_log::Log::debug("OpenPencil", &format!("nativeEditorGeometryHitTest result: {}", result));
+    log_debug!("OpenPencil", format!("nativeEditorGeometryHitTest result: {}", result));
     result
 }
 
