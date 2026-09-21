@@ -852,17 +852,16 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jstring {
-    const BUF_SIZE: usize = 256;
-    let mut buf = vec![0u8; BUF_SIZE];
-    let ptr = buf.as_mut_ptr() as *mut std::ffi::c_char;
-    let status = with_engine(engine, move |e| unsafe {
-        op_editor_geometry_get_node_id(e, ptr, BUF_SIZE)
-    });
-    if status != Some(OpStatus::Ok) {
-        return env.new_string("").unwrap().into_raw();
-    }
-    let len = buf.iter().position(|&b| b == 0).unwrap_or(0);
-    let s = String::from_utf8_lossy(&buf[..len]).into_owned();
+    let s = with_engine(engine, move |e| {
+        const BUF_SIZE: usize = 256;
+        let mut buf = vec![0u8; BUF_SIZE];
+        let status = unsafe { op_editor_geometry_get_node_id(e, buf.as_mut_ptr() as *mut std::ffi::c_char, BUF_SIZE) };
+        if status != OpStatus::Ok {
+            return String::new();
+        }
+        let len = buf.iter().position(|&b| b == 0).unwrap_or(0);
+        String::from_utf8_lossy(&buf[..len]).into_owned()
+    }).unwrap_or_default();
     env.new_string(s).unwrap().into_raw()
 }
 
