@@ -16,7 +16,7 @@ fn init_android_logger() {
                 .with_tag("OpenPencil")
         );
     });
-}
+    }
 }
 
 use op_engine_ffi::{
