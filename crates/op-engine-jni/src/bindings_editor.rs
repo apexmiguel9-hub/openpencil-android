@@ -2,6 +2,7 @@
 
 //! Editor-mode natives — split out of `bindings.rs`.
 
+use android_log::Log;
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
@@ -811,6 +812,11 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    let node_id_str = std::str::from_utf8(&node_id_bytes).unwrap_or("");
+    android_log::Log::debug("OpenPencil", &format!(
+        "nativeEditorGeometryEnter: engine={}, node_id='{}'",
+        engine, node_id_str
+    ));
     // Ensure null-termination for C string
     node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
@@ -822,10 +828,11 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
 #[no_mangle]
 pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryExit<
     'local>(
-    _env: JNIEnv<'local>,
+    mut env: JNIEnv<'local>,
     _class: JClass<'local>,
     engine: jlong,
 ) -> jint {
+    android_log::Log::debug("OpenPencil", &format!("nativeEditorGeometryExit: engine={}", engine));
     call_status(engine, move |e| unsafe { op_editor_geometry_exit(e) }) as jint
 }
 
@@ -834,7 +841,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
 #[no_mangle]
 pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryHitTest<
     'local>(
-    _env: JNIEnv<'local>,
+    mut env: JNIEnv<'local>,
     _class: JClass<'local>,
     engine: jlong,
     screen_x: jfloat,
@@ -842,7 +849,14 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     canvas_w: jint,
     canvas_h: jint,
 ) -> jint {
-    unsafe { op_editor_geometry_hit_test(engine as *mut _, screen_x, screen_y, canvas_w, canvas_h) }
+    // Log to Android logcat
+    android_log::Log::debug("OpenPencil", &format!(
+        "nativeEditorGeometryHitTest: engine={}, screen=({},{}), canvas=({},{})",
+        engine, screen_x, screen_y, canvas_w, canvas_h
+    ));
+    let result = unsafe { op_editor_geometry_hit_test(engine as *mut _, screen_x, screen_y, canvas_w, canvas_h) };
+    android_log::Log::debug("OpenPencil", &format!("nativeEditorGeometryHitTest result: {}", result));
+    result
 }
 
 /// `OpNative.nativeEditorGeometryGetNodeId` — get the node ID being

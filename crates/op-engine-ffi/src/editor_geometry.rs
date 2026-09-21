@@ -139,14 +139,27 @@ pub unsafe extern "C" fn op_editor_geometry_hit_test(
                 size: Point2D::new(canvas_w as f32, canvas_h as f32),
             };
             let point = Point2D::new(screen_x, screen_y);
-            let hit = op_editor_ui::widgets::canvas_viewport::geometry_hit_test(
-                canvas_rect,
-                scene,
-                state,
-                gs,
-                point,
-            );
-            result = encode_hit(hit);
+            // Defensive: check that scene is valid (has pages)
+            // and state has valid viewport
+            if scene.pages.is_empty() {
+                return Ok(());
+            }
+            // Wrap in catch_unwind to prevent any panic from crossing FFI boundary
+            let hit_result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                op_editor_ui::widgets::canvas_viewport::geometry_hit_test(
+                    canvas_rect,
+                    scene,
+                    state,
+                    gs,
+                    point,
+                )
+            }));
+            if let Ok(hit) = hit_result {
+                result = encode_hit(hit);
+            } else {
+                // Panic caught - return empty hit
+                return Ok(());
+            }
         }
         Ok(())
     });
