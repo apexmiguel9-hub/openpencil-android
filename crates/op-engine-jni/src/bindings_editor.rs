@@ -808,9 +808,11 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     engine: jlong,
     node_id: JString<'local>,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+    let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    // Ensure null-termination for C string
+    node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
         op_editor_geometry_enter(e, node_id_bytes.as_ptr() as *const std::ffi::c_char)
     }) as jint
@@ -878,9 +880,10 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_x: jfloat,
     screen_y: jfloat,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+    let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
         op_editor_geometry_begin_anchor_drag(
             e,
@@ -905,9 +908,10 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_dx: jfloat,
     screen_dy: jfloat,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+    let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
         op_editor_geometry_move_anchor_drag(
             e,
@@ -944,9 +948,10 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_x: jfloat,
     screen_y: jfloat,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+    let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
         op_editor_geometry_begin_handle_drag(
             e,
@@ -973,9 +978,10 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_dx: jfloat,
     screen_dy: jfloat,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+    let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
+    node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
         op_editor_geometry_move_handle_drag(
             e,
