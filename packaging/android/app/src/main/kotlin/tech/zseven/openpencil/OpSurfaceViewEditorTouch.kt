@@ -64,6 +64,8 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
     private var lastTapY = 0f
     /** Whether geometry edit mode is currently active (mirrors the engine state). */
     private var geometryModeActive = false
+    /** True if the current touch sequence started while geometry mode was active. */
+    private var touchStartedInGeometryMode = false
 
     /** Active geometry drag state. */
     private var geometryDragActive = false
@@ -88,6 +90,7 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                 lastTapTime = event.eventTime
                 lastTapX = event.x
                 lastTapY = event.y
+                touchStartedInGeometryMode = geometryModeActive
 
                 // Geometry Edit Mode: if active, hit-test to start anchor/handle drag.
                 if (geometryModeActive) {
@@ -292,10 +295,11 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                     geometryDragAnchorIdx = 0
                     geometryDragNodeId = ""
                     view.requestFrame()
-                } else if (!longPressFired && !editorReleaseSuppressed) {
+                } else if (!longPressFired && !editorReleaseSuppressed && !touchStartedInGeometryMode) {
                     // Double-tap detection: check if this up follows
                     // a down within DOUBLE_TAP_TIMEOUT_MS and
                     // DOUBLE_TAP_RADIUS_DP of the previous tap.
+                    // Skip if touch started in geometry mode (tap on empty space exits mode).
                     if (isDoubleTap(event)) {
                         handleDoubleTap(event, inputDensity)
                     } else {
@@ -344,6 +348,7 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
         geometryDragType = 0
         geometryDragAnchorIdx = 0
         geometryDragNodeId = ""
+        touchStartedInGeometryMode = false
         lastMidX = 0f
         lastMidY = 0f
         lastPinchDist = 0f
@@ -380,6 +385,10 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
             OpNative.nativeEditorGeometryEnter(engine, "")
             geometryModeActive = true
         }
+        // Reset tap tracking to avoid false double-tap detection on next tap.
+        lastTapTime = 0L
+        lastTapX = 0f
+        lastTapY = 0f
         view.requestFrame()
     }
 
