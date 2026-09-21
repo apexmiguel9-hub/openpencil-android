@@ -1,6 +1,6 @@
 #![cfg(target_os = "android")]
 
-use log::{debug, LevelFilter};
+use log::{debug, Level};
 use android_logger::Config;
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
@@ -12,7 +12,7 @@ fn init_android_logger() {
     INIT.call_once(|| {
         android_logger::init_once(
             Config::default()
-                .with_min_level(LevelFilter::Debug)
+                .with_min_level(Level::Debug)
                 .with_tag("OpenPencil")
         );
     });
