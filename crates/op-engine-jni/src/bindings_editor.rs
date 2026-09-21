@@ -1,24 +1,22 @@
 #![cfg(target_os = "android")]
 
-//! Editor-mode natives — split out of `bindings.rs`.
-
-use libc::{__android_log_write, c_char, c_int};
+use log::{debug, LevelFilter};
+use android_logger::Config;
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
 
-// Android log priority levels
-const ANDROID_LOG_DEBUG: c_int = 3;
-const ANDROID_LOG_INFO: c_int = 4;
-
-// Safe wrapper for __android_log_write
-macro_rules! log_debug {
-    ($tag:expr, $msg:expr) => {{
-        use std::ffi::CString;
-        if let (Ok(tag), Ok(msg)) = (CString::new($tag), CString::new($msg)) {
-            unsafe { __android_log_write(ANDROID_LOG_DEBUG, tag.as_ptr(), msg.as_ptr()) };
-        }
-    }};
+// Initialize Android logger once
+fn init_android_logger() {
+    static INIT: std::sync::Once = std::sync::Once::new();
+    INIT.call_once(|| {
+        android_logger::init_once(
+            Config::default()
+                .with_min_level(LevelFilter::Debug)
+                .with_tag("OpenPencil")
+        );
+    });
+}
 }
 
 use op_engine_ffi::{
@@ -827,7 +825,8 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
         return OpStatus::InvalidArg as jint;
     };
     let node_id_str = std::str::from_utf8(&node_id_bytes).unwrap_or("");
-    log_debug!("OpenPencil", format!("nativeEditorGeometryEnter: engine={}, node_id='{}'", engine, node_id_str));
+    init_android_logger();
+    debug!("nativeEditorGeometryEnter: engine={}, node_id='{}'", engine, node_id_str);
     // Ensure null-termination for C string
     node_id_bytes.push(0);
     call_status(engine, move |e| unsafe {
@@ -843,7 +842,8 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jint {
-    log_debug!("OpenPencil", format!("nativeEditorGeometryExit: engine={}", engine));
+    init_android_logger();
+    debug!("nativeEditorGeometryExit: engine={}", engine);
     call_status(engine, move |e| unsafe { op_editor_geometry_exit(e) }) as jint
 }
 
@@ -860,13 +860,11 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     canvas_w: jint,
     canvas_h: jint,
 ) -> jint {
-    // Log to Android logcat
-log_debug!("OpenPencil", format!(
-            "nativeEditorGeometryHitTest: engine={}, screen=({},{}), canvas=({},{})",
-            engine, screen_x, screen_y, canvas_w, canvas_h
-        ));
+    init_android_logger();
+    debug!("nativeEditorGeometryHitTest: engine={}, screen=({},{}), canvas=({},{})",
+        engine, screen_x, screen_y, canvas_w, canvas_h);
     let result = unsafe { op_editor_geometry_hit_test(engine as *mut _, screen_x, screen_y, canvas_w, canvas_h) };
-    log_debug!("OpenPencil", format!("nativeEditorGeometryHitTest result: {}", result));
+    debug!("nativeEditorGeometryHitTest result: {}", result);
     result
 }
 
@@ -879,6 +877,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jstring {
+    init_android_logger();
     let s = with_engine(engine, move |e| {
         const BUF_SIZE: usize = 256;
         let mut buf = vec![0u8; BUF_SIZE];
@@ -905,6 +904,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_x: jfloat,
     screen_y: jfloat,
 ) -> jint {
+    init_android_logger();
     let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
@@ -933,6 +933,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_dx: jfloat,
     screen_dy: jfloat,
 ) -> jint {
+    init_android_logger();
     let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
@@ -956,6 +957,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jint {
+    init_android_logger();
     call_status(engine, move |e| unsafe { op_editor_geometry_end_anchor_drag(e) }) as jint
 }
 
@@ -973,6 +975,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_x: jfloat,
     screen_y: jfloat,
 ) -> jint {
+    init_android_logger();
     let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
@@ -1003,6 +1006,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     screen_dx: jfloat,
     screen_dy: jfloat,
 ) -> jint {
+    init_android_logger();
     let Some(mut node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
@@ -1027,6 +1031,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jint {
+    init_android_logger();
     call_status(engine, move |e| unsafe { op_editor_geometry_end_handle_drag(e) }) as jint
 }
 
@@ -1039,5 +1044,6 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jboolean {
+    init_android_logger();
     (unsafe { op_editor_geometry_is_active(engine as *mut _) }) as jboolean
 }

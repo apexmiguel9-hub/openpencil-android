@@ -34,4 +34,5 @@ op-engine-ffi = { path = "../op-engine-ffi" }
 jni         = "0.21"
 ndk-sys     = "0.6"
 zeroize     = "1"
-libc        = "0.2"
+log         = "0.4"
+android_logger = "0.12"
