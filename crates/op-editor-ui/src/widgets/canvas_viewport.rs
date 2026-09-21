@@ -43,6 +43,10 @@ mod builders;
 mod hit_test;
 #[path = "canvas_viewport/overlays.rs"]
 mod overlays;
+#[path = "canvas_viewport/geometry_paint.rs"]
+mod geometry_paint;
+#[path = "canvas_viewport/geometry_hit_test.rs"]
+mod geometry_hit_test;
 
 #[cfg(test)]
 use builders::generating_label_text;
@@ -52,6 +56,7 @@ pub use hit_test::{
 };
 pub(super) use overlays::paint_dashed_rect;
 use overlays::paint_drop_indicator;
+pub use geometry_hit_test::geometry_hit_test;
 
 /// Caret-blink descriptor for the text node currently being edited.
 /// `pub` so the sibling `canvas_viewport_paint` module can name it in
@@ -138,10 +143,13 @@ pub struct CanvasViewport<'a> {
     /// interactive-degrade mode (effect layers + sub-pixel leaves
     /// skip); the host schedules a full-quality repaint on gesture end.
     pub fast_interaction: bool,
-    /// Restrict node culling (and thus the painted content) to this
-    /// rect instead of the widget rect. The host's pan cache uses it
-    /// to repaint only the strip a scroll refresh exposed.
+/// Restrict node culling (and thus the painted content) to this
+/// rect instead of the widget rect. The host's pan cache uses it
+/// to repaint only the strip a scroll refresh exposed.
     pub cull_override: Option<Rect>,
+    /// Active geometry/vertex edit session, if the user is
+    /// editing path anchors/handles/segments.
+    pub(super) geometry_edit_session: Option<op_editor_core::GeometryEditSession>,
 }
 
 #[derive(Clone, Debug, PartialEq)]
@@ -544,6 +552,28 @@ impl<'a> Widget for CanvasViewport<'a> {
                     }
                     if transformed {
                         cx.backend.restore();
+                    }
+                }
+            }
+        }
+
+        // 4d. Geometry/vertex edit overlay — anchor dots,
+        //     handle lines, and segment highlights for the
+        //     active geometry edit session.
+        if let Some(session) = self.geometry_edit_session.as_ref() {
+            if let Some(page) = self.scene.active_page() {
+                // Find the first edited node and paint its geometry overlay
+                for node_id in &session.edited_node_ids {
+                    if let Some(node) = page.find(node_id.as_str()) {
+                        geometry_paint::paint_geometry_edit(
+                            cx,
+                            &self.theme,
+                            session,
+                            node,
+                            rect,
+                            viewport,
+                            &paint_hits.selected_transforms,
+                        );
                     }
                 }
             }

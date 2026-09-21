@@ -254,7 +254,7 @@ fn apply_mirrored_point_type(
 
 /// Run `f` against a Path node's anchors at `index`, then re-fit the
 /// node bounds + `d`. Shared edit plumbing for the two menu ops.
-fn edit_anchor(
+pub fn edit_anchor(
     state: &mut EditorState,
     node_id: &NodeId,
     index: usize,

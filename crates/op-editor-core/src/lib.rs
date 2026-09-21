@@ -86,6 +86,7 @@ pub mod fill_order;
 pub mod fills;
 pub mod font_catalog;
 pub mod geometry;
+pub mod geometry_edit;
 pub mod git_button_state;
 pub mod grouping;
 pub mod history;
@@ -363,6 +364,10 @@ pub use fills::{
     first_solid_stroke_hex, node_effects, ImageFillSummary,
 };
 pub use geometry::{aggregate_bounds, own_bounds, union_aggregate_bounds, DocRect};
+pub use geometry_edit::{
+    DraggedHandle, GeometryEditSession, GeometryHitTarget, ANCHOR_RADIUS_PX,
+    DOUBLE_TAP_RADIUS_PX, DOUBLE_TAP_TIMEOUT_MS, HANDLE_RADIUS_PX, SEGMENT_BAND_PX,
+};
 pub use git_button_state::GitButton;
 pub use history::{EditorSnapshot, History, HISTORY_CAP};
 pub use history_snapshot::{SharedComponents, SharedDoc};

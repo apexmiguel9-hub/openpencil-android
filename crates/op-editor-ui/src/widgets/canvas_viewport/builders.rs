@@ -85,6 +85,7 @@ impl<'a> CanvasViewport<'a> {
             ),
             fast_interaction: false,
             cull_override: None,
+            geometry_edit_session: state.editor_ui.geometry_edit_session.clone(),
         }
     }
 
@@ -137,6 +138,7 @@ impl<'a> CanvasViewport<'a> {
             collab_presence: Vec::new(),
             fast_interaction: false,
             cull_override: None,
+            geometry_edit_session: None,
         }
     }
 

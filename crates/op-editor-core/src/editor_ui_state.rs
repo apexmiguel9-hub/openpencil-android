@@ -735,6 +735,8 @@ pub struct EditorUiState {
     /// Escape and selecting outside the scope exit it. Transient:
     /// never serialized.
     pub entered_container: Option<NodeId>,
+    /// Active geometry/vertex edit session for path objects.
+    pub geometry_edit_session: Option<crate::geometry_edit::GeometryEditSession>,
     /// Top-left corner of the Component-Browser panel in logical px;
     /// `None` until first opened — the host then centres it.
     pub component_browser_pos: Option<(f32, f32)>,

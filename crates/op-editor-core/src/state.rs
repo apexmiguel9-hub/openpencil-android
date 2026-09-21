@@ -43,7 +43,9 @@ use crate::chat_sessions::ChatSessions;
 use crate::codegen::CodegenState;
 use crate::components::ComponentLibrary;
 use crate::editor_ui_state::EditorUiState;
+use crate::geometry_edit;
 use crate::history::History;
+use crate::pen::PathHandleSide;
 use crate::selection::SelectionState;
 use crate::tool::Tool;
 use crate::ui_draft::UiDraftState;
@@ -305,6 +307,208 @@ impl EditorState {
 
     pub(crate) fn sync_dirty_flag(&mut self) {
         self.editor_ui.document_dirty = self.is_dirty();
+    }
+
+    /// Enter geometry/vertex edit mode for the given node.
+    /// Returns `true` if the session was created.
+    pub fn enter_geometry_edit(&mut self, node_id: impl Into<String>) -> bool {
+        let session = geometry_edit::GeometryEditSession::for_node(node_id);
+        self.editor_ui.geometry_edit_session = Some(session);
+        true
+    }
+
+    /// Exit geometry/vertex edit mode.
+    pub fn exit_geometry_edit(&mut self) {
+        self.editor_ui.geometry_edit_session = None;
+    }
+
+    /// Return `true` if geometry edit mode is active.
+    pub fn is_geometry_edit_active(&self) -> bool {
+        self.editor_ui.geometry_edit_session.as_ref().map_or(false, |s| s.is_active())
+    }
+
+    /// Get the active geometry edit session.
+    pub fn geometry_edit_session(&self) -> Option<&geometry_edit::GeometryEditSession> {
+        self.editor_ui.geometry_edit_session.as_ref()
+    }
+
+    /// Get the mutable geometry edit session.
+    pub fn geometry_edit_session_mut(&mut self) -> Option<&mut geometry_edit::GeometryEditSession> {
+        self.editor_ui.geometry_edit_session.as_mut()
+    }
+
+    /// Begin dragging an anchor through the geometry edit session.
+    pub fn geometry_begin_anchor_drag(
+        &mut self,
+        node_id: &str,
+        idx: usize,
+        screen_point: crate::render_backend::Point2D,
+    ) -> bool {
+        let node_id = match crate::node_id::NodeId::new_opt(node_id) {
+            Some(n) => n,
+            None => return false,
+        };
+        if !self.is_editable(&node_id) {
+            return false;
+        }
+        let Some(node) = crate::walkers::find_node(self.active_children(), &node_id) else {
+            return false;
+        };
+        let PenNode::Path(path) = &node else { return false };
+        let anchors = match path.anchors.as_ref() {
+            Some(a) => a,
+            None => return false,
+        };
+        if idx >= anchors.len() {
+            return false;
+        }
+        let anchor = &anchors[idx];
+        let doc_pos = crate::render_backend::Point2D::new(anchor.x as f32, anchor.y as f32);
+        let snapshot = self.snapshot_for_history();
+        self.history_push_past(snapshot);
+        let session = self.editor_ui.geometry_edit_session.as_mut();
+        match session {
+            Some(s) => {
+                s.dragged_anchor = Some(idx);
+                s.drag_start_screen = Some(screen_point);
+                s.drag_start_doc = Some(doc_pos);
+                true
+            }
+            None => false,
+        }
+    }
+
+    /// Move the dragged anchor through the geometry edit session.
+    pub fn geometry_move_anchor_drag(
+        &mut self,
+        node_id: &str,
+        idx: usize,
+        screen_delta: crate::render_backend::Point2D,
+        viewport: crate::viewport::Viewport,
+    ) -> bool {
+        let session = self.editor_ui.geometry_edit_session.as_mut();
+        match session {
+            Some(s) => {
+                if s.dragged_anchor != Some(idx) {
+                    return false;
+                }
+            }
+            None => return false,
+        }
+        let zoom = viewport.zoom.max(0.0001);
+        let doc_delta = crate::render_backend::Point2D::new(screen_delta.x / zoom, screen_delta.y / zoom);
+        let node_id = match crate::node_id::NodeId::new_opt(node_id) {
+            Some(n) => n,
+            None => return false,
+        };
+        crate::path_edit::edit_anchor(self, &node_id, idx, |anchors, i, _| {
+            anchors[i].x = (anchors[i].x as f32 + doc_delta.x) as f64;
+            anchors[i].y = (anchors[i].y as f32 + doc_delta.y) as f64;
+        })
+    }
+
+    /// End the anchor drag through the geometry edit session.
+    pub fn geometry_end_anchor_drag(&mut self) {
+        if let Some(s) = self.editor_ui.geometry_edit_session.as_mut() {
+            s.end_anchor_drag();
+        }
+    }
+
+    /// Begin dragging a handle through the geometry edit session.
+    pub fn geometry_begin_handle_drag(
+        &mut self,
+        node_id: &str,
+        anchor_idx: usize,
+        side: crate::geometry_edit::DraggedHandle,
+        screen_point: crate::render_backend::Point2D,
+    ) -> bool {
+        let node_id = match crate::node_id::NodeId::new_opt(node_id) {
+            Some(n) => n,
+            None => return false,
+        };
+        if !self.is_editable(&node_id) {
+            return false;
+        }
+        let Some(node) = crate::walkers::find_node(self.active_children(), &node_id) else {
+            return false;
+        };
+        let PenNode::Path(path) = &node else { return false };
+        let anchors = match path.anchors.as_ref() {
+            Some(a) => a,
+            None => return false,
+        };
+        if anchor_idx >= anchors.len() {
+            return false;
+        }
+        let anchor = &anchors[anchor_idx];
+        let anchor_pos = crate::render_backend::Point2D::new(anchor.x as f32, anchor.y as f32);
+        let current_offset = match &side {
+            crate::geometry_edit::DraggedHandle::In(_) => anchor.handle_in.as_ref().map(|h| crate::render_backend::Point2D::new(h.x as f32, h.y as f32)).unwrap_or(anchor_pos),
+            crate::geometry_edit::DraggedHandle::Out(_) => anchor.handle_out.as_ref().map(|h| crate::render_backend::Point2D::new(h.x as f32, h.y as f32)).unwrap_or(anchor_pos),
+        };
+        let snapshot = self.snapshot_for_history();
+        self.history_push_past(snapshot);
+        let session = self.editor_ui.geometry_edit_session.as_mut();
+        match session {
+            Some(s) => {
+                s.dragged_handle = Some(side);
+                s.drag_start_screen = Some(screen_point);
+                s.drag_start_doc = Some(current_offset);
+                true
+            }
+            None => false,
+        }
+    }
+
+    /// Move the dragged handle through the geometry edit session.
+    pub fn geometry_move_handle_drag(
+        &mut self,
+        node_id: &str,
+        anchor_idx: usize,
+        side: crate::geometry_edit::DraggedHandle,
+        screen_delta: crate::render_backend::Point2D,
+        viewport: crate::viewport::Viewport,
+    ) -> bool {
+        let session = self.editor_ui.geometry_edit_session.as_mut();
+        match session {
+            Some(s) => {
+                if s.dragged_handle != Some(side) {
+                    return false;
+                }
+            }
+            None => return false,
+        }
+        let zoom = viewport.zoom.max(0.0001);
+        let doc_delta = crate::render_backend::Point2D::new(screen_delta.x / zoom, screen_delta.y / zoom);
+        let node_id = match crate::node_id::NodeId::new_opt(node_id) {
+            Some(n) => n,
+            None => return false,
+        };
+        let anchor = match crate::walkers::find_node(self.active_children(), &node_id) {
+            Some(PenNode::Path(path)) => match path.anchors.as_ref() {
+                Some(anchors) if anchor_idx < anchors.len() => &anchors[anchor_idx],
+                _ => return false,
+            },
+            _ => return false,
+        };
+        let anchor_pos = crate::render_backend::Point2D::new(anchor.x as f32, anchor.y as f32);
+        let current_offset = match &side {
+            crate::geometry_edit::DraggedHandle::In(_) => anchor.handle_in.as_ref().map(|h| crate::render_backend::Point2D::new(h.x as f32, h.y as f32)).unwrap_or(anchor_pos),
+            crate::geometry_edit::DraggedHandle::Out(_) => anchor.handle_out.as_ref().map(|h| crate::render_backend::Point2D::new(h.x as f32, h.y as f32)).unwrap_or(anchor_pos),
+        };
+        let new_absolute = current_offset + doc_delta;
+        let offset = crate::render_backend::Point2D::new(new_absolute.x - anchor_pos.x, new_absolute.y - anchor_pos.y);
+        self.move_path_anchor_handle_ts(&node_id, anchor_idx, match &side {
+            crate::geometry_edit::DraggedHandle::In(_) => PathHandleSide::In,
+            crate::geometry_edit::DraggedHandle::Out(_) => PathHandleSide::Out,
+        }, (offset.x as f64, offset.y as f64))
+    }
+
+    /// End the handle drag through the geometry edit session.
+    pub fn geometry_end_handle_drag(&mut self) {
+        if let Some(s) = self.editor_ui.geometry_edit_session.as_mut() {
+            s.end_handle_drag();
+        }
     }
 }
 

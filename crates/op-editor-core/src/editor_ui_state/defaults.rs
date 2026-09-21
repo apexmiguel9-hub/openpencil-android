@@ -228,6 +228,7 @@ impl Default for EditorUiState {
             component_browser_kit_request: None,
             ui_kits_changed: false,
             component_browser_pending_insert: None,
+            geometry_edit_session: None,
         }
     }
 }

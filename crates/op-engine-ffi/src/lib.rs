@@ -74,6 +74,7 @@ mod editor_ime;
 mod editor_model_discovery;
 #[cfg(feature = "editor")]
 mod editor_pointer;
+mod editor_geometry;
 #[cfg(all(feature = "editor", test))]
 mod editor_pointer_clock_tests;
 #[cfg(feature = "editor")]
@@ -142,6 +143,14 @@ pub use editor_ime::{
 pub use editor_pointer::{
     op_editor_cancel_gesture, op_editor_cancel_gesture_at, op_editor_move, op_editor_move_at,
     op_editor_press, op_editor_press_at, op_editor_release, op_editor_release_at,
+};
+#[cfg(feature = "editor")]
+pub use editor_geometry::{
+    op_editor_geometry_begin_anchor_drag, op_editor_geometry_begin_handle_drag,
+    op_editor_geometry_end_anchor_drag, op_editor_geometry_end_handle_drag,
+    op_editor_geometry_enter, op_editor_geometry_exit, op_editor_geometry_get_node_id,
+    op_editor_geometry_hit_test, op_editor_geometry_is_active,
+    op_editor_geometry_move_anchor_drag, op_editor_geometry_move_handle_drag,
 };
 #[cfg(feature = "editor")]
 pub use editor_transform::{op_editor_begin_transform, op_editor_hover, op_editor_wheel};

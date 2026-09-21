@@ -11,6 +11,11 @@ use op_engine_ffi::{
     op_editor_cancel_export, op_editor_cancel_login, op_editor_cancel_save, op_editor_commit_save,
     op_editor_configure_auth, op_editor_configure_save_picker, op_editor_copy_export_file_name,
     op_editor_copy_login_url, op_editor_copy_save_file_name, op_editor_copy_save_target,
+    op_editor_geometry_begin_anchor_drag, op_editor_geometry_begin_handle_drag,
+    op_editor_geometry_end_anchor_drag, op_editor_geometry_end_handle_drag,
+    op_editor_geometry_enter, op_editor_geometry_exit, op_editor_geometry_get_node_id,
+    op_editor_geometry_hit_test, op_editor_geometry_is_active,
+    op_editor_geometry_move_anchor_drag, op_editor_geometry_move_handle_drag,
     op_editor_export_to_path, op_editor_locale_code, op_editor_open_document, op_editor_set_locale,
     op_editor_stage_save_to_path, op_editor_take_shell_action, OpStatus, SHELL_ACTION_NONE,
 };
@@ -791,4 +796,217 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorImeFocus
     })
     .unwrap_or(false);
     focused as jni::sys::jboolean
+}
+
+/// `OpNative.nativeEditorGeometryEnter` — enter geometry/vertex edit mode
+/// for the given node.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryEnter<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    node_id: JString<'local>,
+) -> jint {
+    let Some(node_id_bytes) = jstring_bytes(&mut _env, &node_id) else {
+        return OpStatus::InvalidArg as jint;
+    };
+    call_status(engine, move |e| unsafe {
+        op_editor_geometry_enter(e, node_id_bytes.as_ptr() as *const std::ffi::c_char)
+    }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryExit` — exit geometry/vertex edit mode.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryExit<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+) -> jint {
+    call_status(engine, move |e| unsafe { op_editor_geometry_exit(e) }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryHitTest` — hit-test the geometry edit
+/// overlay. Returns an encoded jint (type << 24 | index).
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryHitTest<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    screen_x: jfloat,
+    screen_y: jfloat,
+    canvas_w: jint,
+    canvas_h: jint,
+) -> jint {
+    unsafe { op_editor_geometry_hit_test(engine, screen_x, screen_y, canvas_w, canvas_h) }
+}
+
+/// `OpNative.nativeEditorGeometryGetNodeId` — get the node ID being
+/// geometry-edited. Returns empty string when no node is being edited.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryGetNodeId<
+    'local>(
+    mut env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+) -> jstring {
+    const BUF_SIZE: usize = 256;
+    let mut buf = vec![0u8; BUF_SIZE];
+    let status = with_engine(engine, move |e| unsafe {
+        op_editor_geometry_get_node_id(e, buf.as_mut_ptr() as *mut std::ffi::c_char, buf.len())
+    });
+    if status != Some(OpStatus::Ok) {
+        return env.new_string("").unwrap().into_raw();
+    }
+    let len = buf.iter().position(|&b| b == 0).unwrap_or(0);
+    let s = String::from_utf8_lossy(&buf[..len]).into_owned();
+    env.new_string(s).unwrap().into_raw()
+}
+
+/// `OpNative.nativeEditorGeometryBeginAnchorDrag` — begin dragging an
+/// anchor. Pushes exactly one history snapshot.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryBeginAnchorDrag<
+    'local>(
+    mut env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    node_id: JString<'local>,
+    anchor_idx: jint,
+    screen_x: jfloat,
+    screen_y: jfloat,
+) -> jint {
+    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+        return OpStatus::InvalidArg as jint;
+    };
+    call_status(engine, move |e| unsafe {
+        op_editor_geometry_begin_anchor_drag(
+            e,
+            node_id_bytes.as_ptr() as *const std::ffi::c_char,
+            anchor_idx as usize,
+            screen_x,
+            screen_y,
+        )
+    }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryMoveAnchorDrag` — move the dragged anchor
+/// by a screen-space delta.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryMoveAnchorDrag<
+    'local>(
+    mut env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    node_id: JString<'local>,
+    anchor_idx: jint,
+    screen_dx: jfloat,
+    screen_dy: jfloat,
+) -> jint {
+    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+        return OpStatus::InvalidArg as jint;
+    };
+    call_status(engine, move |e| unsafe {
+        op_editor_geometry_move_anchor_drag(
+            e,
+            node_id_bytes.as_ptr() as *const std::ffi::c_char,
+            anchor_idx as usize,
+            screen_dx,
+            screen_dy,
+        )
+    }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryEndAnchorDrag` — end the anchor drag.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryEndAnchorDrag<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+) -> jint {
+    call_status(engine, move |e| unsafe { op_editor_geometry_end_anchor_drag(e) }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryBeginHandleDrag` — begin dragging a handle.
+/// `side`: 0 = In, 1 = Out.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryBeginHandleDrag<
+    'local>(
+    mut env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    node_id: JString<'local>,
+    anchor_idx: jint,
+    side: jbyte,
+    screen_x: jfloat,
+    screen_y: jfloat,
+) -> jint {
+    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+        return OpStatus::InvalidArg as jint;
+    };
+    call_status(engine, move |e| unsafe {
+        op_editor_geometry_begin_handle_drag(
+            e,
+            node_id_bytes.as_ptr() as *const std::ffi::c_char,
+            anchor_idx as usize,
+            side as u8,
+            screen_x,
+            screen_y,
+        )
+    }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryMoveHandleDrag` — move the dragged handle
+/// by a screen-space delta.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryMoveHandleDrag<
+    'local>(
+    mut env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+    node_id: JString<'local>,
+    anchor_idx: jint,
+    side: jbyte,
+    screen_dx: jfloat,
+    screen_dy: jfloat,
+) -> jint {
+    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
+        return OpStatus::InvalidArg as jint;
+    };
+    call_status(engine, move |e| unsafe {
+        op_editor_geometry_move_handle_drag(
+            e,
+            node_id_bytes.as_ptr() as *const std::ffi::c_char,
+            anchor_idx as usize,
+            side as u8,
+            screen_dx,
+            screen_dy,
+        )
+    }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryEndHandleDrag` — end the handle drag.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryEndHandleDrag<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+) -> jint {
+    call_status(engine, move |e| unsafe { op_editor_geometry_end_handle_drag(e) }) as jint
+}
+
+/// `OpNative.nativeEditorGeometryIsActive` — check if geometry edit mode
+/// is active.
+#[no_mangle]
+pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryIsActive<
+    'local>(
+    _env: JNIEnv<'local>,
+    _class: JClass<'local>,
+    engine: jlong,
+) -> jboolean {
+    unsafe { op_editor_geometry_is_active(engine) } as jboolean
 }

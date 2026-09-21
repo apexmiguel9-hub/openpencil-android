@@ -143,6 +143,49 @@ object OpNative {
     external fun nativeEditorBeginLogin(engine: Long): Int
     external fun nativeEditorSetLocale(engine: Long, tag: String): Int
     external fun nativeEditorLocaleCode(engine: Long): String?
+    external fun nativeEditorGeometryEnter(engine: Long, nodeId: String): Int
+    external fun nativeEditorGeometryExit(engine: Long): Int
+    external fun nativeEditorGeometryHitTest(
+        engine: Long,
+        screenX: Float,
+        screenY: Float,
+        canvasW: Int,
+        canvasH: Int,
+    ): Int
+    external fun nativeEditorGeometryGetNodeId(engine: Long): String
+    external fun nativeEditorGeometryBeginAnchorDrag(
+        engine: Long,
+        nodeId: String,
+        anchorIdx: Int,
+        screenX: Float,
+        screenY: Float,
+    ): Int
+    external fun nativeEditorGeometryMoveAnchorDrag(
+        engine: Long,
+        nodeId: String,
+        anchorIdx: Int,
+        screenDx: Float,
+        screenDy: Float,
+    ): Int
+    external fun nativeEditorGeometryEndAnchorDrag(engine: Long): Int
+    external fun nativeEditorGeometryBeginHandleDrag(
+        engine: Long,
+        nodeId: String,
+        anchorIdx: Int,
+        side: Int, // 0 = In, 1 = Out
+        screenX: Float,
+        screenY: Float,
+    ): Int
+    external fun nativeEditorGeometryMoveHandleDrag(
+        engine: Long,
+        nodeId: String,
+        anchorIdx: Int,
+        side: Int, // 0 = In, 1 = Out
+        screenDx: Float,
+        screenDy: Float,
+    ): Int
+    external fun nativeEditorGeometryEndHandleDrag(engine: Long): Int
+    external fun nativeEditorGeometryIsActive(engine: Long): Boolean
 }
 
 /** Editor key codes (mirror `KEY_*` in op-engine-ffi/src/editor.rs). */

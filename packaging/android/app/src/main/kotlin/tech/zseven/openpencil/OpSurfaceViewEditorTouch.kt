@@ -7,6 +7,17 @@ import android.view.MotionEvent
 internal const val LONG_PRESS_MS = 500L
 /** Movement (logical dp) that cancels a long-press candidate. */
 internal const val LONG_PRESS_SLOP = 8f
+/** Double-tap window (ms). */
+internal const val DOUBLE_TAP_TIMEOUT_MS = 300L
+/** Double-tap distance threshold (logical dp). */
+internal const val DOUBLE_TAP_RADIUS_DP = 20f
+
+/** Hit-test encoding (must match op-engine-ffi/src/editor_geometry.rs). */
+internal const val HIT_EMPTY = 0
+internal const val HIT_ANCHOR_BASE = 1 shl 24
+internal const val HIT_HANDLE_IN_BASE = 2 shl 24
+internal const val HIT_HANDLE_OUT_BASE = 3 shl 24
+internal const val HIT_SEGMENT_BASE = 4 shl 24
 
 /**
  * The platform cancel clock for the editor ABI: `MotionEvent.eventTime`
@@ -25,6 +36,11 @@ internal fun uptimeClockMs(): Long = SystemClock.uptimeMillis()
  * arming/firing (right-click or paste menu), and the two-finger pan +
  * pinch takeover. All engine calls mirror `OpSurfaceView.editorTouch`
  * exactly; gesture interpretation itself lives in the engine.
+ *
+ * Double-tap detection is also handled here: a double-tap within the
+ * [DOUBLE_TAP_TIMEOUT_MS] window and [DOUBLE_TAP_RADIUS_DP] of the
+ * first tap either enters geometry/vertex edit mode (for path nodes)
+ * or exits it when already active.
  */
 internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
 
@@ -41,6 +57,22 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
     private var lastKnownY = 0f
     private var downX = 0f
     private var downY = 0f
+    /** Timestamp of the most recent single tap (for double-tap detection). */
+    private var lastTapTime = 0L
+    /** Screen coordinates of the most recent single tap. */
+    private var lastTapX = 0f
+    private var lastTapY = 0f
+    /** Whether geometry edit mode is currently active (mirrors the engine state). */
+    private var geometryModeActive = false
+
+    /** Active geometry drag state. */
+    private var geometryDragActive = false
+    /** Type of geometry drag: 0=none, 1=anchor, 2=handle_in, 3=handle_out. */
+    private var geometryDragType = 0
+    /** Anchor index being dragged. */
+    private var geometryDragAnchorIdx = 0
+    /** Node ID of the path being geometry-edited. */
+    private var geometryDragNodeId = ""
 
     fun editorTouch(event: MotionEvent): Boolean {
         val inputDensity = view.committedInputDensity
@@ -53,6 +85,55 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                 lastKnownY = event.y
                 downX = event.x / inputDensity
                 downY = event.y / inputDensity
+                lastTapTime = event.eventTime
+                lastTapX = event.x
+                lastTapY = event.y
+
+                // Geometry Edit Mode: if active, hit-test to start anchor/handle drag.
+                if (geometryModeActive) {
+                    val engine = view.editorEngine()
+                    if (engine != 0L) {
+                        val screenX = event.x / inputDensity
+                        val screenY = event.y / inputDensity
+                        val canvasW = view.width.toFloat() / inputDensity
+                        val canvasH = view.height.toFloat() / inputDensity
+                        val hit = OpNative.nativeEditorGeometryHitTest(
+                            engine, screenX, screenY, canvasW.toInt(), canvasH.toInt()
+                        )
+                        if (hit != HIT_EMPTY) {
+                            val (dragType, anchorIdx) = decodeHit(hit)
+                            if (dragType != 0) {
+                                // Get the node ID being edited.
+                                val nodeId = OpNative.nativeEditorGeometryGetNodeId(engine)
+                                if (nodeId.isNotEmpty()) {
+                                    geometryDragNodeId = nodeId
+                                    geometryDragAnchorIdx = anchorIdx
+                                    geometryDragType = dragType
+                                    geometryDragActive = true
+                                    when (dragType) {
+                                        1 -> OpNative.nativeEditorGeometryBeginAnchorDrag(
+                                            engine, nodeId, anchorIdx, screenX, screenY
+                                        )
+                                        2 -> OpNative.nativeEditorGeometryBeginHandleDrag(
+                                            engine, nodeId, anchorIdx, 0, screenX, screenY
+                                        )
+                                        3 -> OpNative.nativeEditorGeometryBeginHandleDrag(
+                                            engine, nodeId, anchorIdx, 1, screenX, screenY
+                                        )
+                                    }
+                                    view.requestFrame()
+                                }
+                            }
+                        } else {
+                            // Tap on empty space while in geometry mode: exit.
+                            OpNative.nativeEditorGeometryExit(engine)
+                            geometryModeActive = false
+                            view.requestFrame()
+                        }
+                    }
+                    return true
+                }
+
                 view.postDelayed(longPressRunnable, LONG_PRESS_MS)
                 OpNative.nativeEditorPressAt(
                     view.editorEngine(),
@@ -119,6 +200,34 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                     }
                     view.requestFrame()
                 } else if (primaryPointerId >= 0) {
+                    // Geometry Edit Mode drag
+                    if (geometryDragActive) {
+                        val engine = view.editorEngine()
+                        if (engine != 0L) {
+                            val index = event.findPointerIndex(primaryPointerId)
+                            if (index >= 0) {
+                                val x = event.getX(index) / inputDensity
+                                val y = event.getY(index) / inputDensity
+                                val dx = x - downX
+                                val dy = y - downY
+                                downX = x
+                                downY = y
+                                when (geometryDragType) {
+                                    1 -> OpNative.nativeEditorGeometryMoveAnchorDrag(
+                                        engine, geometryDragNodeId, geometryDragAnchorIdx, dx, dy
+                                    )
+                                    2 -> OpNative.nativeEditorGeometryMoveHandleDrag(
+                                        engine, geometryDragNodeId, geometryDragAnchorIdx, 0, dx, dy
+                                    )
+                                    3 -> OpNative.nativeEditorGeometryMoveHandleDrag(
+                                        engine, geometryDragNodeId, geometryDragAnchorIdx, 1, dx, dy
+                                    )
+                                }
+                                view.requestFrame()
+                            }
+                        }
+                        return true
+                    }
                     val index = event.findPointerIndex(primaryPointerId)
                     if (index >= 0) {
                         val x = event.getX(index) / inputDensity
@@ -169,10 +278,31 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                         uptimeClockMs(),
                     )
                     twoFingerActive = false
+                } else if (geometryDragActive) {
+                    // End geometry drag
+                    val engine = view.editorEngine()
+                    if (engine != 0L) {
+                        when (geometryDragType) {
+                            1 -> OpNative.nativeEditorGeometryEndAnchorDrag(engine)
+                            2, 3 -> OpNative.nativeEditorGeometryEndHandleDrag(engine)
+                        }
+                    }
+                    geometryDragActive = false
+                    geometryDragType = 0
+                    geometryDragAnchorIdx = 0
+                    geometryDragNodeId = ""
+                    view.requestFrame()
                 } else if (!longPressFired && !editorReleaseSuppressed) {
-                    val x = event.x / inputDensity
-                    val y = event.y / inputDensity
-                    OpNative.nativeEditorReleaseAt(view.editorEngine(), x, y, event.eventTime)
+                    // Double-tap detection: check if this up follows
+                    // a down within DOUBLE_TAP_TIMEOUT_MS and
+                    // DOUBLE_TAP_RADIUS_DP of the previous tap.
+                    if (isDoubleTap(event)) {
+                        handleDoubleTap(event, inputDensity)
+                    } else {
+                        val x = event.x / inputDensity
+                        val y = event.y / inputDensity
+                        OpNative.nativeEditorReleaseAt(view.editorEngine(), x, y, event.eventTime)
+                    }
                 }
                 resetTracking()
                 view.requestFrame()
@@ -183,7 +313,18 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
                 // ACTION_CANCEL is a real MotionEvent, so it carries its own
                 // eventTime; only the shell-fabricated cancels below fall back
                 // to SystemClock.uptimeMillis().
-                OpNative.nativeEditorCancelGestureAt(view.editorEngine(), event.eventTime)
+                val engine = view.editorEngine()
+                if (geometryDragActive && engine != 0L) {
+                    when (geometryDragType) {
+                        1 -> OpNative.nativeEditorGeometryEndAnchorDrag(engine)
+                        2, 3 -> OpNative.nativeEditorGeometryEndHandleDrag(engine)
+                    }
+                    geometryDragActive = false
+                    geometryDragType = 0
+                    geometryDragAnchorIdx = 0
+                    geometryDragNodeId = ""
+                }
+                OpNative.nativeEditorCancelGestureAt(engine, event.eventTime)
                 resetTracking()
                 view.requestFrame()
             }
@@ -199,6 +340,10 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
         longPressFired = false
         twoFingerActive = false
         editorReleaseSuppressed = false
+        geometryDragActive = false
+        geometryDragType = 0
+        geometryDragAnchorIdx = 0
+        geometryDragNodeId = ""
         lastMidX = 0f
         lastMidY = 0f
         lastPinchDist = 0f
@@ -206,6 +351,67 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
         lastKnownY = 0f
         downX = 0f
         downY = 0f
+        lastTapTime = 0L
+        lastTapX = 0f
+        lastTapY = 0f
+    }
+
+    /** Returns true if this event constitutes a double-tap. */
+    private fun isDoubleTap(event: MotionEvent): Boolean {
+        val now = event.eventTime
+        if (now - lastTapTime > DOUBLE_TAP_TIMEOUT_MS) return false
+        val dx = event.x - lastTapX
+        val dy = event.y - lastTapY
+        return dx * dx + dy * dy <= DOUBLE_TAP_RADIUS_DP * DOUBLE_TAP_RADIUS_DP
+    }
+
+    /** Handle a double-tap: enter or exit geometry edit mode. */
+    private fun handleDoubleTap(event: MotionEvent, density: Float) {
+        val engine = view.editorEngine()
+        if (engine == 0L) return
+        if (geometryModeActive) {
+            // Double-tap while in geometry mode: exit.
+            OpNative.nativeEditorGeometryExit(engine)
+            geometryModeActive = false
+        } else {
+            // Double-tap: hit-test and enter geometry mode
+            // for the node under the finger if applicable.
+            val screenX = event.x / density
+            val screenY = event.y / density
+            val canvasW = view.width.toFloat() / density
+            val canvasH = view.height.toFloat() / density
+            val hit = OpNative.nativeEditorGeometryHitTest(
+                engine, screenX, screenY, canvasW.toInt(), canvasH.toInt(),
+            )
+            if (hit != HIT_EMPTY) {
+                // Hit on a path node: get the selected node ID and enter geometry mode.
+                // The engine's selection should contain the path node that was double-tapped.
+                val nodeId = OpNative.nativeEditorGeometryGetNodeId(engine)
+                // If no node is currently being edited, we need to find the node under the finger.
+                // For now, use the current selection. The hit-test result tells us we hit something.
+                val targetNodeId = if (nodeId.isEmpty()) {
+                    // Fallback: use empty string to let engine use current selection.
+                    ""
+                } else {
+                    nodeId
+                }
+                OpNative.nativeEditorGeometryEnter(engine, targetNodeId)
+                geometryModeActive = true
+            }
+        }
+        view.requestFrame()
+    }
+
+    /** Decode hit-test result: returns (dragType, anchorIdx). */
+    private fun decodeHit(hit: Int): Pair<Int, Int> {
+        val hitType = hit ushr 24
+        val idx = hit and 0xFFFFFF
+        return when (hitType) {
+            1 -> 1 to idx          // anchor
+            2 -> 2 to idx          // handle_in
+            3 -> 3 to idx          // handle_out
+            else -> 0 to 0         // segment or unknown = no drag
+        }
     }
 
     /** Drops only the pending long-press timer (teardown path). */
