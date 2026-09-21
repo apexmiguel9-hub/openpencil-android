@@ -36,7 +36,7 @@ fn encode_hit(hit: GeometryHitTarget) -> i32 {
 /// Enter geometry/vertex edit mode for the given node.
 ///
 /// `node_id` is a null-terminated UTF-8 string, or an empty string
-/// to use the currently selected node. Returns `OpStatus::Ok`
+/// (first byte == 0) to use the currently selected node. Returns `OpStatus::Ok`
 /// on success or `OpStatus::InvalidArg` if the node id is invalid
 /// (non-empty but not found) or no node is selected when `node_id`
 /// is empty.
@@ -48,16 +48,11 @@ pub unsafe extern "C" fn op_editor_geometry_enter(
     if node_id.is_null() {
         return OpStatus::InvalidArg;
     }
-    let node_id_str = match std::ffi::CStr::from_ptr(node_id).to_str() {
-        Ok(s) => s,
-        Err(_) => return OpStatus::InvalidArg,
-    };
-    // Empty string means "use the current selection".
-    if node_id_str.is_empty() {
-        call_session(engine, |session| {
+    // Handle empty string (first byte == 0) without calling CStr::from_ptr
+    // which requires null-termination. Empty string means "use current selection".
+    if *node_id == 0 {
+        return call_session(engine, |session| {
             let host = session.editor_mut()?;
-            // Use raw pointers to split the mutable/immutable
-            // borrows of host for selection state vs mutation.
             let host_ptr: *mut op_host_native::WidgetHostNative = host as *const _ as *mut _;
             let state: &op_editor_core::state::EditorState = unsafe { &*host_ptr }.editor_state();
             let hit = if let Some(geo_session) = state.geometry_edit_session() {
@@ -80,14 +75,17 @@ pub unsafe extern "C" fn op_editor_geometry_enter(
                     "no selected node",
                 ))
             }
-        })
-    } else {
-        call_session(engine, |session| {
-            let host = session.editor_mut()?;
-            host.editor_state_mut().enter_geometry_edit(node_id_str);
-            Ok(())
-        })
+        });
     }
+    let node_id_str = match std::ffi::CStr::from_ptr(node_id).to_str() {
+        Ok(s) => s,
+        Err(_) => return OpStatus::InvalidArg,
+    };
+    call_session(engine, |session| {
+        let host = session.editor_mut()?;
+        host.editor_state_mut().enter_geometry_edit(node_id_str);
+        Ok(())
+    })
 }
 
 /// Exit geometry/vertex edit mode.
