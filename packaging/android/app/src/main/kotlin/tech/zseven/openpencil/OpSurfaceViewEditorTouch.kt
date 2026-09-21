@@ -374,30 +374,11 @@ internal class OpSurfaceViewEditorTouch(private val view: OpSurfaceView) {
             OpNative.nativeEditorGeometryExit(engine)
             geometryModeActive = false
         } else {
-            // Double-tap: hit-test and enter geometry mode
-            // for the node under the finger if applicable.
-            val screenX = event.x / density
-            val screenY = event.y / density
-            val canvasW = view.width.toFloat() / density
-            val canvasH = view.height.toFloat() / density
-            val hit = OpNative.nativeEditorGeometryHitTest(
-                engine, screenX, screenY, canvasW.toInt(), canvasH.toInt(),
-            )
-            if (hit != HIT_EMPTY) {
-                // Hit on a path node: get the selected node ID and enter geometry mode.
-                // The engine's selection should contain the path node that was double-tapped.
-                val nodeId = OpNative.nativeEditorGeometryGetNodeId(engine)
-                // If no node is currently being edited, we need to find the node under the finger.
-                // For now, use the current selection. The hit-test result tells us we hit something.
-                val targetNodeId = if (nodeId.isEmpty()) {
-                    // Fallback: use empty string to let engine use current selection.
-                    ""
-                } else {
-                    nodeId
-                }
-                OpNative.nativeEditorGeometryEnter(engine, targetNodeId)
-                geometryModeActive = true
-            }
+            // Double-tap: enter geometry mode for the currently
+            // selected node. The user must first select a path node,
+            // then double-tap to enter geometry edit mode.
+            OpNative.nativeEditorGeometryEnter(engine, "")
+            geometryModeActive = true
         }
         view.requestFrame()
     }

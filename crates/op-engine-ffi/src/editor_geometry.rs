@@ -111,6 +111,9 @@ pub unsafe extern "C" fn op_editor_geometry_exit(engine: *mut crate::OpEngine) -
 ///
 /// `canvas_w`, `canvas_h` are the canvas dimensions in screen pixels.
 /// `screen_x`, `screen_y` are in screen pixels (logical px, top-left origin).
+///
+/// Returns `HIT_EMPTY` if no geometry session is active, canvas size is
+/// invalid, or the layout scene is not available.
 #[no_mangle]
 pub unsafe extern "C" fn op_editor_geometry_hit_test(
     engine: *mut crate::OpEngine,
@@ -119,33 +122,33 @@ pub unsafe extern "C" fn op_editor_geometry_hit_test(
     canvas_w: i32,
     canvas_h: i32,
 ) -> i32 {
+    // Early validation
+    if canvas_w <= 0 || canvas_h <= 0 {
+        return HIT_EMPTY;
+    }
+
     let mut result = HIT_EMPTY;
     let status = call_session(engine, |session| {
         let host = session.editor_mut()?;
-        // layout_scene(&mut) and editor_state(&) borrow different
-        // fields of WidgetHostNative.  Use raw pointers to split
-        // the borrows since the compiler cannot prove disjointness.
-        let host = host as *mut op_host_native::WidgetHostNative;
-        let scene = unsafe { &*(*host).layout_scene() };
-        let state = unsafe { &*(*host).editor_state() };
+        // Use the combined accessor to get both state and layout scene
+        // atomically, avoiding borrow conflicts and ensuring the scene
+        // is fresh for the current editor state.
+        let (state, scene) = host.editor_state_mut_and_layout_scene();
         let geo_session = state.geometry_edit_session();
-        match (geo_session, scene) {
-            (Some(gs), sc) => {
-                let canvas_rect = Rect {
-                    origin: Point2D::new(0.0, 0.0),
-                    size: Point2D::new(canvas_w as f32, canvas_h as f32),
-                };
-                let point = Point2D::new(screen_x, screen_y);
-                let hit = op_editor_ui::widgets::canvas_viewport::geometry_hit_test(
-                    canvas_rect,
-                    sc,
-                    state,
-                    gs,
-                    point,
-                );
-                result = encode_hit(hit);
-            }
-            _ => {}
+        if let Some(gs) = geo_session {
+            let canvas_rect = Rect {
+                origin: Point2D::new(0.0, 0.0),
+                size: Point2D::new(canvas_w as f32, canvas_h as f32),
+            };
+            let point = Point2D::new(screen_x, screen_y);
+            let hit = op_editor_ui::widgets::canvas_viewport::geometry_hit_test(
+                canvas_rect,
+                scene,
+                state,
+                gs,
+                point,
+            );
+            result = encode_hit(hit);
         }
         Ok(())
     });
