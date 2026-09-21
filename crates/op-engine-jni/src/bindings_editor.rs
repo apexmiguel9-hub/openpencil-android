@@ -2,8 +2,7 @@
 
 //! Editor-mode natives — split out of `bindings.rs`.
 
-use libc::android::__android_log_write;
-use libc::{c_char, c_int};
+use libc::{__android_log_write, c_char, c_int};
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
