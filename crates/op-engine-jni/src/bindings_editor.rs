@@ -2,7 +2,8 @@
 
 //! Editor-mode natives — split out of `bindings.rs`.
 
-use libc::{__android_log_write, c_char, c_int};
+use libc::android::__android_log_write;
+use libc::{c_char, c_int};
 use jni::objects::{JByteArray, JClass, JString};
 use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
@@ -16,7 +17,7 @@ macro_rules! log_debug {
     ($tag:expr, $msg:expr) => {{
         use std::ffi::CString;
         if let (Ok(tag), Ok(msg)) = (CString::new($tag), CString::new($msg)) {
-            unsafe { __android_log_write(3, tag.as_ptr(), msg.as_ptr()) };
+            unsafe { __android_log_write(ANDROID_LOG_DEBUG, tag.as_ptr(), msg.as_ptr()) };
         }
     }};
 }
