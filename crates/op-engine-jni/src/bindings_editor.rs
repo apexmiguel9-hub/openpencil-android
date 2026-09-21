@@ -3,7 +3,7 @@
 //! Editor-mode natives — split out of `bindings.rs`.
 
 use jni::objects::{JByteArray, JClass, JString};
-use jni::sys::{jboolean, jfloat, jint, jlong, jstring};
+use jni::sys::{jboolean, jbyte, jfloat, jint, jlong, jstring};
 use jni::JNIEnv;
 
 use op_engine_ffi::{
@@ -803,12 +803,12 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorImeFocus
 #[no_mangle]
 pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometryEnter<
     'local>(
-    _env: JNIEnv<'local>,
+    mut env: JNIEnv<'local>,
     _class: JClass<'local>,
     engine: jlong,
     node_id: JString<'local>,
 ) -> jint {
-    let Some(node_id_bytes) = jstring_bytes(&mut _env, &node_id) else {
+    let Some(node_id_bytes) = jstring_bytes(&mut env, &node_id) else {
         return OpStatus::InvalidArg as jint;
     };
     call_status(engine, move |e| unsafe {
@@ -840,7 +840,7 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     canvas_w: jint,
     canvas_h: jint,
 ) -> jint {
-    unsafe { op_editor_geometry_hit_test(engine, screen_x, screen_y, canvas_w, canvas_h) }
+    unsafe { op_editor_geometry_hit_test(engine as *mut _, screen_x, screen_y, canvas_w, canvas_h) }
 }
 
 /// `OpNative.nativeEditorGeometryGetNodeId` — get the node ID being
@@ -854,8 +854,9 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
 ) -> jstring {
     const BUF_SIZE: usize = 256;
     let mut buf = vec![0u8; BUF_SIZE];
+    let ptr = buf.as_mut_ptr() as *mut std::ffi::c_char;
     let status = with_engine(engine, move |e| unsafe {
-        op_editor_geometry_get_node_id(e, buf.as_mut_ptr() as *mut std::ffi::c_char, buf.len())
+        op_editor_geometry_get_node_id(e, ptr, BUF_SIZE)
     });
     if status != Some(OpStatus::Ok) {
         return env.new_string("").unwrap().into_raw();
@@ -1008,5 +1009,5 @@ pub extern "system" fn Java_tech_zseven_openpencil_OpNative_nativeEditorGeometry
     _class: JClass<'local>,
     engine: jlong,
 ) -> jboolean {
-    unsafe { op_editor_geometry_is_active(engine) } as jboolean
+    (unsafe { op_editor_geometry_is_active(engine as *mut _) }) as jboolean
 }
