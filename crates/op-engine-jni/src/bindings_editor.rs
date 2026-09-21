@@ -19,6 +19,7 @@ macro_rules! log_debug {
             unsafe { __android_log_write(3, tag.as_ptr(), msg.as_ptr()) };
         }
     }};
+}
 
 use op_engine_ffi::{
     op_editor_account_snapshot, op_editor_auth_sign_out, op_editor_begin_login,
