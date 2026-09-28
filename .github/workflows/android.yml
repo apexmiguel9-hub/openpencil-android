@@ -86,6 +86,11 @@ jobs:
       - name: Cache cargo registry + build
         uses: Swatinem/rust-cache@v2
 
+      - name: Install host link deps (jian-skia → skia-safe needs freetype/fontconfig)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfreetype6-dev libfontconfig1-dev
+
       - name: Run workspace lib tests
         run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
 
