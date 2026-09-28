@@ -250,7 +250,11 @@ pub fn selection_handle_at_point(
     // Inverse-rotate the cursor so handle hit-test tracks rendered
     // (rotated) handle positions.
     let local = inverse_rotate(point, Point2D::new(mid_x, mid_y), node.rotation);
-    let slop = 6.0;
+    // 6 px desktop slop (Figma/Inkscape-ish). Touch-first layouts get
+    // ~14 px so a fingertip can actually land on a corner/edge handle
+    // — otherwise a resize press drifts into a node drag, which is the
+    // device-user's "the rect teleports a few px" complaint.
+    let slop = if state.editor_ui.touch_chrome() { 14.0 } else { 6.0 };
     let anchors = [
         (SelectionHandle::TopLeft, left, top),
         (SelectionHandle::Top, mid_x, top),

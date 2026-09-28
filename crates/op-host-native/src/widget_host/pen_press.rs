@@ -33,13 +33,24 @@ use op_editor_ui::widgets::path_anchor_context_menu::{
 };
 use op_editor_ui::Point2D;
 
-/// TS `dblclick` stand-in: two presses within 400 ms and 4 screen px
+/// TS `dblclick` stand-in: two presses within 500 ms and 12 screen px
 /// finish the in-progress path (the browser event fires after the
 /// second mousedown; here the second press is detected directly and
 /// the anchor it would have added is skipped — TS pops that anchor in
-/// `onDblClick`, so the net anchor set is identical).
-const PEN_DOUBLE_CLICK_MS: u64 = 400;
-const PEN_DOUBLE_CLICK_PX: f32 = 4.0;
+/// `onDblClick`, so the net anchor set is identical). The window was
+/// 400 ms / 4 px in the TS port — a mouse double-click. Fingers land
+/// slower and less precisely; 500 ms / 12 px keeps double-tap-finish
+/// reachable on touch (the floating action bar is the primary path).
+const PEN_DOUBLE_CLICK_MS: u64 = 500;
+const PEN_DOUBLE_CLICK_PX: f32 = 12.0;
+
+/// Touch slop (logical px) a pen press may drift from the just-placed
+/// anchor before the drag mints mirrored handles. Android's default
+/// touch slop is ~8 dp and finger presses jitter 3-20 px at zoom 1,
+/// so 12 px keeps a tap a corner while a deliberate drag still bows
+/// the segment. Desktop clicks jitter ~0 px (TS kept a 2 doc px
+/// threshold — see `EditorState::pen_drag_handle_to`).
+const PEN_HANDLE_MINT_SLOP_LOGICAL_PX: f32 = 12.0;
 
 impl WidgetHostNative {
     /// Pen authoring and committed-path anchor edits change `anchors`, `d`,
@@ -73,6 +84,12 @@ impl WidgetHostNative {
         let doc_point = canvas_geometry::canvas_doc_point_unclamped(&self.editor_state, x, y);
         let doc = (doc_point.x as f64, doc_point.y as f64);
         if self.editor_state.ui.pen_in_progress.is_some() {
+            // 0. Floating action bar (touch-first finish/cancel) — a
+            //    tap on a chip consumes the press before anchor-edit /
+            //    close / double-click / add-point logic runs.
+            if self.dispatch_pen_action_bar_press(x, y, viewport_w, viewport_h) {
+                return true;
+            }
             // 1. Click near the FIRST anchor (≥ 3 anchors) closes the
             //    path (TS skia-pen-tool.ts:71-79). Checked before the
             //    double-click so the second press of a double-click
@@ -190,6 +207,63 @@ impl WidgetHostNative {
         true
     }
 
+    /// Tap routing for the floating pen-action bar
+    /// (`op_editor_ui::widgets::pen_action_bar`). The bar is drawn
+    /// while a pen session is in flight; a chip hit dispatches Done
+    /// (commit open) / Close (commit closed) / Pop (drop the last
+    /// anchor; a lone anchor cancels) / Cancel (discard the session)
+    /// and consumes the press. Touch-first: desktop could already
+    /// finish with double-click / Enter / Escape, none of which a
+    /// phone exposes reliably.
+    pub(in crate::widget_host) fn dispatch_pen_action_bar_press(
+        &mut self,
+        x: f32,
+        y: f32,
+        viewport_w: f32,
+        viewport_h: f32,
+    ) -> bool {
+        use op_editor_ui::widgets::pen_action_bar::{PenAction, PenActionBar};
+        let Some(bar) = PenActionBar::for_editor_ui(&self.editor_state) else {
+            return false;
+        };
+        let Some(action) = bar.hit(Point2D::new(x, y), viewport_w, viewport_h) else {
+            return false;
+        };
+        if !self.collab_allows_pen_path_mutation() {
+            return true;
+        }
+        match action {
+            PenAction::Done => {
+                let finished = self.editor_state.finish_pen_path_with(false);
+                if finished {
+                    self.mark_dirty();
+                }
+            }
+            PenAction::Close => {
+                let finished = self.editor_state.finish_pen_path_with(true);
+                if finished {
+                    self.mark_dirty();
+                }
+            }
+            PenAction::Pop => {
+                let handled = self.editor_state.pen_backspace();
+                if handled && self.editor_state.ui.pen_in_progress.is_none() {
+                    self.editor_state.tool = op_editor_core::Tool::Select;
+                }
+                if handled {
+                    self.mark_dirty();
+                }
+            }
+            PenAction::Cancel => {
+                if self.editor_state.cancel_pen_path() {
+                    self.editor_state.tool = op_editor_core::Tool::Select;
+                    self.mark_dirty();
+                }
+            }
+        }
+        true
+    }
+
     /// Cursor move while a path-anchor / handle drag is in flight —
     /// TS `handlePathControlMove` (`skia-interaction.ts:875-944`) via
     /// `movePathControl` (`path-editing.ts:66-114`): the cumulative
@@ -299,9 +373,12 @@ impl WidgetHostNative {
         }
         let doc = canvas_geometry::canvas_doc_point_unclamped(&self.editor_state, x, y);
         if self.editor_state.ui.pen_dragging_handle {
+            let zoom = self.editor_state.viewport.zoom.max(0.0001);
+            let mint_threshold_doc =
+                (PEN_HANDLE_MINT_SLOP_LOGICAL_PX as f64) / zoom as f64;
             let _ = self
                 .editor_state
-                .pen_drag_handle_to((doc.x as f64, doc.y as f64));
+                .pen_drag_handle_to((doc.x as f64, doc.y as f64), mint_threshold_doc);
         }
         self.editor_state.ui.pen_cursor_doc = Some(doc);
         self.mark_dirty();

@@ -714,6 +714,18 @@ impl WidgetHostNative {
             menu.paint(&mut cx);
         }
 
+        // 11b. Pen action bar — floating Done / Close / Pop / Cancel
+        //      chips while a pen session is in flight (touch-first
+        //      finish; see `pen_action_bar.rs`).
+        if let Some(bar) =
+            op_editor_ui::widgets::pen_action_bar::PenActionBar::for_editor_ui(&self.editor_state)
+        {
+            let mut cx = PaintCx {
+                backend: &mut *frame,
+            };
+            bar.paint(&mut cx, viewport_width, viewport_height);
+        }
+
         self.paint_floating_panels(frame, viewport_width, viewport_height);
 
         // 13. File-drop overlay — top-most layer, above every panel and

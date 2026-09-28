@@ -67,8 +67,36 @@ permissions:
   contents: read
 
 jobs:
+  test:
+    name: Test (core / ui / host-native)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ env.RUST_TOOLCHAIN }}
+
+      - name: Cache cargo registry + build
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install host deps (skia link libs + CJK font for fallback tests)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfreetype6-dev libfontconfig1-dev fonts-noto-cjk
+
+      - name: Run workspace lib tests
+        run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
+
   build-android-arm64:
     name: Build Android ARM64 APK
+    needs: test
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     outputs:
@@ -94,16 +122,33 @@ jobs:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
           targets: ${{ env.CARGO_TARGET }}
 
+      - name: Cache cargo registry + build (host + android targets)
+        uses: Swatinem/rust-cache@v2
+
       - name: Install cargo-ndk
         run: cargo install cargo-ndk --locked
 
-      - name: Install Android SDK (pinned)
+      - name: Cache Android SDK + NDK
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/android-sdk
+          key: android-sdk-${{ env.ANDROID_API_LEVEL }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}-${{ env.ANDROID_NDK_VERSION }}
+          restore-keys: |
+            android-sdk-${{ env.ANDROID_API_LEVEL }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}-
+
+      - name: Install Android SDK (pinned, skips on cache hit)
         env:
           ANDROID_API_LEVEL: ${{ env.ANDROID_API_LEVEL }}
           ANDROID_BUILD_TOOLS_VERSION: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
           ANDROID_NDK_VERSION: ${{ env.ANDROID_NDK_VERSION }}
         run: |
-          bash tools/install-pinned-android-sdk.sh "${{ github.workspace }}/android-sdk"
+          if [ -d "$ANDROID_HOME/ndk/$ANDROID_NDK_VERSION" ] \
+            && [ -d "$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION" ] \
+            && [ -d "$ANDROID_HOME/platforms/android-$ANDROID_API_LEVEL" ]; then
+            echo "Android SDK already present (cache hit), skipping install"
+          else
+            bash tools/install-pinned-android-sdk.sh "$ANDROID_HOME"
+          fi
 
       - name: Configure cargo for Android targets
         run: |

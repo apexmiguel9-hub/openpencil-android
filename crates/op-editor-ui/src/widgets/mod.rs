@@ -48,6 +48,7 @@ mod layer_panel_tests;
 mod layer_panel_touch_tests;
 mod layer_panel_walkers;
 pub mod path_anchor_context_menu;
+pub mod pen_action_bar;
 pub mod prompt_center_panel;
 pub(crate) mod prompt_center_previews;
 pub mod scene_template_panel;

@@ -1,0 +1,22 @@
+# Rust
+/target
+**/target
+Cargo.lock.orig
+
+# Android / Gradle
+packaging/android/app/build
+packaging/android/.gradle
+packaging/android/local.properties
+*.apk
+*.aab
+
+# Editor / IDE
+.idea
+.vscode
+*.iml
+
+# OS
+.DS_Store
+
+# Local dev scratch
+*.log

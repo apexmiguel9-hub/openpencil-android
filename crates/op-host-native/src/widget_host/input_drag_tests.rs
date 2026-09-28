@@ -5,6 +5,10 @@ use super::{CreateDragState, HandleDragState, NodeDragState, RotateDragState, Wi
 use op_editor_core::{NodeId, PenNodeExt};
 use op_editor_ui::{widgets::SelectionHandle, Point2D, Rect};
 
+/// Test viewport — same pair the drag tests below use.
+const VW: f32 = 1440.0;
+const VH: f32 = 900.0;
+
 /// Seed a host's `editor_state` from a canonical `.op` JSON snippet.
 fn seed(host: &mut WidgetHostNative, json: &str) {
     let doc = jian_ops_schema::load_str(json)
@@ -706,4 +710,111 @@ fn anchor_at(host: &WidgetHostNative, id: &str, idx: usize) -> (f64, f64) {
         }
         _ => panic!("not a path node"),
     }
+}
+
+// ─── Device repro (g56): resize a rect after a pen path ───────────────
+// User: after drawing a path with the pen, resizing a rect "teleports"
+// a few px until the path is deleted. These tests pin the invariant
+// that a committed — or cancelled — pen path must NOT perturb a
+// sibling rect's resize staging (`start_bounds` from the layout scene).
+
+fn doc_to_screen(host: &WidgetHostNative, doc_x: f32, doc_y: f32) -> (f32, f32) {
+    let (cx0, cy0, _, _) = host.canvas_region(VW, VH);
+    let vp = &host.editor_state().viewport;
+    (
+        cx0 + vp.pan_x + doc_x * vp.zoom,
+        cy0 + vp.pan_y + doc_y * vp.zoom,
+    )
+}
+
+/// Press + release the canvas at each doc point with the current tool.
+fn tap_points(host: &mut WidgetHostNative, points: &[(f32, f32)]) {
+    for (dx, dy) in points {
+        let (sx, sy) = doc_to_screen(host, *dx, *dy);
+        host.apply_press(sx, sy, VW, VH);
+        host.apply_release_with_viewport(VW, VH);
+    }
+}
+
+#[test]
+fn resize_rect_after_committed_pen_path_keeps_anchor() {
+    let mut host = WidgetHostNative::new();
+    seed(&mut host, r#"{"version":"1.0.0","children":[]}"#);
+
+    // 1) Rect tool press→drag→release creates (200,200,220,120).
+    host.apply_set_tool(op_editor_core::Tool::Rect);
+    let (a0, b0) = doc_to_screen(&host, 200.0, 200.0);
+    let (a1, b1) = doc_to_screen(&host, 420.0, 320.0);
+    assert!(host.apply_press(a0, b0, VW, VH));
+    host.apply_cursor_move(a1, b1);
+    assert!(host.apply_release_with_viewport(VW, VH));
+    let rect_id = host.editor_state().selection.anchor.clone();
+    assert!(rect_id.is_real());
+    assert_eq!(
+        authored_geometry(&host, rect_id.as_str()),
+        (Some(200.0), Some(200.0), Some(220.0), Some(120.0))
+    );
+
+    // 2) Pen tool: committed 3-anchor open path, away from the rect.
+    host.apply_set_tool(op_editor_core::Tool::Pen);
+    tap_points(&mut host, &[(60.0, 60.0), (140.0, 60.0), (140.0, 140.0)]);
+    assert!(host.editor_state_mut().finish_pen_path_with(false));
+
+    // 3) Select the rect again (tap interior).
+    host.apply_set_tool(op_editor_core::Tool::Select);
+    let (mx, my) = doc_to_screen(&host, 300.0, 260.0);
+    assert!(host.apply_press(mx, my, VW, VH));
+    assert!(host.apply_release_with_viewport(VW, VH));
+    assert_eq!(host.editor_state().selection.anchor.as_str(), rect_id.as_str());
+
+    // 4) Resize bottom-right +40,+40 through the REAL canvas tiers
+    //    (start_bounds staged from the layout scene on press).
+    assert!(host.apply_press(a1, b1, VW, VH));
+    host.apply_cursor_move(a1 + 40.0, b1 + 40.0);
+    assert!(host.apply_release_with_viewport(VW, VH));
+
+    // 5) NO teleport: authored anchor stays (200,200), size exactly +40.
+    assert_eq!(
+        authored_geometry(&host, rect_id.as_str()),
+        (Some(200.0), Some(200.0), Some(260.0), Some(160.0))
+    );
+}
+
+#[test]
+fn resize_rect_after_cancelled_pen_session_keeps_anchor() {
+    // Phone flow: draw a pen path but switch tools BEFORE finishing —
+    // the in-flight session is discarded (`cancel_pen_path`). A later
+    // rect resize must still be anchored exactly.
+    let mut host = WidgetHostNative::new();
+    seed(&mut host, r#"{"version":"1.0.0","children":[]}"#);
+
+    host.apply_set_tool(op_editor_core::Tool::Rect);
+    let (a0, b0) = doc_to_screen(&host, 200.0, 200.0);
+    let (a1, b1) = doc_to_screen(&host, 420.0, 320.0);
+    assert!(host.apply_press(a0, b0, VW, VH));
+    host.apply_cursor_move(a1, b1);
+    assert!(host.apply_release_with_viewport(VW, VH));
+    let rect_id = host.editor_state().selection.anchor.clone();
+
+    // 2) Pen: start a session, leave it IN PROGRESS.
+    host.apply_set_tool(op_editor_core::Tool::Pen);
+    tap_points(&mut host, &[(60.0, 60.0), (140.0, 60.0)]);
+    assert!(host.editor_state().ui.pen_in_progress.is_some());
+
+    // 3) Switch to Select — discards the in-flight path.
+    host.apply_set_tool(op_editor_core::Tool::Select);
+
+    // 4) Select the rect + resize bottom-right +40/+40.
+    let (mx, my) = doc_to_screen(&host, 300.0, 260.0);
+    assert!(host.apply_press(mx, my, VW, VH));
+    assert!(host.apply_release_with_viewport(VW, VH));
+    assert_eq!(host.editor_state().selection.anchor.as_str(), rect_id.as_str());
+    assert!(host.apply_press(a1, b1, VW, VH));
+    host.apply_cursor_move(a1 + 40.0, b1 + 40.0);
+    assert!(host.apply_release_with_viewport(VW, VH));
+
+    assert_eq!(
+        authored_geometry(&host, rect_id.as_str()),
+        (Some(200.0), Some(200.0), Some(260.0), Some(160.0))
+    );
 }
