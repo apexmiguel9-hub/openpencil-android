@@ -444,10 +444,18 @@ pub fn canvas_centre_doc_point(state: &EditorState, viewport_w: f32, viewport_h:
     state.viewport.to_document(Point2D::new(cw / 2.0, ch / 2.0))
 }
 
-/// 8 screen-px grab radius (TS `PATH_CONTROL_HIT_RADIUS`), squared and
+/// Screen-px grab radius for path anchors / handles, squared and
 /// expressed in doc space so the comparison stays multiplication-only.
-fn grab_radius_sq(zoom: f32) -> f32 {
-    64.0 / (zoom * zoom)
+///
+/// TS `PATH_CONTROL_HIT_RADIUS` was an 8 screen-px MOUSE target
+/// (`skia-hit-handlers.ts:136-159`). Touch-first layouts share this
+/// host, and a fingertip needs a far bigger target (Android's 48dp
+/// guideline ≈ 20 screen px on a 2.4375-dpr phone), so the touch-chrome
+/// flag bumps the radius to 20 px while desktop keeps the 8 px mouse
+/// radius (TS parity + the host mouse tests).
+fn grab_radius_sq(state: &EditorState, zoom: f32) -> f32 {
+    let r = if state.editor_ui.touch_chrome() { 20.0 } else { 8.0 };
+    r * r / (zoom * zoom)
 }
 
 /// Hit-test the selected Path node's anchors / bezier handles at screen
@@ -495,7 +503,7 @@ pub fn path_anchor_hit(
         let centre = Point2D::new(b.origin.x + b.size.x / 2.0, b.origin.y + b.size.y / 2.0);
         doc = crate::widgets::rotate_point(doc, centre, -node.rotation);
     }
-    let r2 = grab_radius_sq(zoom);
+    let r2 = grab_radius_sq(state, zoom);
     let hit = |p: Point2D| (doc.x - p.x).powi(2) + (doc.y - p.y).powi(2) <= r2;
     let pen_tool = matches!(state.tool, op_editor_core::Tool::Pen);
     for (i, a) in node.path_anchors.iter().enumerate() {

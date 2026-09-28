@@ -118,10 +118,15 @@ impl EditorState {
 
     /// Cursor move while the Pen press is held — port of the TS
     /// `penDraggingHandle` branch (`skia-pen-tool.ts:97-110`): drag
-    /// past 2 doc px mints mirrored handles on the LAST anchor
-    /// (`handle_out = cursor − anchor`, `handle_in` its negation);
-    /// inside the threshold the handles clear back to a corner.
-    pub fn pen_drag_handle_to(&mut self, cursor: (f64, f64)) -> bool {
+    /// past `mint_threshold_doc` document px mints mirrored handles on
+    /// the LAST anchor (`handle_out = cursor − anchor`, `handle_in` its
+    /// negation); inside the threshold the handles clear back to a
+    /// corner. The threshold is supplied by the host as TOUCH SLOP in
+    /// screen (logical) px divided by zoom: a desktop click jitters
+    /// ~0 px (TS kept a 2 doc px threshold), a finger press jitters
+    /// 3-20 px at zoom 1, which previously minted stray mirrored
+    /// handles on nearly every tap.
+    pub fn pen_drag_handle_to(&mut self, cursor: (f64, f64), mint_threshold_doc: f64) -> bool {
         if !self.ui.pen_dragging_handle {
             return false;
         }
@@ -137,7 +142,7 @@ impl EditorState {
             };
             let dx = cursor.0 - last.x;
             let dy = cursor.1 - last.y;
-            if dx.hypot(dy) > 2.0 {
+            if dx.hypot(dy) > mint_threshold_doc {
                 last.handle_out = Some(PenPathHandle { x: dx, y: dy });
                 last.handle_in = Some(PenPathHandle { x: -dx, y: -dy });
                 last.point_type = Some(PenPathPointType::Mirrored);
@@ -177,7 +182,10 @@ impl EditorState {
             return false;
         }
         let first = &anchors[0];
-        let threshold = 8.0 / zoom.max(0.0001) as f64;
+        // TS close-target radius was 8 screen px (`skia-pen-tool.ts`) — a
+        // mouse target. Doubled to 16 px so the start-anchor close stays
+        // tappable on touch (finger jitter is 3-20 px at zoom 1).
+        let threshold = 16.0 / zoom.max(0.0001) as f64;
         (p.0 - first.x).hypot(p.1 - first.y) < threshold
     }
 

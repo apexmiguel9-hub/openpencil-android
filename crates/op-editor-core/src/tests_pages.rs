@@ -425,7 +425,7 @@ fn pen_drag_handle_mints_mirrored_handles_past_threshold() {
     let mut next_id = 1u64;
     let id = s.start_pen_path(&mut next_id, (10.0, 10.0)).expect("start");
     assert!(s.ui.pen_dragging_handle, "press arms the handle drag");
-    assert!(s.pen_drag_handle_to((40.0, 10.0)));
+    assert!(s.pen_drag_handle_to((40.0, 10.0), 12.0));
     if let Some(PenNode::Path(p)) = find_node(s.active_children(), &id) {
         let a = &p.anchors.as_ref().unwrap()[0];
         let ho = a.handle_out.as_ref().expect("handle_out");
@@ -436,8 +436,9 @@ fn pen_drag_handle_mints_mirrored_handles_past_threshold() {
     } else {
         panic!("expected path");
     }
-    // Back within the 2 px threshold — handles clear to a corner.
-    assert!(s.pen_drag_handle_to((11.0, 10.0)));
+    // Back within the 12 px touch-slop threshold — handles clear to a
+    // corner (a tap's finger jitter, unlike a desktop click's ~0 px).
+    assert!(s.pen_drag_handle_to((11.0, 10.0), 12.0));
     if let Some(PenNode::Path(p)) = find_node(s.active_children(), &id) {
         let a = &p.anchors.as_ref().unwrap()[0];
         assert!(a.handle_out.is_none() && a.handle_in.is_none());
@@ -445,7 +446,7 @@ fn pen_drag_handle_mints_mirrored_handles_past_threshold() {
     }
     // Release stops minting.
     s.pen_release();
-    assert!(!s.pen_drag_handle_to((80.0, 80.0)));
+    assert!(!s.pen_drag_handle_to((80.0, 80.0), 12.0));
 }
 
 #[test]
@@ -456,9 +457,9 @@ fn pen_close_hit_needs_three_anchors_and_respects_zoom() {
     s.add_pen_point((50.0, 0.0));
     assert!(!s.pen_close_hit((1.0, 1.0), 1.0), "needs >= 3 anchors");
     s.add_pen_point((50.0, 50.0));
-    assert!(s.pen_close_hit((5.0, 5.0), 1.0), "8 px / zoom 1 radius");
-    assert!(!s.pen_close_hit((5.0, 5.0), 2.0), "zoom 2 shrinks to 4 px");
-    assert!(!s.pen_close_hit((9.0, 0.0), 1.0), "outside the radius");
+    assert!(s.pen_close_hit((5.0, 5.0), 1.0), "16 px / zoom 1 radius");
+    assert!(s.pen_close_hit((5.0, 5.0), 2.0), "zoom 2 shrinks to 8 px");
+    assert!(!s.pen_close_hit((17.0, 0.0), 1.0), "outside the radius");
 }
 
 #[test]

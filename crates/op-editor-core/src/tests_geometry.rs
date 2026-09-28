@@ -279,7 +279,7 @@ fn path_anchor_mutators_advance_the_document_revision() {
             let _ = s.start_pen_path(&mut next, (0.0, 0.0));
             s.add_pen_point((30.0, 0.0));
             let before = s.document_revision();
-            assert!(s.pen_drag_handle_to((60.0, 60.0)));
+            assert!(s.pen_drag_handle_to((60.0, 60.0), 12.0));
             s.document_revision() != before
         }),
     ] {
