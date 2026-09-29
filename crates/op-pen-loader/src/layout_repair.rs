@@ -1,5 +1,44 @@
 //! Post-process jian/taffy layout rects for generated fit-content stacks.
 //!
+//! ============================ NOTA (Taffy 0.14) ============================
+//! Se INTENTO desactivar este modulo entero con Taffy 0.14 ya subido
+//! (vendor/jian @ taffy-0.14-upgrade, commit 0031567), porque sus 759 lineas
+//! existen para el under-report de Taffy 0.5.2 que el propio doc-comment de
+//! abajo describe. Resultado del experimento (CI 36624902980):
+//!
+//!   3.848 tests PASAN sin esta capa   -> el under-report de 0.5.2 ya no
+//!                                        ocurre con 0.14, confirmado
+//!   2 tests FALLAN:
+//!     widget_host::canvas_select_drag_tests::
+//!       option_dragging_vertical_layout_child_up_copies_before_source
+//!       option_dragging_horizontal_layout_child_left_copies_before_source
+//!
+//! El assertion de ambos:
+//!     left:  ["n100", "a", "b", "c"]   (sin esta capa)
+//!     right: ["a", "n100", "b", "c"]   (esperado)
+//!
+//! Es un off-by-one en el indice de insercion al reordenar flow children,
+//! en flex_insert_preview (crates/op-editor-ui/src/widgets/drag_flow_index.rs:311):
+//!
+//!     for (position, bounds) in parent.flex_children.iter().enumerate() {
+//!         let mid = bounds.origin.y + bounds.size.y / 2.0;
+//!         if drag_mid < mid { index = position; break; }
+//!     }
+//!
+//! O sea: esta capa NO es solo un parche de Taffy. Tambien DESPLAZA rects, y
+//! los rects que produce son de los que dependen esos 2 tests. Por eso el
+//! reorder se queda en indice 0 sin ella.
+//!
+//! Conclusión: la mayoria de las 759 lineas parece muerto peso desde que
+//! Taffy es 0.14, pero esta capa no se puede borrar de un golpe. El camino
+//! correcto es: (1) arreglar el off-by-one de flex_insert_preview para que no
+//! dependa de los rects desplazados, (2) entonces desactivar y borrar el
+//! modulo. Mismo off-by-one es probablemente la causa del drop displacement
+//! >100px que documenta crates/op-host-native/src/widget_host/
+//! flex_drop_probe_tests.rs: es la misma pregunta, "donde aterriza un nodo
+//! soltado dentro de un contenedor con flow".
+//! ============================================================================
+//!
 //! Taffy 0.5 can under-report the own height of nested auto/flex
 //! containers whose text children later resolve taller than the
 //! container's cross-axis contribution. The child text rects are
