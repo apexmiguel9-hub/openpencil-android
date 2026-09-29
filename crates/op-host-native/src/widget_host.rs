@@ -143,6 +143,8 @@ mod input_clipboard_tests;
 #[cfg(test)]
 mod input_drag_tests;
 #[cfg(test)]
+mod flex_drop_probe_tests;
+#[cfg(test)]
 mod input_tests;
 #[cfg(test)]
 mod instance_panel_tests;
