@@ -78,7 +78,7 @@ fn authored_xy(host: &WidgetHostNative, id: &str) -> (Option<f64>, Option<f64>) 
 }
 
 fn parent_of(host: &WidgetHostNative, id: &str) -> Option<String> {
-    op_editor_core::walkers::parent_of(host.editor_state().active_children(), &NodeId::new(id))
+    op_editor_core::drag_mutators::parent_of(host.editor_state().active_children(), &NodeId::new(id))
         .map(|p| p.as_str().to_string())
 }
 
@@ -132,13 +132,13 @@ fn probe_flex_drop_displacement_evidence() {
             .create_node_for_active_tool(drop_top)
             .expect("create succeeds");
         host.refresh_layout_scene();
-        let final_xy = scene_xy(&host, id.id_str());
-        let authored = authored_xy(&host, id.id_str());
+        let final_xy = scene_xy(&host, id.as_str());
+        let authored = authored_xy(&host, id.as_str());
         log.push_str(&format!(
             "PROBE|A created-inside|d={d:>3}|drop_top_doc=({:.0},{:.0})|drop_top_local=({:.0},{:.0})|parent={}|authored_x_y=({:?},{:?})|final_top=({:.0},{:.0})|disp_top={:.1}\n",
             drop_top.x, drop_top.y,
             drop_top.x - 100.0, drop_top.y - 100.0,
-            parent_of(&host, id.id_str()).unwrap_or_else(|| "PAGE_ROOT".into()),
+            parent_of(&host, id.as_str()).unwrap_or_else(|| "PAGE_ROOT".into()),
             authored.0, authored.1,
             final_xy.0, final_xy.1,
             final_xy.1 - drop_top.y,
