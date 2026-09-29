@@ -50,24 +50,38 @@ fn seed(host: &mut WidgetHostNative, json: &str) {
     host.mark_paint_dirty_for_test();
 }
 
-fn scene_xy(host: &WidgetHostNative, id: &str) -> (f32, f32) {
-    let n = host
-        .layout_scene
-        .active_page()
-        .and_then(|p| p.find(id))
-        .expect("scene node present");
+fn scene_xy(host: &mut WidgetHostNative, id: &str) -> (f32, f32) {
+    let n = scene_find(host, id);
     let b = n.bounds;
     (b.origin.x, b.origin.y)
 }
 
-fn scene_center(host: &WidgetHostNative, id: &str) -> (f32, f32) {
-    let n = host
-        .layout_scene
-        .active_page()
-        .and_then(|p| p.find(id))
-        .expect("scene node present");
+fn scene_center(host: &mut WidgetHostNative, id: &str) -> (f32, f32) {
+    let n = scene_find(host, id);
     let b = n.bounds;
     (b.origin.x + b.size.x / 2.0, b.origin.y + b.size.y / 2.0)
+}
+
+/// Resolve the active page via the getter (which lazily refreshes the
+/// scene) and find `id`. On a miss, panic with the ids present on the
+/// page so CI output names the discrepancy instead of a bare expect.
+fn scene_find<'a>(host: &'a mut WidgetHostNative, id: &str) -> &'a op_editor_ui::layout_scene::SceneNode {
+    let page = &*host.layout_scene().active_page().expect("scene has an active page");
+    match page.find(id) {
+        Some(n) => n,
+        None => {
+            let mut ids: Vec<String> = Vec::new();
+            collect_ids(&page.children, &mut ids);
+            panic!("scene node '{id}' missing; page ids = {ids:?}");
+        }
+    }
+}
+
+fn collect_ids(nodes: &[op_editor_ui::layout_scene::SceneNode], out: &mut Vec<String>) {
+    for n in nodes {
+        out.push(n.id.clone());
+        collect_ids(&n.children, out);
+    }
 }
 
 fn authored_xy(host: &WidgetHostNative, id: &str) -> (Option<f64>, Option<f64>) {
@@ -132,7 +146,7 @@ fn probe_flex_drop_displacement_evidence() {
             .create_node_for_active_tool(drop_top)
             .expect("create succeeds");
         host.refresh_layout_scene();
-        let final_xy = scene_xy(&host, id.as_str());
+        let final_xy = scene_xy(&mut host, id.as_str());
         let authored = authored_xy(&host, id.as_str());
         log.push_str(&format!(
             "PROBE|A created-inside|d={d:>3}|drop_top_doc=({:.0},{:.0})|drop_top_local=({:.0},{:.0})|parent={}|authored_x_y=({:?},{:?})|final_top=({:.0},{:.0})|disp_top={:.1}\n",
@@ -159,7 +173,7 @@ fn probe_flex_drop_displacement_evidence() {
         host.refresh_layout_scene();
         let drop_top = (200.0, 100.0 + d);
         let dropped_center = target_center;
-        let final_xy = scene_xy(&host, "dragme");
+        let final_xy = scene_xy(&mut host, "dragme");
         let auth = authored_xy(&host, "dragme");
         let parent = parent_of(&host, "dragme").unwrap_or_else(|| "PAGE_ROOT".into());
         let index = index_in_parent(&host, &parent, "dragme");
@@ -181,7 +195,7 @@ fn probe_flex_drop_displacement_evidence() {
         let mut host = WidgetHostNative::new();
         seed(&mut host, FIXTURE);
         host.refresh_layout_scene();
-        let a_start = scene_center(&host, "a");
+        let a_start = scene_center(&mut host, "a");
         let b = host
             .layout_scene
             .active_page()
@@ -197,7 +211,7 @@ fn probe_flex_drop_displacement_evidence() {
         let mutated = drag_node_to(&mut host, "a", (a_start.0, gap_mid_y));
         host.refresh_layout_scene();
         let index_after = index_in_parent(&host, "stack", "a");
-        let final_xy = scene_xy(&host, "a");
+        let final_xy = scene_xy(&mut host, "a");
         let auth = authored_xy(&host, "a");
         log.push_str(&format!(
             "PROBE|C moved-within|mutated={mutated}|start_center=({:.0},{:.0})|drop_center_local=({:.0},{:.0})|index_before={index_before:?}|index_after={index_after:?}|authored_x_y=({:?},{:?})|final_top=({:.0},{:.0})|disp_center={:.1}\n",
@@ -218,7 +232,7 @@ fn probe_flex_drop_displacement_evidence() {
         let target_center = (250.0_f32, 170.0); // freebox-local (150, 70)
         let mutated = drag_node_to(&mut host, "dragme", target_center);
         host.refresh_layout_scene();
-        let final_xy = scene_xy(&host, "dragme");
+        let final_xy = scene_xy(&mut host, "dragme");
         let auth = authored_xy(&host, "dragme");
         log.push_str(&format!(
             "PROBE|CTRL drop-into-free|mutated={mutated}|drop_top_doc=(200.0,150.0)|drop_top_local=(100.0,50.0)|insert_index=0|parent={}|authored_x_y=({:?},{:?})|final_top=({:.0},{:.0})|disp_top={:.1}\n",
