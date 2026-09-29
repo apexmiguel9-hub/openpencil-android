@@ -57,7 +57,24 @@ use jian_ops_schema::sizing::{SizingBehavior, SizingKeyword};
 use jian_ops_schema::style::StrokeThickness;
 
 pub(crate) fn repair_fit_content_layout(root: &PenNode, rects: &mut BTreeMap<String, [f32; 4]>) {
+    // Interruptor de diagnostico: los tests de reorder_offbyone_tests.rs lo
+    // activan para medir los rects SIN esta capa y ver exactamente que drift
+    // introduce. En builds normales (no-test) la optimizacion del compilador
+    // lo resuelve a false constante, asi que no hay coste.
+    if cfg!(test) && SKIP_REPAIR.load(std::sync::atomic::Ordering::Relaxed) {
+        return;
+    }
     repair_node(root, rects, true);
+}
+
+#[cfg(test)]
+pub(crate) static SKIP_REPAIR: std::sync::atomic::AtomicBool =
+    std::sync::atomic::AtomicBool::new(false);
+
+/// Solo para tests: apaga o enciende la capa de repair.
+#[cfg(test)]
+pub(crate) fn set_skip_repair(skip: bool) {
+    SKIP_REPAIR.store(skip, std::sync::atomic::Ordering::Relaxed);
 }
 
 fn repair_node(node: &PenNode, rects: &mut BTreeMap<String, [f32; 4]>, is_root: bool) {
