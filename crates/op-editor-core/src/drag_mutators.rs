@@ -366,11 +366,22 @@ impl EditorState {
             }
         }
 
-        walkers::insert_into_parent(
+        let inserted = walkers::insert_into_parent(
             self.active_children_mut(),
             target_parent.as_ref(),
             Some(target_index),
             node,
-        )
+        );
+        if inserted {
+            // Reordenar/insertar es una mutacion de contenido, asi que tiene
+            // que bumpear la revision (ver EditorState::mark_document_changed):
+            // la revision es la identidad del cache de escena
+            // (op_pen_loader::SceneBuildCache), y sin bumpearla el host se
+            // queda pintando la escena de ANTES del drop. Eso hacia que el
+            // indice de insercion se calculara sobre la posicion vieja del
+            // nodo y salia 0 en vez de 1.
+            self.mark_document_changed();
+        }
+        inserted
     }
 }
