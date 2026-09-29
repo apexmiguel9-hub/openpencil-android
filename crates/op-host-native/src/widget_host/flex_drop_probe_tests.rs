@@ -141,7 +141,24 @@ fn drag_node_to(host: &mut WidgetHostNative, id: &str, target_center: (f32, f32)
     committed
 }
 
+// Este probe documenta un bug REAL de Taffy 0.5.2 (drop de un nodo desde fuera
+// hacia un contenedor con auto-layout lo coloca >100px del punto de drop), y su
+// unico proposito es hacer PANIC con la evidencia completa para que aparezca en
+// los logs de `cargo test`. Por diseño, este test falla.
+//
+// Por eso esta #[ignore]: mientras siga siendo un gatherer de evidencia, su
+// fallo rompe `Run workspace lib tests` en CI y salta el build del APK entero,
+// que no es lo que queremos. La evidencia ya se recogio; el fix va aparte.
+//
+// Para ejecutarlo a mano y volver a recoger la evidencia:
+//   cargo test -p op-host-native flex_drop_probe -- --ignored --nocapture
+//
+// Se borra este fichero cuando la causa del displacement este reportada y
+// arreglada (ver crates/op-pen-loader/src/layout_repair.rs, que existe
+// precisamente para tapar ese bug de Taffy 0.5.2 y deberia poder eliminarse
+// con Taffy 0.14, ya subido en vendor/jian).
 #[test]
+#[ignore = "evidence probe: panics on purpose to surface the Taffy 0.5.2 flex-drop displacement bug; not a permanent test"]
 fn probe_flex_drop_displacement_evidence() {
     let mut log = String::new();
     log.push_str("PROBE|flex-drop investigation start\n");
