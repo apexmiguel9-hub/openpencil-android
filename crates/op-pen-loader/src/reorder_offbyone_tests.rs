@@ -134,9 +134,9 @@ fn measure_drift_with_and_without_layout_repair() {
     assert_eq!(
         (idx_with, idx_without),
         (1, 1),
-        "medido: ambos esc��enarios dan indice 1 y los rects coinciden. Si esto \
+        "medido: ambos escenarios dan indice 1 y los rects coinciden. Si esto \
          cambia, layout_repair si toca los rects de este fixture y hay que \
-         reevaluar. mids observados: a={a:?} b={b:?} c={c:?}"
+         reevaluar. sib_with={sib_with:?} sib_without={sib_without:?}"
     );
 }
 
