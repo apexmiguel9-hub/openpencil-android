@@ -88,7 +88,7 @@ pub(super) fn mark_root_frame_clips(roots: &[PenNode], children: &mut [NodePaylo
 /// origin` stays exported for `op-host-native`'s Canvas Preview tap
 /// translation, which still needs the authored origin as a standalone
 /// value (not baked into a rect).
-pub(super) fn compute_layout(root: &PenNode, out: &mut BTreeMap<String, [f32; 4]>) {
+pub(crate) fn compute_layout(root: &PenNode, out: &mut BTreeMap<String, [f32; 4]>) {
     let (root_w, root_h) = root_available_size(root);
     let mut tree = NodeTree::new();
     tree.insert_subtree(root.clone(), None);
