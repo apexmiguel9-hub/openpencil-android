@@ -25,10 +25,7 @@ mod editor_meta;
 mod editor_meta_error;
 mod editor_scene;
 mod effects;
-// Desactivado junto con su unico call-site (adapter/pages.rs): existe para
-// tapar un bug de Taffy 0.5.2. Ver el comentario en ese call-site.
-// #[allow(dead_code)]
-// mod layout_repair;
+mod layout_repair;
 mod layout_scene;
 mod legacy_payload_repair;
 mod library;
