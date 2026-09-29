@@ -128,7 +128,10 @@ pub(crate) fn compute_layout(root: &PenNode, out: &mut BTreeMap<String, [f32; 4]
             );
         }
     }
-    crate::layout_repair::repair_fit_content_layout(root, out);
+    // EXPERIMENTO: con el fix de revision en drag_mutators.rs:369, la capa de
+    // repair deberia ser innecesaria. Se apaga para comprobarlo.
+    // crate::layout_repair::repair_fit_content_layout(root, out);
+    let _ = root;
 }
 
 fn layout_measure_backend() -> Rc<dyn MeasureBackend> {
