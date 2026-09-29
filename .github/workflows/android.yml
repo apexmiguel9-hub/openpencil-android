@@ -96,7 +96,13 @@ jobs:
         run: cargo test -p jian-core --lib
 
       - name: Run workspace lib tests
-        run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
+        # op-pen-loader entra aqui a proposito: es donde vive
+        # adapter::pages::compute_layout y layout_repair, o sea el codigo que
+        # decide los rects del flow. Sus tests (adapter_tests,
+        # layout_scene_tests, layout_repair_tests, reorder_offbyone_tests) NO
+        # se ejecutaban en ningun otro step, asi que el off-by-one de
+        # reordenacion en drag_flow_index.rs era invisible para el CI.
+        run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native -p op-pen-loader --features widget-host --lib
 
   build-android-arm64:
     name: Build Android ARM64 APK
