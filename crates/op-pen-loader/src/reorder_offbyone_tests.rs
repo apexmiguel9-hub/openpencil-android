@@ -1,5 +1,4 @@
-//! Reproduccion del off-by-one de reordenacion en contenedores con
-//! auto-layout, medido en el camino REAL del host.
+//! MEDICION del off-by-one de reordenacion en contenedores con auto-layout.
 //!
 //! CONTEXTO: cuando se desactiva `layout_repair` (commit e34f0d0, revertido
 //! en 9403934), 3.848 tests siguen pasando y solo fallan estos dos:
@@ -13,20 +12,25 @@
 //!     right: ["a", "n100", "b", "c"]   <- indice 1 (esperado)
 //!
 //! Se descarto que la causa sea Taffy: los tests de jian-core
-//! (layout/leaf_sizing_repro_tests.rs) confirman que taffy 0.14 dimensiona
-//! bien las hojas no-texto (80x40) y respeta el gap. Asi que el bug esta en
-//! la capa intermedia: los rects que produce
-//! `adapter::pages::compute_layout` para los hijos del contenedor.
+//! (leaf_sizing_repro_tests.rs) confirman que taffy 0.14 dimensiona bien las
+//! hojas no-texto (80x40) y respeta el gap.
+//!
+//! RESULTADO MEDIDO (measure_drift_with_and_without_layout_repair): los rects
+//! que produce `compute_layout` son IDENTICOS con y sin `layout_repair`
+//! (a=60, b=108, c=156 en ambos) y el indice sale 1 en ambos. El drift de rects
+//! NO es la causa, asi que este approach se descarta como via de fix.
+//!
+//! Conclusion: el off-by-one ocurre en el pipeline de `WidgetHostNative`
+//! (scene cache, gesture state, `apply_cursor_move`), no en `compute_layout`
+//! aislado. Por eso apagar la capa solo rompe esos 2 tests de host. El test se
+//! queda como constancia de lo descartado y como guardia de que la capa no
+//! empieza a mover rects sin que nadie lo note.
 //!
 //! `flex_insert_preview` (op-editor-ui/src/widgets/drag_flow_index.rs:311)
 //! decide el indice comparando el punto medio del arrastre contra los puntos
 //! medios de `flex_children`, que `index_containers` construye EXCLUYENDO al
-//! nodo arrastrado (drag_flow_index.rs:253). Si los rects que ve ahi no son
-//! los del flow real, el indice sale mal.
-//!
-//! Este test mide el mapa de rects que `compute_layout` produce realmente,
-//! con y sin `layout_repair`, y calcula el indice que saldria.
-
+//! nodo arrastrado (drag_flow_index.rs:253). Este test ejecuta esa misma
+//! cuenta, con y sin la capa.
 #![cfg(test)]
 
 use crate::adapter::pages::compute_layout;
@@ -117,11 +121,22 @@ fn measure_drift_with_and_without_layout_repair() {
          sin repair={idx_without} (drag_mid={drag_mid_without})"
     );
 
+    // RESULTADO MEDIDO (no es la hipotesis que se sospechaba):
+    // los rects son IDENTICOS con y sin layout_repair, y el indice sale 1 en
+    // ambos casos. layout_repair no toca los rects de este fixture, y el
+    // off-by-one NO se reproduce aqui.
+    //
+    // Esto descarta como causa el drift de rects producido por layout_repair.
+    // El bug real que ven los 2 tests de canvas_select_drag_tests ocurre en el
+    // pipeline del host (WidgetHostNative: scene cache, gesture state,
+    // apply_cursor_move), no en compute_layout aislado. De ahi que apagar la
+    // capa solo afecte a esos tests de host y no a los de layout.
     assert_eq!(
         (idx_with, idx_without),
-        (1, 0),
-        "el bug real: con la capa sale 1, sin la capa sale 0. Si esto cambia, \
-         la hipotesis del drift en los rects es incorrecta."
+        (1, 1),
+        "medido: ambos esc��enarios dan indice 1 y los rects coinciden. Si esto \
+         cambia, layout_repair si toca los rects de este fixture y hay que \
+         reevaluar. mids observados: a={a:?} b={b:?} c={c:?}"
     );
 }
 
