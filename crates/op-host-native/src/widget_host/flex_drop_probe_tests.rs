@@ -50,6 +50,16 @@ fn seed(host: &mut WidgetHostNative, json: &str) {
     host.mark_paint_dirty_for_test();
 }
 
+/// Some mutators (e.g. click-create) insert doc nodes without bumping the
+/// document revision, so the scene-rebuild cache would report "nothing
+/// changed" and the derived layout stays stale. The live app forces a
+/// rebuild through drags that bump the revision; the probe does the same
+/// by invalidating the cache before the next scene read.
+fn force_scene_rebuild(host: &mut WidgetHostNative) {
+    host.scene_cache.invalidate();
+    host.mark_dirty();
+}
+
 fn scene_xy(host: &mut WidgetHostNative, id: &str) -> (f32, f32) {
     let n = scene_find(host, id);
     let b = n.bounds;
@@ -126,7 +136,9 @@ fn drag_node_to(host: &mut WidgetHostNative, id: &str, target_center: (f32, f32)
     });
     host.apply_cursor_move(target_center.0 as f32, target_center.1 as f32);
     let drag = host.node_drag.expect("drag set");
-    host.commit_node_drag(&drag)
+    let committed = host.commit_node_drag(&drag);
+    force_scene_rebuild(host);
+    committed
 }
 
 #[test]
@@ -145,6 +157,7 @@ fn probe_flex_drop_displacement_evidence() {
         let id = host
             .create_node_for_active_tool(drop_top)
             .expect("create succeeds");
+        force_scene_rebuild(&mut host);
         host.refresh_layout_scene();
         let final_xy = scene_xy(&mut host, id.as_str());
         let authored = authored_xy(&host, id.as_str());
