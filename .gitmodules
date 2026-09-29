@@ -3,7 +3,8 @@
 	url = https://github.com/ZSeven-W/agent-rs.git
 [submodule "vendor/jian"]
 	path = vendor/jian
-	url = https://github.com/ZSeven-W/jian.git
+	url = https://github.com/apexmiguel9-hub/jian.git
+	branch = main
 [submodule "vendor/casement"]
 	path = vendor/casement
 	url = https://github.com/ZSeven-W/casement.git

@@ -92,7 +92,11 @@ jobs:
           sudo apt-get install -y libfreetype6-dev libfontconfig1-dev fonts-noto-cjk
 
       - name: Run workspace lib tests
-        run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
+        run: |
+          cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
+          # jian-core runs the layout engine (taffy) — its unit tests gate the
+          # whole tree so a taffy regressions blocks the APK build.
+          cargo test -p jian-core --lib
 
   build-android-arm64:
     name: Build Android ARM64 APK
