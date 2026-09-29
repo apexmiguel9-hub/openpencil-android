@@ -91,6 +91,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libfreetype6-dev libfontconfig1-dev fonts-noto-cjk
 
+      - name: Run jian-core layout engine tests
+        working-directory: vendor/jian
+        run: cargo test -p jian-core --lib
+
       - name: Run workspace lib tests
         run: cargo test -p op-editor-core -p op-editor-ui -p op-host-native --features widget-host --lib
 
