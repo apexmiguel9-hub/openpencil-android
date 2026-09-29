@@ -128,10 +128,12 @@ pub(crate) fn compute_layout(root: &PenNode, out: &mut BTreeMap<String, [f32; 4]
             );
         }
     }
-    // EXPERIMENTO: con el fix de revision en drag_mutators.rs:369, la capa de
-    // repair deberia ser innecesaria. Se apaga para comprobarlo.
-    // crate::layout_repair::repair_fit_content_layout(root, out);
-    let _ = root;
+    // NECESARIA. Medido (CI 36639472116): con el fix de revision en
+    // drag_mutators.rs:369 y esta capa APAGADA, los 2 tests de drag de
+    // WidgetHostNative fallan con indice 0. Con la capa encendida pasan.
+    // O sea que esta capa no es solo un parche de Taffy: corrige de verdad el
+    // rect de los hijos que flex_insert_preview consume para elegir el indice.
+    crate::layout_repair::repair_fit_content_layout(root, out);
 }
 
 fn layout_measure_backend() -> Rc<dyn MeasureBackend> {
