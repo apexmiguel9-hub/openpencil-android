@@ -128,7 +128,26 @@ pub(super) fn compute_layout(root: &PenNode, out: &mut BTreeMap<String, [f32; 4]
             );
         }
     }
-    crate::layout_repair::repair_fit_content_layout(root, out);
+    // EXPERIMENTO (Taffy 0.14): layout_repair se desactiva a proposito.
+    //
+    // Sus 759 lineas existen para tapar un bug de Taffy 0.5.2 -- el propio
+    // doc-comment lo dice: "Taffy 0.5 can under-report the own height of nested
+    // auto/flex containers whose text children later resolve taller than the
+    // container's cross-axis contribution".
+    //
+    // Taffy ya esta en 0.14 (vendor/jian, rama taffy-0.14-upgrade, commit
+    // 0031567), asi que ese under-report deberia estar resuelto. Ademas, la
+    // capa de repair es la que introduce la contradiccion con
+    // drag_mutators.rs: la repair decide que es "flow child" de una forma
+    // (layout_repair.rs layout_child, :648) y el editor de otra
+    // (drag_mutators.rs selected_is_flow_child, :108). Ese desacuerdo es lo
+    // que produce el drop displacement >100px que documenta
+    // flex_drop_probe_tests.rs.
+    //
+    // Si esto rompe tests, se reactiva Descomentando la linea de abajo. Si los
+    // tests pasan, layout_repair.rs entero (y layout_repair_tests.rs) se borran.
+    // crate::layout_repair::repair_fit_content_layout(root, out);
+    let _ = root;
 }
 
 fn layout_measure_backend() -> Rc<dyn MeasureBackend> {

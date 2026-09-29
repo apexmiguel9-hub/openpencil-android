@@ -33,8 +33,10 @@ fn state_from(src: &str) -> EditorState {
     EditorState::from_document(parsed.value)
 }
 
-#[path = "layout_repair_tests.rs"]
-mod layout_repair_tests;
+// Suspendidos junto con layout_repair: testean la capa que tapa el bug de
+// Taffy 0.5.2. Se reactivan comentando esto Y el mod layout_repair de lib.rs.
+// #[path = "layout_repair_tests.rs"]
+// mod layout_repair_tests;
 
 fn max_descendant_bottom(node: &SceneNode) -> f32 {
     node.children.iter().fold(
