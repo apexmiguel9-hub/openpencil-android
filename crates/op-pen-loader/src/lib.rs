@@ -33,6 +33,8 @@ mod library;
 // estimate backend is already cheap, so the module is gated to avoid dead code
 // under the CanvasKit (no-skia-measure) web build.
 #[cfg(test)]
+mod reorder_offbyone_tests;
+#[cfg(test)]
 mod active_page_scene_tests;
 #[cfg(test)]
 mod geometry_mode_scene_tests;
