@@ -23,34 +23,6 @@ thread_local! {
     static DROP_INDEX_BUILD_COUNT: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
 }
 
-// ==== LOG TEMPORAL (borrar cuando el doble tap funcione) ====
-// eprintln! NO sirve: Android cierra stdout/stderr de las apps, asi que no
-// llega a logcat (CI 36664343060: cero lineas). La funcion esta en liblog.so,
-// que Android enlaza siempre. Se declara aqui para no meter android_logger.
-//
-// Se usa __android_log_write y NO __android_log_print a proposito: print es
-// variadico en C y la ABI de arm64 para variadicos es delicada; write toma
-// una cadena ya formateada y no tiene ese problema.
-#[cfg(target_os = "android")]
-mod dbg_log {
-    extern "C" {
-        fn __android_log_write(prio: core::ffi::c_int, tag: *const u8, text: *const u8)
-            -> core::ffi::c_int;
-    }
-    /// ANDROID_LOG_INFO = 4
-    pub fn info(msg: &str) {
-        let tag = b"DBL\0";
-        let text = std::ffi::CString::new(msg).unwrap_or_default();
-        unsafe { __android_log_write(4, tag.as_ptr(), text.as_ptr()) };
-    }
-}
-#[cfg(not(target_os = "android"))]
-mod dbg_log {
-    pub fn info(msg: &str) {
-        eprintln!("{msg}");
-    }
-}
-// ==== FIN LOG TEMPORAL ====
 
 #[cfg(test)]
 pub(in crate::widget_host) fn reset_drop_index_build_count() {
@@ -100,21 +72,6 @@ impl WidgetHostNative {
             // continues through ordinary selection/drag routing.
             self.exit_image_crop_edit();
         }
-        // DIAGNOSTICO TEMPORAL (borrar cuando el doble tap funcione).
-        // Dice si la rama llega, con que valor de is_double, y que pasa con el
-        // clic previo, que es lo que sospecho que se pierde al empezar el drag.
-        dbg_log::info(&format!(
-            "press node={} is_double={} shift={} sel={} last_click={:?}",
-            resolved.targets.primary,
-            resolved.is_double,
-            self.shift_held,
-            self.editor_state.selection_count(),
-            self.editor_state
-                .editor_ui
-                .last_canvas_click
-                .as_ref()
-                .map(|(id, t)| (id.as_str().to_string(), *t))
-        ));
         if resolved.is_double && !text_edit_was_active {
             if resolved.selected_crop_is_deepest && self.enter_selected_image_crop_edit() {
                 return true;
@@ -156,19 +113,6 @@ impl WidgetHostNative {
             // aplica, asi que aqui no se pisa nada. Si alguna se anade
             // antes, pasaria por encima de la entrada al ambito anidado.
             //
-            // No hace falta ningun estado de "editando nodos": el overlay
-            // (canvas_path_overlay.rs:97) pinta handles cuando el nodo es
-            // Path y esta seleccionado, y la conversion conserva el id, o
-            // sea que la seleccion sigue valiendo.
-            let convertible = op_editor_core::walkers::find_node(
-                self.editor_state.active_children(),
-                &resolved.targets.primary,
-            )
-            .map(op_editor_core::convert_to_path::is_convertible_primitive);
-            dbg_log::info(&format!(
-                "RAMA conversion: node={} convertible={:?}",
-                resolved.targets.primary, convertible
-            ));
             if self
                 .editor_state
                 .convert_node_to_path_in_place(&resolved.targets.primary)
@@ -177,8 +121,27 @@ impl WidgetHostNative {
                 // cache de escena), asi que hay que forzar la reconstruccion
                 // antes de que nadie lea la escena. invalidate_live_scene_for_
                 // rebuild es el helper que ya usan los drags.
+                // FASE 3: entras en modo edicion de vertices. A partir de
+                // aqui los tiradores de redimension se apagan (canvas_viewport
+                // show_handles) y el golpeo va al anchor primero.
+                self.editor_state.editor_ui.node_editing =
+                    Some(resolved.targets.primary.clone());
                 self.invalidate_live_scene_for_rebuild();
                 self.scroll_layer_panel_selection_into_view(viewport_width, viewport_height);
+                return true;
+            }
+            // Ya estamos editando este Path: un doble tap mas no hace nada
+            // nuevo, pero entra igualmente para que el gesto sea idempotente.
+            if self
+                .editor_state
+                .editor_ui
+                .node_editing
+                .as_ref()
+                .is_some_and(|id| id == &resolved.targets.primary)
+            {
+                self.editor_state.editor_ui.node_editing =
+                    Some(resolved.targets.primary.clone());
+                self.mark_dirty();
                 return true;
             }
         }

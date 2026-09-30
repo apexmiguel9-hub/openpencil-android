@@ -735,6 +735,24 @@ pub struct EditorUiState {
     /// Escape and selecting outside the scope exit it. Transient:
     /// never serialized.
     pub entered_container: Option<NodeId>,
+    /// Path whose vertices are being edited, entered by double-tapping it
+    /// (FASE 3).
+    ///
+    /// While set, the selection overlay stops painting the resize handles
+    /// and canvas presses route to the anchor/handle hit-test FIRST. That
+    /// priority is the whole point: on touch, a resize handle and a path
+    /// anchor land on the same pixel, and resize used to win, so tapping a
+    /// corner resized instead of moving the vertex and the editor looked
+    /// like it did nothing.
+    ///
+    /// Entering also CONVERTS a primitive (Rectangle/Ellipse/Polygon/Line)
+    /// into an editable Path — see `convert_to_path`, the single point every
+    /// conversion goes through so the non-destructive option stays a
+    /// one-function change.
+    ///
+    /// Escape, or pressing empty canvas, exits. Transient: never
+    /// serialized.
+    pub node_editing: Option<NodeId>,
     /// Top-left corner of the Component-Browser panel in logical px;
     /// `None` until first opened — the host then centres it.
     pub component_browser_pos: Option<(f32, f32)>,

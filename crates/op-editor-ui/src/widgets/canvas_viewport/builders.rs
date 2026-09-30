@@ -60,6 +60,13 @@ impl<'a> CanvasViewport<'a> {
                 .image_crop_editing
                 .as_ref()
                 .is_some_and(|id| id == &state.selection.anchor),
+            // FASE 3: mismo patron que el crop, pero para la edicion de
+            // vertices de un Path.
+            node_edit_active: state
+                .editor_ui
+                .node_editing
+                .as_ref()
+                .is_some_and(|id| id == &state.selection.anchor),
             node_drag_overlay: None,
             text_editing: state
                 .ui
@@ -125,6 +132,7 @@ impl<'a> CanvasViewport<'a> {
             drop_indicator: None,
             node_drag_active: false,
             image_crop_edit_active: false,
+            node_edit_active: false,
             node_drag_overlay: None,
             text_editing: None,
             text_edit_input: Default::default(),

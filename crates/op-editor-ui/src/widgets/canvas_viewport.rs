@@ -107,6 +107,9 @@ pub struct CanvasViewport<'a> {
     /// The selection outline remains visible, but resize/rotate chrome is
     /// hidden so dragging inside the frame clearly pans the bitmap.
     pub(super) image_crop_edit_active: bool,
+    /// FASE 3: hay un Path en modo edicion de vertices. Apaga los tiradores
+    /// de redimension y da prioridad al golpeo de anchors.
+    pub(super) node_edit_active: bool,
     /// Optional floating copy of the dragged node. The base scene can
     /// still be reflowed to preview sibling avoidance while this copy
     /// follows the cursor.
@@ -179,8 +182,14 @@ impl<'a> Widget for CanvasViewport<'a> {
         }
         let indicators = op_editor_core::agent_indicators::snapshot_at_if_active(self.now_ms);
         let selection_chrome_visible = !self.node_drag_active;
+        // FASE 3: en modo edicion de nodos se apagan los tiradores de
+        // redimension, igual que hace image_crop_edit_active. Sin esto los
+        // anchors y los tiradores caen en el mismo pixel en un movil y el
+        // redimension tapaba al anchor: el editor de vertices se veia pero no
+        // se podia usar.
         let show_handles = selection_chrome_visible
             && !self.image_crop_edit_active
+            && !self.node_edit_active
             && self.selected_set.len() == 1;
         let single_selected_id = self.selected_set.first().map(String::as_str);
         let selected_lookup = if show_handles {

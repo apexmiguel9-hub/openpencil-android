@@ -160,6 +160,23 @@ impl WidgetHostNative {
             });
             return true;
         }
+        // FASE 3: en modo edicion de vertices, el anchor tiene PRIORIDAD
+        // sobre el tirador de redimension.
+        //
+        // Sin esto el editor no se puede usar en un movil: en las esquinas el
+        // anchor y el tirador caen en el mismo pixel, el redimension se
+        // comprobaba primero (esta linea) y se llevaba el gesto, asi que
+        // tocar una esquina redimensionaba en vez de mover el vertice y
+        // parecia que el editor no hacia nada.
+        //
+        // El modo apaga los tiradores al pintar (canvas_viewport
+        // show_handles), asi que esto es la mitad del comportamiento: el
+        // camino del anchor.
+        if self.editor_state.editor_ui.node_editing.is_some()
+            && self.try_path_anchor_press(x, y, viewport_width, viewport_height)
+        {
+            return true;
+        }
         if let Some(handle) = selection_handle_at_point(
             canvas_rect,
             &self.layout_scene,
@@ -283,6 +300,12 @@ impl WidgetHostNative {
 
         // Desktop empty-canvas press — start a marquee.
         self.editor_state.editor_ui.last_canvas_click = None;
+        // FASE 3: tocar el lienzo vacio sale del modo de edicion de vertices.
+        // Mismo criterio que clear_selection_on_empty_canvas_press justo
+        // debajo, y que entered_container.
+        if self.editor_state.editor_ui.node_editing.take().is_some() {
+            self.mark_dirty();
+        }
         let cleared_now = core_press::clear_selection_on_empty_canvas_press(
             &mut self.editor_state,
             self.shift_held,

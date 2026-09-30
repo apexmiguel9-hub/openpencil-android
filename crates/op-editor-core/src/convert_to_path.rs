@@ -204,6 +204,11 @@ pub fn convert_primitive_to_path(node: &PenNode) -> Option<PenNode> {
     // los lleva) y su auto-layout. Es perdida de datos silenciosa, asi que
     // aqui se niega en vez de arriesgar.
     //
+    // OJO al probar: un Frame VACIO si se convierte, porque lo que se mira son
+    // los hijos, no el tipo. El rectangulo inicial de un documento nuevo es un
+    // Frame vacio, asi que deberia entrar. Si no entra, el problema es el
+    // gesto (que no llega a la rama) y no el guard.
+    //
     // Lo correcto para un container seria otra operacion ("aplanar"), que no
     // es lo mismo que deformar la forma.
     if node.children().map_or(false, |c| !c.is_empty()) {
