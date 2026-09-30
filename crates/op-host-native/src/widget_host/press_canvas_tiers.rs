@@ -141,7 +141,21 @@ impl WidgetHostNative {
         let selected_anchor = self.editor_state.selection.anchor.as_str().to_string();
         // Arc handles take priority over the 8 resize handles —
         // the sweep handle can overlap the right-mid resize grip.
+        // FASE 3: en modo edicion de vertices los tiradores de la shape
+        // (arco, resize, rotacion) NO existen, igual que en Penpot, donde el
+        // path editor sustituye a selection/handlers* por un if/else
+        // (viewport.cljs:719-728) y los tiradores simplemente no se pintan.
+        // Ahi no hace falta porque el hit-test es DOM (pointer-events: none).
+        // Aqui el hit-test es geometrico y es independiente del pintado, asi
+        // que sin esto los tiradores seguian respondiendo con el raton
+        // puesto encima de los circulos: invisible pero activo.
+        //
+        // Los anchors no se tocan aqui: try_path_anchor_press, mas arriba, ya
+        // va PRIMERO e incondicional, asi que si el toque cae en un anchor se
+        // resolvio ahi. Esto solo apaga lo que quedaria despues.
+        let node_edit_active = self.editor_state.editor_ui.node_editing.is_some();
         if let Some((node_id, handle)) = self.arc_handle_hit(x, y, viewport_width, viewport_height)
+            .filter(|_| !node_edit_active)
         {
             if !self.collab_allows_document_mutation(
                 op_editor_core::CollabDocumentMutation::Unsupported(
@@ -160,29 +174,18 @@ impl WidgetHostNative {
             });
             return true;
         }
-        // FASE 3: en modo edicion de vertices, el anchor tiene PRIORIDAD
-        // sobre el tirador de redimension.
-        //
-        // Sin esto el editor no se puede usar en un movil: en las esquinas el
-        // anchor y el tirador caen en el mismo pixel, el redimension se
-        // comprobaba primero (esta linea) y se llevaba el gesto, asi que
-        // tocar una esquina redimensionaba en vez de mover el vertice y
-        // parecia que el editor no hacia nada.
-        //
-        // El modo apaga los tiradores al pintar (canvas_viewport
-        // show_handles), asi que esto es la mitad del comportamiento: el
-        // camino del anchor.
-        if self.editor_state.editor_ui.node_editing.is_some()
-            && self.try_path_anchor_press(x, y, viewport_width, viewport_height)
-        {
-            return true;
-        }
+        // (Aqui antes habia un bloque de "prioridad del anchor sobre el tirador".
+        // Era CODIGO MUERTO: try_path_anchor_press ya corre unas lineas mas
+        // arriba, primero e incondicional, asi que si el toque caia en un
+        // anchor ya se habia resuelto. Lo escribi sin mirar que existia.)
         if let Some(handle) = selection_handle_at_point(
             canvas_rect,
             &self.layout_scene,
             &self.editor_state,
             Point2D::new(x, y),
-        ) {
+        )
+        .filter(|_| !node_edit_active)
+        {
             if !self.collab_allows_document_mutation(
                 op_editor_core::CollabDocumentMutation::NodePropertyBatch,
             ) {
@@ -220,6 +223,7 @@ impl WidgetHostNative {
             &self.editor_state,
             Point2D::new(x, y),
         )
+        .filter(|_| !node_edit_active)
         .is_some()
         {
             if !self.collab_allows_document_mutation(

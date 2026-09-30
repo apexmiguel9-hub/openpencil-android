@@ -492,6 +492,27 @@ pub fn path_anchor_hit(
     if !matches!(node.kind, NodeKind::Path) {
         return None;
     }
+    // FASE 3: con la herramienta de SELECCION los anchors solo existen en
+    // modo edicion de vertices.
+    //
+    // Sin esto el hit-test era mas ancho que lo que se pinta, y como
+    // try_path_anchor_press corre ANTES que los tiradores de resize, tocar una
+    // esquina de un Path simplemente seleccionado arrastraba el vertice en vez
+    // de redimensionar. Los anchors ya no se dibujan fuera del modo (ver
+    // canvas_path_overlay, que exige node_edit_active), asi que un area de
+    // golpeo invisible solo puede hacer dano.
+    //
+    // La Pluma no se gatea: al dibujar, los handles fantasma SI se pintan y
+    // tienen que ser golpeables (canvas_path_overlay los pinta siempre).
+    if matches!(state.tool, op_editor_core::Tool::Select)
+        && !state
+            .editor_ui
+            .node_editing
+            .as_ref()
+            .is_some_and(|id| id.as_str() == sel)
+    {
+        return None;
+    }
     let (cx0, cy0, _cw, _ch) = canvas_region(state, viewport_w, viewport_h);
     let zoom = state.viewport.zoom.max(0.0001);
     let canvas_local = Point2D::new(x - cx0, y - cy0);

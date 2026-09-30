@@ -227,23 +227,28 @@ impl WidgetHostNative {
                     size: Point2D::new(cw, ch),
                 };
                 let point = Point2D::new(x, y);
-                if let Some(handle) = selection_handle_at_point(
-                    canvas_rect,
-                    &self.layout_scene,
-                    &self.editor_state,
-                    point,
-                ) {
-                    return cursor_for_handle(handle);
-                }
-                if rotation_corner_at_point(
-                    canvas_rect,
-                    &self.layout_scene,
-                    &self.editor_state,
-                    point,
-                )
-                .is_some()
-                {
-                    return CursorHint::Rotate;
+                // FASE 3: en modo edicion de vertices los tiradores no se
+                // pintan y tampoco son golpeables, asi que el cursor no puede
+                // seguir diciendo "redimensiona" encima de un circulo.
+                if self.editor_state.editor_ui.node_editing.is_none() {
+                    if let Some(handle) = selection_handle_at_point(
+                        canvas_rect,
+                        &self.layout_scene,
+                        &self.editor_state,
+                        point,
+                    ) {
+                        return cursor_for_handle(handle);
+                    }
+                    if rotation_corner_at_point(
+                        canvas_rect,
+                        &self.layout_scene,
+                        &self.editor_state,
+                        point,
+                    )
+                    .is_some()
+                    {
+                        return CursorHint::Rotate;
+                    }
                 }
                 if over_canvas_node {
                     return CursorHint::Default;

@@ -349,6 +349,11 @@ fn select_tool_press_on_anchor_starts_the_drag() {
     host.editor_state_mut().tool = Tool::Select;
     host.editor_state_mut()
         .set_single_selection(NodeId::new("n60"));
+    // FASE 3: con la herramienta de seleccion los anchors solo son
+    // golpeables en modo edicion de vertices (host_canvas_geometry
+    // path_anchor_hit). Por eso este test tiene que declarar el modo: es la
+    // situacion que quiere describir.
+    host.editor_state_mut().editor_ui.node_editing = Some(NodeId::new("n60"));
     host.mark_paint_dirty_for_test();
     let (px, py) = screen(&host, 380.0, 300.0);
     assert!(host.apply_press(px, py, VW, VH));
@@ -358,6 +363,28 @@ fn select_tool_press_on_anchor_starts_the_drag() {
         drag.target,
         crate::widget_host::AnchorDragTarget::Anchor
     ));
+}
+
+#[test]
+fn select_tool_ignores_anchors_outside_node_edit_mode() {
+    // El inverso de select_tool_press_on_anchor_starts_the_drag, y el bug que
+    // mas daño hacia: con un Path simplemente SELECCIONADO, sin modo edicion,
+    // tocar un anchor NO debe armar un arrastre de vertice. Los anchors no se
+    // pintan en ese estado (canvas_path_overlay exige node_edit_active), asi
+    // que un area de golpeo invisible solo puede robarle el gesto al tirador
+    // de resize, que va justo en el mismo pixel.
+    let mut host = path_host();
+    host.editor_state_mut().tool = Tool::Select;
+    host.editor_state_mut()
+        .set_single_selection(NodeId::new("n60"));
+    host.mark_paint_dirty_for_test();
+    assert!(host.editor_state().editor_ui.node_editing.is_none());
+    let (px, py) = screen(&host, 380.0, 300.0);
+    let _ = host.apply_press(px, py, VW, VH);
+    assert!(
+        host.path_anchor_drag.is_none(),
+        "anchor must not be grabbable outside node edit mode"
+    );
 }
 
 #[test]
@@ -380,6 +407,10 @@ fn handle_drag_preserves_grab_offset_and_anchor_type() {
     host.editor_state_mut().tool = Tool::Select;
     host.editor_state_mut()
         .set_single_selection(NodeId::new("n60"));
+    // Igual que en select_tool_press_on_anchor_starts_the_drag: con la
+    // herramienta de seleccion, los handles de un Path solo son golpeables
+    // en modo edicion de vertices.
+    host.editor_state_mut().editor_ui.node_editing = Some(NodeId::new("n60"));
     host.mark_paint_dirty_for_test();
     // Handle dot sits at doc (400, 300); press 2 px off-center.
     let (px, py) = screen(&host, 398.0, 298.0);

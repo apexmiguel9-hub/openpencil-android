@@ -489,13 +489,36 @@ impl<'a> Widget for CanvasViewport<'a> {
                     selection_label: self.selection_label.as_deref(),
                 };
                 if let Some(node) = single_selected_node {
-                    super::canvas_selection_overlay::paint_selected_node(
-                        cx,
-                        node,
-                        &selection_input,
-                        show_handles,
-                        &paint_hits.selected_transforms,
-                    );
+                    // FASE 3: en modo edicion de vertices el chrome de
+                    // seleccion NO se pinta entero — ni caja, ni tiradores, ni
+                    // etiqueta.
+                    //
+                    // Antes solo se apagaban los 8 tiradores (show_handles) y
+                    // seguia viendose el rectangulo de seleccion, que es
+                    // justo lo que reporto el usuario: en modo edicion solo
+                    // deben verse los nodos.
+                    //
+                    // Se apaga aqui y no dentro de paint_selection_overlay
+                    // para que el if/else sea explicito en el mismo sitio
+                    // donde se elige entre los dos overlays, igual que en
+                    // Penpot:
+                    //   (if (and editing-shape path-editing?)
+                    //      path-editor*
+                    //      selection/handlers*)
+                    //   viewport.cljs:719-728
+                    //
+                    // OJO: esto NO afecta a anchor_selected_node, que se
+                    // calcula mas abajo aparte a partir de single_selected_node.
+                    // Por eso apagar el chrome no apaga los circulos.
+                    if !self.node_edit_active {
+                        super::canvas_selection_overlay::paint_selected_node(
+                            cx,
+                            node,
+                            &selection_input,
+                            show_handles,
+                            &paint_hits.selected_transforms,
+                        );
+                    }
                 } else if !self.selected_set.is_empty() {
                     super::canvas_selection_overlay::paint_multi_selection_overlays(
                         cx,
