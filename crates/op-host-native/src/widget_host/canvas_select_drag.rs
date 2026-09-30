@@ -23,8 +23,6 @@ thread_local! {
     static DROP_INDEX_BUILD_COUNT: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
 }
 
-#[cfg(test)]
-
 // ==== LOG TEMPORAL (borrar cuando el doble tap funcione) ====
 // eprintln! NO sirve: Android cierra stdout/stderr de las apps, asi que no
 // llega a logcat (CI 36664343060: cero lineas). La funcion esta en liblog.so,
