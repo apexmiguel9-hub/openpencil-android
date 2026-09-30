@@ -20,6 +20,7 @@
 //! dialogs stay in `openpencil-desktop/src/persistence.rs`.
 
 mod adapter;
+mod convert_to_path;
 mod authored_geometry;
 mod editor_meta;
 mod editor_meta_error;
