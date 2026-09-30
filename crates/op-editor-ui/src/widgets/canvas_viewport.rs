@@ -187,12 +187,25 @@ impl<'a> Widget for CanvasViewport<'a> {
         // anchors y los tiradores caen en el mismo pixel en un movil y el
         // redimension tapaba al anchor: el editor de vertices se veia pero no
         // se podia usar.
-        let show_handles = selection_chrome_visible
+        // OJO: show_handles hace DOS cosas, y solo una debe depender del modo
+        // de edicion de vertices.
+        //
+        //   1. si el selection overlay pinta los 8 tiradores de redimension
+        //   2. cual es selected_lookup, que es lo que le dice al overlay de
+        //      paths que nodo tiene sus anchors que pintar
+        //
+        // La primera vez que se metio node_edit_active aqui, se apagaron las
+        // dos y los circulos desaparecieron con los cuadritos: el editor de
+        // vertices se quedaba sin pintar. Por eso se separan:
+        //
+        //   show_handles  -> solo (1), los tiradores
+        //   show_selection -> (1) y (2), lo que selecciona el path editor
+        let show_selection = selection_chrome_visible
             && !self.image_crop_edit_active
-            && !self.node_edit_active
             && self.selected_set.len() == 1;
+        let show_handles = show_selection && !self.node_edit_active;
         let single_selected_id = self.selected_set.first().map(String::as_str);
-        let selected_lookup = if show_handles {
+        let selected_lookup = if show_selection {
             single_selected_id
         } else {
             None
@@ -448,7 +461,14 @@ impl<'a> Widget for CanvasViewport<'a> {
 
         // 4. Selection overlay — outlines + handles (single-select only).
         let active_page = self.scene.active_page();
-        let single_selected_node = if show_handles {
+        // OJO: single_selected_node va por show_selection y NO por
+        // show_handles. De este valor sale el nodo que recibe el overlay de
+        // paths (anchor_selected_node, linea de abajo), o sea que ponerlo
+        // detras de show_handles hacia que apagar los tiradores de
+        // redimension apagase tambien los anchors: el editor de vertices se
+        // quedaba sin pintar. Son dos decisiones distintas y no se deben
+        // compartir el interruptor.
+        let single_selected_node = if show_selection {
             paint_hits.selected_node
         } else {
             None
