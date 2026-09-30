@@ -65,9 +65,10 @@ pub(super) fn paint_path_overlays(
     cx: &mut PaintCx<'_>,
     theme: &Theme,
     tool: op_editor_core::Tool,
-    /// Hay un Path en modo edicion de vertices. Con la herramienta de
-    /// seleccion solo entonces se pintan los anchors; sin esto salian
-    /// mezclados con los tiradores de redimension.
+    // Hay un Path en modo edicion de vertices. Con la herramienta de
+    // seleccion solo entonces se pintan los anchors; sin esto salian
+    // mezclados con los tiradores de redimension.
+    // (Comentario normal y no /// porque esto es un parametro.)
     node_edit_active: bool,
     pen_active: bool,
     pen_node: Option<&SceneNode>,

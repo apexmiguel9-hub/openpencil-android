@@ -444,7 +444,7 @@ mod convert_in_place_tests {
     use jian_ops_schema::node::{PenNodeBase, RectangleNode};
     use jian_ops_schema::sizing::{SizingBehavior, SizingKeyword};
 
-    fn rect(id: &str, parent: Option<&str>, index_in_parent: usize) -> PenNode {
+    fn rect(id: &str) -> PenNode {
         PenNode::Rectangle(RectangleNode {
             base: PenNodeBase {
                 id: id.into(),
@@ -473,7 +473,7 @@ mod convert_in_place_tests {
     #[test]
     fn top_level_rect_converts_in_place() {
         let mut s = EditorState::default();
-        s.active_children_mut().push(rect("r1", None, 0));
+        s.active_children_mut().push(rect("r1"));
         assert!(s.convert_node_to_path_in_place(&NodeId::new("r1")));
         let node = &s.active_children()[0];
         assert!(matches!(node, PenNode::Path(_)), "debe ser Path ahora");
@@ -486,9 +486,9 @@ mod convert_in_place_tests {
     #[test]
     fn nested_rect_keeps_its_index_among_siblings() {
         let mut s = EditorState::default();
-        let mut frame = rect("frame", None, 0);
+        let mut frame = rect("frame");
         if let PenNode::Rectangle(r) = &mut frame {
-            r.children = Some(vec![rect("a", None, 0), rect("b", None, 1), rect("c", None, 2)]);
+            r.children = Some(vec![rect("a"), rect("b"), rect("c")]);
         }
         s.active_children_mut().push(frame);
 
@@ -503,9 +503,9 @@ mod convert_in_place_tests {
     #[test]
     fn rect_with_children_is_refused() {
         let mut s = EditorState::default();
-        let mut parent = rect("parent", None, 0);
+        let mut parent = rect("parent");
         if let PenNode::Rectangle(r) = &mut parent {
-            r.children = Some(vec![rect("kid", None, 0)]);
+            r.children = Some(vec![rect("kid")]);
         }
         s.active_children_mut().push(parent);
         assert!(
@@ -520,7 +520,7 @@ mod convert_in_place_tests {
     #[test]
     fn missing_id_is_a_noop() {
         let mut s = EditorState::default();
-        s.active_children_mut().push(rect("r1", None, 0));
+        s.active_children_mut().push(rect("r1"));
         assert!(!s.convert_node_to_path_in_place(&NodeId::new("nope")));
     }
 
@@ -528,7 +528,7 @@ mod convert_in_place_tests {
     #[test]
     fn fit_content_rect_is_refused() {
         let mut s = EditorState::default();
-        let mut r = rect("r1", None, 0);
+        let mut r = rect("r1");
         if let PenNode::Rectangle(x) = &mut r {
             x.container.height = Some(SizingBehavior::Keyword(SizingKeyword::FitContent));
         }
@@ -541,7 +541,7 @@ mod convert_in_place_tests {
     #[test]
     fn conversion_bumps_the_revision() {
         let mut s = EditorState::default();
-        s.active_children_mut().push(rect("r1", None, 0));
+        s.active_children_mut().push(rect("r1"));
         let before = s.document_revision();
         assert!(s.convert_node_to_path_in_place(&NodeId::new("r1")));
         assert!(
