@@ -93,7 +93,12 @@ jobs:
 
       - name: Run jian-core layout engine tests (taffy)
         working-directory: vendor/jian
-        run: cargo test -p jian-core --lib
+        # jian-skia entra aqui porque NO se testeaba en ningun step: sus tests
+        # (path.rs: to_sk_path / to_path_commands) se escribieron y nunca se
+        # ejecutaron, asi que un fallo ahi pasaba desapercibido hasta que el
+        # modulo bajo a jian-core (CI 36655403876, donde saltaron 3 asserts
+        # mal escritos de shape_to_path).
+        run: cargo test -p jian-core -p jian-skia --lib
 
       - name: Run workspace lib tests
         # op-pen-loader entra aqui a proposito: es donde vive
