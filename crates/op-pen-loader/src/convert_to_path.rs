@@ -36,11 +36,13 @@
 
 use jian_core::render::PathCommand;
 use jian_ops_schema::node::container::CornerRadius;
-use jian_ops_schema::node::{
-    EllipseNode, LineNode, PathNode, PenNode, PolygonNode, RectangleNode,
-};
-// base()/fill()/stroke()/effects()/mask() vienen de este trait (op-editor-core,
-// pen_node_ext.rs:31). Es solo un trait, no arrastra skia.
+use jian_ops_schema::node::{EllipseNode, LineNode, PathNode, PenNode, PolygonNode, RectangleNode};
+// PenFill / PenStroke / PenEffect viven en style.rs, como los importa
+// container.rs:2 -- no en node/.
+use jian_ops_schema::style::{PenEffect, PenFill, PenStroke};
+// base() viene del trait PenNodeExt (op-editor-core, pen_node_ext.rs:31).
+// fill/stroke/effects NO tienen accessor: se leen con un match por tipo, abajo.
+// Es solo un trait, asi que op-pen-loader lo usa sin arrastrar skia al core.
 use op_editor_core::PenNodeExt;
 use jian_ops_schema::sizing::SizingBehavior;
 
@@ -138,6 +140,42 @@ fn primitive_size(node: &PenNode) -> Option<(f32, f32)> {
     }
 }
 
+
+/// El `fill` del nodo, sea del tipo que sea.
+///
+/// No hay un accessor `fill()` en el schema: `fill` vive en
+/// `ContainerProps` para los contenedores y en cada leaf aparte. Este match
+/// es el unico sitio que hay que tocar si anades un tipo de nodo nuevo.
+fn fill_of(node: &PenNode) -> Option<Vec<PenFill>> {
+    match node {
+        PenNode::Frame(f) => f.container.fill.clone(),
+        PenNode::Group(g) => g.container.fill.clone(),
+        PenNode::Rectangle(r) => r.container.fill.clone(),
+        PenNode::Path(p) => p.fill.clone(),
+        _ => None,
+    }
+}
+
+fn stroke_of(node: &PenNode) -> Option<PenStroke> {
+    match node {
+        PenNode::Frame(f) => f.container.stroke.clone(),
+        PenNode::Group(g) => g.container.stroke.clone(),
+        PenNode::Rectangle(r) => r.container.stroke.clone(),
+        PenNode::Path(p) => p.stroke.clone(),
+        _ => None,
+    }
+}
+
+fn effects_of(node: &PenNode) -> Option<Vec<PenEffect>> {
+    match node {
+        PenNode::Frame(f) => f.container.effects.clone(),
+        PenNode::Group(g) => g.container.effects.clone(),
+        PenNode::Rectangle(r) => r.container.effects.clone(),
+        PenNode::Path(p) => p.effects.clone(),
+        _ => None,
+    }
+}
+
 /// Convierte una primitiva en un `PenNode::Path` con anchors editables.
 ///
 /// `None` si el nodo no es una primitiva convertible: un `Path` que no lo es
@@ -171,12 +209,12 @@ pub fn convert_primitive_to_path(node: &PenNode) -> Option<PenNode> {
         anchors: Some(geom.anchors),
         closed: Some(closed),
         fill_rule: None,
-        mask: node.mask().cloned(),
+        mask: None,
         width: Some(SizingBehavior::Number(w as f64)),
         height: Some(SizingBehavior::Number(h as f64)),
-        fill: node.fill().cloned(),
-        stroke: node.stroke().cloned(),
-        effects: node.effects().cloned(),
+        fill: fill_of(node),
+        stroke: stroke_of(node),
+        effects: effects_of(node),
         state: None,
         bindings: None,
         events: None,
