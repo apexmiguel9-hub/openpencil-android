@@ -24,6 +24,36 @@ thread_local! {
 }
 
 #[cfg(test)]
+
+// ==== LOG TEMPORAL (borrar cuando el doble tap funcione) ====
+// eprintln! NO sirve: Android cierra stdout/stderr de las apps, asi que no
+// llega a logcat (CI 36664343060: cero lineas). La funcion esta en liblog.so,
+// que Android enlaza siempre. Se declara aqui para no meter android_logger.
+//
+// Se usa __android_log_write y NO __android_log_print a proposito: print es
+// variadico en C y la ABI de arm64 para variadicos es delicada; write toma
+// una cadena ya formateada y no tiene ese problema.
+#[cfg(target_os = "android")]
+mod dbg_log {
+    extern "C" {
+        fn __android_log_write(prio: core::ffi::c_int, tag: *const u8, text: *const u8)
+            -> core::ffi::c_int;
+    }
+    /// ANDROID_LOG_INFO = 4
+    pub fn info(msg: &str) {
+        let tag = b"DBL\0";
+        let text = std::ffi::CString::new(msg).unwrap_or_default();
+        unsafe { __android_log_write(4, tag.as_ptr(), text.as_ptr()) };
+    }
+}
+#[cfg(not(target_os = "android"))]
+mod dbg_log {
+    pub fn info(msg: &str) {
+        eprintln!("{msg}");
+    }
+}
+// ==== FIN LOG TEMPORAL ====
+
 pub(in crate::widget_host) fn reset_drop_index_build_count() {
     DROP_INDEX_BUILD_COUNT.with(|count| count.set(0));
 }
@@ -74,14 +104,18 @@ impl WidgetHostNative {
         // DIAGNOSTICO TEMPORAL (borrar cuando el doble tap funcione).
         // Dice si la rama llega, con que valor de is_double, y que pasa con el
         // clic previo, que es lo que sospecho que se pierde al empezar el drag.
-        eprintln!(
-            "[DBL] press node={} is_double={} shift={} sel_count={} last_click={:?}",
+        dbg_log::info(&format!(
+            "press node={} is_double={} shift={} sel={} last_click={:?}",
             resolved.targets.primary,
             resolved.is_double,
             self.shift_held,
             self.editor_state.selection_count(),
-            self.editor_state.editor_ui.last_canvas_click.as_ref().map(|(id, t)| (id.as_str().to_string(), *t))
-        );
+            self.editor_state
+                .editor_ui
+                .last_canvas_click
+                .as_ref()
+                .map(|(id, t)| (id.as_str().to_string(), *t))
+        ));
         if resolved.is_double && !text_edit_was_active {
             if resolved.selected_crop_is_deepest && self.enter_selected_image_crop_edit() {
                 return true;
@@ -132,10 +166,10 @@ impl WidgetHostNative {
                 &resolved.targets.primary,
             )
             .map(op_editor_core::convert_to_path::is_convertible_primitive);
-            eprintln!(
-                "[DBL] rama de conversion: node={} convertible={:?}",
+            dbg_log::info(&format!(
+                "RAMA conversion: node={} convertible={:?}",
                 resolved.targets.primary, convertible
-            );
+            ));
             if self
                 .editor_state
                 .convert_node_to_path_in_place(&resolved.targets.primary)
