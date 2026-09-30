@@ -71,6 +71,17 @@ impl WidgetHostNative {
             // continues through ordinary selection/drag routing.
             self.exit_image_crop_edit();
         }
+        // DIAGNOSTICO TEMPORAL (borrar cuando el doble tap funcione).
+        // Dice si la rama llega, con que valor de is_double, y que pasa con el
+        // clic previo, que es lo que sospecho que se pierde al empezar el drag.
+        eprintln!(
+            "[DBL] press node={} is_double={} shift={} sel_count={} last_click={:?}",
+            resolved.targets.primary,
+            resolved.is_double,
+            shift_held,
+            self.editor_state.selection_count(),
+            self.editor_state.editor_ui.last_canvas_click.as_ref().map(|(id, t)| (id.as_str().to_string(), *t))
+        );
         if resolved.is_double && !text_edit_was_active {
             if resolved.selected_crop_is_deepest && self.enter_selected_image_crop_edit() {
                 return true;
@@ -116,6 +127,15 @@ impl WidgetHostNative {
             // (canvas_path_overlay.rs:97) pinta handles cuando el nodo es
             // Path y esta seleccionado, y la conversion conserva el id, o
             // sea que la seleccion sigue valiendo.
+            let convertible = op_editor_core::walkers::find_node(
+                self.editor_state.active_children(),
+                &resolved.targets.primary,
+            )
+            .map(op_editor_core::convert_to_path::is_convertible_primitive);
+            eprintln!(
+                "[DBL] rama de conversion: node={} convertible={:?}",
+                resolved.targets.primary, convertible
+            );
             if self
                 .editor_state
                 .convert_node_to_path_in_place(&resolved.targets.primary)
