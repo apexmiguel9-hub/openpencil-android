@@ -223,6 +223,12 @@ fn path_editor_overlay_on_child_applies_ancestor_rotation() {
     };
     let mut state = EditorState::new();
     state.set_single_selection(op_editor_core::NodeId::new("editing-path"));
+    // El overlay de paths con la herramienta de seleccion solo se pinta en
+    // modo edicion de vertices (FASE 3), asi que este test —que se llama
+    // path_editor_overlay y usa un nodo llamado "editing-path"— tiene que
+    // declarar ese modo. Antes no hacia falta porque los anchors se pintaban
+    // con cualquier Path seleccionado.
+    state.editor_ui.node_editing = Some(op_editor_core::NodeId::new("editing-path"));
     let mut viewport = CanvasViewport::from_editor(&state, &scene);
     viewport.tool = op_editor_core::Tool::Select;
     let mut backend = RecordingBackend::default();
