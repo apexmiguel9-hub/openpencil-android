@@ -218,6 +218,7 @@ impl Default for EditorUiState {
             component_browser_open: false,
             canvas_hover_node: None,
             entered_container: None,
+            node_editing: None,
             component_browser_pos: None,
             component_browser_search: String::new(),
             component_browser_category: None,
