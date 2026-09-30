@@ -468,6 +468,10 @@ fn right_click_anchor_opens_menu_and_action_commits_history() {
     host.editor_state_mut().tool = Tool::Select;
     host.editor_state_mut()
         .set_single_selection(NodeId::new("n60"));
+    // Los anchors solo son golpeables en modo edicion de vertices, asi que el
+    // menu contextual sobre un anchor tambien exige ese modo (si no, seria un
+    // menu sobre algo que no se ve).
+    host.editor_state_mut().editor_ui.node_editing = Some(NodeId::new("n60"));
     host.mark_paint_dirty_for_test();
     let (px, py) = screen(&host, 380.0, 300.0);
     assert!(host.apply_right_press(px, py, VW, VH));
@@ -508,6 +512,8 @@ fn right_click_miss_closes_menu_without_consuming() {
     host.editor_state_mut().tool = Tool::Select;
     host.editor_state_mut()
         .set_single_selection(NodeId::new("n60"));
+    // Ver right_click_anchor_opens_menu_and_action_commits_history.
+    host.editor_state_mut().editor_ui.node_editing = Some(NodeId::new("n60"));
     host.mark_paint_dirty_for_test();
     let (px, py) = screen(&host, 380.0, 300.0);
     host.apply_right_press(px, py, VW, VH);
