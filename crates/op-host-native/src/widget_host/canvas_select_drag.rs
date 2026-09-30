@@ -103,6 +103,31 @@ impl WidgetHostNative {
                 self.mark_dirty();
                 return true;
             }
+            // FASE 3: doble tap sobre una PRIMITIVA la convierte en path
+            // editable y entra al editor de nodos.
+            //
+            // Va ULTIMO a proposito: las cuatro ramas anteriores son
+            // especificas (imagen en crop, texto, nodo con hijo bajo el
+            // cursor, texto) y para un rect/elipse/poligono/linea ninguna
+            // aplica, asi que aqui no se pisa nada. Si alguna se anade
+            // antes, pasaria por encima de la entrada al ambito anidado.
+            //
+            // No hace falta ningun estado de "editando nodos": el overlay
+            // (canvas_path_overlay.rs:97) pinta handles cuando el nodo es
+            // Path y esta seleccionado, y la conversion conserva el id, o
+            // sea que la seleccion sigue valiendo.
+            if self
+                .editor_state
+                .convert_node_to_path_in_place(&resolved.targets.primary)
+            {
+                // La conversion bumpea la revision (que es la identidad del
+                // cache de escena), asi que hay que forzar la reconstruccion
+                // antes de que nadie lea la escena. invalidate_live_scene_for_
+                // rebuild es el helper que ya usan los drags.
+                self.invalidate_live_scene_for_rebuild();
+                self.scroll_layer_panel_selection_into_view(viewport_width, viewport_height);
+                return true;
+            }
         }
         let should_start_drag = core_drag::apply_canvas_press_selection(
             &mut self.editor_state,

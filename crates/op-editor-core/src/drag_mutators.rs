@@ -385,3 +385,167 @@ impl EditorState {
         inserted
     }
 }
+
+/// Sustituye una primitiva por su equivalente path, en el sitio.
+///
+/// Esto es la entrada del "doble tap entra al editor de nodos": la primitiva
+/// se convierte a `PenNode::Path` con anchors (via
+/// `convert_to_path::convert_primitive_to_path`, FASE 3), de
+/// modo que el overlay que YA existe (`canvas_path_overlay.rs:97`) lo pinta
+/// sin necesidad de tocar el renderer.
+///
+/// Devuelve `true` si el documento cambió.
+///
+/// Por qué conserva el índice: `find_parent_and_index` da (padre, índice) y el
+/// nodo se reinserta exactamente ahí, así que un rect dentro de un frame sigue
+/// en su posición y no salta de sitio al convertirse.
+///
+/// Por qué bumpea la revisión: `mark_document_changed` es obligatorio en todo
+/// mutator de contenido (ver su doc), porque la revisión es la identidad del
+/// caché de escena. Sin esto el host se queda pintando la escena anterior.
+pub fn convert_node_to_path_in_place(&mut self, id: &NodeId) -> bool {
+    let Some((parent, index)) = walkers::find_parent_and_index(self.active_children(), id) else {
+        return false;
+    };
+    let Some(original) = walkers::find_node(self.active_children(), id).cloned() else {
+        return false;
+    };
+    let Some(converted) =
+        crate::convert_to_path::convert_primitive_to_path(&original) else {
+        return false;
+    };
+    if converted == original {
+        return false;
+    }
+    // extract_node se lleva el nodo (y sus hijos, por eso el guard de hijos
+    // vive en el convertidor). Se reinserta en el mismo padre e indice.
+    if walkers::extract_node(self.active_children_mut(), id).is_none() {
+        return false;
+    }
+    if !walkers::insert_into_parent(
+        self.active_children_mut(),
+        parent.as_ref(),
+        Some(index),
+        converted,
+    ) {
+        return false;
+    }
+    // La seleccion sigue apuntando al mismo id, asi que no hace falta
+    // re-seleccionar: el id se conserva en la conversion.
+    self.mark_document_changed();
+    true
+}
+
+#[cfg(test)]
+mod convert_in_place_tests {
+    use super::*;
+    use jian_ops_schema::node::container::ContainerProps;
+    use jian_ops_schema::node::{PenNodeBase, RectangleNode};
+    use jian_ops_schema::sizing::{SizingBehavior, SizingKeyword};
+
+    fn rect(id: &str, parent: Option<&str>, index_in_parent: usize) -> PenNode {
+        PenNode::Rectangle(RectangleNode {
+            base: PenNodeBase {
+                id: id.into(),
+                name: Some("R".into()),
+                x: Some(0.0),
+                y: Some(0.0),
+                ..Default::default()
+            },
+            container: ContainerProps {
+                width: Some(SizingBehavior::Number(40.0)),
+                height: Some(SizingBehavior::Number(20.0)),
+                ..Default::default()
+            },
+            children: None,
+            state: None,
+            bindings: None,
+            events: None,
+            lifecycle: None,
+            semantics: None,
+            gestures: None,
+            route: None,
+        })
+    }
+
+    /// Un rect suelto se convierte y conserva su id.
+    #[test]
+    fn top_level_rect_converts_in_place() {
+        let mut s = EditorState::default();
+        s.active_children_mut().push(rect("r1", None, 0));
+        assert!(s.convert_node_to_path_in_place(&NodeId::new("r1")));
+        let node = &s.active_children()[0];
+        assert!(matches!(node, PenNode::Path(_)), "debe ser Path ahora");
+        assert_eq!(node.id_str(), "r1", "el id se conserva");
+    }
+
+    /// Un rect dentro de un frame se convierte Y sigue en su indice. Si el
+    /// indice se perdiera, el rect se moveria de sitio al convertirse, que es
+    /// justo el tipo de salto que el usuario no espera.
+    #[test]
+    fn nested_rect_keeps_its_index_among_siblings() {
+        let mut s = EditorState::default();
+        let mut frame = rect("frame", None, 0);
+        if let PenNode::Rectangle(r) = &mut frame {
+            r.children = Some(vec![rect("a", None, 0), rect("b", None, 1), rect("c", None, 2)]);
+        }
+        s.active_children_mut().push(frame);
+
+        assert!(s.convert_node_to_path_in_place(&NodeId::new("b")));
+        let children = s.active_children()[0].children().unwrap();
+        let ids: Vec<&str> = children.iter().map(|n| n.id_str()).collect();
+        assert_eq!(ids, vec!["a", "b", "c"], "el orden no debe cambiar");
+        assert!(matches!(children[1], PenNode::Path(_)), "b es Path");
+    }
+
+    /// Un rect CON HIJOS no se convierte: seria perder los hijos.
+    #[test]
+    fn rect_with_children_is_refused() {
+        let mut s = EditorState::default();
+        let mut parent = rect("parent", None, 0);
+        if let PenNode::Rectangle(r) = &mut parent {
+            r.children = Some(vec![rect("kid", None, 0)]);
+        }
+        s.active_children_mut().push(parent);
+        assert!(
+            !s.convert_node_to_path_in_place(&NodeId::new("parent")),
+            "un contenedor no debe convertirse"
+        );
+        // Y el árbol sigue intacto.
+        assert_eq!(s.active_children()[0].children().unwrap().len(), 1);
+    }
+
+    /// Un id que no existe no rompe nada.
+    #[test]
+    fn missing_id_is_a_noop() {
+        let mut s = EditorState::default();
+        s.active_children_mut().push(rect("r1", None, 0));
+        assert!(!s.convert_node_to_path_in_place(&NodeId::new("nope")));
+    }
+
+    /// Un tamaño no fijo no es geometría: no se convierte.
+    #[test]
+    fn fit_content_rect_is_refused() {
+        let mut s = EditorState::default();
+        let mut r = rect("r1", None, 0);
+        if let PenNode::Rectangle(x) = &mut r {
+            x.container.height = Some(SizingBehavior::Keyword(SizingKeyword::FitContent));
+        }
+        s.active_children_mut().push(r);
+        assert!(!s.convert_node_to_path_in_place(&NodeId::new("r1")));
+    }
+
+    /// Convertir sube la revisión, que es la identidad del caché de escena.
+    /// Sin esto el host se queda pintando la escena anterior.
+    #[test]
+    fn conversion_bumps_the_revision() {
+        let mut s = EditorState::default();
+        s.active_children_mut().push(rect("r1", None, 0));
+        let before = s.document_revision();
+        assert!(s.convert_node_to_path_in_place(&NodeId::new("r1")));
+        assert!(
+            s.document_revision() != before,
+            "la revisión debe cambiar: es lo que invalida el caché de escena"
+        );
+    }
+}

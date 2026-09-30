@@ -5,8 +5,8 @@
 //! editor de nodos que YA existe pueda editarlo. No inventa geometría: encadena
 //! el motor de `jian-skia` (fases 1-3), que ya está probado.
 //!
-//!   primitiva      --(jian_skia::shape_to_path)-->  PathCommand   [FASE 2]
-//!   PathCommand    --(jian_skia::commands_to_anchors)-->  anchors  [FASE 3]
+//!   primitiva      --(jian_core::shape_to_path)-->  PathCommand   [FASE 2]
+//!   PathCommand    --(jian_core::commands_to_anchors)-->  anchors  [FASE 3]
 //!   + original     --(este fichero)-->  PenNode::Path
 //!
 //! POR QUÉ ESTA FORMA. El overlay `canvas_path_overlay.rs:97` solo pinta
@@ -28,11 +28,17 @@
 //! se arregla aparte; aquí solo se arregla el camino de la conversión
 //! explícita.
 //!
-//! GATE. `jian-skia` es opcional en este crate (feature `skia-measure`, que es
-//! default y se apaga para el build web sin skia). Por eso este módulo entero
-//! va detrás del mismo cfg.
-
-#![cfg(feature = "skia-measure")]
+//! POR QUÉ VIVE AQUÍ Y NO EN op-pen-loader. El convertidor original se puso
+//! en el loader porque es quien tiene `jian-skia`. Pero `jian-skia` es
+//! opcional ahi (feature `skia-measure`, apagado en el build web), y sobre
+//! todo op-pen-loader YA DEPENDE de op-editor-core: meter la mutacion del
+//! documento aqui seria una dependencia circular.
+//!
+//! La solucion: la geometria de `shape_to_path` y `commands_to_anchors` NO
+//! USA SKIA. Son geometria pura sobre `PathCommand` y `PenPathAnchor`. Asi que
+//! se movieron a `jian-core` (que ya depende de `jian-ops-schema`), y este
+//! modulo —que solo necesita el modelo— puede vivir en el core sin arrastrar
+//! skia a ninguna parte.
 
 use jian_core::render::PathCommand;
 use jian_ops_schema::node::container::CornerRadius;
@@ -79,7 +85,7 @@ fn primitive_commands(node: &PenNode) -> Option<Vec<PathCommand>> {
         PenNode::Rectangle(RectangleNode { container, .. }) => {
             let w = sizing_num(container.width.as_ref())?;
             let h = sizing_num(container.height.as_ref())?;
-            Some(jian_skia::shape_to_path::rect_commands(
+            Some(jian_core::shape_to_path::rect_commands(
                 x,
                 y,
                 w,
@@ -95,7 +101,7 @@ fn primitive_commands(node: &PenNode) -> Option<Vec<PathCommand>> {
             // Solo la elipse completa. Un arco (start_angle / sweep_angle /
             // inner_radius) necesita su propio camino y es un caso aparte; si
             // aparece, se degrada a elipse completa en vez de a nada.
-            Some(jian_skia::shape_to_path::ellipse_commands(x, y, w, h))
+            Some(jian_core::shape_to_path::ellipse_commands(x, y, w, h))
         }
         PenNode::Polygon(PolygonNode {
             width,
@@ -106,14 +112,14 @@ fn primitive_commands(node: &PenNode) -> Option<Vec<PathCommand>> {
             let w = sizing_num(width.as_ref())?;
             let h = sizing_num(height.as_ref())?;
             let sides = (*polygon_count).max(3);
-            Some(jian_skia::shape_to_path::polygon_commands(
+            Some(jian_core::shape_to_path::polygon_commands(
                 x, y, w, h, sides as u32,
             ))
         }
         PenNode::Line(LineNode { x2, y2, .. }) => {
             let x2 = x2.unwrap_or(x as f64).abs() as f32;
             let y2 = y2.unwrap_or(y as f64).abs() as f32;
-            Some(jian_skia::shape_to_path::line_commands(x, y, x2, y2))
+            Some(jian_core::shape_to_path::line_commands(x, y, x2, y2))
         }
         _ => None,
     }
@@ -192,9 +198,20 @@ pub fn convert_primitive_to_path(node: &PenNode) -> Option<PenNode> {
     if matches!(node, PenNode::Path(_)) {
         return Some(node.clone());
     }
+    // UNA PRIMITIVA CON HIJOS NO SE CONVIERTE. Un Rectangle es contenedor en
+    // este schema (children: Option<Vec<PenNode>>), o sea que un "card" es un
+    // rect con hijos. Convertirlo a Path destruiria los hijos (extract_node se
+    // los lleva) y su auto-layout. Es perdida de datos silenciosa, asi que
+    // aqui se niega en vez de arriesgar.
+    //
+    // Lo correcto para un container seria otra operacion ("aplanar"), que no
+    // es lo mismo que deformar la forma.
+    if node.children().is_some_and(|c| !c.is_empty()) {
+        return None;
+    }
     let commands = primitive_commands(node)?;
     let (w, h) = primitive_size(node)?;
-    let geom = jian_skia::commands_to_anchors::commands_to_anchors(&commands);
+    let geom = jian_core::commands_to_anchors::commands_to_anchors(&commands);
 
     // Una linea no cierra; el resto sí.
     let closed = !matches!(node, PenNode::Line(_)) && geom.closed;

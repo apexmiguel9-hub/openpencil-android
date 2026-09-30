@@ -71,6 +71,7 @@ pub mod conversion;
 pub mod design_md;
 pub mod design_md_button_state;
 pub mod document_install;
+pub mod convert_to_path;
 pub mod drag_mutators;
 pub mod edit_transaction;
 pub mod editor_toast;
