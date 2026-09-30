@@ -39,6 +39,9 @@ use jian_ops_schema::node::container::CornerRadius;
 use jian_ops_schema::node::{
     EllipseNode, LineNode, PathNode, PenNode, PolygonNode, RectangleNode,
 };
+// base()/fill()/stroke()/effects()/mask() vienen de este trait (op-editor-core,
+// pen_node_ext.rs:31). Es solo un trait, no arrastra skia.
+use op_editor_core::PenNodeExt;
 use jian_ops_schema::sizing::SizingBehavior;
 
 /// Un número de `SizingBehavior`, o `None` si no es un número fijo.
@@ -100,7 +103,7 @@ fn primitive_commands(node: &PenNode) -> Option<Vec<PathCommand>> {
         }) => {
             let w = sizing_num(width.as_ref())?;
             let h = sizing_num(height.as_ref())?;
-            let sides = polygon_count.unwrap_or(3).max(3);
+            let sides = (*polygon_count).max(3);
             Some(jian_skia::shape_to_path::polygon_commands(
                 x, y, w, h, sides as u32,
             ))
