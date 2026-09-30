@@ -52,6 +52,7 @@ mod dbg_log {
 }
 // ==== FIN LOG TEMPORAL ====
 
+#[cfg(test)]
 pub(in crate::widget_host) fn reset_drop_index_build_count() {
     DROP_INDEX_BUILD_COUNT.with(|count| count.set(0));
 }
