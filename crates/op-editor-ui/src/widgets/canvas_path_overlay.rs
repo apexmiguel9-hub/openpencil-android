@@ -65,6 +65,10 @@ pub(super) fn paint_path_overlays(
     cx: &mut PaintCx<'_>,
     theme: &Theme,
     tool: op_editor_core::Tool,
+    /// Hay un Path en modo edicion de vertices. Con la herramienta de
+    /// seleccion solo entonces se pintan los anchors; sin esto salian
+    /// mezclados con los tiradores de redimension.
+    node_edit_active: bool,
     pen_active: bool,
     pen_node: Option<&SceneNode>,
     pen_cursor_doc: Option<Point2D>,
@@ -99,8 +103,21 @@ pub(super) fn paint_path_overlays(
     }
     with_node_overlay_transform(cx, node, canvas_rect, viewport, selected_transforms, |cx| {
         if matches!(tool, op_editor_core::Tool::Pen) {
+            // Al dibujar con la pluma los handles fantasma se ven siempre: son
+            // los que vas a agarrar a continuacion.
             paint_ghost_edit_handles(cx, node, theme, canvas_rect, viewport);
-        } else {
+        } else if node_edit_active {
+            // Con la herramienta de seleccion, los anchors SOLO en modo
+            // edicion. Antes se pintaban con cualquier Path seleccionado, y
+            // eso mezclaba los circulos de edicion con los cuadritos de
+            // redimension: al tocar el objeto se veian los dos a la vez y no
+            // se sabia que habia un modo.
+            //
+            // Con node_edit_active el ciclo queda limpio:
+            //   doble tap      -> solo circulos (editando)
+            //   tocar fuera    -> deselecciona
+            //   un tap         -> solo cuadritos (seleccion normal)
+            //   doble tap      -> solo circulos
             paint_path_editor(cx, node, canvas_rect, viewport);
         }
     });

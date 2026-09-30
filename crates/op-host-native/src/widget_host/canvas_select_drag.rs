@@ -14,6 +14,7 @@
 
 use super::{NodeDragState, WidgetHostNative};
 use op_editor_core::host_drag_transitions as core_drag;
+use jian_ops_schema::node::PenNode;
 use op_editor_core::NodeId;
 use op_editor_ui::widgets::drag_flow;
 use op_editor_ui::widgets::CanvasNodeDragOverlay;
@@ -121,24 +122,26 @@ impl WidgetHostNative {
                 // cache de escena), asi que hay que forzar la reconstruccion
                 // antes de que nadie lea la escena. invalidate_live_scene_for_
                 // rebuild es el helper que ya usan los drags.
-                // FASE 3: entras en modo edicion de vertices. A partir de
-                // aqui los tiradores de redimension se apagan (canvas_viewport
-                // show_handles) y el golpeo va al anchor primero.
+                // FASE 3: se acaba de convertir, y ademas se entra en modo
+                // edicion de vertices: los tiradores de redimension se apagan
+                // (show_handles) y el golpeo va al anchor primero.
                 self.editor_state.editor_ui.node_editing =
                     Some(resolved.targets.primary.clone());
                 self.invalidate_live_scene_for_rebuild();
                 self.scroll_layer_panel_selection_into_view(viewport_width, viewport_height);
                 return true;
             }
-            // Ya estamos editando este Path: un doble tap mas no hace nada
-            // nuevo, pero entra igualmente para que el gesto sea idempotente.
-            if self
-                .editor_state
-                .editor_ui
-                .node_editing
-                .as_ref()
-                .is_some_and(|id| id == &resolved.targets.primary)
-            {
+            // El nodo YA era un Path, asi que convert_node_to_path_in_place
+            // devuelve false (idempotente) y no entra por la rama de arriba.
+            // Sin esto, el doble tap sobre un path ya convertido no hacia
+            // NADA, y el ciclo de edicion solo funcionaba la primera vez.
+            if matches!(
+                op_editor_core::walkers::find_node(
+                    self.editor_state.active_children(),
+                    &resolved.targets.primary
+                ),
+                Some(PenNode::Path(_))
+            ) {
                 self.editor_state.editor_ui.node_editing =
                     Some(resolved.targets.primary.clone());
                 self.mark_dirty();

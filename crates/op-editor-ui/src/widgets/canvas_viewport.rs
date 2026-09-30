@@ -518,6 +518,7 @@ impl<'a> Widget for CanvasViewport<'a> {
             cx,
             &self.theme,
             self.tool,
+            self.node_edit_active,
             self.pen_in_progress.is_some(),
             paint_hits.pen_node,
             self.pen_cursor_doc,
