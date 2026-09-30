@@ -78,7 +78,7 @@ impl WidgetHostNative {
             "[DBL] press node={} is_double={} shift={} sel_count={} last_click={:?}",
             resolved.targets.primary,
             resolved.is_double,
-            shift_held,
+            self.shift_held,
             self.editor_state.selection_count(),
             self.editor_state.editor_ui.last_canvas_click.as_ref().map(|(id, t)| (id.as_str().to_string(), *t))
         );
