@@ -49,7 +49,7 @@ use jian_ops_schema::style::{PenEffect, PenFill, PenStroke};
 // base() viene del trait PenNodeExt (op-editor-core, pen_node_ext.rs:31).
 // fill/stroke/effects NO tienen accessor: se leen con un match por tipo, abajo.
 // Es solo un trait, asi que op-pen-loader lo usa sin arrastrar skia al core.
-use op_editor_core::PenNodeExt;
+use crate::PenNodeExt;
 use jian_ops_schema::sizing::SizingBehavior;
 
 /// Un número de `SizingBehavior`, o `None` si no es un número fijo.
@@ -206,7 +206,7 @@ pub fn convert_primitive_to_path(node: &PenNode) -> Option<PenNode> {
     //
     // Lo correcto para un container seria otra operacion ("aplanar"), que no
     // es lo mismo que deformar la forma.
-    if node.children().is_some_and(|c| !c.is_empty()) {
+    if node.children().map_or(false, |c| !c.is_empty()) {
         return None;
     }
     let commands = primitive_commands(node)?;
