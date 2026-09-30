@@ -384,7 +384,6 @@ impl EditorState {
         }
         inserted
     }
-}
 
 /// Sustituye una primitiva por su equivalente path, en el sitio.
 ///
@@ -435,6 +434,8 @@ pub fn convert_node_to_path_in_place(&mut self, id: &NodeId) -> bool {
     self.mark_document_changed();
     true
 }
+}
+
 
 #[cfg(test)]
 mod convert_in_place_tests {
